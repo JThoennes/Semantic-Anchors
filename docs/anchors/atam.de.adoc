@@ -1,0 +1,46 @@
+= ATAM
+:categories: software-architecture
+:roles: software-architect, team-lead, product-owner
+:related: arc42, adr-according-to-nygard
+:proponents: Rick Kazman, Mark Klein, Paul Clements
+:tags: architecture evaluation, quality attributes, tradeoffs, utility tree, SEI, risk analysis
+
+[%collapsible]
+====
+Vollständiger Name:: Architecture Tradeoff Analysis Method (Architektur-Kompromiss-Analysemethode)
+
+Auch bekannt als:: Architekturbewertung, ATAM-Review
+
+[discrete]
+== *Kernkonzepte*:
+
+Utility Tree:: Hierarchische Zerlegung von Systemqualitätszielen in konkrete, priorisierte Qualitätsattribut-Szenarien (z.B. Performance → Antwortzeit → „Suchergebnisse werden in < 1s unter Spitzenlast geliefert")
+
+Qualitätsattribut-Szenarien:: Testbare, konkrete Ausdrücke von Qualitätsanforderungen bestehend aus Stimulus, Quelle, Umgebung, Artefakt, Reaktion und Reaktionsmaß
+
+Architekturansätze:: Entwurfsentscheidungen und Muster (z.B. Caching, Replikation, Schichtung), die zur Erreichung von Qualitätsattributen eingesetzt werden
+
+Sensitivitätspunkte:: Architekturentscheidungen, die ein bestimmtes Qualitätsattribut maßgeblich beeinflussen
+
+Kompromißpunkte (Tradeoff Points):: Architekturentscheidungen, die zwei oder mehr Qualitätsattribute in widersprüchlicher Weise beeinflussen — die zentrale Erkenntnis von ATAM
+
+Risiken und Nicht-Risiken:: Identifizierte Architekturentscheidungen, die zu zukünftigen Problemen führen können (Risiken) oder nachweislich nicht führen werden (Nicht-Risiken)
+
+Neunstufiger Prozess:: Präsentation von ATAM → Darstellung der Geschäftsziele → Präsentation der Architektur → Identifikation von Architekturansätzen → Erstellung des Utility Tree → Analyse der Architekturansätze → Brainstorming von Szenarien → Analyse der Szenarien → Präsentation der Ergebnisse
+
+Schlüsselvertreter:: Rick Kazman, Mark Klein, Paul Clements (SEI / Carnegie Mellon University)
+
+[discrete]
+== *Wann zu verwenden*:
+
+* Bewertung einer Softwarearchitektur vor größeren Investitionen in die Implementierung
+* Wenn mehrere Stakeholder widersprüchliche Qualitätsanforderungen haben (z.B. Performance vs. Sicherheit)
+* Bei Architekturreviews von sicherheitskritischen oder hochverfügbaren Systemen
+* Bei Kauf-vs.-Bau-Entscheidungen oder der Auswahl zwischen konkurrierenden Architekturstilen
+
+[discrete]
+== *Verwandte Anker*:
+
+* <<arc42,arc42 Architekturdokumentation>>
+* <<adr-according-to-nygard,ADR nach Nygard>>
+====

@@ -1,0 +1,46 @@
+= ATAM
+:categories: software-architecture
+:roles: software-architect, team-lead, product-owner
+:related: arc42, adr-according-to-nygard
+:proponents: Rick Kazman, Mark Klein, Paul Clements
+:tags: architecture evaluation, quality attributes, tradeoffs, utility tree, SEI, risk analysis
+
+[%collapsible]
+====
+Full Name:: Architecture Tradeoff Analysis Method
+
+Also known as:: Architecture Evaluation, ATAM Review
+
+[discrete]
+== *Core Concepts*:
+
+Utility Tree:: Hierarchical decomposition of system quality goals into concrete, prioritized quality attribute scenarios (e.g., Performance → Response Time → "Search results returned in < 1s under peak load")
+
+Quality Attribute Scenarios:: Testable, concrete expressions of quality requirements consisting of stimulus, source, environment, artifact, response, and response measure
+
+Architectural Approaches:: Design decisions and patterns (e.g., caching, replication, layering) used to achieve quality attributes
+
+Sensitivity Points:: Architectural decisions that significantly affect one specific quality attribute
+
+Tradeoff Points:: Architectural decisions that affect two or more quality attributes in conflicting ways — the core insight of ATAM
+
+Risks and Non-risks:: Identified architectural decisions that may (risks) or demonstrably will not (non-risks) lead to future problems
+
+Nine-step process:: Presentation of ATAM → presentation of business drivers → presentation of architecture → identification of architectural approaches → generation of utility tree → analysis of architectural approaches → brainstorming scenarios → analysis of scenarios → presentation of results
+
+Key Proponents:: Rick Kazman, Mark Klein, Paul Clements (SEI / Carnegie Mellon University)
+
+[discrete]
+== *When to Use*:
+
+* Evaluating a software architecture before major investment in implementation
+* When multiple stakeholders have conflicting quality requirements (e.g., performance vs. security)
+* During architecture reviews of safety-critical or high-availability systems
+* When making buy-vs.-build decisions or selecting between competing architectural styles
+
+[discrete]
+== *Related Anchors*:
+
+* <<arc42,arc42 Architecture Documentation>>
+* <<adr-according-to-nygard,ADR according to Nygard>>
+====

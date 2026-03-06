@@ -105,6 +105,8 @@ include::anchors/adr-according-to-nygard.adoc[leveloffset=+2]
 
 include::anchors/arc42.adoc[leveloffset=+2]
 
+include::anchors/atam.adoc[leveloffset=+2]
+
 include::anchors/c4-diagrams.adoc[leveloffset=+2]
 
 include::anchors/clean-architecture.adoc[leveloffset=+2]

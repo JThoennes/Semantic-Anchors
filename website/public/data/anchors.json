@@ -35,6 +35,36 @@
     "filePath": "docs/anchors/arc42.adoc"
   },
   {
+    "id": "atam",
+    "title": "ATAM",
+    "categories": [
+      "software-architecture"
+    ],
+    "roles": [
+      "software-architect",
+      "team-lead",
+      "product-owner"
+    ],
+    "related": [
+      "arc42",
+      "adr-according-to-nygard"
+    ],
+    "proponents": [
+      "Rick Kazman",
+      "Mark Klein",
+      "Paul Clements"
+    ],
+    "tags": [
+      "architecture evaluation",
+      "quality attributes",
+      "tradeoffs",
+      "utility tree",
+      "SEI",
+      "risk analysis"
+    ],
+    "filePath": "docs/anchors/atam.adoc"
+  },
+  {
     "id": "bem-methodology",
     "title": "BEM Methodology",
     "categories": [

@@ -84,6 +84,7 @@
     "anchors": [
       "adr-according-to-nygard",
       "arc42",
+      "atam",
       "c4-diagrams",
       "clean-architecture",
       "domain-driven-design",
