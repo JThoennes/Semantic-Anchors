@@ -8,10 +8,10 @@ export function renderHeader() {
       <nav class="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-6">
-            <h1 class="text-xl font-bold text-[var(--color-text)] flex items-center gap-2">
-              <a href="#/" class="no-underline text-inherit hover:text-[var(--color-primary)] transition-colors flex items-center gap-2" data-i18n="app.title">
-                <img src="${import.meta.env.BASE_URL}icon.png" alt="" class="h-8 w-8" aria-hidden="true" />
-                Semantic Anchors
+            <div class="flex items-center gap-2">
+              <a href="#/" class="no-underline flex flex-col items-start">
+                <img src="${import.meta.env.BASE_URL}logo.png" alt="Semantic Anchors" class="h-8" />
+                <span class="hidden sm:block text-xs text-[var(--color-text-secondary)] leading-tight" data-i18n="header.slogan">${i18n.t('header.slogan')}</span>
               </a>
               <button
                 id="onboarding-info-btn"
@@ -25,8 +25,7 @@ export function renderHeader() {
                   <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
                 </svg>
               </button>
-            </h1>
-            <span class="hidden lg:inline text-sm font-normal text-[var(--color-text-secondary)]" data-i18n="header.slogan">${i18n.t('header.slogan')}</span>
+            </div>
             <div class="hidden sm:flex items-center gap-4 text-sm">
               <a href="#/" class="nav-link text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors" data-route="/" data-i18n="nav.catalog">${i18n.t('nav.catalog')}</a>
               <a href="#/about" class="nav-link text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors" data-route="/about" data-i18n="nav.about">${i18n.t('nav.about')}</a>
