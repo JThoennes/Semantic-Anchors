@@ -83,12 +83,12 @@ export function renderHeader() {
 
         <!-- Mobile: stacked layout -->
         <div class="sm:hidden">
-          <div class="flex items-center justify-between">
-            <a href="#/" class="no-underline flex flex-col items-start">
+          <div class="flex flex-col items-center">
+            <a href="#/" class="no-underline flex flex-col items-center">
               <img src="${import.meta.env.BASE_URL}logo.png" alt="Semantic Anchors" class="max-h-16" />
-              <span class="text-xs text-[var(--color-text-secondary)] leading-tight" data-i18n="header.slogan">${i18n.t('header.slogan')}</span>
+              <span class="text-xs text-[var(--color-text-secondary)] leading-tight text-center" data-i18n="header.slogan">${i18n.t('header.slogan')}</span>
             </a>
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 mt-2">
               <button
                 id="onboarding-info-btn-mobile"
                 class="rounded-full p-1 text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] hover:bg-[var(--color-bg-secondary)] transition-colors"
@@ -98,7 +98,8 @@ export function renderHeader() {
                 title="${i18n.t('onboarding.infoButton')}"
               >
                 <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
                 </svg>
               </button>
               <button
