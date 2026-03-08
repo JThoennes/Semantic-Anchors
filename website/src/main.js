@@ -14,6 +14,11 @@ import { fetchData } from './utils/data-loader.js'
 import { buildSearchIndex, isIndexReady, isIndexBuilding } from './utils/search-index.js'
 import { initRouter, addRoute } from './utils/router.js'
 import { renderDocPage, loadDocContent } from './components/doc-page.js'
+import {
+  createOnboardingModal,
+  showOnboarding,
+  shouldShowOnboarding,
+} from './components/onboarding-modal.js'
 
 const APP_VERSION = '0.4.0'
 
@@ -113,9 +118,15 @@ function initApp() {
   bindThemeToggle()
   bindLanguageToggle()
   bindMobileMenu()
+  bindOnboardingButton()
   updateActiveNavLink()
 
+  createOnboardingModal()
   initRouter()
+
+  if (shouldShowOnboarding()) {
+    showOnboarding()
+  }
 
   ensureDataLoaded().catch((err) => {
     console.error('Failed to load app data:', err)
@@ -305,6 +316,12 @@ function handleLanguageChange() {
       getAnchorModalModule().then(({ loadAnchorContent }) => loadAnchorContent(currentAnchor))
     }
   }
+}
+
+function bindOnboardingButton() {
+  const btn = document.getElementById('onboarding-info-btn')
+  if (!btn) return
+  btn.addEventListener('click', () => showOnboarding())
 }
 
 function bindMobileMenu() {

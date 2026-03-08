@@ -40,5 +40,14 @@
   "card.tags": "Tags",
   "card.openDetails": "{title} Details öffnen",
   "modal.close": "Schließen",
-  "modal.share": "Teilen"
+  "modal.share": "Teilen",
+  "onboarding.slogan1": "Semantic Anchors.",
+  "onboarding.slogan2": "Ein Wort, und die KI versteht den Rest.",
+  "onboarding.text1": "Stell dir vor, du sagst ein einziges Wort \u2013 und dein Gegen\u00fcber versteht sofort ein ganzes Konzept.",
+  "onboarding.text2": "Ein Semantic Anchor ist ein etablierter Begriff, der ein ganzes Wissensgebiet aktiviert. Wie ein Anker, der ein Schiff an einem festen Punkt h\u00e4lt \u2013 so verankert ein Semantic Anchor dein Gespr\u00e4ch an einem pr\u00e4zisen Konzept.",
+  "onboarding.text3": "Das funktioniert, weil KI-Modelle auf Millionen von Texten trainiert wurden. Begriffe wie MECE, Clean Architecture oder Feynman-Technik l\u00f6sen sofort tiefes Kontextwissen aus.",
+  "onboarding.text4": "Statt lange Prompts zu schreiben, sagst du einfach den richtigen Anker \u2013 und die KI liefert.",
+  "onboarding.cta": "Katalog erkunden",
+  "onboarding.watchVideo": "Erkl\u00e4rvideo ansehen",
+  "onboarding.infoButton": "Was sind Semantic Anchors?"
 }

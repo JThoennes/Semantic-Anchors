@@ -1,3 +1,5 @@
 node_modules/
 *.png
+!website/public/logo.png
+!website/public/icon.png
 .playwright-mcp/
