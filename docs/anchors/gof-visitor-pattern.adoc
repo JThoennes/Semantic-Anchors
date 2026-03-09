@@ -1,0 +1,16 @@
+= GoF-Visitor Pattern
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: gof-design-patterns
+:tier: 3
+:proponents: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+:tags: GoF, design pattern, behavioral, visitor, double dispatch, operations, traversal
+
+[%collapsible]
+====
+Full Name:: GoF Visitor Pattern (Behavioral)
+
+[discrete]
+== *Intent*:
+Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates.
+====

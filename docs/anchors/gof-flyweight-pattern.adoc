@@ -1,0 +1,16 @@
+= GoF-Flyweight Pattern
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: gof-design-patterns
+:tier: 3
+:proponents: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+:tags: GoF, design pattern, structural, flyweight, memory optimization, sharing
+
+[%collapsible]
+====
+Full Name:: GoF Flyweight Pattern (Structural)
+
+[discrete]
+== *Intent*:
+Use sharing to support large numbers of fine-grained objects efficiently.
+====

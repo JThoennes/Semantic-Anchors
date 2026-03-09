@@ -52,5 +52,7 @@
   "onboarding.text4": "Statt lange Prompts zu schreiben, sagst du einfach den richtigen Anker \u2013 und die KI liefert.",
   "onboarding.cta": "Katalog erkunden",
   "onboarding.watchVideo": "Erkl\u00e4rvideo ansehen",
-  "onboarding.infoButton": "Was sind Semantic Anchors?"
+  "onboarding.infoButton": "Was sind Semantic Anchors?",
+  "umbrella.subAnchors": "Patterns in dieser Sammlung",
+  "umbrella.notAnAnchor": "(kein semantischer Anker)"
 }

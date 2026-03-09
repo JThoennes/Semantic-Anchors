@@ -1,0 +1,31 @@
+= GoF-Factory Method Pattern
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: gof-design-patterns
+:tier: 1
+:proponents: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+:tags: GoF, design pattern, creational, factory, polymorphism, instantiation
+
+[%collapsible]
+====
+Full Name:: GoF Factory Method Pattern (Creational)
+
+Also known as:: Virtual Constructor
+
+[discrete]
+== *Intent*:
+Define an interface for creating an object, but let subclasses decide which class to instantiate.
+
+[discrete]
+== *When to Use*:
+* When a class can't anticipate the class of objects it must create
+* When a class wants its subclasses to specify the objects it creates
+
+[discrete]
+== *Prompt Example*:
+"Extrahiere die Objekterzeugung in eine Factory Method nach GoF, damit neue Typen ohne Änderung des bestehenden Codes hinzugefügt werden können."
+
+[discrete]
+== *Related Anchors*:
+* <<gof-design-patterns,GoF Design Patterns>> (Umbrella)
+====

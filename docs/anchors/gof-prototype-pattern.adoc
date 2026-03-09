@@ -1,0 +1,30 @@
+= GoF-Prototype Pattern
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: gof-design-patterns
+:tier: 2
+:proponents: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+:tags: GoF, design pattern, creational, prototype, cloning, copy, object creation
+
+[%collapsible]
+====
+Full Name:: GoF Prototype Pattern (Creational)
+
+[discrete]
+== *Intent*:
+Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
+
+[discrete]
+== *When to Use*:
+* When a system should be independent of how its products are created and represented
+* When classes to instantiate are specified at runtime
+* When you want to avoid building a class hierarchy of factories that parallels the class hierarchy of products
+
+[discrete]
+== *Prompt Example*:
+"Verwende das GoF-Prototype Pattern, um neue Konfigurationsobjekte durch Klonen eines Prototypen zu erzeugen, statt sie jedes Mal von Grund auf zu konstruieren."
+
+[discrete]
+== *Related Anchors*:
+* <<gof-design-patterns,GoF Design Patterns>> (Umbrella)
+====

@@ -107,6 +107,16 @@ export async function fetchData() {
   return dataPromise
 }
 
+let cachedAnchorsOnly = null
+
+export async function fetchAnchorsData() {
+  if (cachedAnchorsOnly) return cachedAnchorsOnly
+  const { anchors } = await fetchData()
+  cachedAnchorsOnly = anchors
+  return cachedAnchorsOnly
+}
+
 export function __resetDataCacheForTests() {
   dataPromise = null
+  cachedAnchorsOnly = null
 }

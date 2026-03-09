@@ -1,0 +1,30 @@
+= GoF-Command Pattern
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: gof-design-patterns
+:tier: 1
+:proponents: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+:tags: GoF, design pattern, behavioral, command, undo, queue, encapsulation, action
+
+[%collapsible]
+====
+Full Name:: GoF Command Pattern (Behavioral)
+
+[discrete]
+== *Intent*:
+Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
+
+[discrete]
+== *When to Use*:
+* When you want to parameterize objects with an action to perform
+* When you need undo/redo functionality
+* When you need to queue, log, or schedule requests
+
+[discrete]
+== *Prompt Example*:
+"Implementiere ein Undo/Redo-System nach dem GoF-Command Pattern, bei dem jede Benutzeraktion als Command-Objekt gekapselt wird."
+
+[discrete]
+== *Related Anchors*:
+* <<gof-design-patterns,GoF Design Patterns>> (Umbrella)
+====

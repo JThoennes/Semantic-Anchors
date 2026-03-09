@@ -64,7 +64,10 @@ export function renderCardGrid(categories, anchors) {
  */
 function renderCategorySection(category, allAnchors) {
   const categoryAnchors = allAnchors.filter(
-    (anchor) => anchor.categories && anchor.categories.includes(category.id)
+    (anchor) =>
+      anchor.categories &&
+      anchor.categories.includes(category.id) &&
+      !anchor.umbrella
   )
 
   if (categoryAnchors.length === 0) return ''
@@ -91,6 +94,8 @@ function renderCategorySection(category, allAnchors) {
  * Render a single anchor card
  */
 function renderAnchorCard(anchor, categoryColor) {
+  const isUmbrella = anchor.subAnchors && anchor.subAnchors.length > 0
+  const umbrellaClass = isUmbrella ? ' anchor-card-umbrella' : ''
   const rolesCount = anchor.roles ? anchor.roles.length : 0
   const githubEditUrl = `https://github.com/LLM-Coding/Semantic-Anchors/edit/main/docs/anchors/${anchor.id}.adoc`
   const roleText = rolesCount === 1 ? i18n.t('card.roles') : i18n.t('card.rolesPlural')
@@ -101,7 +106,7 @@ function renderAnchorCard(anchor, categoryColor) {
 
   return `
     <article
-      class="anchor-card"
+      class="anchor-card${umbrellaClass}"
       data-anchor="${safeId}"
       data-roles="${escapeHtml(anchor.roles ? anchor.roles.join(',') : '')}"
       data-tags="${escapeHtml(anchor.tags ? anchor.tags.join(',') : '')}"
@@ -168,6 +173,19 @@ function renderAnchorCard(anchor, categoryColor) {
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
             </svg>
             <span data-i18n="card.tags">${anchor.tags.length} ${tagsText}</span>
+          </span>
+        `
+            : ''
+        }
+
+        ${
+          isUmbrella
+            ? `
+          <span class="meta-badge">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+            <span>${anchor.subAnchors.length} Sub-Anchors</span>
           </span>
         `
             : ''

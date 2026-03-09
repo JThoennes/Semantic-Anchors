@@ -1,0 +1,29 @@
+= GoF-Composite Pattern
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: gof-design-patterns
+:tier: 2
+:proponents: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+:tags: GoF, design pattern, structural, composite, tree, hierarchy, part-whole
+
+[%collapsible]
+====
+Full Name:: GoF Composite Pattern (Structural)
+
+[discrete]
+== *Intent*:
+Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions uniformly.
+
+[discrete]
+== *When to Use*:
+* When you want to represent part-whole hierarchies of objects
+* When you want clients to be able to ignore the difference between compositions of objects and individual objects
+
+[discrete]
+== *Prompt Example*:
+"Modelliere das Dateisystem nach dem GoF-Composite Pattern, sodass Dateien und Ordner einheitlich behandelt werden können."
+
+[discrete]
+== *Related Anchors*:
+* <<gof-design-patterns,GoF Design Patterns>> (Umbrella)
+====

@@ -1,0 +1,31 @@
+= GoF-Decorator Pattern
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: gof-design-patterns
+:tier: 1
+:proponents: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+:tags: GoF, design pattern, structural, decorator, wrapper, dynamic behavior, composition
+
+[%collapsible]
+====
+Full Name:: GoF Decorator Pattern (Structural)
+
+Also known as:: Wrapper
+
+[discrete]
+== *Intent*:
+Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing.
+
+[discrete]
+== *When to Use*:
+* To add responsibilities to objects dynamically and transparently
+* When extension by subclassing is impractical
+
+[discrete]
+== *Prompt Example*:
+"Verwende das GoF-Decorator Pattern, um dem Logger dynamisch Formatierung, Timestamp und Filterung hinzuzufügen."
+
+[discrete]
+== *Related Anchors*:
+* <<gof-design-patterns,GoF Design Patterns>> (Umbrella)
+====

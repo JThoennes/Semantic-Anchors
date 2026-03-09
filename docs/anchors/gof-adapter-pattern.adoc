@@ -1,0 +1,31 @@
+= GoF-Adapter Pattern
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: gof-design-patterns
+:tier: 1
+:proponents: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+:tags: GoF, design pattern, structural, adapter, wrapper, interface conversion, compatibility
+
+[%collapsible]
+====
+Full Name:: GoF Adapter Pattern (Structural)
+
+Also known as:: Wrapper
+
+[discrete]
+== *Intent*:
+Convert the interface of a class into another interface clients expect.
+
+[discrete]
+== *When to Use*:
+* When you want to use an existing class whose interface doesn't match what you need
+* When you want to create a reusable class that cooperates with unrelated classes
+
+[discrete]
+== *Prompt Example*:
+"Erstelle einen Adapter nach GoF, der die Legacy-API auf unser neues Interface mappt, ohne den bestehenden Code zu ändern."
+
+[discrete]
+== *Related Anchors*:
+* <<gof-design-patterns,GoF Design Patterns>> (Umbrella)
+====

@@ -410,3 +410,57 @@ test.describe('Performance', () => {
     await expect(searchInput).toHaveAttribute('placeholder', /full-text/, { timeout: 15000 })
   })
 })
+
+test.describe('Umbrella Anchors', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/')
+  })
+
+  test('should show umbrella card with stacked visual', async ({ page }) => {
+    await page.waitForSelector('.anchor-card', { timeout: 10000 })
+    const umbrellaCard = page.locator('.anchor-card-umbrella')
+    await expect(umbrellaCard.first()).toBeVisible()
+  })
+
+  test('should not show sub-anchors in main catalog', async ({ page }) => {
+    await page.waitForSelector('.anchor-card', { timeout: 10000 })
+    const strategyCard = page.locator('[data-anchor="gof-strategy-pattern"]')
+    await expect(strategyCard).toHaveCount(0)
+  })
+
+  test('should show sub-anchor list in umbrella modal', async ({ page }) => {
+    await page.waitForSelector('.anchor-card', { timeout: 10000 })
+    await page.locator('[data-anchor="gof-design-patterns"]').click()
+    await page.waitForSelector('.sub-anchor-list', { timeout: 10000 })
+    await expect(page.locator('.sub-anchor-item').first()).toBeVisible()
+  })
+
+  test('should navigate to sub-anchor and show back button', async ({ page }) => {
+    await page.waitForSelector('.anchor-card', { timeout: 10000 })
+    await page.locator('[data-anchor="gof-design-patterns"]').click()
+    await page.waitForSelector('.sub-anchor-list', { timeout: 10000 })
+    await page.locator('.sub-anchor-link').first().click()
+    await expect(page.locator('#modal-back')).toBeVisible({ timeout: 10000 })
+  })
+
+  test('should navigate back to umbrella from sub-anchor', async ({ page }) => {
+    await page.waitForSelector('.anchor-card', { timeout: 10000 })
+    await page.locator('[data-anchor="gof-design-patterns"]').click()
+    await page.waitForSelector('.sub-anchor-list', { timeout: 10000 })
+    await page.locator('.sub-anchor-link').first().click()
+    await expect(page.locator('#modal-back')).toBeVisible({ timeout: 10000 })
+    await page.locator('#modal-back').click()
+    await page.waitForSelector('.sub-anchor-list', { timeout: 10000 })
+    await expect(page.locator('.sub-anchor-list')).toBeVisible()
+  })
+
+  test('should show tier-3 items as greyed out and not clickable', async ({ page }) => {
+    await page.waitForSelector('.anchor-card', { timeout: 10000 })
+    await page.locator('[data-anchor="gof-design-patterns"]').click()
+    await page.waitForSelector('.sub-anchor-list', { timeout: 10000 })
+    const tier3Item = page.locator('.sub-anchor-item.tier-3')
+    await expect(tier3Item.first()).toBeVisible()
+    const linkCount = await tier3Item.first().locator('a').count()
+    expect(linkCount).toBe(0)
+  })
+})

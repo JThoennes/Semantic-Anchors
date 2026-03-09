@@ -1,0 +1,30 @@
+= GoF-Chain of Responsibility Pattern
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: gof-design-patterns
+:tier: 2
+:proponents: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+:tags: GoF, design pattern, behavioral, chain of responsibility, handler, pipeline, middleware
+
+[%collapsible]
+====
+Full Name:: GoF Chain of Responsibility Pattern (Behavioral)
+
+[discrete]
+== *Intent*:
+Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain.
+
+[discrete]
+== *When to Use*:
+* When more than one object may handle a request, and the handler isn't known a priori
+* When you want to issue a request to one of several objects without specifying the receiver explicitly
+* When the set of objects that can handle a request should be specified dynamically
+
+[discrete]
+== *Prompt Example*:
+"Implementiere eine Middleware-Pipeline nach dem GoF-Chain of Responsibility Pattern, bei der jeder Handler die Anfrage entweder verarbeitet oder an den nächsten weitergibt."
+
+[discrete]
+== *Related Anchors*:
+* <<gof-design-patterns,GoF Design Patterns>> (Umbrella)
+====

@@ -2,6 +2,10 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { JSDOM } from 'jsdom'
 import { createModal, openModal, closeModal, showAnchorDetails } from './anchor-modal.js'
 
+vi.mock('../utils/data-loader.js', () => ({
+  fetchAnchorsData: vi.fn(),
+}))
+
 describe('anchor-modal', () => {
   let dom
   let document
@@ -91,9 +95,11 @@ describe('anchor-modal', () => {
   })
 
   describe('showAnchorDetails', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       global.fetch = vi.fn()
       createModal()
+      const { fetchAnchorsData } = await import('../utils/data-loader.js')
+      fetchAnchorsData.mockResolvedValue([])
     })
 
     afterEach(() => {
@@ -147,6 +153,69 @@ describe('anchor-modal', () => {
 
       const content = document.getElementById('modal-content')
       expect(content.innerHTML).toContain('Failed to load')
+    })
+  })
+
+  describe('umbrella anchors', () => {
+    beforeEach(async () => {
+      global.fetch = vi.fn()
+      createModal()
+
+      const { fetchAnchorsData } = await import('../utils/data-loader.js')
+      fetchAnchorsData.mockResolvedValue([
+        {
+          id: 'umbrella-anchor',
+          title: 'Umbrella Anchor',
+          subAnchors: ['sub-one', 'sub-two', 'sub-three'],
+        },
+        { id: 'sub-one', title: 'Sub One', tier: 1 },
+        { id: 'sub-two', title: 'Sub Two', tier: 2 },
+        { id: 'sub-three', title: 'Sub Three', tier: 3 },
+      ])
+    })
+
+    afterEach(() => {
+      delete global.fetch
+    })
+
+    it('should render sub-anchor list when anchor has subAnchors', async () => {
+      global.fetch.mockResolvedValue({
+        ok: true,
+        text: async () => '= Umbrella Anchor\n\nUmbrella content',
+      })
+
+      await showAnchorDetails('umbrella-anchor')
+
+      const content = document.getElementById('modal-content')
+      expect(content.innerHTML).toContain('sub-anchor-list')
+      expect(content.innerHTML).toContain('Sub One')
+      expect(content.innerHTML).toContain('Sub Two')
+      expect(content.innerHTML).toContain('Sub Three')
+    })
+
+    it('should show back button when viewing sub-anchor from umbrella context', async () => {
+      // First load umbrella anchor
+      global.fetch.mockResolvedValue({
+        ok: true,
+        text: async () => '= Umbrella Anchor\n\nUmbrella content',
+      })
+      await showAnchorDetails('umbrella-anchor')
+
+      // Click on a sub-anchor link
+      const subLink = document.querySelector('[data-sub-anchor="sub-one"]')
+      expect(subLink).toBeTruthy()
+
+      global.fetch.mockResolvedValue({
+        ok: true,
+        text: async () => '= Sub One\n\nSub one content',
+      })
+      subLink.click()
+
+      // Wait for async load
+      await new Promise((r) => setTimeout(r, 50))
+
+      const backBtn = document.getElementById('modal-back')
+      expect(backBtn).toBeTruthy()
     })
   })
 })

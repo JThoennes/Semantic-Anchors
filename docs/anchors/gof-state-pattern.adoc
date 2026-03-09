@@ -1,0 +1,31 @@
+= GoF-State Pattern
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: gof-design-patterns
+:tier: 1
+:proponents: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+:tags: GoF, design pattern, behavioral, state, state machine, finite automaton, context
+
+[%collapsible]
+====
+Full Name:: GoF State Pattern (Behavioral)
+
+Also known as:: Objects for States
+
+[discrete]
+== *Intent*:
+Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
+
+[discrete]
+== *When to Use*:
+* When an object's behavior depends on its state and must change at runtime
+* When operations have large conditional statements that depend on the object's state
+
+[discrete]
+== *Prompt Example*:
+"Ersetze die verschachtelten if/switch-Statements durch das GoF-State Pattern, sodass jeder Zustand sein eigenes Verhalten kapselt."
+
+[discrete]
+== *Related Anchors*:
+* <<gof-design-patterns,GoF Design Patterns>> (Umbrella)
+====

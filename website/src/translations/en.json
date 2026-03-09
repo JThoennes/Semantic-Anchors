@@ -52,5 +52,7 @@
   "onboarding.text4": "Instead of writing long prompts, just use the right anchor \u2013 and the AI delivers.",
   "onboarding.cta": "Explore Catalog",
   "onboarding.watchVideo": "Watch explainer video",
-  "onboarding.infoButton": "What are Semantic Anchors?"
+  "onboarding.infoButton": "What are Semantic Anchors?",
+  "umbrella.subAnchors": "Patterns in this collection",
+  "umbrella.notAnAnchor": "(not a semantic anchor)"
 }

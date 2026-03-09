@@ -1,0 +1,28 @@
+= GoF-Proxy Pattern
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: gof-design-patterns
+:tier: 1
+:proponents: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+:tags: GoF, design pattern, structural, proxy, access control, lazy loading, caching, virtual proxy
+
+[%collapsible]
+====
+Full Name:: GoF Proxy Pattern (Structural)
+
+[discrete]
+== *Intent*:
+Provide a surrogate or placeholder for another object to control access to it.
+
+[discrete]
+== *When to Use*:
+* When you need a more versatile or sophisticated reference to an object than a simple pointer (remote, virtual, protection, or smart reference proxy)
+
+[discrete]
+== *Prompt Example*:
+"Implementiere einen Caching-Proxy nach GoF für den API-Client, der wiederholte Anfragen aus dem Cache beantwortet."
+
+[discrete]
+== *Related Anchors*:
+* <<gof-design-patterns,GoF Design Patterns>> (Umbrella)
+====
