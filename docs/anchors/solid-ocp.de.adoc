@@ -1,0 +1,31 @@
+= SOLID-Open/Closed Principle
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: solid-principles
+:tier: 1
+:proponents: Robert C. Martin, Bertrand Meyer
+:tags: SOLID, design principle, OCP, open closed
+
+[%collapsible]
+====
+Vollständiger Name:: SOLID Open/Closed Principle (OCP)
+
+[discrete]
+== *Absicht*:
+Software-Entitäten sollten offen für Erweiterung, aber geschlossen für Modifikation sein. Neues Verhalten wird durch Hinzufügen von neuem Code erreicht, nicht durch Ändern von bestehendem Code.
+
+[discrete]
+== *Wann zu verwenden*:
+* Das Hinzufügen neuer Features erfordert Änderungen an bestehendem, funktionierendem Code
+* Häufige Änderungen an einem Modul brechen andere Teile des Systems
+* Ein Plugin- oder Strategy-basierter Erweiterungsmechanismus wird benötigt
+
+[discrete]
+== *Prompt-Beispiel*:
+"Refactore diesen Code nach dem SOLID-Open/Closed Principle, sodass neue Varianten ohne Änderung des bestehenden Codes hinzugefügt werden können."
+
+[discrete]
+== *Verwandte Anker*:
+* <<solid-principles,SOLID Principles>> (Umbrella)
+* <<gof-strategy-pattern,GoF-Strategy Pattern>> - Gängige OCP-Implementierung
+====

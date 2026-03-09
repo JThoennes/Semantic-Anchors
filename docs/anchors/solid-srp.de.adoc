@@ -1,0 +1,30 @@
+= SOLID-Single Responsibility Principle
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: solid-principles
+:tier: 1
+:proponents: Robert C. Martin
+:tags: SOLID, design principle, SRP, single responsibility
+
+[%collapsible]
+====
+Vollständiger Name:: SOLID Single Responsibility Principle (SRP)
+
+[discrete]
+== *Absicht*:
+Eine Klasse sollte nur einen Grund haben, sich zu ändern. Jedes Modul oder jede Klasse sollte für einen einzelnen Teil der Funktionalität der Software verantwortlich sein.
+
+[discrete]
+== *Wann zu verwenden*:
+* Eine Klasse hat mehrere, nicht zusammenhängende Verantwortlichkeiten
+* Änderungen an einem Feature erfordern Modifikationen an nicht verwandtem Code
+* Unit-Tests erfordern komplexes Setup aufgrund vermischter Zuständigkeiten
+
+[discrete]
+== *Prompt-Beispiel*:
+"Refactore diese Klasse nach dem SOLID-Single Responsibility Principle. Trenne die Verantwortlichkeiten in separate Klassen."
+
+[discrete]
+== *Verwandte Anker*:
+* <<solid-principles,SOLID Principles>> (Umbrella)
+====

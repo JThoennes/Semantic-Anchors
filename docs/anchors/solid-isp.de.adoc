@@ -1,0 +1,30 @@
+= SOLID-Interface Segregation Principle
+:categories: design-principles
+:roles: software-developer, software-architect
+:umbrella: solid-principles
+:tier: 1
+:proponents: Robert C. Martin
+:tags: SOLID, design principle, ISP, interface segregation
+
+[%collapsible]
+====
+Vollständiger Name:: SOLID Interface Segregation Principle (ISP)
+
+[discrete]
+== *Absicht*:
+Clients sollten nicht gezwungen werden, von Schnittstellen abzuhängen, die sie nicht nutzen. Bevorzuge viele spezifische Schnittstellen gegenüber einer allgemeinen Universalschnittstelle.
+
+[discrete]
+== *Wann zu verwenden*:
+* Klassen implementieren Interface-Methoden, die sie nicht benötigen (leer oder mit Exception)
+* Änderungen an einem Interface betreffen Clients, die die geänderten Methoden nicht nutzen
+* Aufgeblähte Interfaces mit vielen Methoden für unterschiedliche Client-Gruppen
+
+[discrete]
+== *Prompt-Beispiel*:
+"Refactore dieses Interface nach dem SOLID-Interface Segregation Principle in kleinere, clientspezifische Interfaces."
+
+[discrete]
+== *Verwandte Anker*:
+* <<solid-principles,SOLID Principles>> (Umbrella)
+====
