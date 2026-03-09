@@ -3,3 +3,6 @@ node_modules/
 !website/public/logo.png
 !website/public/icon.png
 .playwright-mcp/
+*:Zone.Identifier
+website/public/CONTRIBUTING.html
+website/public/CONTRIBUTING.de.html
