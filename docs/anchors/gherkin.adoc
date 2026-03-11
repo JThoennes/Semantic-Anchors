@@ -1,0 +1,47 @@
+= Gherkin
+:categories: testing-quality
+:roles: software-developer, qa-engineer, business-analyst, product-owner
+:related: bdd-given-when-then, ears-requirements, tdd-london-school
+:proponents: Aslak Hellesøy
+:tags: gherkin, bdd, cucumber, given-when-then, specification-by-example, dsl, acceptance-testing, living-documentation
+
+[%collapsible]
+====
+Also known as:: Cucumber DSL, BDD Scenario Language
+
+[discrete]
+== *Core Concepts*:
+
+Feature:: Top-level description of a software capability, grouping related scenarios that describe expected behavior
+
+Scenario:: A concrete example of how the system should behave in a specific situation, written as a sequence of steps
+
+Given-When-Then steps:: Structured step types — Given establishes preconditions, When describes an action, Then asserts the expected outcome; And/But extend any step type
+
+Background:: A set of steps shared across all scenarios in a feature file, executed before each scenario
+
+Scenario Outline / Examples:: Parameterized scenario template with a data table, allowing the same behavior to be tested with multiple input sets
+
+Docstrings and Data Tables:: Inline multi-line strings and tabular data attached to steps for richer input specification
+
+Natural language support:: Gherkin keywords are translated into 70+ human languages, enabling non-English teams to write scenarios in their native language
+
+Human-readable and machine-executable:: Scenarios serve as both documentation for stakeholders and executable tests driven by step definitions in the implementation language
+
+Key Proponent:: Aslak Hellesøy (creator of Cucumber and the Gherkin language, 2008); influenced by Dan North's BDD and JBehave
+
+[discrete]
+== *When to Use*:
+
+* Defining acceptance criteria collaboratively between developers, testers, and business stakeholders
+* Creating living documentation that stays synchronized with the system's behavior
+* Writing automated acceptance tests that non-technical stakeholders can read and verify
+* Projects adopting Behavior-Driven Development (BDD) with tools like Cucumber, SpecFlow, or Behave
+
+[discrete]
+== *Related Anchors*:
+
+* <<bdd-given-when-then,BDD (Behavior-Driven Development)>> - The practice that Gherkin was designed to support
+* <<ears-requirements,EARS Requirements>> - Alternative structured natural-language requirements format
+* <<tdd-london-school,TDD, London School>> - Outside-in development that naturally combines with Gherkin-driven acceptance tests
+====

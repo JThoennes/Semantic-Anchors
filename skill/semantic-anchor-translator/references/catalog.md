@@ -19,6 +19,11 @@ Source: https://github.com/LLM-Coding/Semantic-Anchors
 - **Proponents:** Dan North
 - **Core:** Given-When-Then scenarios, Gherkin syntax, three amigos, living documentation, outside-in specification
 
+### Gherkin
+- **Also known as:** Cucumber DSL, BDD Scenario Language
+- **Proponents:** Aslak Hellesøy
+- **Core:** Domain-specific language for writing human-readable executable specifications; Feature/Scenario/Given/When/Then keywords; Background, Scenario Outline, Examples; 70+ natural languages; used by Cucumber, SpecFlow, Behave
+
 ### Test Double (Meszaros)
 - **Proponents:** Gerard Meszaros
 - **Core:** Taxonomy of test substitutes — Dummy (unused), Stub (canned responses), Spy (records calls), Mock (verifies interactions), Fake (simplified implementation)

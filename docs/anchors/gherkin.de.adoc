@@ -1,0 +1,47 @@
+= Gherkin
+:categories: testing-quality
+:roles: software-developer, qa-engineer, business-analyst, product-owner
+:related: bdd-given-when-then, ears-requirements, tdd-london-school
+:proponents: Aslak Hellesøy
+:tags: gherkin, bdd, cucumber, given-when-then, specification-by-example, dsl, acceptance-testing, living-documentation
+
+[%collapsible]
+====
+Auch bekannt als:: Cucumber DSL, BDD-Szenariosprache
+
+[discrete]
+== *Kernkonzepte*:
+
+Feature:: Übergeordnete Beschreibung einer Softwarefähigkeit, die verwandte Szenarien zu erwartetem Verhalten gruppiert
+
+Scenario:: Ein konkretes Beispiel, wie das System in einer bestimmten Situation reagieren soll, beschrieben als eine Abfolge von Schritten
+
+Given-When-Then-Schritte:: Strukturierte Schritttypen — Given legt Vorbedingungen fest, When beschreibt eine Aktion, Then prüft das erwartete Ergebnis; And/But erweitern jeden Schritttyp
+
+Background:: Eine Menge von Schritten, die allen Szenarien einer Feature-Datei gemeinsam sind und vor jedem Szenario ausgeführt werden
+
+Scenario Outline / Examples:: Parametrisierte Szenariovorlage mit einer Datentabelle, die es ermöglicht, dasselbe Verhalten mit verschiedenen Eingabewerten zu testen
+
+Docstrings und Data Tables:: Eingebettete mehrzeilige Zeichenketten und Tabellendaten, die Schritten für reichhaltigere Eingabespezifikationen beigefügt werden
+
+Mehrsprachigkeit:: Gherkin-Schlüsselwörter sind in über 70 Sprachen übersetzt, sodass nicht-englischsprachige Teams Szenarien in ihrer Muttersprache schreiben können
+
+Menschenlesbar und maschinenausführbar:: Szenarien dienen gleichzeitig als Dokumentation für Stakeholder und als ausführbare Tests, die durch Schrittdefinitionen in der Implementierungssprache angetrieben werden
+
+Schlüsselvertreter:: Aslak Hellesøy (Schöpfer von Cucumber und der Gherkin-Sprache, 2008); beeinflusst von Dan Norths BDD und JBehave
+
+[discrete]
+== *Wann zu verwenden*:
+
+* Akzeptanzkriterien kollaborativ zwischen Entwicklern, Testern und fachlichen Stakeholdern definieren
+* Lebendige Dokumentation erstellen, die mit dem Systemverhalten synchron bleibt
+* Automatisierte Akzeptanztests schreiben, die nicht-technische Stakeholder lesen und prüfen können
+* Projekte, die Behavior-Driven Development (BDD) mit Tools wie Cucumber, SpecFlow oder Behave einsetzen
+
+[discrete]
+== *Verwandte Anker*:
+
+* <<bdd-given-when-then,BDD (Behavior-Driven Development)>> - Die Praxis, für die Gherkin entwickelt wurde
+* <<ears-requirements,EARS Requirements>> - Alternatives Format für strukturierte natürlichsprachige Anforderungen
+* <<tdd-london-school,TDD, London School>> - Outside-in-Entwicklung, die sich natürlich mit Gherkin-getriebenen Akzeptanztests verbindet
+====
