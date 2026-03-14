@@ -590,6 +590,8 @@ The phases described in this document are designed to produce exactly that kind 
 <p>This connects directly to Shannon&#8217;s theorem.
 Each small step is a short transmission over the noisy channel.
 Short transmissions with error correction (tests, linting, review) are far more reliable than one long, unchecked transmission.
+LLM output is inherently non-deterministic&#8201;&#8212;&#8201;the same prompt can produce different code each time.
+TDD and reviews are the error correction that makes this noisy channel usable.
 The agent works in a tight loop: implement, test, commit, check docs.
 You review at the boundaries between phases, not after every line of code.</p>
 </div>
@@ -668,7 +670,7 @@ chmod +x dtcw
 <div class="sect2">
 <h3 id="_agents_md_as_project_memory">AGENTS.md as Project Memory</h3>
 <div class="paragraph">
-<p><code>AGENTS.md</code> is an open standard for guiding AI coding agents.
+<p><a href="https://agents.md"><code>AGENTS.md</code></a> is an open standard for guiding AI coding agents.
 The file lives in your repository root and is read automatically at the start of every session.
 It serves as the project memory: coding conventions, architectural decisions, file structure, and pointers to important documents.</p>
 </div>
@@ -1017,7 +1019,8 @@ or architecture documentation need updating?</code></pre>
 </div>
 <div class="paragraph">
 <p>Update the docs before continuing.
-This keeps the specification a living document rather than a stale artifact.</p>
+This keeps the specification a living document rather than a stale artifact.
+The spec is not just a means to generate code&#8201;&#8212;&#8201;it remains the authoritative description of the system&#8217;s behavior, maintained alongside the code for as long as the project lives.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1285,6 +1288,16 @@ Your job is to know which anchor to use when, and to verify the results.</p>
 <p>Try it on your next project.
 Start with the Socratic Method for requirements and see where it leads.
 If you discover anchors that work well in your workflow, <a href="https://github.com/LLM-Coding/Semantic-Anchors/blob/main/CONTRIBUTING.md">contribute them to the collection</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_further_reading">Further Reading</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Birgitta Böckeler, <a href="https://martinfowler.com/articles/exploring-gen-ai/">Exploring Gen AI</a> (martinfowler.com)&#8201;&#8212;&#8201;a critical analysis of spec-driven development tools (Kiro, spec-kit, Tessl) and their trade-offs. Examines where elaborate upfront specifications help and where they create overhead.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>

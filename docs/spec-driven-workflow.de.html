@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -590,6 +590,8 @@ Die Phasen in diesem Dokument sind darauf ausgelegt, genau solche präzisen, abg
 <p>Das hängt direkt mit Shannons Theorem zusammen.
 Jeder kleine Schritt ist eine kurze Übertragung über den verrauschten Kanal.
 Kurze Übertragungen mit Fehlerkorrektur (Tests, Linting, Review) sind weit zuverlässiger als eine lange, unkontrollierte Übertragung.
+LLM-Ausgaben sind inhärent nicht-deterministisch&#8201;&#8212;&#8201;derselbe Prompt kann unterschiedlichen Code erzeugen.
+TDD und Reviews sind die Fehlerkorrektur, die diesen verrauschten Kanal nutzbar macht.
 Der Agent arbeitet in einer engen Schleife: implementieren, testen, committen, Dokumentation prüfen.
 Man reviewt an den Übergängen zwischen Phasen, nicht nach jeder einzelnen Codezeile.</p>
 </div>
@@ -669,7 +671,7 @@ chmod +x dtcw
 <div class="sect2">
 <h3 id="_agents_md_als_projektgedächtnis">AGENTS.md als Projektgedächtnis</h3>
 <div class="paragraph">
-<p><code>AGENTS.md</code> ist ein offener Standard zur Steuerung von KI-Coding-Agenten.
+<p><a href="https://agents.md"><code>AGENTS.md</code></a> ist ein offener Standard zur Steuerung von KI-Coding-Agenten.
 Die Datei liegt im Repository-Root und wird automatisch zu Beginn jeder Session gelesen.
 Sie dient als Projektgedächtnis: Coding-Konventionen, Architekturentscheidungen, Dateistruktur und Verweise auf wichtige Dokumente.</p>
 </div>
@@ -1018,7 +1020,8 @@ or architecture documentation need updating?</code></pre>
 </div>
 <div class="paragraph">
 <p>Die Docs aktualisieren, bevor es weitergeht.
-So bleibt die Spezifikation ein lebendiges Dokument statt eines veralteten Artefakts.</p>
+So bleibt die Spezifikation ein lebendiges Dokument statt eines veralteten Artefakts.
+Die Spec ist nicht nur ein Mittel zur Codegenerierung&#8201;&#8212;&#8201;sie bleibt die autoritative Beschreibung des Systemverhaltens, gepflegt neben dem Code, solange das Projekt lebt.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1286,6 +1289,16 @@ Die eigene Aufgabe ist es zu wissen, welchen Anker man wann einsetzt, und die Er
 <p>Beim nächsten Projekt ausprobieren.
 Mit der Sokratischen Methode für die Anforderungen starten und sehen, wohin es führt.
 Wer Anker entdeckt, die im eigenen Workflow gut funktionieren: <a href="https://github.com/LLM-Coding/Semantic-Anchors/blob/main/CONTRIBUTING.md">zur Sammlung beitragen</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_weiterführende_literatur">Weiterführende Literatur</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Birgitta Böckeler, <a href="https://martinfowler.com/articles/exploring-gen-ai/">Exploring Gen AI</a> (martinfowler.com)&#8201;&#8212;&#8201;eine kritische Analyse von Spec-Driven-Development-Tools (Kiro, spec-kit, Tessl) und deren Trade-offs. Untersucht, wo aufwändige Upfront-Spezifikationen helfen und wo sie Overhead erzeugen.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
