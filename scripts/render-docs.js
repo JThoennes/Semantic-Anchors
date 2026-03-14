@@ -100,6 +100,8 @@ function copyHtmlDoc(srcPath, destPath) {
       '#/anchor/'
     )
     html = html.replace(/https:\/\/llm-coding\.github\.io\/Semantic-Anchors\//g, '#/')
+    // Fix relative image paths for SPA context (content is injected at root level)
+    html = html.replace(/src="([^"/][^"]*\.(png|jpg|svg|gif))"/g, 'src="docs/$1"')
     fs.writeFileSync(destPath, html, 'utf-8')
     console.log(`Copied: ${path.relative(ROOT, destPath)}`)
   } catch (err) {
@@ -116,3 +118,10 @@ copyHtmlDoc(
   path.join(ROOT, 'docs/spec-driven-workflow.de.html'),
   path.join(WEB_DOCS, 'spec-driven-workflow.de.html')
 )
+
+// Copy assets referenced by workflow docs
+const workflowDiagram = path.join(ROOT, 'docs/workflow-diagram.png')
+if (fs.existsSync(workflowDiagram)) {
+  fs.copyFileSync(workflowDiagram, path.join(WEB_DOCS, 'workflow-diagram.png'))
+  console.log(`Copied: ${path.relative(ROOT, path.join(WEB_DOCS, 'workflow-diagram.png'))}`)
+}
