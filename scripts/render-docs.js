@@ -95,7 +95,10 @@ function copyHtmlDoc(srcPath, destPath) {
       html = `<h1>${title}</h1>\n${content}`
     }
     // Convert absolute Semantic Anchors links to relative hash links
-    html = html.replace(/https:\/\/llm-coding\.github\.io\/Semantic-Anchors\/#\/anchor\//g, '#/anchor/')
+    html = html.replace(
+      /https:\/\/llm-coding\.github\.io\/Semantic-Anchors\/#\/anchor\//g,
+      '#/anchor/'
+    )
     html = html.replace(/https:\/\/llm-coding\.github\.io\/Semantic-Anchors\//g, '#/')
     fs.writeFileSync(destPath, html, 'utf-8')
     console.log(`Copied: ${path.relative(ROOT, destPath)}`)
