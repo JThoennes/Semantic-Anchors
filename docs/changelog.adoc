@@ -2,6 +2,30 @@
 
 A chronological record of all semantic anchors added to the catalog. Community contributors are credited with thanks.
 
+== 2026-03-14 — Catalog Curation
+
+Quality review of all anchors: introduced a three-tier rating system (★★★ self-standing, ★★☆ needs qualification, ★☆☆ descriptive only) to measure how reliably an anchor improves LLM communication. All anchors now carry an internal `:tier:` attribute.
+
+*Removed:*
+
+* *Rubber Duck Debugging* — concept is fully covered by <<socratic-method,Socratic Method>>; no actionable LLM instruction on its own
+* *DRY (Don't Repeat Yourself)* — design principle, but "make it DRY" is too vague as an LLM instruction
+* *SPOT (Single Point of Truth)* — too similar to SSOT; consolidated into <<ssot-principle,SSOT>>
+* *Chatham House Rule* — well-defined rule, but no practical LLM application
+
+*Renamed & upgraded:*
+
+* *Mental Model (Naur)* → *Programming as Theory Building (Naur)* — sharpened focus on documenting the "why" behind code (★☆☆ → ★★☆)
+* *Problem Space NVC* → *Nonviolent Communication (Rosenberg)* — stronger trigger, clear 4-step process (★★☆ → ★★★)
+* *Test Double (Meszaros)* → ★★★ umbrella anchor with 5 new sub-anchors: *Dummy*, *Stub*, *Spy*, *Mock*, *Fake* — each a precise, actionable LLM instruction (★☆☆ → ★★★)
+* *Jobs To Be Done* — upgraded to ★★★, strong for landing pages and customer analysis
+* *SOTA* — upgraded to ★★★, "Recherchiere SOTA zu [Thema]" reliably activates research mode
+
+*New quality criteria for proposals:*
+
+* Review agent now evaluates anchors against the tier system
+* ★☆☆ proposals are rejected unless a concrete prompt pattern is demonstrated
+
 == 2026-03-12
 
 * *Plain English (Strunk & White)* in https://github.com/LLM-Coding/Semantic-Anchors/pull/177[#177]
