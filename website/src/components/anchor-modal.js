@@ -101,13 +101,11 @@ export function closeModal() {
     modal.classList.remove('flex')
     document.body.style.overflow = ''
 
-    // Return to the page that was active before the modal opened
+    // Restore URL to the page that was active before the modal opened
+    // Use replaceState to avoid triggering hashchange (which would re-render the page)
     if (window.location.hash.startsWith('#/anchor/')) {
       const returnTo = getRouteBeforeModal() || '/'
-      const scrollY = getScrollBeforeModal()
-      window.location.hash = '#' + returnTo
-      // Restore scroll position after the hashchange event
-      requestAnimationFrame(() => window.scrollTo(0, scrollY))
+      history.replaceState(null, '', '#' + returnTo)
     }
   }
 }
