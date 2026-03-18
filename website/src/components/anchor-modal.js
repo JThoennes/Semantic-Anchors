@@ -277,8 +277,30 @@ export async function loadAnchorContent(anchorId) {
         ? fb.url
         : null
     if (safeFeedbackUrl) {
+      const commentsHtml =
+        fb.recentComments && fb.recentComments.length > 0
+          ? `
+          <div class="feedback-comments">
+            ${fb.recentComments
+              .map(
+                (c) => `
+              <div class="feedback-comment">
+                <img src="${escapeHtml(c.avatar)}" alt="${escapeHtml(c.author)}" class="feedback-avatar" width="24" height="24" />
+                <div class="feedback-comment-body">
+                  <span class="feedback-author">${escapeHtml(c.author)}</span>
+                  <p class="feedback-text">${escapeHtml(c.body)}</p>
+                </div>
+              </div>
+            `
+              )
+              .join('')}
+          </div>
+        `
+          : ''
+
       const feedbackHtml = `
         <div class="feedback-section">
+          ${commentsHtml}
           <div class="feedback-actions">
             <a href="${escapeHtml(safeFeedbackUrl)}" target="_blank" rel="noopener noreferrer" class="feedback-btn feedback-btn-vote">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

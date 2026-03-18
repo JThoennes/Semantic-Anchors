@@ -36,7 +36,14 @@ function fetchAllDiscussions() {
             body
             url
             upvoteCount
-            comments { totalCount }
+            comments(first: 10) {
+              totalCount
+              nodes {
+                author { login avatarUrl }
+                body
+                createdAt
+              }
+            }
           }
           pageInfo { hasNextPage endCursor }
         }
@@ -74,11 +81,22 @@ function main() {
       continue
     }
 
-    feedback[anchorId] = {
+    const entry = {
       upvotes: d.upvoteCount,
       comments: d.comments.totalCount,
       url: d.url,
     }
+
+    if (d.comments.nodes && d.comments.nodes.length > 0) {
+      entry.recentComments = d.comments.nodes.map((c) => ({
+        author: c.author ? c.author.login : 'ghost',
+        avatar: c.author ? c.author.avatarUrl : '',
+        body: c.body,
+        date: c.createdAt,
+      }))
+    }
+
+    feedback[anchorId] = entry
     mapped++
   }
 

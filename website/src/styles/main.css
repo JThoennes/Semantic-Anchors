@@ -196,6 +196,30 @@ body {
   @apply dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700;
 }
 
+.feedback-comments {
+  @apply mb-4 space-y-3;
+}
+
+.feedback-comment {
+  @apply flex gap-3 items-start;
+}
+
+.feedback-avatar {
+  @apply rounded-full flex-shrink-0;
+}
+
+.feedback-comment-body {
+  @apply min-w-0;
+}
+
+.feedback-author {
+  @apply text-sm font-medium text-[var(--color-text)];
+}
+
+.feedback-text {
+  @apply text-sm text-[var(--color-text-secondary)] mt-0.5 mb-0;
+}
+
 .feedback-hint {
   @apply mt-2 text-xs text-gray-400 dark:text-gray-500;
 }

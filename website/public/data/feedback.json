@@ -2,7 +2,15 @@
   "socratic-method": {
     "upvotes": 2,
     "comments": 1,
-    "url": "https://github.com/LLM-Coding/Semantic-Anchors/discussions/291"
+    "url": "https://github.com/LLM-Coding/Semantic-Anchors/discussions/291",
+    "recentComments": [
+      {
+        "author": "rdmueller",
+        "avatar": "https://avatars.githubusercontent.com/u/1856308?u=2c7443f52b575e8b3aefbc3007aea8b3cccac00f&v=4",
+        "body": "works best for me to clarify requirements",
+        "date": "2026-03-18T12:25:31Z"
+      }
+    ]
   },
   "yagni": {
     "upvotes": 1,
