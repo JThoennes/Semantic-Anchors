@@ -1,0 +1,66 @@
+= Residuality Theory
+:categories: software-architecture
+:roles: software-architect, software-developer, team-lead, consultant, systems-thinker
+:proponents: Barry M. O'Reilly
+:tags: residuality, residues, stressors, contagion analysis, complexity science, uncertainty, software architecture, naive architecture
+:related: strangler-fig, cynefin-framework, domain-driven-design, circuit-breaker
+:tier: 2
+
+[%collapsible]
+====
+Full Name:: Residuality Theory
+
+Also known as:: residue-based architecture, stressor analysis
+
+[discrete]
+== *Core Concepts*:
+
+Naive Architecture:: The deliberate starting point — "an architectural design that initially covers the typical use of the system, i.e. the happy path and only the most obvious possible errors". It is meant to be inadequate. You build it in order to attack it.
+
+Stressor:: Any load that hits the system: technical failure, sudden traffic, a regulatory change, a supplier collapsing, a competitor cutting prices, users behaving unexpectedly. Stressors are explicitly *not* limited to technical failure — business and organisational shocks count.
+
+Residue:: "What remains of the system when a stressor occurs." The design question inverts: not "what shall we build?" but "what survives, and what is left standing when this hits?" The work is to turn unacceptable residues into business-acceptable system states.
+
+The Five-Step Method:: 1. sketch the naive architecture; 2. apply stressors; 3. identify the residue — what breaks, what survives; 4. redesign so the failure happens in a controlled way; 5. repeat across many stressors.
+
+Contagion Analysis:: Individual residues, merged into one architecture, can be *less* robust than any of them alone. Contagion analysis is a matrix-based technique — the approach borrows from aerospace practice — for surfacing the coupling that only shows itself in production, and finding true cohesion between components under stress.
+
+Hardening:: The remaining architecture is stressed further with ATAM and FMEA rather than declared finished.
+
+Complexity Science Roots:: The theory draws on complexity science, notably Stuart Kauffman's work on fitness landscapes and attractors; later papers add random simulation and attractor networks as formal tools.
+
+Inverted Design Question:: The practical signature of the anchor. Conventional architecture asks what to extract or build first; Residuality asks what survives every stressor — which reframes an unchangeable compliance module from "a thing to encapsulate" into a residue to design *around*.
+
+Key Proponents:: Barry M. O'Reilly, founder of Black Tulip Technology; PhD research in complexity science and software engineering at The Open University. Book: https://leanpub.com/residuality["Residues: Time, Change, and Uncertainty in Software Architecture"] (Leanpub, complete as of 2 June 2024).
+
+[discrete]
+== *When to Use*:
+
+For reliable activation, name the method *and its first step* — "apply Residuality Theory: run a stressor analysis on this design" — rather than the bare term.
+
+* Designing systems that must hold up under unpredictable load, failure, regulatory shift, or organisational change
+* Architecture reviews where hidden coupling and fragility need to be made visible
+* Legacy migration: separating what *must* survive from what can be replaced
+* Any design conversation that has settled too early on the happy path
+* As a complement to `cynefin-framework`: Residuality is a method for the Complex domain, where prediction fails and probing is the only way forward
+
+[discrete]
+== *Common Misunderstandings*:
+
+* ❌ "Residuality is Chaos Engineering" — Chaos Engineering injects failure into a *running* system; Residuality stresses a design on paper, before it exists
+* ❌ "A residue is technical debt" — a residue is what remains *after* a stressor, not the sediment of past decisions
+* ❌ "Stressors are failure modes" — they include price changes, new regulation and competitor moves, none of which are failures
+* ✓ "It composes borrowed ideas into its own method" — fitness landscapes are Kauffman's, antifragility is Taleb's, constraints are Goldratt's; what is Residuality-specific is residues, stressor analysis and contagion analysis
+====
+
+== *Criticism*:
+
+* *The author names the empirical gap himself.* The book states that "the inclusion of case studies is marketing rather than science" (via Daniel Lebrero's https://danlebrero.com/2025/08/20/residues-time-uncertainty-change-software-architecture-summary/[book notes], 2025) — the theory's evidence base is worked examples, not controlled comparison. Independent replication by researchers other than the originator is still thin.
+* *A steep and unusual learning curve.* O'Reilly, via https://www.infoq.com/news/2025/10/architectures-residuality-theory/[InfoQ] (Ben Linders, October 2025): "A small number of developers find the jump from the linear, logical, mathematical world we are trained for to the lateral, imaginative techniques very difficult." He puts the effort to master it on a par with learning object-oriented programming — a real adoption barrier, not a detail.
+* *Single-originator framework.* Vocabulary, method and evidence all trace to one author. That is normal for a young theory, but it means the usual cross-checking of a mature body of knowledge has not happened yet.
+
+[discrete]
+== *Current Status*:
+
+* *Emerging, but genuinely published.* Beyond the Leanpub book, the theory has a peer-reviewed trail in Elsevier's _Procedia Computer Science_: https://www.sciencedirect.com/science/article/pii/S1877050920305585["An Introduction to Residuality Theory: Software Design Heuristics for Complex Systems"] (170, 2020, 875–880), https://www.sciencedirect.com/science/article/pii/S1877050921007420["The Philosophy of Residuality Theory"] (2021) and https://www.sciencedirect.com/science/article/pii/S1877050922004975["Residuality Theory, random simulation, and attractor networks"] (2022), plus a 2024 Springer chapter, https://link.springer.com/chapter/10.1007/978-3-031-75201-8_3["Embracing Residuality Theory in Software Architecture to Address Uncertainty: Key Challenges and Strategies"].
+* Reception is active rather than mainstream: InfoQ coverage (2025), a DDD Academy course, conference talks from 2018 onward. Treat it the way `event-storming` was treated before Brandolini's book was finished — a real method with a real vocabulary, still short of textbook consensus. The prior most training data serves is the residue/stressor/contagion vocabulary described here, and weaker models tend to dilute it into generic complexity-science terms.

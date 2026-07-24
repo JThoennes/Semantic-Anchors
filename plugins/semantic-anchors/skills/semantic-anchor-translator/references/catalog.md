@@ -136,6 +136,11 @@ Source: https://github.com/LLM-Coding/Semantic-Anchors
 - **Proponents:** Jimmy Bogard
 - **Core:** Organize features as end-to-end slices spanning request, validation, domain logic, persistence, and API; avoids horizontal layering; feature cohesion over technical layers; naturally pairs with CQRS
 
+### Residuality Theory
+- **Also known as:** residue-based architecture, stressor analysis
+- **Proponents:** Barry M. O'Reilly ("Residues", Leanpub 2024; Procedia Computer Science 2020–2022)
+- **Core:** Start from a deliberately inadequate naive architecture, apply stressors (technical, regulatory, competitive, organisational), identify the residue — what survives — then redesign for controlled failure; contagion analysis surfaces coupling that only appears in production; inverts the design question from "what do we build?" to "what survives?"
+
 ### C4-Diagrams
 - **Core:** Context, Container, Component, Code — 4 zoom levels
 

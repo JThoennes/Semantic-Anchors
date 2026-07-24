@@ -1,7 +1,7 @@
 = Strangler Fig
 :categories: software-architecture
 :roles: software-architect, software-developer, team-lead
-:related: domain-driven-design, event-driven-architecture, clean-architecture
+:related: domain-driven-design, event-driven-architecture, clean-architecture, residuality-theory
 :proponents: Martin Fowler
 :tags: legacy-modernization, migration, refactoring, incremental, facade, resilience
 :tier: 2
