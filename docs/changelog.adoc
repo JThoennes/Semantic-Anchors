@@ -2,6 +2,12 @@
 
 A chronological record of all semantic anchors added to the catalog. Community contributors are credited with thanks.
 
+== 2026-07-24
+
+*Fix — the German Contributing page was rendered from an orphaned source:*
+
+* The `/de/contributing` page was built from `website/public/CONTRIBUTING.de.adoc`, but every contributor edit since #603 went into `docs/CONTRIBUTING.de.adoc` — the file that sits next to its English sibling and looks maintained. Nothing rendered it. German readers therefore never saw the artifact taxonomy (#585), the Viability Test (#640), the ADR-008 topic-neutral gate, the issue-title convention (#564), or the developer setup, PR review policy and Criticism/Current-Status rules added in #695. `render-docs.js` now renders `docs/CONTRIBUTING.de.adoc`, and the stale copy under `website/public/` is deleted, so there is one German source again. Also fixed five relative `link:` targets in both Contributing files (ADR-007, ADR-008, `docs/roles/`) that resolved against the served route and 404'd — they now point at absolute GitHub URLs, which work on the website and in GitHub's rendered view alike.
+
 == 2026-07-08
 
 *Fix — EN/DE metadata parity:*

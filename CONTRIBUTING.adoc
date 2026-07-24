@@ -12,7 +12,7 @@ Semantic anchors are well-defined terms, methodologies, and frameworks that serv
 
 == Artifact Types: Anchor, Contract, Skill
 
-The catalog ships three artifact types. Knowing which one you are proposing decides where your contribution belongs. The full rationale lives in link:docs/specs/adrs/adr-007-artifact-taxonomy.adoc[ADR-007]; the working definitions are here.
+The catalog ships three artifact types. Knowing which one you are proposing decides where your contribution belongs. The full rationale lives in link:https://github.com/LLM-Coding/Semantic-Anchors/blob/main/docs/specs/adrs/adr-007-artifact-taxonomy.adoc[ADR-007]; the working definitions are here.
 
 [cols="1,2,2,1", options="header"]
 |===
@@ -100,7 +100,7 @@ Recognition is not activation. A model can talk fluently *about* a term while na
 
 A term that passes the four Quality Criteria but fails the viability test is a *Contract*, not an Anchor.
 
-*This gate is topic-neutral.* No subject area is privileged or banned — personality and assessment frameworks (MBTI, DISC, Big Five, HEXACO) are neither excluded for their topic nor admitted for being well-known. They must clear the same Viability Test as any other candidate, and — given their contested empirical standing — carry a `== Criticism` / `== Current Status` section. The rationale is in link:docs/specs/adrs/adr-008-personality-assessment-anchors.adoc[ADR-008].
+*This gate is topic-neutral.* No subject area is privileged or banned — personality and assessment frameworks (MBTI, DISC, Big Five, HEXACO) are neither excluded for their topic nor admitted for being well-known. They must clear the same Viability Test as any other candidate, and — given their contested empirical standing — carry a `== Criticism` / `== Current Status` section. The rationale is in link:https://github.com/LLM-Coding/Semantic-Anchors/blob/main/docs/specs/adrs/adr-008-personality-assessment-anchors.adoc[ADR-008].
 
 == Developer Setup
 

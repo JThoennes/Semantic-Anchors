@@ -149,10 +149,12 @@ renderFile(path.join(ROOT, 'docs/about.adoc'), path.join(WEB_DOCS, 'about.html')
 renderFile(path.join(ROOT, 'docs/about.de.adoc'), path.join(WEB_DOCS, 'about.de.html'))
 
 renderFile(path.join(ROOT, 'CONTRIBUTING.adoc'), path.join(WEB_PUBLIC, 'CONTRIBUTING.html'))
-// The German CONTRIBUTING source lives only in website/public/ (served raw to
-// the SPA); render it from there so the /de/contributing page can be built.
+// The German CONTRIBUTING source is docs/CONTRIBUTING.de.adoc — the file
+// contributors actually maintain. It is the translation counterpart of the
+// root CONTRIBUTING.adoc, so both sources sit next to their siblings in the
+// repo rather than in the build output directory.
 renderFile(
-  path.join(WEB_PUBLIC, 'CONTRIBUTING.de.adoc'),
+  path.join(ROOT, 'docs/CONTRIBUTING.de.adoc'),
   path.join(WEB_PUBLIC, 'CONTRIBUTING.de.html')
 )
 
