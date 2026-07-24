@@ -12,7 +12,7 @@ Semantic Anchors (semantische Anker) sind klar definierte Begriffe, Methodologie
 
 == Artefakttypen: Anchor, Contract, Skill
 
-Der Katalog kennt drei Artefakttypen. Welchen Sie vorschlagen, entscheidet, wohin Ihr Beitrag gehört. Die vollständige Begründung steht in link:specs/adrs/adr-007-artifact-taxonomy.adoc[ADR-007]; die Arbeitsdefinitionen stehen hier.
+Der Katalog kennt drei Artefakttypen. Welchen Sie vorschlagen, entscheidet, wohin Ihr Beitrag gehört. Die vollständige Begründung steht in link:https://github.com/LLM-Coding/Semantic-Anchors/blob/main/docs/specs/adrs/adr-007-artifact-taxonomy.adoc[ADR-007]; die Arbeitsdefinitionen stehen hier.
 
 [cols="1,2,2,1", options="header"]
 |===
@@ -98,7 +98,7 @@ Erkennung ist nicht Aktivierung. Ein Modell kann flüssig *über* einen Begriff 
 
 Ein Term, der die vier Qualitätskriterien besteht, aber den Viability-Test nicht, ist ein *Contract*, kein Anchor.
 
-*Dieses Gate ist themenneutral.* Kein Themengebiet ist bevorzugt oder verboten — Persönlichkeits- und Assessment-Modelle (MBTI, DISC, Big Five, HEXACO) werden weder wegen ihres Themas ausgeschlossen noch wegen ihrer Bekanntheit aufgenommen. Sie müssen denselben Viability-Test bestehen wie jeder andere Kandidat und — angesichts ihrer umstrittenen empirischen Absicherung — einen `== Criticism` / `== Current Status`-Abschnitt tragen. Die Begründung steht in link:specs/adrs/adr-008-personality-assessment-anchors.adoc[ADR-008].
+*Dieses Gate ist themenneutral.* Kein Themengebiet ist bevorzugt oder verboten — Persönlichkeits- und Assessment-Modelle (MBTI, DISC, Big Five, HEXACO) werden weder wegen ihres Themas ausgeschlossen noch wegen ihrer Bekanntheit aufgenommen. Sie müssen denselben Viability-Test bestehen wie jeder andere Kandidat und — angesichts ihrer umstrittenen empirischen Absicherung — einen `== Criticism` / `== Current Status`-Abschnitt tragen. Die Begründung steht in link:https://github.com/LLM-Coding/Semantic-Anchors/blob/main/docs/specs/adrs/adr-008-personality-assessment-anchors.adoc[ADR-008].
 
 == Wie man einen neuen Anker vorschlägt
 
@@ -214,7 +214,7 @@ Siehe die Website für vollständige Kategorienbeschreibungen.
 
 Anker sind mit beruflichen Rollen getaggt, um relevante Inhalte zu filtern. Verwenden Sie die *Rollen-ID* (kebab-case) im `:roles:` Metadaten-Attribut.
 
-Siehe link:roles/[docs/roles/] für ausführliche Rollenbeschreibungen (EN + DE).
+Siehe link:https://github.com/LLM-Coding/Semantic-Anchors/blob/main/docs/roles[docs/roles/] für ausführliche Rollenbeschreibungen (EN + DE).
 
 === Operative Fachliche Rollen
 

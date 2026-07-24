@@ -12,3 +12,5 @@ node_modules/
 *:Zone.Identifier
 website/public/CONTRIBUTING.html
 website/public/CONTRIBUTING.de.html
+website/public/CONTRIBUTING.toc.html
+website/public/CONTRIBUTING.de.toc.html
