@@ -4,7 +4,7 @@
 :proponents: Walter A. Shewhart (founder), W. Edwards Deming (dissemination), Western Electric Company
 :tier: 3
 :tags: SPC, statistical process control, control charts, Shewhart, quality, variation
-:related: control-chart-shewhart, nelson-rules
+:related: control-chart-shewhart, nelson-rules, dmaic
 
 [%collapsible]
 ====

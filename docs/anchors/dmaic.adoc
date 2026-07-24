@@ -1,0 +1,68 @@
+= DMAIC
+:categories: problem-solving, statistical-methods
+:roles: team-lead, consultant, data-scientist, qa-engineer
+:proponents: Bill Smith (Motorola), Mikel J. Harry, General Electric
+:tags: DMAIC, Six Sigma, process improvement, define measure analyze improve control, root cause analysis, control plan, quality
+:related: spc, control-chart-shewhart, nelson-rules, five-whys
+:tier: 3
+
+[%collapsible]
+====
+Full Name:: Define, Measure, Analyze, Improve, Control
+
+Also known as:: the Six Sigma improvement cycle, DMAIC roadmap
+
+[discrete]
+== *Core Concepts*:
+
+Five Gated Phases:: The cycle runs in a fixed order, and each phase owes a defined deliverable before the next begins:
+* *Define* — the business problem, goal, scope and timeline, captured in a project charter with the customer's CTQs (Critical to Quality)
+* *Measure* — a baseline of current performance, with operational definitions and a check that the measurement system itself is trustworthy
+* *Analyze* — root causes, identified and *validated* against the data, not merely proposed
+* *Improve* — solutions that address those causes, piloted before rollout
+* *Control* — a control plan that holds the gain: monitoring, response plans, ownership
+
+Measurement Before Improvement:: The gate between Measure and Analyze is the method's backbone. No improvement is proposed before a baseline exists, so the effect can be demonstrated rather than asserted.
+
+Root Cause Before Solution:: Analyze is deliberately separated from Improve, which forces causes to be established before remedies are designed — the opposite of the usual reflex to solution first.
+
+Tollgate Reviews:: Phase transitions are formal reviews, not soft handovers. A project can be stopped at a gate.
+
+The Control Phase is the Differentiator:: Most improvement approaches end when the fix ships. DMAIC treats sustaining the gain as its own phase, typically with SPC control charts — this is where the anchor meets `spc`, `control-chart-shewhart` and `nelson-rules`.
+
+DMADV, the Sibling:: DMAIC improves an *existing* process. For a new product or process design, Six Sigma uses DMADV (Define, Measure, Analyze, Design, Verify), also called DFSS. Naming the wrong one sends the output down the wrong road.
+
+PDCA Lineage:: The Six Sigma project methodologies are inspired by W. Edwards Deming's Plan-Do-Study-Act cycle; DMAIC is its phase-gated, measurement-heavy descendant.
+
+Key Proponents:: Bill Smith, who introduced Six Sigma at Motorola in 1986; Mikel J. Harry; General Electric, where Jack Welch made it central to business strategy in 1995.
+
+[discrete]
+== *When to Use*:
+
+* Improving an existing process whose performance is unsatisfactory but whose cause is unknown
+* Any task where the temptation is to jump straight to solutions — DMAIC forces a baseline and a validated cause first
+* Quality and reliability work that has to *stay* fixed, because the Control phase is explicit
+* Structuring an improvement initiative into reviewable stages with named deliverables
+* As the frame around `spc`: DMAIC is the project, SPC is what runs in its Control phase
+
+[discrete]
+== *Common Misunderstandings*:
+
+* ❌ "DMAIC is for manufacturing only" — ISO 13053-1 explicitly covers service and transactional processes
+* ❌ "DMAIC designs new processes" — that is DMADV; DMAIC improves existing ones
+* ❌ "The phases can be reordered or skipped" — the gates are the method; without Measure before Improve it is just a to-do list
+* ✓ "DMAIC is PDCA with gates and statistics" — a fair summary, and the basis of one of its criticisms
+====
+
+== *Criticism*:
+
+* *Not original.* Quality expert Joseph M. Juran, via the https://en.wikipedia.org/wiki/Six_Sigma[Six Sigma overview]: "there is nothing new there. It includes what we used to call facilitators. They've adopted more flamboyant terms, like belts with different colors." The core loop is Deming's PDSA under new branding.
+* *It can suppress the work it measures.* A _BusinessWeek_ report on James McNerney's introduction of Six Sigma at 3M found it stifled creativity, and the method was withdrawn from the research function. _Design News_ editor John Dodge: "excessive metrics, steps, measurements and Six Sigma's intense focus on reducing variability water down the discovery process." Variance reduction is the wrong objective where variance is the point.
+* *Most projects fail.* A 2010 _Wall Street Journal_ figure cited in the same overview puts the failure rate of Six Sigma projects above 60%.
+* *The statistics are contested.* Statistician Donald J. Wheeler dismissed the 1.5-sigma shift — the assumption underpinning the "3.4 defects per million" headline — as "goofy" (2004). Over-reliance on statistical method and misreading of p-values are recurring complaints.
+
+[discrete]
+== *Current Status*:
+
+* DMAIC is unusual among management methods in being *standardised*: https://www.iso.org/standard/52901.html[ISO 13053-1:2011] ("Quantitative methods in process improvement — Six Sigma — Part 1: DMAIC methodology") specifies best practice for each phase, the project roles, and their training; Part 2 covers the tools per phase. Its scope explicitly includes service and transactional processes, not only manufacturing.
+* In practice the dominant contemporary form is *Lean Six Sigma*, which pairs DMAIC's measurement discipline with Lean's focus on flow and waste. The prior most training data serves is the five-phase DMAIC cycle as described here.

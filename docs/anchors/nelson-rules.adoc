@@ -3,7 +3,7 @@
 :roles: data-scientist, devops-engineer
 :proponents: Lloyd S. Nelson
 :tags: Nelson rules, control chart, SPC, statistical process control, out of control
-:related: control-chart-shewhart, spc
+:related: control-chart-shewhart, spc, dmaic
 :tier: 3
 :parent-anchor: spc
 
