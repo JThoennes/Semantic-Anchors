@@ -4,7 +4,7 @@
 :proponents: Lloyd S. Nelson
 :tier: 3
 :tags: Nelson rules, control chart, SPC, statistical process control, out of control
-:related: control-chart-shewhart, spc
+:related: control-chart-shewhart, spc, dmaic
 
 [%collapsible]
 ====

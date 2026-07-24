@@ -4,7 +4,7 @@
 :proponents: Walter A. Shewhart
 :tier: 3
 :tags: control chart, Shewhart, SPC, statistical process control, quality, variation
-:related: spc, nelson-rules
+:related: spc, nelson-rules, dmaic
 
 [%collapsible]
 ====

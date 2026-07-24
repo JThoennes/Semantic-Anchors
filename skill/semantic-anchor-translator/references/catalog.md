@@ -755,6 +755,11 @@ Source: https://github.com/LLM-Coding/Semantic-Anchors
 ### Nelson Rules
 - **Core:** 8 rules for detecting non-random patterns in control charts
 
+### DMAIC
+- **Also known as:** the Six Sigma improvement cycle; sibling DMADV/DFSS for new designs
+- **Proponents:** Bill Smith (Motorola, 1986), Mikel J. Harry, General Electric (Jack Welch, 1995)
+- **Core:** Five gated phases — Define (charter, CTQs), Measure (baseline), Analyze (validated root causes), Improve (piloted solutions), Control (control plan, usually SPC) — that force measurement before improvement and cause before solution; standardized as ISO 13053-1:2011
+
 ## Strategic Planning
 
 ### Goodhart's Law

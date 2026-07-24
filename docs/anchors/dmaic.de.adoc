@@ -1,0 +1,68 @@
+= DMAIC
+:categories: problem-solving, statistical-methods
+:roles: team-lead, consultant, data-scientist, qa-engineer
+:proponents: Bill Smith (Motorola), Mikel J. Harry, General Electric
+:tags: DMAIC, Six Sigma, Prozessverbesserung, define measure analyze improve control, Ursachenanalyse, Control Plan, Qualität
+:related: spc, control-chart-shewhart, nelson-rules, five-whys
+:tier: 3
+
+[%collapsible]
+====
+Vollständiger Name:: Define, Measure, Analyze, Improve, Control
+
+Auch bekannt als:: der Six-Sigma-Verbesserungszyklus, DMAIC-Roadmap
+
+[discrete]
+== *Kernkonzepte*:
+
+Fünf Phasen mit Gates:: Der Zyklus läuft in fester Reihenfolge, und jede Phase schuldet ein definiertes Ergebnis, bevor die nächste beginnt:
+* *Define* — Problem, Ziel, Umfang und Zeitrahmen, festgehalten in einer Project Charter mit den CTQs (Critical to Quality) des Kunden
+* *Measure* — eine Baseline der aktuellen Leistung, mit operationalen Definitionen und einer Prüfung, ob das Messsystem selbst vertrauenswürdig ist
+* *Analyze* — Ursachen, die an den Daten *validiert* und nicht nur vermutet werden
+* *Improve* — Lösungen für genau diese Ursachen, pilotiert vor dem Rollout
+* *Control* — ein Control Plan, der den Gewinn hält: Monitoring, Reaktionspläne, Verantwortlichkeit
+
+Messen vor Verbessern:: Das Gate zwischen Measure und Analyze ist das Rückgrat der Methode. Keine Verbesserung wird vorgeschlagen, bevor eine Baseline existiert — so lässt sich die Wirkung zeigen statt behaupten.
+
+Ursache vor Lösung:: Analyze ist bewusst von Improve getrennt. Das erzwingt, Ursachen zu belegen, bevor Abhilfe entworfen wird — das Gegenteil des üblichen Reflexes, sofort zu lösen.
+
+Tollgate-Reviews:: Phasenübergänge sind formale Reviews, keine weichen Übergaben. Ein Projekt kann an einem Gate gestoppt werden.
+
+Die Control-Phase ist der Unterschied:: Die meisten Verbesserungsansätze enden, wenn der Fix ausgeliefert ist. DMAIC macht das Halten des Gewinns zur eigenen Phase, typischerweise mit SPC-Regelkarten — hier trifft der Anker auf `spc`, `control-chart-shewhart` und `nelson-rules`.
+
+DMADV, das Geschwister:: DMAIC verbessert einen *bestehenden* Prozess. Für ein neues Produkt- oder Prozessdesign nutzt Six Sigma DMADV (Define, Measure, Analyze, Design, Verify), auch DFSS genannt. Der falsche Name schickt die Ausgabe auf den falschen Weg.
+
+PDCA-Abstammung:: Die Six-Sigma-Projektmethodiken sind von W. Edwards Demings Plan-Do-Study-Act-Zyklus inspiriert; DMAIC ist dessen phasengetakteter, messlastiger Nachfahre.
+
+Schlüsselvertreter:: Bill Smith, der Six Sigma 1986 bei Motorola einführte; Mikel J. Harry; General Electric, wo Jack Welch es 1995 ins Zentrum der Unternehmensstrategie rückte.
+
+[discrete]
+== *Wann anwenden*:
+
+* Einen bestehenden Prozess verbessern, dessen Leistung unbefriedigend, dessen Ursache aber unbekannt ist
+* Jede Aufgabe, bei der die Versuchung groß ist, sofort zu Lösungen zu springen — DMAIC erzwingt erst Baseline und validierte Ursache
+* Qualitäts- und Zuverlässigkeitsarbeit, die *dauerhaft* halten muss, weil die Control-Phase explizit ist
+* Eine Verbesserungsinitiative in prüfbare Stufen mit benannten Ergebnissen gliedern
+* Als Rahmen um `spc`: DMAIC ist das Projekt, SPC ist das, was in dessen Control-Phase läuft
+
+[discrete]
+== *Häufige Missverständnisse*:
+
+* ❌ „DMAIC ist nur für die Fertigung" — ISO 13053-1 deckt ausdrücklich auch Service- und transaktionale Prozesse ab
+* ❌ „DMAIC entwirft neue Prozesse" — das ist DMADV; DMAIC verbessert bestehende
+* ❌ „Die Phasen lassen sich umstellen oder überspringen" — die Gates *sind* die Methode; ohne Measure vor Improve bleibt eine To-do-Liste
+* ✓ „DMAIC ist PDCA mit Gates und Statistik" — eine faire Zusammenfassung und die Grundlage einer der Kritiken
+====
+
+== *Kritik*:
+
+* *Nicht originell.* Der Qualitätsexperte Joseph M. Juran, via die https://en.wikipedia.org/wiki/Six_Sigma[Six-Sigma-Übersicht]: „there is nothing new there. It includes what we used to call facilitators. They've adopted more flamboyant terms, like belts with different colors." Die Kernschleife ist Demings PDSA unter neuer Marke.
+* *Es kann die Arbeit ersticken, die es misst.* Ein _BusinessWeek_-Bericht über James McNerneys Einführung von Six Sigma bei 3M stellte fest, dass es die Kreativität erstickte; aus der Forschung wurde die Methode wieder entfernt. _Design News_-Redakteur John Dodge: „excessive metrics, steps, measurements and Six Sigma's intense focus on reducing variability water down the discovery process." Varianzreduktion ist das falsche Ziel dort, wo Varianz der Zweck ist.
+* *Die meisten Projekte scheitern.* Eine in derselben Übersicht zitierte Zahl des _Wall Street Journal_ von 2010 beziffert die Misserfolgsquote von Six-Sigma-Projekten auf über 60%.
+* *Die Statistik ist umstritten.* Der Statistiker Donald J. Wheeler verwarf den 1,5-Sigma-Shift — die Annahme hinter der Schlagzeile „3,4 Fehler pro Million" — 2004 als „goofy". Überzogenes Vertrauen in statistische Verfahren und Fehldeutungen von p-Werten sind wiederkehrende Kritikpunkte.
+
+[discrete]
+== *Aktueller Status*:
+
+* DMAIC ist unter Managementmethoden ungewöhnlich, weil *normiert*: https://www.iso.org/standard/52901.html[ISO 13053-1:2011] („Quantitative methods in process improvement — Six Sigma — Part 1: DMAIC methodology") legt Best Practice je Phase fest, dazu Projektrollen und deren Ausbildung; Teil 2 behandelt die Werkzeuge je Phase. Der Geltungsbereich schließt Service- und transaktionale Prozesse ausdrücklich ein, nicht nur Fertigung.
+* In der Praxis dominiert heute *Lean Six Sigma*, das DMAICs Messdisziplin mit Leans Fokus auf Fluss und Verschwendung verbindet. Der Prior, den die meisten Trainingsdaten bedienen, ist der hier beschriebene fünfphasige DMAIC-Zyklus.
