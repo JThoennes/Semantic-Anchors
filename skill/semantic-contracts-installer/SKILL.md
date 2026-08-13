@@ -3,7 +3,7 @@ name: semantic-contracts-installer
 description: Install Semantic Contracts (and, as a sub-mode, individual semantic anchors) into a coding agent's persistent context for Claude Code, Codex, Gemini CLI, Cursor, GitHub Copilot, and similar agents. Use when setting up project-level or user-level onboarding, generating or updating AGENTS.md / CLAUDE.md / GEMINI.md / Copilot instruction files, or choosing which contracts a project should run. A contract is the part the LLM cannot guess — a named composition of anchors plus the project's own rendered template — so installing contracts is the high-value path; installing a bare anchor list is the lightweight fallback.
 metadata:
   author: LLM-Coding
-  version: "0.1"
+  version: "0.2"
   source: https://github.com/LLM-Coding/Semantic-Anchors
 license: MIT
 ---

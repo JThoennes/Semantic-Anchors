@@ -2,6 +2,20 @@
 
 A chronological record of all semantic anchors added to the catalog. Community contributors are credited with thanks.
 
+== 2026-08-13
+
+*New contract — Documentation Verification, from a benchmark finding:*
+
+* *link:#/contracts[Documentation Verification]* — the SDD framework benchmark ran five spec-driven approaches against the same challenge and sampled three documented claims per run. Fifteen out of fifteen had drifted from the code. Every framework in the field had produced traceability tooling, and every one of them only ran forward: it enforced that new rules get documented, never that existing statements still hold. The periodic prompt "does the specification or architecture documentation need updating?" is the reason. It asks what we learned, so an agent that learned nothing new answers "no" truthfully and a claim that was already wrong survives every review. The new contract reverses the direction into a checkable question — confirm each structural claim (module names, file paths, table and column names, enum values, start commands) against the code, report how many were checked and how many drifted — and forbids the tempting repair: never change the code to match the document, because the document states an intention and the code states reality. Anchors: *link:#/anchor/docs-as-code[Docs-as-Code]*, *link:#/anchor/mental-model-according-to-naur[Mental Model according to Naur]*, *link:#/anchor/fagan-inspection[Fagan Inspection]*.
+
+*Extended contract — Implement Next gains invariant tests:*
+
+* Not one of the five benchmark runs had a test guarding the weighting of a calculation, at 78, 90, 108, 146 and 165 tests alike. The cause is structural rather than careless: tests get derived from the rules, and a rule such as "all shares are equal" makes weighting invisible, so a half share counted as a full one produces a plausible number and stays green everywhere. *link:#/contracts[Implement Next]* now asks for invariant tests alongside example-based ones — name the property connecting a calculation's inputs to its output, test it over a range of values, and ask which of those tests would still fail if a change altered the units, the granularity or the cardinality of an input. The contract's "check if docs need updating" step was also sharpened into the verification direction described above. Added *link:#/anchor/property-based-testing[Property-Based Testing]* to its anchor set.
+
+*Spec-Driven Workflow — two new sections in Step 8, plus a closing check in Step 12:*
+
+* The workflow page (EN + DE) gains _Invariant Tests_ and _Verifying the Documentation Against the Code_ under Step 8, each with its prompt, and Step 12 now ends by running the verification once more against the code that exists after the bug-fix loop — the point where it pays most, since fixes change behaviour and changed behaviour is what makes a correct structural claim stale. The existing feedback loop is kept: asking what we learned is still useful, it is just not sufficient on its own.
+
 == 2026-07-24
 
 *Fix — the German Contributing page was rendered from an orphaned source:*
