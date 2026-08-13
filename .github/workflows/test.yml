@@ -138,7 +138,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          # lighthouse 13 requires node >=22.19, puppeteer-core 25 requires >=22.12.
+          # engine-strict is not set, so npm ci would only warn and the job would
+          # fail at runtime instead -- and this job runs on main only, so that
+          # failure would surface after merge.
+          node-version: '22'
           cache: 'npm'
           cache-dependency-path: website/package-lock.json
 
