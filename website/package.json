@@ -44,6 +44,9 @@
   "overrides": {
     "minimatch": ">=10.2.1",
     "cookie": ">=0.7.0",
-    "tmp": ">=0.2.6"
+    "tmp": ">=0.2.6",
+    "lighthouse": "^13.4.1",
+    "puppeteer-core": "^25.7.0",
+    "@puppeteer/browsers": "^3.2.0"
   }
 }
