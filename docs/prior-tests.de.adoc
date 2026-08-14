@@ -132,3 +132,59 @@ Beide neutralen Baseline-Läufe lieferten eine ausgewogene Stärken-Schwächen-B
 *Kritik-Recherche, 14.08.2026, Englisch und Deutsch.* Drei benannte Kritiker gefunden und im Anker zitiert: John Freeman (Ko-Lokation macht Verhalten sichtbar, nicht verständlich), Chris Done (htmx bricht das Prinzip durch Attribut-Vererbung) und eine htmx-Diskussion, die denselben Einwand aus dem Projekt heraus erhebt. Eine vierte, schärfere Formulierung — das Prinzip benenne bloß um, dass man gegen Separation of Concerns verstößt — ist festgehalten, stammt aber von einem Pseudonym.
 
 Eine ausgearbeitete Erwiderung aus dem etablierten Frontend- oder SPA-Lager fand sich in keiner der beiden Sprachen. Für ein Essay, das Separation of Concerns frontal angreift, ist das erstaunlich und spricht eher für unseren Suchrahmen als für den Diskurs. Nicht erreicht: X/Twitter, Reddit, der htmx-Community-Chat, Podcasts, ein Blog mit HTTP 403 sowie Gabriels Buch-PDF, das sich nicht in Text umwandeln ließ — das Gabriel-Zitat ist daher im zitierenden Essay belegt, nicht an der Quelle.
+
+=== Simplified Technical English (ASD-STE100)
+
+[cols="2,1,3"]
+|===
+|Kriterium |Urteil |Beleg
+
+|Präzise |erfüllt |P2 auf das nackte „STE" liefert auf beiden Stufen technische Dokumentation, je `mentioned_controlled_language=yes` — kein konkurrierendes Feld
+|Reich |erfüllt |6/6 erkannt; die schwache Stufe meldet einmal `moderate`, einmal `rich`
+|Konsistent |teilweise |Die Erkennung trägt über alle Stufen, der *Hebel* nicht — siehe unten
+|Zuschreibbar |erfüllt |ASD, gepflegt von der STEMG, Erstausgabe 1986 als AECMA Simplified English. Beide Stufen nennen ASD im Fließtext korrekt
+|Prior-Dichte |mittel |Überall erkannt; als unterscheidbare Anweisung nur auf der starken Stufe wirksam
+|===
+
+*Tier ★★☆, Route: Anchor, empfohlene Zeichenfolge „Simplified Technical English (ASD-STE100)".* Die Bewertung folgt der Cross-Model-Regel aus CONTRIBUTING: Zeigt sich der Before/After-Unterschied nur auf Frontier-Modellen, wird ★★ vermerkt.
+
+*Der Hebel ist auf der starken Stufe belegt und auf der schwachen nicht.* Die Aktionsprobe verlangte, einen aufgeblähten Wartungshinweis zur Hydraulik umzuschreiben. Auf Opus nannten die Anker-Läufe den Standard sieben- bzw. fünfmal und rechneten Satzlängen ausdrücklich vor. Auf Haiku erwähnte ihn einer von zwei Läufen ein einziges Mal, der andere gar nicht — und die neutrale Baseline lieferte eine Umschreibung vergleichbarer Güte, in einem Fall sogar besser strukturiert: Sie gab nummerierte Handlungsschritte zurück, wo der Anker-Lauf Fließtext lieferte.
+
+*Ein Unterschied zeigte sich doch, als Einzelbeobachtung.* Ein Baseline-Lauf erfand Verfahrensdetails, die im Ausgangstext nicht stehen — ein Druckentlastungsventil, ein Manometer, einen Abschaltschritt. Keiner der Anker-Läufe ergänzte etwas, das die Quelle nicht sagte. Bei n=1 ist das eine Anekdote, festgehalten, weil Erfindung in einer Wartungsanweisung der Fehler ist, auf den es in dieser Domäne ankommt.
+
+*Der ausgeschriebene Name schlägt die Spezifikationsnummer auf der schwachen Stufe.* Auf „ASD-STE100" meldete Haiku in beiden Läufen `richness=moderate` und `reaching=yes`; auf „Simplified Technical English" erkannte es den Begriff in einem von zwei Läufen ohne Griff ins Ungefähre. Opus behandelt beide gleich.
+
+*Die Literatur kam vor dreißig Jahren zum selben Schluss.* Holmback, Shubert und Spyridakis — die Verfasser der Boeing-finanzierten Untersuchungen — fragen in CLAW '96, „whether SE is any more beneficial than good quality, professional technical writing that does not conform to the SE standard", und berichten keinen signifikanten Zeitunterschied sowie unklare Übersetzbarkeitsergebnisse. Unser Baseline-Vergleich ist ein kleiner, moderner Fall derselben offenen Frage.
+
+*Eine Grenze dieser Messung, benannt statt verschwiegen.* „Schreib diesen aufgeblähten Hinweis um" ist eine Aufgabe, die Modelle auch ungefragt gut lösen, und trennt deshalb schwach. Eine Probe, die am *zugelassenen Wortschatz* ansetzt — ob ein bestimmtes Wort verwendet werden darf —, würde die Arme schärfer trennen. Die ★★-Bewertung sollte mit einer solchen Probe erneut geprüft und nicht als abgeschlossen behandelt werden.
+
+*Kritik-Recherche, 14.08.2026, Englisch und Deutsch.* Vier benannte Quellen gefunden und im Anker zitiert. Die deutschsprachige Suche fand tekom-Tagungsbeiträge zu STE, die eine geprüfte Session ist aber englischsprachig und wird von italienischen Referentinnen gehalten — internationale STE-Community auf deutscher Bühne, keine eigenständige deutsche Kritiklinie. Nicht erreicht: die Spezifikation selbst, die ASD nur auf individuelle Anfrage ausgibt, weshalb jedes Regeldetail jenseits der veröffentlichten Zahlen auf Sekundärquellen ruht; iso.org, das automatisierte Abrufe blockt; und die Mitgliederpublikationen der tekom, wo eine deutsche Kritiklinie bestehen kann, ohne im offenen Index aufzutauchen. Romanische und ostasiatische Rezeption wurde nicht gesucht, was hier zählt, weil die Leitung der Pflegegruppe in Italien sitzt.
+
+=== Zinsser's Four Principles — abgelehnt
+
+[cols="2,1,3"]
+|===
+|Kriterium |Urteil |Beleg
+
+|Präzise |nicht erfüllt |Vier Qualitätsadjektive, kein abgegrenztes Wissensgebiet
+|Reich |nicht erfüllt |Schwache Stufe: `thin` in 3 von 4 Läufen über beide Namensformen. Sonnet meldet `moderate`, nie `rich`
+|Konsistent |nicht erfüllt |Die Erkennung schwankt nach Stufe und Wortlaut; die Aktionsausgabe unterscheidet sich gar nicht
+|Zuschreibbar |erfüllt |William Zinsser, wörtlich, in _The American Scholar_, 1. Dezember 2009
+|Prior-Dichte |dünn |Der Prior sitzt auf „Zinsser" und „On Writing Well", nicht auf einer Vierer-Formel
+|===
+
+*Route: Ablehnung als Anker.* Vermerkt unter link:#/rejected-proposals[Rejected Proposals], Kategorie „Insufficient training-data density".
+
+*Der entscheidende Beleg ist ein dreiarmiger Action-Test*, für diesen Kandidaten eigens in die Batterie aufgenommen, weil der Fehlermodus hier die unsichtbare Verbesserung ist: Jedes Modell verbessert einen aufgeblähten Absatz, die Verbesserung belegt also nichts. Nur ein Unterschied zwischen den Armen belegt etwas.
+
+Derselbe Absatz wurde dreifach umgeschrieben: mit Zinssers Namen, nur mit den vier Wörtern ohne ihn, und neutral. Alle drei lieferten dieselbe Umschreibung. Was der Name hinzufügte, waren achtzig Wörter Kommentar *darüber*, welche Prinzipien angewandt wurden — kein besserer Text. Das ist die Definition von dekorativ statt funktional.
+
+*Eine Vorhersage wurde aufgestellt und widerlegt.* Die Recherche ergab, dass im Buch „my four articles of faith: clarity, simplicity, brevity and humanity" steht und „four principles" Zinssers eigene spätere Umbenennung im Vortrag von 2009 ist. Die naheliegende Hypothese war, wir hätten die seltenere Wendung getestet. Geprüft: Der Buchwortlaut schneidet *schlechter* ab — erkannt in 0 von 2 Läufen der schwachen Stufe gegenüber 1 von 2. Keine der beiden Wendungen trägt.
+
+*Die starke Stufe sagt es ausdrücklich.* Auf die Frage, wer vier Prinzipien guten englischen Schreibens formuliert habe, antwortet Opus, es gebe „no canonical, universally recognized 'four principles of writing good English'", und nennt Orwell als nächstliegenden Kandidaten. Haiku antwortet schlicht George Orwell — stille Substitution durch die nächstberühmte Liste.
+
+*Was trägt*, ist der Autor samt Buch: P2 auf „On Writing Well" liefert auf beiden Stufen William Zinsser.
+
+*Ein Contract wurde ebenfalls nicht angelegt.* Der bestehende `writing-style`-Contract nennt Strunk & White und Wolf Schneider bereits und stellt acht konkrete Regeln auf. Vier Adjektive fügen dem operativ nichts hinzu; das ehrliche Ergebnis ist deshalb ein Ablehnungseintrag, kein drittes Etikett auf demselben Regal.
+
+*Kritik-Recherche, 14.08.2026, Englisch und Deutsch.* Geoffrey K. Pullum hat _On Writing Well_ eigenständig angegriffen, nicht nur Strunk & White („Awful book, so I bought it", Language Log, 21. März 2015) und nennt die Kapitel zu Passiv und Modifikatoren „mendacious drivel"; Mark Liberman legte drei Tage später mit Korpusdaten nach. Deutsche Rezeption: null — keine Übersetzung, keine Diskussion auffindbar. Die Nachbarschaft zu _Gutes Deutsch nach Wolf Schneider_ wäre unsere Konstruktion gewesen, keine belegte Linie.
