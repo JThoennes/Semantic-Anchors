@@ -6,7 +6,7 @@
 :related: plain-english-strunk-white, gutes-deutsch-wolf-schneider, docs-as-code
 :tier: 2
 :prior-test: 2026-08-14
-:verified-on: sonnet-5, opus-5
+:tested-on: haiku-4.5=no, sonnet-5=yes, opus-5=yes
 
 [%collapsible]
 ====
@@ -42,7 +42,7 @@ Also known as:: STE; formerly AECMA Simplified English
 == *Criticism*:
 
 * *The efficacy evidence is thinner than the reputation, and its own authors say so.* Heather Holmback (Boeing) with Serena Shubert and Jan Spyridakis (University of Washington), who conducted the Boeing-funded evaluations, name the limits in https://mt-archive.net/90/CLAW-1996-Holmback.pdf["Issues in Conducting Empirical Evaluations of Controlled Languages"] (CLAW '96): there is "no compliance standard for SE", so "there is no universal agreement as to what counts as 'good,' 'typical' or even acceptable SE"; the measured benefit appeared only for the more complex of two procedures; and "we did not find any significant differences for time between the SE and non-SE documents". Translatability results were "less clear-cut", with no significant difference for Chinese.
-* *The open question is whether the standard beats good writing at all.* The same paper asks "whether SE is any more beneficial than good quality, professional technical writing that does not conform to the SE standard". That question is still open, and our own measurement reproduced it: on a weak model the anchored rewrite was not distinguishable from an unanchored one. That is why this entry is verified on Sonnet and Opus but not on Haiku. See the link:#/prior-tests[prior-test register].
+* *The open question is whether the standard beats good writing at all.* The same paper asks "whether SE is any more beneficial than good quality, professional technical writing that does not conform to the SE standard". That question is still open, and our own measurement reproduced it: on a weak model the anchored rewrite was not distinguishable from an unanchored one. The entry therefore records Haiku as tested with no measurable effect, and Sonnet and Opus as tested and working. See the link:#/prior-tests[prior-test register].
 * *Adoption costs are real.* Karin Disborg's https://liu.diva-portal.org/smash/record.jsf?pid=diva2%3A16816[2007 thesis at Linköping University] names the "extensive learning time" and reports, from her literature base, roughly 20 percent more writing time in a controlled language. The study is qualitative with a small sample and was commissioned by a documentation service provider; its readability results favoured STE.
 * *Strict compliance can work against other goals.* TechScribe notes that following STE strictly harms findability in search engines, because synonyms are what readers actually search for, and cites Barry Rosenberg's argument that synonyms improve readability for non-technical verbs.
 
