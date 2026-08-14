@@ -103,3 +103,32 @@ Davon zu unterscheiden ist der Rename-Check in der Tabelle oben: Dort meldete �
 *Kritik-Recherche, 14.08.2026, Englisch und Deutsch.* Zum Begriff selbst nichts Zitierfähiges -- kein benannter Autor, der ihn als trivial, unfalsifizierbar oder unbrauchbar angreift. Gefunden wurden drei benannte Kritiker der umgebenden Mental-Models-Literatur (Cedric Chin, Richard Hughes-Jones, Boris Gorelik); sie stehen im Anker, ausdrücklich mit dem Hinweis, dass keiner von ihnen Second-Order Thinking behandelt.
 
 Hier ist die Abwesenheit erwartbar statt verdächtig: Ein Begriff, den niemand geprägt hat und den Blogs populär gemacht haben, zieht keine Widerlegungen an wie eine benannte Methode. Beim Premortem weiter oben liegt es umgekehrt -- fehlende unabhängige Kritik ist bei einer breit übernommenen Technik erstaunlich und spricht eher für unseren Suchrahmen als für die Literatur. Geschlossene Communities, darunter die kostenpflichtige von Farnam Street, sind nicht indexiert und waren nicht erreichbar. Ein verborgener nicht-englischer Sprachraum ist für diesen Begriff nicht zu erwarten, weil er ein anglophoner Blog-Import ohne heimisch benanntes Gegenstück ist -- das ist eine Vorhersage, kein geprüftes Ergebnis.
+
+=== Locality of Behaviour
+
+[cols="2,1,3"]
+|===
+|Kriterium |Urteil |Beleg
+
+|Präzise |erfüllt, für den ausgeschriebenen Namen |P2 liefert für „locality of behaviour" auf beiden Stufen Software Design; das Kürzel nicht — siehe unten
+|Reich |erfüllt |5/6 Läufe melden `richness=rich`; ein Lauf der schwachen Stufe meldet `moderate`
+|Konsistent |erfüllt beim Anwenden, schwächer beim Erinnern |P3 stimmt 6/6 über alle drei Stufen; P1 spaltet sich auf der schwachen Stufe
+|Zuschreibbar |erfüllt |Carson Gross, htmx-Essay, 29. Mai 2020 — durch Recherche bestätigt. Die starke Stufe nennt ihn mit `confidence=high`
+|Prior-Dichte |stark |Erkannt und als Anweisung wirksam auch auf der schwachen Stufe
+|===
+
+Tier ★★★ für den ausgeschriebenen Namen, Route: Anchor. Zwei Vorbehalte stehen unten, statt in die Bewertung eingerechnet zu werden.
+
+*Das ist der deutlichste bisher gemessene Hebel, weil der Anker das Urteil ändert und nicht nur das Vokabular.* Die Aktionsprobe ließ einen Entwurf bewerten, der alle Click-Handler in einer zentralen JavaScript-Datei registriert, den Elementen über CSS-Selektoren zugeordnet.
+
+Beide neutralen Baseline-Läufe lieferten eine ausgewogene Stärken-Schwächen-Bewertung — und beide führten *Separation of Concerns* unter den *Stärken*. Lokalität erwähnte keiner ein einziges Mal. Mit dem Begriff lautet die erste Überschrift „Behaviour at distance", gefolgt von „Why it fails LoB". Die Baseline lobt genau die Position, die das Essay angreift.
+
+*Das Kürzel ist besetzt.* „LoB" liefert auf beiden Stufen Business- und Enterprise-Terminologie, jeweils mit `mentioned_code_locality=no`. Der Katalogname muss ausgeschrieben sein; das Kürzel allein wäre ein Fehlschlag.
+
+*Erinnern und Ausführen fallen auseinander, und die schwache Stufe schreibt falsch zu.* Auf die Frage nach dem Urheber antwortet sie „Dan North (probable)", die starke Stufe nennt Carson Gross mit hoher Konfidenz. Dieselbe schwache Stufe meldet in beiden P1-Läufen `reaching=yes` und in einem `richness=moderate` — ihre Aktionsausgabe ist trotzdem konkret und richtig. Ein Modell kann eine Bewegung ausführen, deren Herkunft es nicht kennt.
+
+*Die Schreibweise wurde gemessen, weil der Autor beide verwendet.* Das Essay ist britisch („Behaviour"), das Buch _Hypermedia Systems_ amerikanisch („Behavior"). Auf der schwachen Stufe wurde die britische Form in 2 von 2 Läufen erkannt, die amerikanische in 1 von 2 — ein amerikanischer Lauf meldete `recognized=no` — und beide amerikanischen Läufe nur `moderate`. Der Action-Test trennt sie nicht (je 2/2). Bei n=2 ist das ein Hinweis, kein Beleg; die Entscheidung ruht nicht allein darauf, weil die Primärquelle dieselbe Schreibweise verwendet.
+
+*Kritik-Recherche, 14.08.2026, Englisch und Deutsch.* Drei benannte Kritiker gefunden und im Anker zitiert: John Freeman (Ko-Lokation macht Verhalten sichtbar, nicht verständlich), Chris Done (htmx bricht das Prinzip durch Attribut-Vererbung) und eine htmx-Diskussion, die denselben Einwand aus dem Projekt heraus erhebt. Eine vierte, schärfere Formulierung — das Prinzip benenne bloß um, dass man gegen Separation of Concerns verstößt — ist festgehalten, stammt aber von einem Pseudonym.
+
+Eine ausgearbeitete Erwiderung aus dem etablierten Frontend- oder SPA-Lager fand sich in keiner der beiden Sprachen. Für ein Essay, das Separation of Concerns frontal angreift, ist das erstaunlich und spricht eher für unseren Suchrahmen als für den Diskurs. Nicht erreicht: X/Twitter, Reddit, der htmx-Community-Chat, Podcasts, ein Blog mit HTTP 403 sowie Gabriels Buch-PDF, das sich nicht in Text umwandeln ließ — das Gabriel-Zitat ist daher im zitierenden Essay belegt, nicht an der Quelle.

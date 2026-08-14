@@ -434,6 +434,11 @@ Source: https://github.com/LLM-Coding/Semantic-Anchors
 - **Proponents:** John Ousterhout
 - **Core:** Simple interface hiding powerful implementation — a module is deep when its benefit (functionality provided) far exceeds its cost (interface complexity); shallow modules and "classitis" (too many tiny classes) are the anti-patterns; companion principle: "different layer, different abstraction"; rooted in information hiding (Parnas)
 
+### Locality of Behaviour
+- **Also known as:** Locality of Behavior (American spelling); LoB — but never use the abbreviation alone, it reads as "Line of Business"
+- **Proponents:** Carson Gross (htmx essay, 2020)
+- **Core:** "The behaviour of a unit of code should be as obvious as possible by looking only at that unit of code" — optimise for read-time cost over write-time cost; behaviour at a distance (remote handlers, name-binding conventions, invisible framework hooks) is the failure mode, co-location the remedy; an explicit trade against DRY and Separation of Concerns where they scatter one feature across many files, not a claim that they are wrong
+
 ## Problem-Solving
 
 ### First Principles Thinking
