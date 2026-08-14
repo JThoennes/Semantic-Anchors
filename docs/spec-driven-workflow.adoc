@@ -420,22 +420,77 @@ TDD (Test-Driven Development) comes in two schools:
 
 The AI selects the appropriate school based on the code's characteristics.
 
+==== Invariant Tests
 
-==== Feedback Loop to Specification
+Tests derived from the specification check the rule as written.
+They do not check the property the rule rests on.
 
-During implementation, you will discover gaps in the specification or architecture.
-This is normal and expected.
-Periodically ask the AI:
+When every input in the examples happens to be equal, a calculation that correctly weights its inputs and one that merely counts them return the same number.
+Both pass. The bug appears the first time an input differs, which is usually after release.
 
 [source]
 ----
-Based on what we learned during implementation, does the specification
-or architecture documentation need updating?
+Beyond example-based tests, write invariant tests: properties that must hold
+for every valid input, not just the ones in the specification. For each
+calculation, state the invariant that connects its inputs to its output and
+test it over a range of values.
+
+Ask specifically: which of these tests would still fail if a future change
+altered the units, the granularity, or the cardinality of an input?
+----
+
+The second question is the one that pays.
+It checks the test suite against changes the specification never anticipated, which is where example-based tests are blind by construction.
+
+
+==== Feedback Loop to Specification
+
+Documentation drifts from code in two directions, and each needs its own question.
+
+It falls behind when implementation discovers something: a decision taken, a rule clarified, a constraint found.
+It also goes stale in place: a module gets renamed, a column disappears, a capability stays described that was never built.
+The second kind survives a question about what you learned, because you learned nothing -- the sentence was already wrong when you last read past it.
+
+Periodically ask the AI both:
+
+[source]
+----
+Two questions about the specification and architecture documentation.
+
+First: based on what we learned during implementation, is anything missing
+or now wrong?
+
+Second: verify the documents against the code. For each structural claim,
+confirm that it holds today: module names, class names, file paths, table
+and column names, enum values, invariants, start commands, and claims of
+the form "the only place where X happens".
+
+List every claim that no longer holds, with document location and code
+location. Do not change the code to match the document. Either correct the
+document, or open an issue where the code is wrong.
+
+Report the number of claims checked and the number that drifted.
 ----
 
 Update the docs before continuing.
 This keeps the specification a living document rather than a stale artifact.
 The spec is not just a means to generate code -- it remains the authoritative description of the system's behavior, maintained alongside the code for as long as the project lives.
+
+The prohibition in the second question carries weight.
+The document describes an intention, the code describes reality; adapting the code to the document turns a documentation error into a silent behavior change.
+
+Structural claims can also be checked mechanically, which is cheaper and more reliable than asking an agent each time:
+
+[source]
+----
+Extend the traceability check so that structural claims in the documentation
+are verified mechanically: table names, column names, module paths, enum
+values. A claim about structure that no test can verify does not belong in
+the documentation. Either make it verifiable or delete it.
+----
+
+Traceability tooling usually runs forward only: it enforces that every rule has a test.
+That direction never notices a documented column the schema does not have.
 
 ==== Merging
 
@@ -499,6 +554,10 @@ After fixing, return to Step 11 and test again.
 Repeat until no more bugs are found.
 
 Each fix follows the same TDD discipline: write a failing test that reproduces the bug, then fix it.
+
+When the loop ends, run the two documentation questions from Step 8 once more, against the code that now exists.
+This is the point where it pays most: bug fixes change behavior, and changed behavior is what turns a correct structural claim into a stale one.
+Do it before the release, not after, or the first reader of the documentation will be the first person to find the drift.
 
 == Adapting This Workflow
 
