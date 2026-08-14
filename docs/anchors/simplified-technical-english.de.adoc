@@ -6,6 +6,7 @@
 :related: plain-english-strunk-white, gutes-deutsch-wolf-schneider, docs-as-code
 :tier: 2
 :prior-test: 2026-08-14
+:verified-on: sonnet-5, opus-5
 
 [%collapsible]
 ====
@@ -48,7 +49,7 @@ Es mit Plain Language verwechseln:: https://www.sis.se/en/produkter/standardizat
 == *Kritik*:
 
 * *Die Wirksamkeitsbelege sind dünner als der Ruf -- und ihre eigenen Verfasser sagen das.* Heather Holmback (Boeing) mit Serena Shubert und Jan Spyridakis (University of Washington), die die Boeing-finanzierten Untersuchungen durchführten, benennen die Grenzen in https://mt-archive.net/90/CLAW-1996-Holmback.pdf[„Issues in Conducting Empirical Evaluations of Controlled Languages"] (CLAW '96): Es gebe „no compliance standard for SE", folglich „no universal agreement as to what counts as 'good,' 'typical' or even acceptable SE"; der gemessene Nutzen zeigte sich nur bei der komplexeren von zwei Prozeduren; und „we did not find any significant differences for time between the SE and non-SE documents". Die Übersetzbarkeitsergebnisse waren „less clear-cut", für Chinesisch ohne signifikanten Unterschied.
-* *Die offene Frage ist, ob der Standard gutes Schreiben überhaupt schlägt.* Dieselbe Arbeit fragt, „whether SE is any more beneficial than good quality, professional technical writing that does not conform to the SE standard". Die Frage ist bis heute offen -- und sie ist der Grund, warum dieser Eintrag ★★ statt ★★★ trägt: Unsere eigene Messung hat sie reproduziert. Siehe link:#/prior-tests[Prior-Test-Register].
+* *Die offene Frage ist, ob der Standard gutes Schreiben überhaupt schlägt.* Dieselbe Arbeit fragt, „whether SE is any more beneficial than good quality, professional technical writing that does not conform to the SE standard". Die Frage ist bis heute offen, und unsere eigene Messung hat sie reproduziert: Auf einem schwachen Modell war die Umschreibung mit Anker nicht von der ohne unterscheidbar. Deshalb ist dieser Eintrag auf Sonnet und Opus verifiziert, nicht auf Haiku. Siehe link:#/prior-tests[Prior-Test-Register].
 * *Die Einführungskosten sind real.* Karin Disborgs https://liu.diva-portal.org/smash/record.jsf?pid=diva2%3A16816[Arbeit von 2007 an der Universität Linköping] nennt die „extensive learning time" und berichtet aus ihrer Literaturbasis rund 20 Prozent mehr Schreibzeit in einer kontrollierten Sprache. Die Studie ist qualitativ mit kleiner Stichprobe und entstand im Auftrag eines Dokumentationsdienstleisters; ihre Lesbarkeitsmessung fiel für STE positiv aus.
 * *Strikte Befolgung kann anderen Zielen schaden.* TechScribe hält fest, dass striktes STE die Auffindbarkeit in Suchmaschinen verschlechtert, weil Leser nach Synonymen suchen, und zitiert Barry Rosenbergs Argument, Synonyme erhöhten bei nicht-technischen Verben die Lesbarkeit.
 
