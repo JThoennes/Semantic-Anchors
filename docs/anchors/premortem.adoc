@@ -6,6 +6,7 @@
 :related: five-whys, second-order-thinking, devils-advocate, cynefin-framework
 :tier: 3
 :prior-test: 2026-08-14
+:tested-on: haiku-4.5=yes, sonnet-5=yes, opus-5=yes
 
 [%collapsible]
 ====

@@ -4,6 +4,12 @@ A chronological record of all semantic anchors added to the catalog. Community c
 
 == 2026-08-14
 
+*New: measured anchors now say which models they were tested on, and what came out:*
+
+* Anchors carry a `:tested-on:` attribute and the modal renders it at the foot of the entry, linked to the link:#/prior-tests[prior-test register]. The tier stays out of the interface deliberately: a tier is a judgement, a test result is a fact.
+* *Every tested model is named, including the ones where the anchor did nothing.* Listing only the successes would read as "the others were not tried", which is a weaker and different claim than "tried, no effect". *link:#/anchor/simplified-technical-english[Simplified Technical English]* is the case in point: it is marked as tested on all three tiers, and as having no measurable effect on the weakest one, where its rewrite was not distinguishable from an unanchored prompt.
+* Anchors without the attribute show nothing at all. Absence is a statement about our records, not about the term.
+
 *New anchor — Simplified Technical English (#705), and the catalog's first measured rejection (#706):*
 
 * *link:#/anchor/simplified-technical-english[Simplified Technical English (ASD-STE100)]* (ASD, maintained by the STEMG; first issued 1986 as AECMA Simplified English, Issue 9 from January 2025) — documentation: 53 writing rules and a dictionary of roughly 900 approved words, each admitted in one meaning and one part of speech. *Tier ★★☆*, not ★★★: the anchored rewrite is clearly distinguishable from an unanchored one on frontier models, but not on weak ones, where a neutral baseline produced work of comparable quality. Our own cross-model rule prescribes ★★ for exactly that.

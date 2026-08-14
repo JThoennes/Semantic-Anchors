@@ -140,5 +140,9 @@
   "feedback.discuss": "Discuss",
   "feedback.cta": "Is this anchor useful?",
   "feedback.discussionHeading": "Community Discussion",
-  "feedback.requiresLogin": "Requires GitHub login"
+  "feedback.requiresLogin": "Requires GitHub login",
+  "anchor.testedOn": "Tested on ",
+  "anchor.testedWorks": "the anchor changed the result on this model",
+  "anchor.testedNoEffect": "tested, but the result was not distinguishable from a prompt without the anchor",
+  "anchor.testedMeasured": "measured"
 }

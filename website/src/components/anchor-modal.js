@@ -314,6 +314,33 @@ export async function loadAnchorContent(anchorId) {
       })
     }
 
+    // Tested-on note: every model the anchor was measured against, each with its
+    // result. Naming only the models where it worked would read as "the others were
+    // not tried", which is a different and weaker claim than "tried, no effect".
+    // Provenance rather than caution, so it sits at the foot of the entry. Only
+    // rendered when results exist — a date alone says the anchor was tested, not
+    // what came out. Built with textContent, no HTML sink.
+    if (currentAnchor?.testedOn?.length) {
+      const note = document.createElement('p')
+      note.className = 'anchor-tested-on'
+      note.append(i18n.t('anchor.testedOn'))
+      currentAnchor.testedOn.forEach((entry, index) => {
+        if (index > 0) note.append(', ')
+        const span = document.createElement('span')
+        span.className = entry.works ? 'tested-yes' : 'tested-no'
+        span.textContent = `${entry.model} ${entry.works ? '✓' : '✗'}`
+        span.title = entry.works ? i18n.t('anchor.testedWorks') : i18n.t('anchor.testedNoEffect')
+        note.append(span)
+      })
+      if (currentAnchor.priorTest) {
+        const link = document.createElement('a')
+        link.href = '#/prior-tests'
+        link.textContent = `${i18n.t('anchor.testedMeasured')} ${currentAnchor.priorTest}`
+        note.append(' — ', link)
+      }
+      contentEl.append(note)
+    }
+
     // Auto-expand all collapsible sections
     contentEl.querySelectorAll('details').forEach((details) => {
       details.setAttribute('open', '')
