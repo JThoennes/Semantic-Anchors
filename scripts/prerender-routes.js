@@ -98,6 +98,28 @@ const ROUTES = [
       'Three approaches (Direct, Socratic, Two-Phase) compared with identical team answers. Measures the structural value of the Question Tree, not the answers.',
   },
   {
+    path: '/anchor-prior-test',
+    fragment: 'docs/anchor-prior-test.html',
+    title: 'Anchor Prior Test Skill — Semantic Anchors',
+    description:
+      'Installable Claude Code Skill that measures whether a term is a dense prior instead of assuming it. Clean-room probe battery across model tiers, neutral baseline, criteria matrix, tier rating, and a route to anchor, contract or rejection.',
+    fragmentDe: 'docs/anchor-prior-test.de.html',
+    titleDe: 'Anchor-Prior-Test-Skill — Semantic Anchors',
+    descriptionDe:
+      'Installierbarer Claude Code Skill, der misst statt annimmt, ob ein Begriff ein dichter Prior ist. Probenbatterie im Reinraum über mehrere Modellstufen, neutrale Baseline, Kriterienmatrix, Tier-Bewertung und Route zu Anchor, Contract oder Ablehnung.',
+  },
+  {
+    path: '/prior-tests',
+    fragment: 'docs/prior-tests.html',
+    title: 'Prior-Test Register — Semantic Anchors',
+    description:
+      'The evidence behind each anchor’s :prior-test: date — resolved model identifiers, procedure version, run counts, criteria matrices and verbatim quotes, plus what the criticism research searched and found.',
+    fragmentDe: 'docs/prior-tests.de.html',
+    titleDe: 'Prior-Test-Register — Semantic Anchors',
+    descriptionDe:
+      'Die Belege hinter dem :prior-test:-Datum jedes Ankers — aufgelöste Modell-IDs, Verfahrensversion, Anzahl der Läufe, Kriterienmatrizen und wörtliche Zitate, dazu Suchrahmen und Ergebnis der Kritik-Recherche.',
+  },
+  {
     path: '/harness-inventory',
     fragment: 'docs/harness-inventory.html',
     title: 'The Harness Inventory — Semantic Anchors',

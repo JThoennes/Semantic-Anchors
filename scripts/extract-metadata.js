@@ -132,6 +132,13 @@ function parseAnchorFile(filePath) {
   const tierAttr = attributes.tier
   if (tierAttr) anchor.tier = parseInt(tierAttr, 10)
 
+  // Prior-test provenance: the date the tier was measured with the anchor-prior-test
+  // skill rather than judged. The date is the key into the prior-test register, which
+  // holds the resolved model identifiers and the evidence. Absent means "not tested",
+  // which is a statement about our records, not about the term.
+  const priorTestAttr = attributes['prior-test']
+  if (priorTestAttr) anchor.priorTest = priorTestAttr.trim()
+
   // Optional advisory: a short caution label for anchors whose activated framing
   // conflicts with their field's own consensus (#624). The detail/source lives in
   // the anchor's Criticism / Current Status section (SSOT); this is only the flag.

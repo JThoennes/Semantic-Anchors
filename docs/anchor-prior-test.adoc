@@ -1,0 +1,104 @@
+= Skill: Anchor Prior Test
+:toc:
+
+The Semantic Anchors project ships a **Claude Code Skill** that answers one question with evidence instead of opinion: does naming this term actually trigger the concept in a model you do not control?
+
+A catalog of well-chosen terms is easy to assert and hard to check. This skill makes the claim falsifiable. It runs a candidate through a fixed probe battery across several model tiers in a clean room, maps the results onto the catalog's four quality criteria, and returns a tier rating plus a routing decision: anchor, contract, or reject.
+
+== Why a term can be excellent and still fail
+
+An anchor delivers leverage only if the term is already a **dense, pre-computed prior** in the training data. That density is not the same as quality.
+
+A recent, careful, well-argued method can be a *weak* anchor because few people wrote about it. Worse, a model rarely admits the gap — it silently substitutes the nearest concept it does hold and answers with full confidence. Silent substitution under a confident heading is the signature of an absent prior, and it is invisible unless you probe for it.
+
+So the skill measures density, not merit. A weak result is not a verdict on the method; it routes the term to a link:#/contracts[Semantic Contract] instead, which supplies its own meaning in text and does not depend on the model knowing anything.
+
+== The clean room
+
+The probes must run in a process holding none of this project's context. Otherwise the catalog's own `CLAUDE.md` — which already defines the terms under test — makes the answer circular.
+
+[source,sh]
+----
+mkdir -p /tmp/anchor-probe && cd /tmp/anchor-probe
+claude -p "<prompt>" --model <haiku|sonnet|opus> \
+    --strict-mcp-config --setting-sources ""
+----
+
+`--setting-sources ""` drops user and project configuration including memory, the neutral working directory prevents a project `CLAUDE.md` from being discovered up the tree, and `--strict-mcp-config` disables tools so the model answers from training alone.
+
+Sub-agents cannot do this. A sub-agent inherits the parent session's context, frozen at start-up, and will cheerfully quote the project's own contracts back as if they were general knowledge. Moving files mid-session does not help, because the snapshot is already taken. Only a freshly started process reads the now-absent files from disk. Verify the room once per session by asking the model whether it has custom instructions loaded; the answer must be "none".
+
+== The probe battery
+
+Four probe types, each ending in a machine-readable `SELF:` line so results can be tabled without re-reading prose. The decisive probes run at least twice per tier, because a single dramatic run is an anecdote.
+
+P1 — Recognition and richness (decisive):: What concepts do you associate with the term? Measures whether the prior exists and how interconnected it is.
+P2 — Name ambiguity:: What is the *bare*, unqualified term? If the dominant domain is the wrong field, the catalog name needs a disambiguator.
+P3 — Anchor action (decisive):: Use the term to do a small concrete task. This tests the term as an *instruction*, which is what an anchor is actually for. A model can fail to define a method and still perform its core move.
+P4 — Attribution:: Who created it, and when? Confirms the Attributable criterion and surfaces misattribution.
+
+The weak tier is the most informative. A strong anchor survives even there.
+
+== The baseline is what makes it a measurement
+
+A probe alone shows that the model can do the task. It does not show that the *term* did any work. The same task must therefore run once without the anchor, and the two outputs are compared.
+
+This is easy to get wrong. In the run below, the first baseline named the expected features in its own `SELF:` line — and thereby told the model what to produce. The unanchored run dutifully delivered the structure, and the measured lift was zero. The baseline has to stay neutral about what it is looking for, or it measures the prompt instead of the prior.
+
+== A worked example that changed the answer
+
+Two candidates were tested on 2026-08-14 against `claude-haiku-4-5-20251001`, `claude-sonnet-5` and `claude-opus-5`.
+
+*Premortem* passed cleanly. Six of six runs recognised it, six of six produced the characteristic move — assume the failure has happened, then work backwards to causes:
+
+[quote]
+____
+*Imagined Failure Scenario*: Six months have passed. The migration is incomplete, partially deployed services are failing in production, the team is exhausted, and the company has rolled back to running the monolith alongside broken microservices.
+____
+
+The neutral baseline, given the identical task, produced a forward-looking feasibility assessment with a risk list and never imagined a failure. That difference is the anchor's contribution, visible in one sentence.
+
+*Second-Order Thinking* is the more interesting case, because the evidence contradicted the bibliography.
+
+The primary sources do not use the term. Howard Marks contrasts "first-level" with "second-level thinking" in _The Most Important Thing_ (2011). Ray Dalio writes of "second- and third-order consequences". Neither says "second-order thinking"; that phrasing is the popularisers' umbrella term. The bibliographically faithful name would be *Second-Level Thinking*.
+
+Testing both names settled it:
+
+[cols="3,1,1"]
+|===
+| | Second-Order Thinking | Second-Level Thinking
+
+|Recognised |6/6 |4/4
+|Rich associations |6/6 |4/4
+|Weak tier reaching |1 of 2 (not reproduced) |*2 of 2 (reproduced)*
+|Action test |6/6 |4/4
+|===
+
+The action test does not separate them. The separation appears on the weak tier, and it reproduces: given "second-level thinking", the weak model recognises the phrase but reconstructs it generically, mentioning neither Marks nor investing once. Given "second-order thinking", it does not reach.
+
+So the catalog uses the name that measures stronger, names the other as an alias, and documents the lineage in the text. The method exists to measure density, not to award credit — and here those two point in opposite directions.
+
+== What the verdict contains
+
+A criteria matrix (four criteria × model tier), a prior-density judgement, a tier rating, and a route.
+
+★★★ Self-standing:: the bare name reliably triggers the behaviour on all tiers.
+★★☆ Needs qualification:: known, but requires a qualifier for reliable results. The recommended string is recorded.
+★☆☆ Descriptive only:: names a concept but yields no actionable instruction. Rejected unless a concrete prompt pattern is demonstrated.
+
+== Honesty rules the skill enforces
+
+* Cite only what reproduced. Decisive probes need at least two runs; single-run behaviour is labelled an anecdote.
+* Separate recall from execution. A model may apply a move it cannot define, and the reverse also happens.
+* State the model set. Older generations are usually unreachable and are not tested, so any gap is reported as a lower bound, not a ceiling.
+* If only one tier was available, say so and lower the stated confidence.
+
+== Where the results live
+
+Test results are recorded per anchor, not folded silently into the tier. An anchor carries a `:prior-test:` date; the link:#/prior-tests[prior-test register] holds the run behind that date — resolved model identifiers, procedure version, run count, the criteria matrix, and verbatim quotes.
+
+The reason is that model aliases move. "Tested on haiku" says nothing a year later, and even resolved identifiers are only partly pinned: `claude-haiku-4-5-20251001` carries a date, `claude-opus-5` does not. Only the date plus the resolved identifiers make the claim checkable, and a claim that cannot be checked does not belong in documentation.
+
+== Installation
+
+The skill ships in the `semantic-anchors` plugin alongside the other skills. See the link:#/agentskill[AgentSkill page] for installation on Claude Code, Codex, Cursor, GitHub Copilot, Gemini CLI and compatible agents.

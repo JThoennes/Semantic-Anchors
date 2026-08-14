@@ -1,0 +1,104 @@
+= Skill: Anchor Prior Test
+:toc:
+
+Das Semantic-Anchors-Projekt liefert einen **Claude Code Skill**, der eine Frage mit Belegen statt mit Meinung beantwortet: Löst dieser Begriff das Konzept tatsächlich aus -- in einem Modell, das man nicht kontrolliert?
+
+Ein Katalog gut klingender Begriffe ist leicht behauptet und schwer überprüft. Dieser Skill macht die Behauptung widerlegbar. Er schickt einen Kandidaten durch eine feste Probenbatterie über mehrere Modellstufen in einem Reinraum, bildet die Ergebnisse auf die vier Qualitätskriterien des Katalogs ab und liefert eine Tier-Bewertung samt Entscheidung: Anchor, Contract oder Ablehnung.
+
+== Warum ein Begriff hervorragend sein und trotzdem durchfallen kann
+
+Ein Anker bringt nur dann Hebelwirkung, wenn der Begriff bereits ein **dichter, vorberechneter Prior** in den Trainingsdaten ist. Diese Dichte ist nicht dasselbe wie Qualität.
+
+Eine junge, sorgfältig ausgearbeitete Methode kann ein *schwacher* Anker sein, weil wenige darüber geschrieben haben. Schlimmer noch: Das Modell räumt die Lücke selten ein. Es schiebt stillschweigend das nächstgelegene Konzept unter, das es kennt, und antwortet mit voller Überzeugung. Stille Substitution unter einer selbstsicheren Überschrift ist die Signatur eines fehlenden Priors -- und sie bleibt unsichtbar, solange man nicht gezielt danach sucht.
+
+Der Skill misst deshalb Dichte, nicht Verdienst. Ein schwaches Ergebnis ist kein Urteil über die Methode; es leitet den Begriff zu einem link:#/contracts[Semantic Contract] um, der seine Bedeutung im Text selbst mitliefert und nicht darauf angewiesen ist, dass das Modell etwas weiß.
+
+== Der Reinraum
+
+Die Proben müssen in einem Prozess laufen, der nichts vom Kontext dieses Projekts enthält. Sonst macht das projekteigene `CLAUDE.md` -- das die geprüften Begriffe bereits definiert -- die Antwort zirkulär.
+
+[source,sh]
+----
+mkdir -p /tmp/anchor-probe && cd /tmp/anchor-probe
+claude -p "<prompt>" --model <haiku|sonnet|opus> \
+    --strict-mcp-config --setting-sources ""
+----
+
+`--setting-sources ""` verwirft Benutzer- und Projektkonfiguration einschließlich Memory, das neutrale Arbeitsverzeichnis verhindert, dass ein `CLAUDE.md` den Verzeichnisbaum hinauf gefunden wird, und `--strict-mcp-config` schaltet Werkzeuge ab, damit das Modell allein aus dem Training antwortet.
+
+Sub-Agents können das nicht leisten. Ein Sub-Agent erbt den Kontext der Elternsitzung, eingefroren beim Start, und zitiert bereitwillig die projekteigenen Contracts zurück, als wären sie Allgemeinwissen. Dateien mitten in der Sitzung zu verschieben hilft nicht, weil der Schnappschuss längst genommen ist. Nur ein frisch gestarteter Prozess liest die -- nun abwesenden -- Dateien von der Platte. Den Reinraum einmal je Sitzung prüfen, indem man das Modell fragt, ob es Custom Instructions geladen hat; die Antwort muss „none" lauten.
+
+== Die Probenbatterie
+
+Vier Probentypen, jeder endet auf einer maschinenlesbaren `SELF:`-Zeile, damit sich Ergebnisse tabellieren lassen, ohne die Prosa erneut zu lesen. Die entscheidenden Proben laufen mindestens zweimal je Stufe, denn ein einzelner auffälliger Lauf ist eine Anekdote.
+
+P1 -- Wiedererkennung und Reichhaltigkeit (entscheidend):: Welche Konzepte verbindest du mit dem Begriff? Misst, ob der Prior existiert und wie vernetzt er ist.
+P2 -- Namensambiguität:: Was ist der *nackte*, unqualifizierte Begriff? Landet die Antwort im falschen Fachgebiet, braucht der Katalogname einen Zusatz.
+P3 -- Anker-Aktion (entscheidend):: Löse mit dem Begriff eine kleine konkrete Aufgabe. Das prüft den Begriff als *Anweisung* -- wofür ein Anker eigentlich da ist. Ein Modell kann eine Methode nicht definieren können und ihren Kern trotzdem ausführen.
+P4 -- Attribution:: Wer hat den Begriff geprägt, und wann? Bestätigt das Kriterium der Zuschreibbarkeit und legt Fehlzuschreibungen offen.
+
+Die schwache Stufe ist die aussagekräftigste. Ein starker Anker trägt auch dort.
+
+== Erst die Baseline macht daraus eine Messung
+
+Eine Probe allein zeigt, dass das Modell die Aufgabe lösen kann. Sie zeigt nicht, dass der *Begriff* etwas dazu beigetragen hat. Dieselbe Aufgabe muss deshalb einmal ohne Anker laufen, und beide Ausgaben werden verglichen.
+
+Das geht leicht schief. Im Lauf unten nannte die erste Baseline die erwarteten Merkmale in ihrer eigenen `SELF:`-Zeile -- und verriet dem Modell damit, was es produzieren sollte. Der ankerlose Lauf lieferte die Struktur pflichtschuldig, und der gemessene Hebel war null. Die Baseline muss neutral bleiben, sonst misst sie den Prompt statt den Prior.
+
+== Ein durchgerechnetes Beispiel, das die Antwort gedreht hat
+
+Zwei Kandidaten, getestet am 14.08.2026 gegen `claude-haiku-4-5-20251001`, `claude-sonnet-5` und `claude-opus-5`.
+
+*Premortem* besteht glatt. Sechs von sechs Läufen erkennen den Begriff, sechs von sechs erzeugen die charakteristische Bewegung -- das Scheitern als eingetreten annehmen und rückwärts zu den Ursachen arbeiten:
+
+[quote]
+____
+*Imagined Failure Scenario*: Six months have passed. The migration is incomplete, partially deployed services are failing in production, the team is exhausted, and the company has rolled back to running the monolith alongside broken microservices.
+____
+
+Die neutrale Baseline lieferte bei identischer Aufgabe eine vorwärtsgerichtete Machbarkeitseinschätzung mit Risikoliste und imaginierte nie ein Scheitern. Dieser Unterschied ist der Beitrag des Ankers, sichtbar in einem Satz.
+
+*Second-Order Thinking* ist der interessantere Fall, weil die Belege der Bibliografie widersprechen.
+
+Die Primärquellen verwenden den Begriff nicht. Howard Marks stellt in _The Most Important Thing_ (2011) „first-level" und „second-level thinking" gegenüber. Ray Dalio schreibt von „second- and third-order consequences". Keiner sagt „second-order thinking"; diese Fassung ist der Sammelbegriff der Popularisierer. Der bibliografisch treue Name wäre *Second-Level Thinking*.
+
+Beide Namen zu testen hat es entschieden:
+
+[cols="3,1,1"]
+|===
+| | Second-Order Thinking | Second-Level Thinking
+
+|erkannt |6/6 |4/4
+|reiche Assoziationen |6/6 |4/4
+|schwache Stufe greift ins Ungefähre |1 von 2 (nicht reproduziert) |*2 von 2 (reproduziert)*
+|Action-Test |6/6 |4/4
+|===
+
+Der Action-Test trennt die beiden nicht. Die Trennung liegt auf der schwachen Stufe, und sie reproduziert sich: Bei „second-level thinking" erkennt das schwache Modell die Wortfolge, rekonstruiert sie aber generisch und erwähnt weder Marks noch das Investment-Umfeld ein einziges Mal. Bei „second-order thinking" greift es nicht ins Ungefähre.
+
+Der Katalog nimmt deshalb den Namen, der stärker misst, führt den anderen als Alias und belegt die Linie im Text. Das Verfahren misst Dichte, nicht Verdienst -- und hier zeigen beide in verschiedene Richtungen.
+
+== Was das Urteil enthält
+
+Eine Kriterienmatrix (vier Kriterien × Modellstufe), eine Einschätzung der Prior-Dichte, eine Tier-Bewertung und eine Route.
+
+★★★ Selbsttragend:: Der nackte Name löst das Verhalten auf allen Stufen zuverlässig aus.
+★★☆ Braucht Qualifizierung:: Bekannt, aber für verlässliche Ergebnisse mit Zusatz. Die empfohlene Zeichenfolge wird festgehalten.
+★☆☆ Nur beschreibend:: Benennt ein Konzept, liefert aber keine ausführbare Anweisung. Abgelehnt, sofern kein konkretes Prompt-Muster nachgewiesen wird.
+
+== Ehrlichkeitsregeln, die der Skill erzwingt
+
+* Nur zitieren, was sich reproduziert hat. Entscheidende Proben brauchen mindestens zwei Läufe; Einzelbeobachtungen werden als Anekdote gekennzeichnet.
+* Wiedererkennung und Ausführung trennen. Ein Modell kann eine Bewegung ausführen, die es nicht definieren kann -- und umgekehrt.
+* Den Modellsatz nennen. Ältere Generationen sind meist nicht erreichbar und werden nicht getestet; jede Lücke gilt als Untergrenze, nicht als Obergrenze.
+* War nur eine Stufe verfügbar, das sagen und die Aussagekraft entsprechend senken.
+
+== Wo die Ergebnisse liegen
+
+Testergebnisse werden je Anker festgehalten, nicht stillschweigend ins Tier eingerechnet. Ein Anker trägt ein `:prior-test:`-Datum; das link:#/prior-tests[Prior-Test-Register] hält den Lauf hinter diesem Datum -- aufgelöste Modell-IDs, Verfahrensversion, Anzahl der Läufe, die Kriterienmatrix und wörtliche Belegzitate.
+
+Der Grund: Modell-Aliase sind bewegliche Ziele. „Getestet auf haiku" sagt ein Jahr später nichts mehr, und selbst aufgelöste IDs sind nur teilweise gepinnt -- `claude-haiku-4-5-20251001` trägt ein Datum, `claude-opus-5` nicht. Erst Datum plus aufgelöste IDs machen die Aussage prüfbar, und eine Aussage, die sich nicht prüfen lässt, gehört nicht in die Dokumentation.
+
+== Installation
+
+Der Skill liegt im Plugin `semantic-anchors` neben den übrigen Skills. Die link:#/agentskill[AgentSkill-Seite] beschreibt die Installation für Claude Code, Codex, Cursor, GitHub Copilot, Gemini CLI und kompatible Agenten.

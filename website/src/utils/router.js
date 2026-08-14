@@ -43,6 +43,8 @@ const ROUTE_TITLES = {
   '/brownfield-fair-comparison': 'Brownfield Fair Comparison — Semantic Anchors',
   '/socratic-recovery-skill': 'Socratic Code-Theory Recovery Skill — Semantic Anchors',
   '/arc42-documentation-skill': 'arc42 Documentation Authoring Skill — Semantic Anchors',
+  '/anchor-prior-test': 'Anchor Prior Test Skill — Semantic Anchors',
+  '/prior-tests': 'Prior-Test Register — Semantic Anchors',
   '/harness-inventory': 'The Harness Inventory — Semantic Anchors',
   '/training-data-vs-practice':
     'An Anchor Delivers Only as Far as the Prior Reaches — Semantic Anchors',

@@ -2,6 +2,23 @@
 
 A chronological record of all semantic anchors added to the catalog. Community contributors are credited with thanks.
 
+== 2026-08-14
+
+*Two new anchors, and the first two whose tier was measured rather than judged:*
+
+* *link:#/anchor/premortem[Premortem]* (Gary Klein, _Harvard Business Review_ 85(9), September 2007) — problem-solving + strategic-planning: state as fact that the plan has already failed, then have each participant write down why, independently, and collect the reasons round-robin. The failure is a premise, not a possibility, and that is the whole technique. Tier ★★★. The Criticism section reports the one citable critic found: Jason Collins shows that the widely repeated "30 percent" figure does not say what it is used to say — the 1989 study behind it measured the *number* of reasons generated, and "did not assess the quality of the reasons". The claim that the technique improves correct identification by 30 percent originates in the 2007 restatement, not in the study.
+* *link:#/anchor/second-order-thinking[Second-Order Thinking]* (Howard Marks, Ray Dalio; popularised by Shane Parrish) — problem-solving + strategic-planning: follow a consequence into the next consequence instead of listing more effects at the same level. Tier ★★★. The entry is named against its own bibliography: Marks writes "second-*level* thinking", Dalio writes "second- and third-order *consequences*", and neither uses the term this anchor carries. Both names were tested, and the measurement decided it — see below.
+
+*New: the tier can now be measured, and the measurement is published:*
+
+* *link:#/anchor-prior-test[Anchor Prior Test]* — the skill that has been in the plugin all along now has a page. It runs a candidate through a fixed probe battery across model tiers in a clean room, compares against a neutral baseline, and returns a criteria matrix, a tier, and a route to anchor, contract or rejection. Publishing it makes the catalog falsifiable: anyone can rerun the method and disagree with a tier.
+* *link:#/prior-tests[Prior-Test Register]* — the evidence behind each `:prior-test:` date. Resolved model identifiers, procedure version, run counts, matrices and verbatim quotes. The date lives in the anchor, the evidence lives here, because model aliases move: "tested on haiku" says nothing a year later, and even resolved identifiers are only partly pinned.
+* New `:prior-test:` attribute on anchor files. The 192 existing anchors do not carry it, which is a statement about our records rather than about those terms; they will be retrofitted gradually, starting where the claim is most contestable.
+
+*What the measurement changed:* "Second-Level Thinking" is the bibliographically faithful name, so it was tested too. Both names are recognised on every tier and both produce the consequence-chain structure. They separate only on the weak tier, and there it reproduces: given "second-level thinking", the weak model recognises the phrase but reconstructs it generically, mentioning Marks zero times across the run, while the strong tier places it correctly. Given "second-order thinking", the weak tier does not reach. The catalog uses the name that measures stronger and carries the other as an alias — density, not credit, is what an anchor trades on.
+
+*Also:* `CONTRIBUTING` now says that a criticism research finding of "nothing citable" is recorded in the register with its date and the languages searched, instead of being discarded. Omitting an empty section is still right; throwing away the result is not, because a later contributor cannot otherwise tell "researched, nothing found" from "never looked".
+
 == 2026-08-13
 
 *New contract — Documentation Verification, from a benchmark finding:*
