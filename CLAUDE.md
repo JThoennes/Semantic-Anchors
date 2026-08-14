@@ -577,8 +577,9 @@ For each issue:
 - Analyze and document analysis as a comment on the issue
 - Implement using TDD (London or Chicago School as appropriate)
 - Each test references its Use Case ID for traceability
+- Beyond example-based tests, write invariant tests: name the property that connects a calculation's inputs to its output and test it over a range of values. Ask which of these tests would still fail if a change altered the units, the granularity, or the cardinality of an input
 - Commit with Conventional Commits, reference issue number
-- Check if spec or architecture docs need updating
+- Verify the spec and architecture docs against the code: for each structural claim, confirm it still holds. Correct the document, never the code
 - When EPIC is complete, create a Pull Request
 
 ## Refactoring
@@ -636,6 +637,19 @@ Recover a program's "theory" (Naur 1985) from source code through recursive ques
 - Open Questions are the handoff document: always emit one section per role (Product Owner, Architect, Developer, Domain Expert, Operations), even when a section is empty ("No open questions for this role").
 
 - Two-phase workflow: Phase 1 builds the tree; the team answers the Open Questions; Phase 2 synthesizes documentation from the answered tree.
+
+## Documentation Verification
+
+Verify the documentation against the code, in both directions.
+
+- Ask what implementation revealed that the documents do not yet say
+- For each structural claim in the architecture and specification documents, confirm that it holds today: module names, class names, file paths, table and column names, enum values, invariants, start commands, and claims of the form "the only place where X happens"
+- List every claim that no longer holds, with document location and code location
+- Never change the code to match the document. The document states an intention, the code states reality. Correct the document, or open an issue where the code is wrong
+- Report how many claims were checked and how many had drifted
+- Make structural claims mechanically verifiable where the project allows it: table names, column names, module paths, enum values. Traceability tooling that only runs forward (every rule has a test) never notices a documented column the schema does not have
+- A structural claim that no test can verify does not belong in the documentation. Either make it verifiable or delete it
+- Run the verification again after the bug-fix loop, before release: fixes change behaviour, and changed behaviour is what makes a correct claim stale
 
 ## Concise Response (TLDR)
 
