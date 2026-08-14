@@ -314,6 +314,24 @@ export async function loadAnchorContent(anchorId) {
       })
     }
 
+    // Verified-on note: the models on which this anchor was measured to work.
+    // Provenance rather than caution, so it goes at the foot of the entry, not on
+    // top of it. Only rendered when models are actually recorded — a date alone
+    // says the anchor was tested, not where it delivered, and claiming the latter
+    // from the former would overstate the result. Built with textContent, no sink.
+    if (currentAnchor?.verifiedOn?.length) {
+      const note = document.createElement('p')
+      note.className = 'anchor-verified-on'
+      note.append(`Verified on ${currentAnchor.verifiedOn.join(', ')}`)
+      if (currentAnchor.priorTest) {
+        const link = document.createElement('a')
+        link.href = '#/prior-tests'
+        link.textContent = `measured ${currentAnchor.priorTest}`
+        note.append(' — ', link)
+      }
+      contentEl.append(note)
+    }
+
     // Auto-expand all collapsible sections
     contentEl.querySelectorAll('details').forEach((details) => {
       details.setAttribute('open', '')

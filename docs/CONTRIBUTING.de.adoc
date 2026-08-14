@@ -177,7 +177,9 @@ Jeder Anker wird als AsciiDoc-Datei mit Metadaten-Attributen gespeichert:
 * `:proponents:` - Schlüsselpersonen, Publikationen oder Standards
 * `:tags:` - Schlüsselwörter für die Suche (optional, aber empfohlen)
 * `:related:` - Verwandte Anker-IDs (optional)
-* `:tier:` - Aktivierungsstufe: `1` (nur Frontier-Modelle), `2` (braucht Qualifizierung), `3` (breit erkannt)
+* `:tier:` - Aktivierungsstufe: `1` (nur Frontier-Modelle), `2` (braucht Qualifizierung), `3` (breit erkannt). Intern: ein Urteil, deshalb bewusst nicht auf der Seite dargestellt
+* `:prior-test:` - Datum, an dem der Anker mit dem link:#/anchor-prior-test[Anchor Prior Test] gemessen wurde. Der Schlüssel ins link:#/prior-tests[Prior-Test-Register]; fehlt das Attribut, heißt das „nicht gemessen“ -- eine Aussage über unsere Aufzeichnungen, nicht über den Begriff
+* `:verified-on:` - Modelle, auf denen der Anker nachweislich *wirkt*, kommagetrennt (z.B. `haiku-4.5, sonnet-5, opus-5`). Wird im Modal angezeigt. Nur eintragen, wo der Anker geliefert hat, nie bloß, wo er ausprobiert wurde -- ein Anker, der auf drei Stufen getestet, auf einer aber nicht von der ankerlosen Baseline unterscheidbar war, führt die anderen zwei
 * `:advisory:` - Kurzes Hinweis-Label (optional). Nur für *Counter-Consensus-Framing*: Der Anker aktiviert zuverlässig, aber sein Framing widerspricht dem dokumentierten Konsens seines eigenen Fachgebiets. Wird als sichtbares Badge in Karte/Modal gerendert; Detail und zitierte Quelle bleiben im `== Criticism` / `== Current Status`-Abschnitt (Single Source of Truth). Siehe `eisenhower-matrix.adoc`.
 
 == Gegenbeispiele

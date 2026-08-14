@@ -266,6 +266,20 @@ html {
   @apply border border-amber-300 dark:border-amber-800;
 }
 
+/* Verified-on note: which models the anchor was measured to work on. Provenance,
+   not a claim about quality — the tier stays out of the UI deliberately, because
+   it is a judgement while the model list is a fact. Quiet foot-of-entry styling,
+   so it informs without competing with the content. */
+.anchor-verified-on {
+  @apply mt-8 pt-4 text-sm;
+  @apply border-t border-[var(--color-border)];
+  @apply text-[var(--color-text-secondary)];
+}
+
+.anchor-verified-on a {
+  @apply underline underline-offset-2;
+}
+
 /* Direct-answer block (#580): a standalone "What is X?" definition for crawlers
    and as the modal lead-in. .anchor-answer wraps the crawlable fragment block;
    .anchor-answer-lead is the curated lead paragraph in the modal. */

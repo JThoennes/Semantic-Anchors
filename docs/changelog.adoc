@@ -4,6 +4,13 @@ A chronological record of all semantic anchors added to the catalog. Community c
 
 == 2026-08-14
 
+*New: measured anchors now say which models they were verified on:*
+
+* Anchors carry a `:verified-on:` attribute, and the modal renders it at the foot of the entry, linked to the link:#/prior-tests[prior-test register]. The tier stays out of the interface deliberately: a tier is a judgement, a model list is a fact, and the fact is what gives a reader confidence.
+* The field records where an anchor *delivered*, never merely where it was tried. *link:#/anchor/premortem[Premortem]*, *link:#/anchor/second-order-thinking[Second-Order Thinking]* and *link:#/anchor/locality-of-behaviour[Locality of Behaviour]* list all three tiers; *link:#/anchor/simplified-technical-english[Simplified Technical English]* lists only two, because on a weak model its rewrite was not distinguishable from an unanchored one. Listing it there would have claimed a result the measurement did not produce.
+* Anchors without the attribute show nothing at all. Absence is a statement about our records, not about the term.
+
+
 *New anchor — Locality of Behaviour (#701), the first community proposal triaged with the prior test:*
 
 * *link:#/anchor/locality-of-behaviour[Locality of Behaviour]* (Carson Gross, https://htmx.org/essays/locality-of-behaviour/[htmx essay], 29 May 2020) — design-principles: "The behaviour of a unit of code should be as obvious as possible by looking only at that unit of code." Optimise for read-time cost over write-time cost; behaviour at a distance is the failure mode, co-location the remedy. Tier ★★★, proposed by https://github.com/simonthum[@simonthum] in #701.

@@ -139,6 +139,14 @@ function parseAnchorFile(filePath) {
   const priorTestAttr = attributes['prior-test']
   if (priorTestAttr) anchor.priorTest = priorTestAttr.trim()
 
+  // Which models the anchor was shown to work on — a fact, unlike the tier, which
+  // is a judgement and stays out of the UI. Records where the anchor *delivered*,
+  // not where it was tried: an anchor tested on three tiers but only distinguishable
+  // from a no-anchor baseline on two lists those two. The run behind the date, with
+  // the resolved model identifiers, lives in the prior-test register.
+  const verifiedOn = parseList(attributes['verified-on'])
+  if (verifiedOn.length > 0) anchor.verifiedOn = verifiedOn
+
   // Optional advisory: a short caution label for anchors whose activated framing
   // conflicts with their field's own consensus (#624). The detail/source lives in
   // the anchor's Criticism / Current Status section (SSOT); this is only the flag.

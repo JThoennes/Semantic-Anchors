@@ -186,6 +186,67 @@ describe('anchor-modal', () => {
     })
   })
 
+  describe('verified-on note', () => {
+    beforeEach(async () => {
+      global.fetch = vi.fn()
+      createModal()
+
+      const { fetchAnchorsData } = await import('../utils/data-loader.js')
+      fetchAnchorsData.mockResolvedValue([
+        {
+          id: 'measured-anchor',
+          title: 'Measured Anchor',
+          priorTest: '2026-08-14',
+          verifiedOn: ['haiku-4.5', 'sonnet-5', 'opus-5'],
+        },
+        { id: 'unmeasured-anchor', title: 'Unmeasured Anchor' },
+        { id: 'dated-only-anchor', title: 'Dated Only', priorTest: '2026-08-14' },
+      ])
+    })
+
+    afterEach(() => {
+      delete global.fetch
+    })
+
+    it('should name the models an anchor was verified on', async () => {
+      global.fetch.mockResolvedValue({ ok: true, text: async () => '= Measured Anchor\n\nContent' })
+
+      await showAnchorDetails('measured-anchor')
+
+      const note = document.querySelector('.anchor-verified-on')
+      expect(note).not.toBeNull()
+      expect(note.textContent).toContain('haiku-4.5')
+      expect(note.textContent).toContain('sonnet-5')
+      expect(note.textContent).toContain('opus-5')
+    })
+
+    it('should link the note to the prior-test register', async () => {
+      global.fetch.mockResolvedValue({ ok: true, text: async () => '= Measured Anchor\n\nContent' })
+
+      await showAnchorDetails('measured-anchor')
+
+      const link = document.querySelector('.anchor-verified-on a')
+      expect(link).not.toBeNull()
+      expect(link.getAttribute('href')).toContain('/prior-tests')
+    })
+
+    it('should render nothing for an anchor that was never measured', async () => {
+      global.fetch.mockResolvedValue({ ok: true, text: async () => '= Unmeasured\n\nContent' })
+
+      await showAnchorDetails('unmeasured-anchor')
+
+      expect(document.querySelector('.anchor-verified-on')).toBeNull()
+    })
+
+    it('should render nothing when a date exists but no models are recorded', async () => {
+      global.fetch.mockResolvedValue({ ok: true, text: async () => '= Dated Only\n\nContent' })
+
+      await showAnchorDetails('dated-only-anchor')
+
+      expect(document.querySelector('.anchor-verified-on')).toBeNull()
+    })
+  })
+
   describe('umbrella anchors', () => {
     beforeEach(async () => {
       global.fetch = vi.fn()
