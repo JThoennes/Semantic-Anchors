@@ -103,3 +103,32 @@ This is separate from the rename check in the table above, where "second-level t
 *Criticism research, 2026-08-14, English and German.* Nothing citable against the term itself — no named author calling it trivial, unfalsifiable or unusable. Three named critics of the surrounding mental-models literature were found (Cedric Chin, Richard Hughes-Jones, Boris Gorelik) and are cited in the anchor, with the explicit note that none of them discusses second-order thinking.
 
 Here the absence is unsurprising rather than suspicious: a term coined by no one and popularised by blogs does not attract rebuttals the way a named method does. Contrast this with the premortem entry above, where an absence of independent critique is odd for a widely adopted technique and more likely reflects our search than the literature. Closed communities — Farnam Street's paid membership among them — are not indexed and were not reachable. No hidden non-English scene is expected for this term, since it is an anglophone blog import with no natively named counterpart; that is a prediction, not a verified result.
+
+=== Locality of Behaviour
+
+[cols="2,1,3"]
+|===
+|Criterion |Verdict |Evidence
+
+|Precise |met, for the spelled-out name |P2 returns software design on both tiers for "locality of behaviour"; the abbreviation does not — see below
+|Rich |met |5/6 runs report `richness=rich`; one weak-tier run reports `moderate`
+|Consistent |met for action, weaker for recall |P3 agrees 6/6 across all three tiers; P1 splits on the weak tier
+|Attributable |met |Carson Gross, htmx essay, 29 May 2020 — confirmed by desk research. The strong tier names him with `confidence=high`
+|Prior density |strong |Recognised and acting as an instruction on the weak tier
+|===
+
+Tier ★★★ for the spelled-out name, route: anchor. Two caveats are recorded below rather than folded into the rating.
+
+*This is the clearest lift measured so far, because the anchor changes the verdict and not just the vocabulary.* The action probe asked for a review of a design that registers all click handlers in one central JavaScript file, matched by CSS selector.
+
+Both neutral baseline runs produced a balanced strengths-and-weaknesses review — and both listed *Separation of Concerns* among the *strengths*. Neither mentioned locality once. With the term, the first heading is "Behaviour at distance", followed by "Why it fails LoB". The baseline praises exactly the position the essay attacks.
+
+*The abbreviation is taken.* "LoB" returns business and enterprise terminology on both tiers, with `mentioned_code_locality=no` in each. The catalog name must be spelled out; the abbreviation alone would fail.
+
+*Recall and execution come apart, and the weak tier misattributes.* Asked who created the principle, the weak tier answers "Dan North (probable)" while the strong tier gives Carson Gross with high confidence. The same weak tier reports `reaching=yes` in both P1 runs and `richness=moderate` in one — yet its action output is specific and correct. A model can apply a move it cannot source.
+
+*Spelling was measured, because the author uses both.* The essay is British ("Behaviour"), the book _Hypermedia Systems_ is American ("Behavior"). On the weak tier the British spelling was recognised in 2 of 2 runs, the American in 1 of 2 — one American run reported `recognized=no` — and both American runs reported only `moderate` richness. The action test does not separate them (2/2 each). At n=2 this is suggestive, not established; the decision does not rest on it alone, since the primary source uses the same spelling.
+
+*Criticism research, 2026-08-14, English and German.* Three named critics found and cited in the anchor: John Freeman (co-location makes behaviour visible, not understandable), Chris Done (htmx breaks the principle through attribute inheritance) and a htmx discussion raising the same objection from inside the project. A fourth, sharper formulation — that the principle merely renames going against separation of concerns — is recorded but pseudonymous.
+
+No worked rebuttal from the established frontend or SPA side was found in either language, which is odd for an essay attacking Separation of Concerns head-on and more likely reflects our search than the discourse. Unreached: X/Twitter, Reddit, the htmx community chat, podcasts, one blog returning 403, and Gabriel's book PDF, which would not convert to text — so the Gabriel quotation is verified in the essay quoting it, not at its source.

@@ -1,0 +1,61 @@
+= Locality of Behaviour
+:categories: design-principles
+:roles: software-developer, software-architect, team-lead
+:proponents: Carson Gross
+:tags: Locality of Behaviour, Locality of Behavior, LoB, htmx, Ko-Lokation, Action at a Distance, Lesbarkeit, Hypermedia, Separation of Concerns
+:related: separation-of-concerns, dry, deep-modules, solid-srp
+:tier: 3
+:prior-test: 2026-08-14
+
+[%collapsible]
+====
+Vollständiger Name:: Locality of Behaviour
+
+Auch bekannt als:: Locality of Behavior (amerikanische Schreibweise, so im Buch _Hypermedia Systems_)
+
+[discrete]
+== *Kernkonzepte*:
+
+Das Prinzip in einem Satz:: So steht es im Essay, das den Begriff geprägt hat: „The behaviour of a unit of code should be as obvious as possible by looking only at that unit of code."
+
+Lesekosten schlagen Schreibkosten:: Maßstab ist, wie weit ein Leser gehen muss, um „Was passiert hier beim Ausführen?" zu beantworten -- nicht, wie wenige Zeichen der Autor getippt hat.
+
+Verhalten auf Distanz ist der Fehlermodus:: Ein Handler in einer entfernten Datei, eine Konvention, die über Namen bindet, ein Framework-Hook, der unsichtbar feuert -- jedes für sich korrekter Code, der lokal nicht verstehbar ist.
+
+Ko-Lokation als Gegenmittel:: Markup, Handler, Styling und Validierung eines Elements liegen dort, wo das Element liegt.
+
+Ein ausgesprochener Tausch, kein Gesetz:: Das Essay argumentiert gegen DRY und Separation of Concerns *dort, wo sie ein Feature über viele Dateien verstreuen*, und benennt den Tausch offen, statt die anderen Prinzipien für falsch zu erklären.
+
+[discrete]
+== *Wann einsetzen*:
+
+* Beim Review eines Entwurfs, bei dem das Verständnis eines Elements das Öffnen mehrerer unbeteiligter Dateien verlangt
+* Bei der Frage, ob eine Abstraktion ihre Indirektion verdient oder Code nur verschiebt
+* Beim Abwägen von Convention over Configuration, Dependency Injection, Event-Bussen, Dekoratoren und Lifecycle-Hooks -- die alle Lokalität gegen andere Güter tauschen
+* Beim Streit darüber, ob ein wiederholtes Fragment überhaupt extrahiert werden soll
+
+[discrete]
+== *Häufige Missverständnisse*:
+
+Es als abstraktionsfeindlich lesen:: Eine gute Abstraktion lässt Aufruf und Wirkung an der Aufrufstelle sichtbar; das verträgt sich bestens mit dem Prinzip.
+
+Verwechslung mit Locality of Reference:: Das ist ein Hardware-Performance-Konzept über Speicherzugriffsmuster (zeitliche und räumliche Lokalität). Die Namensähnlichkeit ist Zufall, keine Verwandtschaft.
+
+Ko-Lokation für hinreichend halten:: Sichtbar ist nicht dasselbe wie verständlich -- siehe Kritik.
+
+Das Kürzel allein verwenden:: „LoB" liest sich weit häufiger als „Line of Business" denn als dieses Prinzip.
+====
+
+== *Kritik*:
+
+* *Ko-Lokation macht Verhalten sichtbar, nicht verständlich.* John Freeman argumentiert in https://www.eloquentarchitecture.com/locality-of-behavior/[„Locality of Behavior on its own isn't enough"] (Januar 2023), `<button hx-get="/clicked">` zeige, *dass* etwas passiert, nicht *was*: „One can only achieve behavior transparency to a certain extent without also taking a minute to name things well."
+* *Das Prinzip wird gegen sein eigenes Werkzeug gewendet.* Chris Done nutzt es in https://chrisdone.com/posts/htmx-critique/[„A modest critique of Htmx"] (August 2024), um htmx selbst zu treffen: Durch Attribut-Vererbung komme Verhalten „from all the way up there or some other module" und sei damit „not local". Derselbe Einwand kam aus dem Projekt heraus in https://github.com/bigskysoftware/htmx/discussions/2835[htmx-Diskussion #2835].
+* *Der schärfste Einwand lautet, es benenne bloß einen Tausch um.* Auf https://news.ycombinator.com/item?id=38241623[Hacker News] heißt es, das sei „such a poorly defined rule -- it's just an invented name for going against separation of concerns". Festgehalten, weil es die Gegenposition in ihrer stärksten Form formuliert; der Autor ist allerdings pseudonym und damit ein schwächerer Beleg als die benannten Kritiken darüber.
+* *Die belegbare Gegenrede ist dünner, als der Anspruch es verlangt.* Für ein Essay, das Separation of Concerns frontal angreift, fand eine Suche auf Englisch und Deutsch keine ausgearbeitete Erwiderung aus dem etablierten Frontend- oder SPA-Lager, die das Prinzip benennt. Was es gibt, kommt aus dem htmx-Umfeld selbst oder ist ergänzend statt widersprechend. Das ist eine Lücke unserer Suche, keine belegte Lücke.
+
+[discrete]
+== *Aktueller Stand*:
+
+* *2020 benannt, Formulierung unverändert.* Carson Gross, https://htmx.org/essays/locality-of-behaviour/[„Locality of Behaviour (LoB)"], 29. Mai 2020. Das Essay beansprucht keine Neuschöpfung des Gedankens, sondern verweist für den Kern auf Richard P. Gabriels _Patterns of Software_ (Oxford University Press, 1996) -- ein Zitat, das wir im Essay belegen konnten, nicht aber in Gabriels Buch selbst.
+* *Zwei Schreibweisen, ein Autor.* Das Essay schreibt britisch „Behaviour", das Buch https://hypermedia.systems/client-side-scripting/[_Hypermedia Systems_] (2023) amerikanisch „Behavior". Beide sind Primärquellen. Dieser Eintrag folgt dem Essay -- das ist zugleich die Schreibweise, die auf schwachen Modellen stärker gemessen hat, siehe link:#/prior-tests[Prior-Test-Register].
+* *Über htmx hinaus übernommen, aber innerhalb einer Familie.* Django (Carlton Gibson, https://buttondown.com/carlton/archive/locality-of-behaviour/[2024], der es „a starting point, not a destination" nennt) und Laravel (https://freek.dev/2513-locality-of-behaviour[Freek Van der Herten, 2023]) haben es aufgegriffen. Das sind serverseitig rendernde Ökosysteme im Umfeld von htmx; eine Aufnahme in unabhängige Lehrbücher, Standards oder Framework-Dokumentationen ist nicht belegt.

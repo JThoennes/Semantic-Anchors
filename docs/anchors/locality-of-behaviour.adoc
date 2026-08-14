@@ -1,0 +1,54 @@
+= Locality of Behaviour
+:categories: design-principles
+:roles: software-developer, software-architect, team-lead
+:proponents: Carson Gross
+:tags: locality of behaviour, locality of behavior, LoB, htmx, co-location, action at a distance, readability, hypermedia, separation of concerns
+:related: separation-of-concerns, dry, deep-modules, solid-srp
+:tier: 3
+:prior-test: 2026-08-14
+
+[%collapsible]
+====
+Full Name:: Locality of Behaviour
+
+Also known as:: Locality of Behavior (American spelling, used in _Hypermedia Systems_)
+
+[discrete]
+== *Core Concepts*:
+
+* *The principle in one sentence*, from the essay that named it: "The behaviour of a unit of code should be as obvious as possible by looking only at that unit of code."
+* *Read-time cost over write-time cost.* The measure is how far a reader must travel to answer "what happens when this runs", not how few characters the author typed.
+* *Behaviour at a distance is the failure mode.* A handler registered in a remote file, a convention that binds by name, a framework hook that fires invisibly -- each is correct code that cannot be understood locally.
+* *Co-location as the remedy*: markup, handler, styling and validation for one element live where that element is.
+* *An explicit trade, not a law.* The essay argues against DRY and Separation of Concerns *where they scatter one feature across many files*, and concedes the trade openly rather than claiming the other principles are wrong.
+
+[discrete]
+== *When to Use*:
+
+* Reviewing a design where understanding one element requires opening several unrelated files
+* Deciding whether an abstraction earns its indirection, or only moves code elsewhere
+* Weighing convention-over-configuration, dependency injection, event buses, decorators and lifecycle hooks -- all of which trade locality for other goods
+* Arguing about whether a repeated fragment should be extracted at all
+
+[discrete]
+== *Common Misunderstandings*:
+
+* *Reading it as anti-abstraction.* A good abstraction leaves its invocation and effects obvious at the call site; that is entirely compatible with the principle.
+* *Confusing it with Locality of Reference.* That is a hardware-performance concept about memory access patterns (temporal and spatial locality). The name is a coincidence, not a lineage.
+* *Treating co-location as sufficient.* Visible is not the same as understandable -- see the Criticism section.
+* *Using the abbreviation on its own.* "LoB" reads as "Line of Business" far more often than as this principle.
+====
+
+== *Criticism*:
+
+* *Co-location makes behaviour visible, not understandable.* John Freeman argues in https://www.eloquentarchitecture.com/locality-of-behavior/["Locality of Behavior on its own isn't enough"] (January 2023) that `<button hx-get="/clicked">` shows *that* something happens, not *what*: "One can only achieve behavior transparency to a certain extent without also taking a minute to name things well."
+* *The principle is turned against its own tool.* Chris Done's https://chrisdone.com/posts/htmx-critique/["A modest critique of Htmx"] (August 2024) uses LoB to argue that htmx breaks it: attribute inheritance means behaviour "comes from all the way up there or some other module", so it "is not local". The same objection was raised inside the project in https://github.com/bigskysoftware/htmx/discussions/2835[htmx discussion #2835].
+* *The sharpest objection is that it renames a trade-off.* On https://news.ycombinator.com/item?id=38241623[Hacker News], a commenter calls it "such a poorly defined rule -- it's just an invented name for going against separation of concerns". Recorded because it states the strongest form of the counter-position, but the author is pseudonymous, which is weaker evidence than the named critiques above.
+* *The documented counter-argument is thinner than the claim deserves.* For an essay that attacks Separation of Concerns directly, a search in English and German found no worked rebuttal from the established frontend or SPA side that names the principle. The critique that exists comes from inside the htmx camp or is constructive rather than opposing. That is an absence in our search, not a demonstrated absence.
+
+[discrete]
+== *Current Status*:
+
+* *Named in 2020, still the current formulation.* Carson Gross, https://htmx.org/essays/locality-of-behaviour/["Locality of Behaviour (LoB)"], 29 May 2020. The essay does not claim the idea is new; it credits Richard P. Gabriel's _Patterns of Software_ (Oxford University Press, 1996) for the underlying notion of locality -- a quotation we verified in the essay but not in Gabriel's book itself.
+* *Two spellings, one author.* The essay uses the British "Behaviour"; the book https://hypermedia.systems/client-side-scripting/[_Hypermedia Systems_] (2023) uses the American "Behavior". Both are primary. This entry follows the essay, which is also the spelling that measured stronger on weak models -- see the link:#/prior-tests[prior-test register].
+* *Adopted beyond htmx, but within one family.* Django (Carlton Gibson, https://buttondown.com/carlton/archive/locality-of-behaviour/[2024], calling it "a starting point, not a destination") and Laravel (https://freek.dev/2513-locality-of-behaviour[Freek Van der Herten, 2023]) have taken it up. These are server-rendered ecosystems adjacent to htmx; adoption into independent textbooks, standards or framework documentation is not established.

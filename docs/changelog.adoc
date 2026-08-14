@@ -4,6 +4,13 @@ A chronological record of all semantic anchors added to the catalog. Community c
 
 == 2026-08-14
 
+*New anchor — Locality of Behaviour (#701), the first community proposal triaged with the prior test:*
+
+* *link:#/anchor/locality-of-behaviour[Locality of Behaviour]* (Carson Gross, https://htmx.org/essays/locality-of-behaviour/[htmx essay], 29 May 2020) — design-principles: "The behaviour of a unit of code should be as obvious as possible by looking only at that unit of code." Optimise for read-time cost over write-time cost; behaviour at a distance is the failure mode, co-location the remedy. Tier ★★★, proposed by https://github.com/simonthum[@simonthum] in #701.
+* *It produced the clearest lift measured so far, because the term changes the verdict and not just the vocabulary.* Asked to review a design that registers every click handler in one central JavaScript file, both neutral baseline runs returned a balanced review that listed *Separation of Concerns* among the *strengths* and never mentioned locality. With the term, the first heading is "Behaviour at distance". The baseline praises exactly the position the essay attacks.
+* Two findings are recorded rather than smoothed away. The abbreviation *LoB* returns "Line of Business" on every tier, so the catalog name is spelled out. And the author uses two spellings — British in the essay, American in _Hypermedia Systems_ — so both were tested; the British form measured stronger on weak models, which is also the essay's own spelling. Details in the link:#/prior-tests[prior-test register].
+* The Criticism section carries three named critics, including one who turns the principle against htmx itself, and records that no worked rebuttal from the established frontend side could be found — an absence in our search, not a demonstrated absence.
+
 *Two new anchors, and the first two whose tier was measured rather than judged:*
 
 * *link:#/anchor/premortem[Premortem]* (Gary Klein, _Harvard Business Review_ 85(9), September 2007) — problem-solving + strategic-planning: state as fact that the plan has already failed, then have each participant write down why, independently, and collect the reasons round-robin. The failure is a premise, not a possibility, and that is the whole technique. Tier ★★★. The Criticism section reports the one citable critic found: Jason Collins shows that the widely repeated "30 percent" figure does not say what it is used to say — the 1989 study behind it measured the *number* of reasons generated, and "did not assess the quality of the reasons". The claim that the technique improves correct identification by 30 percent originates in the 2007 restatement, not in the study.
