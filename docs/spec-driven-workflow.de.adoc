@@ -433,8 +433,10 @@ Die KI wählt die passende Schule basierend auf den Code-Eigenschaften.
 ==== Invariantentests
 
 Tests, die aus der Spezifikation abgeleitet sind, prüfen die Regel so, wie sie dasteht.
-Die Eigenschaft hinter der Regel prüfen sie nicht.
-Eine Regel wie „alle Anteile sind gleich“ macht Gewichtung unsichtbar: Ein halber Anteil, der voll statt anteilig zählt, liefert eine plausible Zahl, und jeder beispielbasierte Test bleibt grün.
+Die Eigenschaft, auf der die Regel ruht, prüfen sie nicht.
+
+Sind in den Beispielen zufällig alle Eingaben gleich groß, liefern eine Berechnung, die ihre Eingaben korrekt gewichtet, und eine, die sie bloß zählt, dieselbe Zahl.
+Beide bestehen. Der Fehler zeigt sich beim ersten ungleichen Wert -- meist nach dem Release.
 
 [source]
 ----
@@ -453,35 +455,25 @@ Sie prüft die Testsuite gegen Änderungen, die die Spezifikation nie vorgesehen
 
 ==== Feedback-Loop zur Spezifikation
 
-Während der Implementierung werden Lücken in Spezifikation oder Architektur auffallen.
-Das ist normal und erwartet.
-Regelmäßig die KI fragen:
+Dokumentation driftet in zwei Richtungen vom Code weg, und jede braucht ihre eigene Frage.
+
+Sie fällt zurück, wenn die Implementierung etwas zutage fördert: eine getroffene Entscheidung, eine geklärte Regel, eine gefundene Einschränkung.
+Und sie veraltet im Stillen: Ein Modul wird umbenannt, eine Spalte verschwindet, eine Fähigkeit bleibt beschrieben, die nie gebaut wurde.
+Die zweite Sorte übersteht die Frage nach dem Gelernten, denn gelernt wurde nichts -- der Satz war schon falsch, als man zuletzt darüber hinweggelesen hat.
+
+Regelmäßig die KI nach beidem fragen:
 
 [source]
 ----
-Based on what we learned during implementation, does the specification
-or architecture documentation need updating?
-----
+Two questions about the specification and architecture documentation.
 
-Die Docs aktualisieren, bevor es weitergeht.
-So bleibt die Spezifikation ein lebendiges Dokument statt eines veralteten Artefakts.
-Die Spec ist nicht nur ein Mittel zur Codegenerierung -- sie bleibt die autoritative Beschreibung des Systemverhaltens, gepflegt neben dem Code, solange das Projekt lebt.
+First: based on what we learned during implementation, is anything missing
+or now wrong?
 
-==== Dokumentation gegen den Code verifizieren
-
-Der Feedback-Loop oben stellt eine vorwärtsgerichtete Frage: Was haben wir gelernt?
-Eine KI, die nichts Neues gelernt hat, antwortet wahrheitsgemäß „nein“ -- und eine bereits falsche Aussage bleibt stehen.
-Drift übersteht deshalb beliebig viele Prüfschritte.
-Sie wird nicht gefunden, indem man nach Neuigkeiten fragt, sondern indem man fragt, ob eine bestimmte Aussage noch stimmt.
-
-Also die Richtung umkehren:
-
-[source]
-----
-Verify the architecture and specification documents against the code.
-For each structural claim, confirm that it holds today: module names, class
-names, file paths, table and column names, enum values, invariants, start
-commands, and claims of the form "the only place where X happens".
+Second: verify the documents against the code. For each structural claim,
+confirm that it holds today: module names, class names, file paths, table
+and column names, enum values, invariants, start commands, and claims of
+the form "the only place where X happens".
 
 List every claim that no longer holds, with document location and code
 location. Do not change the code to match the document. Either correct the
@@ -490,7 +482,11 @@ document, or open an issue where the code is wrong.
 Report the number of claims checked and the number that drifted.
 ----
 
-Das Verbot im mittleren Absatz trägt das Gewicht.
+Die Docs aktualisieren, bevor es weitergeht.
+So bleibt die Spezifikation ein lebendiges Dokument statt eines veralteten Artefakts.
+Die Spec ist nicht nur ein Mittel zur Codegenerierung -- sie bleibt die autoritative Beschreibung des Systemverhaltens, gepflegt neben dem Code, solange das Projekt lebt.
+
+Das Verbot in der zweiten Frage trägt Gewicht.
 Das Dokument beschreibt eine Absicht, der Code die Wirklichkeit; wer den Code an das Dokument anpasst, macht aus einem Dokumentationsfehler eine stille Verhaltensänderung.
 
 Strukturelle Aussagen lassen sich zusätzlich mechanisch prüfen -- billiger und verlässlicher, als jedes Mal eine KI zu fragen:
@@ -569,7 +565,7 @@ Wiederholen, bis keine Bugs mehr gefunden werden.
 
 Jeder Fix folgt derselben TDD-Disziplin: einen fehlschlagenden Test schreiben, der den Bug reproduziert, dann fixen.
 
-Wenn der Loop endet, die Dokumentations-Verifikation aus Schritt 8 noch einmal laufen lassen -- gegen den Code, der jetzt dasteht.
+Wenn der Loop endet, die beiden Dokumentations-Fragen aus Schritt 8 noch einmal stellen -- gegen den Code, der jetzt dasteht.
 Hier zahlt sie sich am meisten aus: Bugfixes ändern Verhalten, und geändertes Verhalten macht aus einer korrekten strukturellen Aussage eine veraltete.
 Vor dem Release, nicht danach -- sonst findet der erste Leser der Dokumentation die Drift.
 

@@ -14,7 +14,7 @@ A chronological record of all semantic anchors added to the catalog. Community c
 
 *Spec-Driven Workflow — two new sections in Step 8, plus a closing check in Step 12:*
 
-* The workflow page (EN + DE) gains _Invariant Tests_ and _Verifying the Documentation Against the Code_ under Step 8, each with its prompt, and Step 12 now ends by running the verification once more against the code that exists after the bug-fix loop — the point where it pays most, since fixes change behaviour and changed behaviour is what makes a correct structural claim stale. The existing feedback loop is kept: asking what we learned is still useful, it is just not sufficient on its own.
+* Step 8's _Feedback Loop to Specification_ now carries one prompt asking both questions at once — what implementation revealed, and whether each structural claim still holds — rather than only the forward-looking one. A new _Invariant Tests_ subsection sits alongside it, and Step 12 now closes by asking both documentation questions again against the code that exists after the bug-fix loop, the point where it pays most: fixes change behaviour, and changed behaviour is what makes a correct structural claim stale.
 
 == 2026-07-24
 
