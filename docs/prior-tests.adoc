@@ -94,7 +94,9 @@ The action test does not separate the two names. The weak tier does, and it repr
 
 The catalog therefore uses "Second-Order Thinking" and carries "Second-Level Thinking (Marks)" as an alias.
 
-*Single-run observations, recorded as such:* one weak-tier P1 run for each candidate reported `reaching=yes`. Neither reproduced in its second run, so neither is treated as a finding.
+*Single-run observations, recorded as such:* for Premortem and for Second-Order Thinking, one of the two weak-tier P1 runs reported `reaching=yes` and the other did not. Neither reproduced, so neither is treated as a finding.
+
+This is separate from the rename check in the table above, where "second-level thinking" reported `reaching=yes` in *both* weak-tier runs. That one did reproduce, and it is what the naming decision rests on.
 
 *A measurement that was discarded:* the first baseline pass named the expected features in its own `SELF:` line and thereby told the model what to produce. The unanchored run delivered the structure, and the apparent lift was zero. The run was repeated with a neutral baseline, and the numbers above come from the repeat.
 

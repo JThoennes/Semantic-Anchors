@@ -94,7 +94,9 @@ Der Action-Test trennt die beiden Namen nicht. Die schwache Stufe trennt sie, un
 
 Der Katalog verwendet deshalb „Second-Order Thinking" und führt „Second-Level Thinking (Marks)" als Alias.
 
-*Einzelbeobachtungen, als solche festgehalten:* Je ein P1-Lauf auf der schwachen Stufe meldete für beide Kandidaten `reaching=yes`. Keiner reproduzierte sich im zweiten Lauf, keiner gilt daher als Befund.
+*Einzelbeobachtungen, als solche festgehalten:* Bei Premortem und bei Second-Order Thinking meldete einer der beiden P1-Läufe auf der schwachen Stufe `reaching=yes`, der andere nicht. Keiner reproduzierte sich, keiner gilt daher als Befund.
+
+Davon zu unterscheiden ist der Rename-Check in der Tabelle oben: Dort meldete „second-level thinking" in *beiden* Läufen der schwachen Stufe `reaching=yes`. Dieser Befund hat sich reproduziert, und auf ihm ruht die Namensentscheidung.
 
 *Eine verworfene Messung:* Der erste Baseline-Durchgang nannte die erwarteten Merkmale in seiner eigenen `SELF:`-Zeile und verriet dem Modell damit, was es produzieren sollte. Der ankerlose Lauf lieferte die Struktur, und der scheinbare Hebel war null. Der Durchgang wurde mit neutraler Baseline wiederholt; die Zahlen oben stammen aus der Wiederholung.
 
