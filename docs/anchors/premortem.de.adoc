@@ -1,0 +1,57 @@
+= Premortem
+:categories: problem-solving, strategic-planning
+:roles: software-architect, team-lead, product-owner, consultant, qa-engineer
+:proponents: Gary Klein
+:tags: Premortem, Pre-mortem, prospective hindsight, Projektrisiko, Planung, Fehleranalyse, Entscheidungsfindung, Klein
+:related: five-whys, second-order-thinking, devils-advocate, cynefin-framework
+:tier: 3
+:prior-test: 2026-08-14
+
+[%collapsible]
+====
+Vollständiger Name:: Project Premortem
+
+Auch bekannt als:: Pre-mortem, Übung zur prospektiven Rückschau
+
+[discrete]
+== *Kernkonzepte*:
+
+Das Scheitern ist Prämisse, nicht Möglichkeit:: Der Gruppe wird gesagt, der Plan sei bereits gescheitert -- vollständig -- und sie soll erklären, warum. Das ist die ganze Technik; alles andere ist Inszenierung.
+
+Prospective Hindsight:: Ein als Tatsache gesetztes Ereignis zu erklären bringt konkretere Gründe hervor, als über ein mögliches Ereignis zu spekulieren.
+
+Vor der Festlegung, nicht danach:: Ein Postmortem untersucht eine Leiche, ein Premortem einen Plan, den man noch ändern kann.
+
+Erst schreibt jeder für sich:: Jeder notiert seine Gründe unabhängig, bevor etwas geteilt wird -- so setzt nicht die ranghöchste Stimme den Rahmen.
+
+Reihum einsammeln:: Die Gründe werden abwechselnd vorgetragen, einer pro Person pro Runde. Das holt die leisen Einwände hervor, die eine freie Diskussion begräbt.
+
+[discrete]
+== *Wann einsetzen*:
+
+* Vor einer schwer umkehrbaren Festlegung -- Migration, Neuplattform, Release mit festem Termin
+* Wenn ein Team verdächtig schnell einig ist und niemand widerspricht
+* Wenn die Leute, die die Risiken sehen, an die Leute berichten, die den Plan gemacht haben
+* Als Ergänzung zum Risikoregister: Das Register führt die bekannten Risiken, das Premortem erzeugt die, die niemand aufgeschrieben hat
+
+[discrete]
+== *Häufige Missverständnisse*:
+
+Die Frage entschärfen:: „Was könnte schiefgehen?" statt „Es ist gescheitert -- warum?" macht daraus wieder gewöhnliches Risiko-Brainstorming und verliert genau den Effekt, nach dem die Technik benannt ist.
+
+Es für Pessimismus halten:: Der Zweck ist, Widerspruch zu erlauben, nicht den Plan zu töten. Am Ende steht meist ein geänderter Plan, kein abgesagter.
+
+Es nach der Entscheidung durchführen:: Ist die Festlegung erst öffentlich, haben die Befunde keinen Ort mehr.
+====
+
+== *Kritik*:
+
+* *Die Beweiskette trägt weniger, als das Zitat suggeriert.* Der Verhaltensökonom Jason Collins zeigt, dass die vielzitierte „30 Prozent" nicht das aussagen, wofür sie verwendet werden. https://corporate.jcx.au/premortem[Collins] führt sie auf Mitchell, Russo und Pennington (1989) zurück, deren Ergebnis lautet, dass prospective hindsight die *Anzahl* der erzeugten Gründe erhöht -- und hält ausdrücklich fest: „Mitchell, Russo, and Pennington (1989) did not assess the quality of the reasons." Die gängige Umschreibung, die Technik verbessere die Fähigkeit, Gründe *zutreffend zu benennen*, um 30 Prozent, stammt aus Kleins Wiedergabe von 2007, nicht aus der Studie.
+* *Die akademische Literatur ist dünn.* Collins sagt es geradeheraus: „The academic literature on the premortem is thin." Der Stand der Technik ruht überwiegend auf Praxisberichten und auf Kleins eigener Studie mit Veinott und Wiggins (2010), nicht auf unabhängiger Replikation.
+* *Unabhängige methodische Kritik wurde nicht gefunden.* Eine Suche auf Englisch und Deutsch ergab keine gescheiterte Replikation, keine Metaanalyse und keine begutachtete Kritik an der Technik selbst. Der Rahmen gehört dazu: Die Zeitschriften, in denen eine solche Bewertung am ehesten stünde -- Arbeiten zu Structured Analytic Techniques in _Intelligence and National Security_ und im _International Journal of Intelligence and CounterIntelligence_ --, liegen hinter Bezahlschranken und wurden nicht gelesen. Das ist eine Lücke unserer Suche, keine belegte Lücke in der Literatur.
+
+[discrete]
+== *Aktueller Stand*:
+
+* *Etabliert und unverändert.* Kleins eigene Darstellung in https://www.psychologytoday.com/us/blog/seeing-what-others-dont/202101/the-pre-mortem-method[Psychology Today] (Januar 2021) deckt sich mit dem Original von 2007; es gibt weder eine überarbeitete Fassung noch eine Nachfolgemethode, zu der der Prior driften könnte. Die Entstehung datiert er rückblickend auf rund drei Jahrzehnte früher, die erste formale Beschreibung ist „Performing a Project Premortem", _Harvard Business Review_ 85(9), 18–19, September 2007.
+* *Die von Klein genannten Fehlerquellen sind Ausführungsfehler, keine Grenzen.* Er nennt drei: die Frage entschärfen, zu langsam durchgehen, und einen ranghohen Teilnehmer dominieren lassen statt reihum zu gehen. Das sind Kaveats des Urhebers zur eigenen Methode -- etwas anderes als unabhängige Kritik.

@@ -234,6 +234,8 @@ The catalog is a lexicon, not a list of endorsements — inclusion means the ter
 
 Verify every linked source by actually fetching it before committing. If the research finds nothing citable, omit both sections — an empty section is noise. See https://github.com/LLM-Coding/Semantic-Anchors/issues/603[#603] for the full-catalog triage behind this convention.
 
+Omitting the section does not mean discarding the result. Record the negative finding in the link:#/prior-tests[prior-test register] with its date and the languages searched, so a later contributor can tell "researched, nothing found" from "never looked". A "nothing found" without its search frame is not evidence of absence — say what was searched and what could not be reached, and never report an unreachable source as a demonstrated absence.
+
 == Counter-Examples
 
 These are *NOT* semantic anchors:

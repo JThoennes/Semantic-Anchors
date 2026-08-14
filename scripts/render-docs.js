@@ -214,6 +214,18 @@ renderFile(
 )
 
 renderFile(
+  path.join(ROOT, 'docs/anchor-prior-test.adoc'),
+  path.join(WEB_DOCS, 'anchor-prior-test.html')
+)
+renderFile(
+  path.join(ROOT, 'docs/anchor-prior-test.de.adoc'),
+  path.join(WEB_DOCS, 'anchor-prior-test.de.html')
+)
+
+renderFile(path.join(ROOT, 'docs/prior-tests.adoc'), path.join(WEB_DOCS, 'prior-tests.html'))
+renderFile(path.join(ROOT, 'docs/prior-tests.de.adoc'), path.join(WEB_DOCS, 'prior-tests.de.html'))
+
+renderFile(
   path.join(ROOT, 'docs/harness-inventory.adoc'),
   path.join(WEB_DOCS, 'harness-inventory.html')
 )

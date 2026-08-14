@@ -507,6 +507,16 @@ Source: https://github.com/LLM-Coding/Semantic-Anchors
 - **Proponents:** Enrico Fermi
 - **Core:** Estimate an unknown by decomposing it into bracketed sub-quantities, reasoning in powers of ten and taking geometric means, so independent errors cancel and the product lands within a factor of 2-3 — enough to sanity-check or size a problem
 
+### Premortem
+- **Also known as:** Pre-mortem, prospective hindsight exercise
+- **Proponents:** Gary Klein (HBR 2007)
+- **Core:** Before committing to a plan, state as fact that it has already failed comprehensively, then have each participant write down why, independently, and collect the reasons round-robin; the failure is a premise rather than a possibility, which yields more concrete causes than asking "what could go wrong?"
+
+### Second-Order Thinking
+- **Also known as:** Second-Level Thinking (Howard Marks); second- and third-order consequences (Ray Dalio)
+- **Proponents:** Howard Marks, Ray Dalio, Shane Parrish (Farnam Street)
+- **Core:** Follow a consequence into the next consequence rather than listing more effects at the same level; first-order effects are immediate and visible, second-order effects are delayed, behavioural and often dominant; applies to inaction too
+
 ## Requirements Engineering
 
 ### Cockburn Use Cases

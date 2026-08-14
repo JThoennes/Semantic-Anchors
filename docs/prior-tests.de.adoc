@@ -1,0 +1,103 @@
+= Prior-Test-Register
+:toc:
+
+Jeder Anker in diesem Katalog trägt ein `:tier:`. Bis zum 14.08.2026 war dieses Tier eine Einschätzung. Dieses Register führt die Anker, deren Tier *gemessen* wurde, und die Belege hinter jeder Messung.
+
+Ein Anker, der nach dem link:#/anchor-prior-test[Anchor Prior Test] geprüft wurde, trägt ein `:prior-test:`-Datum. Dieses Datum ist der Schlüssel in diese Datei. Anker ohne das Attribut wurden nicht getestet -- das ist eine Aussage über unsere Aufzeichnungen, nicht über den Begriff.
+
+== Warum das Datum und nicht der Modellname
+
+Modell-Aliase sind bewegliche Ziele. „Getestet auf haiku" sagt ein Jahr später nichts mehr, weil das Alias dann woanders hinzeigt. Selbst aufgelöste IDs sind nur teilweise gepinnt: `claude-haiku-4-5-20251001` trägt ein Datum, `claude-opus-5` nicht.
+
+Deshalb trägt die Anker-Datei das Datum, und das Datum löst hier zu den Modellen auf, die tatsächlich erreicht wurden. Die IDs in zweihundert Anker-Dateien zu wiederholen hieße, eine Zeichenfolge zweihundertmal zu führen und aus einer Korrektur eine Änderung an zweihundert Dateien zu machen.
+
+== Was ein Lauf festhält
+
+Modellsatz:: die aufgelösten IDs, nicht die Aliase, über die sie erreicht wurden.
+Verfahrensversion:: die Version des `anchor-prior-test`-Skills. Ändert sich die Batterie, sind Ergebnisse verschiedener Versionen nicht vergleichbar.
+Anzahl der Läufe:: wie oft jede entscheidende Probe je Stufe lief. Ein Lauf ist eine Anekdote.
+Kriterienmatrix:: die vier Qualitätskriterien gegen die Probenergebnisse.
+Wörtliche Zitate:: die Sätze, die den Befund tragen. Eine Tabelle aus Ja/Nein-Zellen ist kein Beleg.
+Kritik-Recherche:: Datum, abgesuchte Sprachen und Ergebnis. Ein „nichts gefunden" ist nur zusammen mit seinem Suchrahmen aussagekräftig.
+
+== Lauf vom 14.08.2026
+
+[cols="1,3"]
+|===
+|Verfahren |`anchor-prior-test` v1.0
+|Modelle |`claude-haiku-4-5-20251001` (schwach), `claude-sonnet-5` (mittel), `claude-opus-5` (stark)
+|Läufe |P1 und P3 zweimal je Stufe; P2 und P4 auf schwacher und starker Stufe
+|Reinraum |`claude -p --strict-mcp-config --setting-sources ""` aus `/tmp/anchor-probe`; geprüft mit der Frage nach geladenen Custom Instructions, Antwort „none"
+|Nicht getestet |Ältere Modellgenerationen sind über diesen Weg nicht erreichbar. Die Befunde sind eine Untergrenze.
+|===
+
+=== Premortem
+
+[cols="2,1,3"]
+|===
+|Kriterium |Urteil |Beleg
+
+|Präzise |erfüllt |P2 liefert auf beiden Stufen Projektmanagement, kein konkurrierendes Feld
+|Reich |erfüllt |6/6 Läufe melden `richness=rich`
+|Konsistent |erfüllt |P1 und P3 stimmen über alle drei Stufen überein
+|Zuschreibbar |erfüllt |P4 nennt auf beiden Stufen Gary Klein, auf der starken mit `confidence=high`
+|Prior-Dichte |stark |Erkannt und als Anweisung wirksam auch auf der schwachen Stufe
+|===
+
+Tier ★★★, Route: Anchor.
+
+Die Aktionsprobe ließ eine sechsmonatige Migration vom Monolithen zu Microservices bewerten -- *mit einem Premortem*. Alle sechs Läufe setzten das Scheitern voraus und arbeiteten rückwärts:
+
+[quote]
+____
+*Imagined Failure Scenario*: Six months have passed. The migration is incomplete, partially deployed services are failing in production, the team is exhausted, and the company has rolled back to running the monolith alongside broken microservices.
+____
+
+Die neutrale Baseline bekam dieselbe Aufgabe ohne den Begriff. Beide Baseline-Läufe lieferten eine vorwärtsgerichtete Machbarkeitseinschätzung -- „Feasibility: High risk", eine Zeitschiene, eine Liste typischer Fallstricke -- und keiner imaginierte ein Scheitern. Der Begriff ändert die Richtung der Analyse, nicht ihren Ton.
+
+*Kritik-Recherche, 14.08.2026, Englisch und Deutsch.* Ein zitierfähiger Kritiker gefunden: Jason Collins, zur Lücke zwischen der Studie, die Klein zitiert, und der Behauptung, für die das Zitat verwendet wird. Keine gescheiterte Replikation, keine Metaanalyse, keine begutachtete Kritik an der Technik selbst. Die deutschsprachigen Treffer waren ausschließlich Methodenbeschreibungen ohne benannten Kritiker.
+
+Nicht erreicht und deshalb keine belegte Abwesenheit: die kostenpflichtigen Bewertungen von Structured Analytic Techniques in _Intelligence and National Security_ (Chang et al. 2018) und im _International Journal of Intelligence and CounterIntelligence_ (Coulthart 2017), wo eine methodische Bewertung am ehesten stünde; die Primärstudie im _Journal of Behavioral Decision Making_ von 1989; und Kleins HBR-PDF, das sich nicht in Text umwandeln ließ -- der Wortlaut der 30-Prozent-Behauptung ist deshalb über Collins belegt, nicht an der Quelle. Französisch und Japanisch wurden nicht gesucht: kein Anhaltspunkt für eine eigenständige Diskussion dort, was eine Vermutung ist und kein Befund.
+
+=== Second-Order Thinking
+
+[cols="2,1,3"]
+|===
+|Kriterium |Urteil |Beleg
+
+|Präzise |erfüllt |P2 liefert auf beiden Stufen Entscheidungsfindung
+|Reich |erfüllt |6/6 Läufe melden `richness=rich`
+|Konsistent |erfüllt |P1 und P3 stimmen über alle drei Stufen überein
+|Zuschreibbar |erfüllt, als Linie |P4 widerspricht sich zwischen den Stufen -- siehe unten
+|Prior-Dichte |stark |Erkannt und als Anweisung wirksam auch auf der schwachen Stufe
+|===
+
+Tier ★★★, Route: Anchor.
+
+*Die Attributionsprobe fällt auseinander, und genau das ist der Befund.* Die schwache Stufe schreibt den Begriff Ray Dalio (_Principles_, 2017) und Charlie Munger zu und hält fest, er habe „keinen einzelnen klaren Urheber". Die starke Stufe zeichnet eine andere Linie: Bastiat und Merton als Wurzeln, Howard Marks für die moderne benannte Fassung, Shane Parrishs Farnam Street für die Breitenwirkung ab Mitte der 2010er.
+
+Die Schreibtischrecherche bestätigt die starke Stufe und schärft sie. Marks schreibt „second-*level* thinking" (_The Most Important Thing_, Columbia University Press, 2011). Dalio schreibt „second- and third-order *consequences*". Keiner verwendet „second-order thinking". Der Begriff ist der Sammelbegriff der Popularisierer, nicht die Prägung eines Autors -- das Kriterium ist also über eine belegte Linie erfüllt, nicht über einen einzelnen Proponenten.
+
+*Der Name wurde durch Messung entschieden, gegen die Bibliografie.* Da die Primärquelle „second-level thinking" sagt, wurde auch dieser Name getestet:
+
+[cols="3,1,1"]
+|===
+| |Second-Order Thinking |Second-Level Thinking
+
+|erkannt |6/6 |4/4
+|reich |6/6 |4/4
+|schwache Stufe `reaching=yes` |1 von 2, nicht reproduziert |*2 von 2, reproduziert*
+|Action-Test |6/6 |4/4
+|===
+
+Der Action-Test trennt die beiden Namen nicht. Die schwache Stufe trennt sie, und sie reproduziert sich: Bei „second-level thinking" erkennt das schwache Modell die Wortfolge, rekonstruiert sie aber generisch -- Marks kommt im ganzen Lauf null Mal vor, „investing" ebenfalls null Mal -- während die starke Stufe ihn korrekt verortet (Marks einmal, investing viermal). Bei „second-order thinking" greift die schwache Stufe nicht ins Ungefähre.
+
+Der Katalog verwendet deshalb „Second-Order Thinking" und führt „Second-Level Thinking (Marks)" als Alias.
+
+*Einzelbeobachtungen, als solche festgehalten:* Je ein P1-Lauf auf der schwachen Stufe meldete für beide Kandidaten `reaching=yes`. Keiner reproduzierte sich im zweiten Lauf, keiner gilt daher als Befund.
+
+*Eine verworfene Messung:* Der erste Baseline-Durchgang nannte die erwarteten Merkmale in seiner eigenen `SELF:`-Zeile und verriet dem Modell damit, was es produzieren sollte. Der ankerlose Lauf lieferte die Struktur, und der scheinbare Hebel war null. Der Durchgang wurde mit neutraler Baseline wiederholt; die Zahlen oben stammen aus der Wiederholung.
+
+*Kritik-Recherche, 14.08.2026, Englisch und Deutsch.* Zum Begriff selbst nichts Zitierfähiges -- kein benannter Autor, der ihn als trivial, unfalsifizierbar oder unbrauchbar angreift. Gefunden wurden drei benannte Kritiker der umgebenden Mental-Models-Literatur (Cedric Chin, Richard Hughes-Jones, Boris Gorelik); sie stehen im Anker, ausdrücklich mit dem Hinweis, dass keiner von ihnen Second-Order Thinking behandelt.
+
+Hier ist die Abwesenheit erwartbar statt verdächtig: Ein Begriff, den niemand geprägt hat und den Blogs populär gemacht haben, zieht keine Widerlegungen an wie eine benannte Methode. Beim Premortem weiter oben liegt es umgekehrt -- fehlende unabhängige Kritik ist bei einer breit übernommenen Technik erstaunlich und spricht eher für unseren Suchrahmen als für die Literatur. Geschlossene Communities, darunter die kostenpflichtige von Farnam Street, sind nicht indexiert und waren nicht erreichbar. Ein verborgener nicht-englischer Sprachraum ist für diesen Begriff nicht zu erwarten, weil er ein anglophoner Blog-Import ohne heimisch benanntes Gegenstück ist -- das ist eine Vorhersage, kein geprüftes Ergebnis.

@@ -299,6 +299,8 @@ Der Katalog ist ein Lexikon, keine Empfehlungsliste — Aufnahme bedeutet, dass 
 
 Jede verlinkte Quelle vor dem Commit tatsächlich fetchen und verifizieren. Falls die Recherche nichts Zitierbares findet, beide Sections weglassen — eine leere Section ist Noise. Siehe https://github.com/LLM-Coding/Semantic-Anchors/issues/603[#603] für die Full-Catalog-Triage hinter dieser Konvention.
 
+Die Section wegzulassen heißt nicht, das Ergebnis wegzuwerfen. Den Negativbefund mit Datum und abgesuchten Sprachen im link:#/prior-tests[Prior-Test-Register] festhalten, damit später unterscheidbar bleibt, ob jemand recherchiert und nichts gefunden hat oder ob nie jemand nachgesehen hat. Ein „nichts gefunden" ohne Suchrahmen ist kein Beleg für Abwesenheit — dazugehört, was abgesucht wurde und was nicht erreichbar war; eine unerreichbare Quelle nie als belegte Abwesenheit ausgeben.
+
 == PR-Review-Richtlinie
 
 === Review-Anforderungen

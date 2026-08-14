@@ -1,0 +1,103 @@
+= Prior-Test Register
+:toc:
+
+Every anchor in this catalog carries a `:tier:`. Until 2026-08-14, that tier was a judgement. This register holds the anchors whose tier was *measured*, and the evidence behind each measurement.
+
+An anchor tested under the link:#/anchor-prior-test[Anchor Prior Test] carries a `:prior-test:` date. That date is the key into this file. Anchors without the attribute were not tested — which is a statement about our records, not about the term.
+
+== Why the date and not the model name
+
+Model aliases move. "Tested on haiku" says nothing a year later, because the alias points somewhere else by then. Even resolved identifiers are only partly pinned: `claude-haiku-4-5-20251001` carries a date, `claude-opus-5` does not.
+
+So the anchor file carries the date, and the date resolves here to the models that were actually reached. Recording the identifiers in each of two hundred anchor files would repeat one string two hundred times and make a correction a two-hundred-file edit.
+
+== What a run records
+
+Model set:: the resolved identifiers, not the aliases used to reach them.
+Procedure version:: the version of the `anchor-prior-test` skill. If the battery changes, results from different versions are not comparable.
+Run count:: how often each decisive probe ran per tier. One run is an anecdote.
+Criteria matrix:: the four quality criteria against the probe results.
+Verbatim quotes:: the sentences that carry the finding. A table of yes/no cells is not evidence.
+Criticism research:: date, languages searched, and what was found. A "nothing found" is only informative together with the frame it was found in.
+
+== Run 2026-08-14
+
+[cols="1,3"]
+|===
+|Procedure |`anchor-prior-test` v1.0
+|Models |`claude-haiku-4-5-20251001` (weak), `claude-sonnet-5` (mid), `claude-opus-5` (strong)
+|Runs |P1 and P3 twice per tier; P2 and P4 on the weak and strong tier
+|Clean room |`claude -p --strict-mcp-config --setting-sources ""` from `/tmp/anchor-probe`; verified with a "do you have custom instructions?" probe answering "none"
+|Not tested |Older model generations are unreachable over this path. Findings are a lower bound.
+|===
+
+=== Premortem
+
+[cols="2,1,3"]
+|===
+|Criterion |Verdict |Evidence
+
+|Precise |met |P2 returns project management on both tiers, no competing field
+|Rich |met |6/6 runs report `richness=rich`
+|Consistent |met |P1 and P3 agree across all three tiers
+|Attributable |met |P4 names Gary Klein on both tiers, `confidence=high` on the strong tier
+|Prior density |strong |Recognised and acting as an instruction on the weak tier
+|===
+
+Tier ★★★, route: anchor.
+
+The action probe asked the model to assess a six-month monolith-to-microservices migration *using a premortem*. All six runs assumed the failure and worked backwards:
+
+[quote]
+____
+*Imagined Failure Scenario*: Six months have passed. The migration is incomplete, partially deployed services are failing in production, the team is exhausted, and the company has rolled back to running the monolith alongside broken microservices.
+____
+
+The neutral baseline received the identical task without the term. Both baseline runs produced a forward-looking feasibility assessment — "Feasibility: High risk", a timeline breakdown, a list of common pitfalls — and neither imagined a failure. The term changes the direction of the analysis, not its tone.
+
+*Criticism research, 2026-08-14, English and German.* One citable critic found: Jason Collins, on the gap between the study Klein cites and the claim the citation is used to support. No failed replication, no meta-analysis, and no peer-reviewed critique of the technique itself was found. German-language results were method descriptions only, with no attributed critique.
+
+Unreached, and therefore not a demonstrated absence: the paywalled evaluations of structured analytic techniques in _Intelligence and National Security_ (Chang et al. 2018) and the _International Journal of Intelligence and CounterIntelligence_ (Coulthart 2017), where a methodological assessment would most plausibly sit; the _Journal of Behavioral Decision Making_ 1989 primary study; and Klein's HBR PDF, which would not convert to text, so the wording of the 30-percent claim was verified through Collins rather than at the source. French and Japanese were not searched — no indication of an independent discussion there, which is a guess, not a finding.
+
+=== Second-Order Thinking
+
+[cols="2,1,3"]
+|===
+|Criterion |Verdict |Evidence
+
+|Precise |met |P2 returns decision-making on both tiers
+|Rich |met |6/6 runs report `richness=rich`
+|Consistent |met |P1 and P3 agree across all three tiers
+|Attributable |met, as a lineage |P4 disagrees across tiers — see below
+|Prior density |strong |Recognised and acting as an instruction on the weak tier
+|===
+
+Tier ★★★, route: anchor.
+
+*The attribution probe split, and the split is the finding.* The weak tier credits Ray Dalio (_Principles_, 2017) and Charlie Munger, adding that "the term itself doesn't have a single clear originator". The strong tier gives a different lineage: Bastiat and Merton as roots, Howard Marks for the modern named version, and Shane Parrish's Farnam Street for mass popularisation from the mid-2010s.
+
+Desk research confirmed the strong tier and sharpened it. Marks writes "second-*level* thinking" (_The Most Important Thing_, Columbia University Press, 2011). Dalio writes "second- and third-order *consequences*". Neither uses "second-order thinking". The term is the popularisers' umbrella, not any author's coinage — so the criterion is met by a documented lineage rather than by a single proponent.
+
+*The name was decided by measurement, against the bibliography.* Since the primary source says "second-level thinking", that name was tested too:
+
+[cols="3,1,1"]
+|===
+| |Second-Order Thinking |Second-Level Thinking
+
+|Recognised |6/6 |4/4
+|Rich |6/6 |4/4
+|Weak tier `reaching=yes` |1 of 2, not reproduced |*2 of 2, reproduced*
+|Action test |6/6 |4/4
+|===
+
+The action test does not separate the two names. The weak tier does, and it reproduces: given "second-level thinking", the weak model recognises the phrase but reconstructs it generically — mentioning Marks zero times and investing zero times across the run — while the strong tier places it correctly (Marks once, investing four times). Given "second-order thinking", the weak tier does not reach.
+
+The catalog therefore uses "Second-Order Thinking" and carries "Second-Level Thinking (Marks)" as an alias.
+
+*Single-run observations, recorded as such:* one weak-tier P1 run for each candidate reported `reaching=yes`. Neither reproduced in its second run, so neither is treated as a finding.
+
+*A measurement that was discarded:* the first baseline pass named the expected features in its own `SELF:` line and thereby told the model what to produce. The unanchored run delivered the structure, and the apparent lift was zero. The run was repeated with a neutral baseline, and the numbers above come from the repeat.
+
+*Criticism research, 2026-08-14, English and German.* Nothing citable against the term itself — no named author calling it trivial, unfalsifiable or unusable. Three named critics of the surrounding mental-models literature were found (Cedric Chin, Richard Hughes-Jones, Boris Gorelik) and are cited in the anchor, with the explicit note that none of them discusses second-order thinking.
+
+Here the absence is unsurprising rather than suspicious: a term coined by no one and popularised by blogs does not attract rebuttals the way a named method does. Contrast this with the premortem entry above, where an absence of independent critique is odd for a widely adopted technique and more likely reflects our search than the literature. Closed communities — Farnam Street's paid membership among them — are not indexed and were not reachable. No hidden non-English scene is expected for this term, since it is an anglophone blog import with no natively named counterpart; that is a prediction, not a verified result.

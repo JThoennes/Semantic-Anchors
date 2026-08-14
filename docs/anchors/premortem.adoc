@@ -1,0 +1,51 @@
+= Premortem
+:categories: problem-solving, strategic-planning
+:roles: software-architect, team-lead, product-owner, consultant, qa-engineer
+:proponents: Gary Klein
+:tags: premortem, pre-mortem, prospective hindsight, project risk, planning, failure analysis, decision making, Klein
+:related: five-whys, second-order-thinking, devils-advocate, cynefin-framework
+:tier: 3
+:prior-test: 2026-08-14
+
+[%collapsible]
+====
+Full Name:: Project Premortem
+
+Also known as:: Pre-mortem, prospective hindsight exercise
+
+[discrete]
+== *Core Concepts*:
+
+* *The failure is a premise, not a possibility.* The group is told the plan has already failed, comprehensively, and is asked why. This is the whole technique; everything else is staging.
+* *Prospective hindsight.* Explaining an event stated as fact produces more concrete reasons than speculating about an event that might happen.
+* *Before commitment, not after.* A postmortem examines a corpse; a premortem examines a plan that can still be changed.
+* *Everyone writes first.* Each participant lists reasons independently before anything is shared, so the most senior voice does not set the frame.
+* *Round-robin collection.* Reasons are read out one per person per turn, which surfaces the quiet objections that a free discussion buries.
+
+[discrete]
+== *When to Use*:
+
+* Before committing to a plan that is hard to reverse -- a migration, a re-platforming, a fixed-date release
+* When a team has converged suspiciously fast and nobody is arguing
+* When the people who see the risks report to the people who made the plan
+* As a complement to a risk register: the register lists known risks, the premortem generates the ones nobody wrote down
+
+[discrete]
+== *Common Misunderstandings*:
+
+* *Softening the question.* Asking "what could go wrong?" instead of "it failed -- why?" reverts the exercise to ordinary risk brainstorming and loses the effect the technique is named for.
+* *Treating it as pessimism.* The purpose is to license dissent, not to kill the plan. It usually ends with a modified plan, not a cancelled one.
+* *Running it after the decision.* Once commitment is public, the findings have nowhere to go.
+====
+
+== *Criticism*:
+
+* *The evidence chain is weaker than the citation suggests.* Behavioural economist Jason Collins documents that the widely repeated "30 percent" figure does not say what it is used to say. https://corporate.jcx.au/premortem[Collins] traces it to Mitchell, Russo and Pennington (1989), whose result is that prospective hindsight increases the *number* of reasons generated -- and notes explicitly: "Mitchell, Russo, and Pennington (1989) did not assess the quality of the reasons." The common paraphrase, that the technique improves the ability to *correctly identify* reasons by 30 percent, originates in Klein's 2007 restatement rather than in the study.
+* *The academic literature is thin.* Collins states it plainly: "The academic literature on the premortem is thin." The technique's standing rests largely on practitioner reports and on Klein's own 2010 study with Veinott and Wiggins, not on independent replication.
+* *No independent methodological critique was found.* A search in English and German turned up no failed replication, no meta-analysis, and no peer-reviewed critique of the technique itself. Note the frame: the journals where such an evaluation would most plausibly sit -- work on structured analytic techniques in _Intelligence and National Security_ and the _International Journal of Intelligence and CounterIntelligence_ -- are paywalled and were not read. This is an absence in our search, not a demonstrated absence in the literature.
+
+[discrete]
+== *Current Status*:
+
+* *Established and unchanged.* Klein's own description in https://www.psychologytoday.com/us/blog/seeing-what-others-dont/202101/the-pre-mortem-method[Psychology Today] (January 2021) matches the 2007 original; there is no revised edition or successor method to drift toward. He dates the technique's origin to roughly three decades before that writing, with the first formal description in "Performing a Project Premortem", _Harvard Business Review_ 85(9), 18–19, September 2007.
+* *The failure modes Klein names are execution errors, not limits.* He lists three: softening the question, running it too slowly, and letting a senior participant dominate instead of going round-robin. These are the author's caveats about his own method, which is a different thing from independent criticism.

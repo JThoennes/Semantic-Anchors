@@ -1,0 +1,57 @@
+= Second-Order Thinking
+:categories: problem-solving, strategic-planning
+:roles: software-architect, team-lead, product-owner, consultant, systems-thinker
+:proponents: Howard Marks, Ray Dalio, Shane Parrish (Farnam Street)
+:tags: Second-Order Thinking, Second-Level Thinking, Folgen der Folgen, unbeabsichtigte Folgen, Entscheidungsfindung, Mental Models, Marks, Dalio
+:related: first-principles-thinking, premortem, five-whys, cynefin-framework
+:tier: 3
+:prior-test: 2026-08-14
+
+[%collapsible]
+====
+Vollständiger Name:: Second-Order Thinking
+
+Auch bekannt als:: Second-Level Thinking (Howard Marks); second- and third-order consequences (Ray Dalio)
+
+[discrete]
+== *Kernkonzepte*:
+
+Und was dann?:: Die Wirkung erster Ordnung ist die, wegen der entschieden wurde. Die Wirkung zweiter Ordnung ist das, was passiert, sobald sich die Leute auf die erste eingestellt haben.
+
+Sichtbar gegen dominant:: Wirkungen erster Ordnung sind unmittelbar und sichtbar, die zweiter Ordnung verzögert und oft ausschlaggebend. Die Verzögerung ist der Grund, warum sie Diskussionen verlieren, die sie gewinnen müssten.
+
+Ketten, keine Listen:: Die Bewegung besteht darin, einer Folge in die nächste zu folgen -- nicht darin, mehr Folgen derselben Ebene aufzuzählen.
+
+Die entscheidenden Folgen sind meist Verhalten:: Regeln ändern Anreize, Anreize ändern Verhalten, und das Verhalten erzeugt die Wirkung, die niemand geplant hat.
+
+Gilt auch fürs Nichtstun:: Auch der Status quo hat Wirkungen zweiter Ordnung, und die werden leicht übersehen, weil scheinbar nichts geschieht.
+
+[discrete]
+== *Wann einsetzen*:
+
+* Bei Regel- oder Prozessänderungen, auf die Menschen sich einstellen werden -- Review-Regeln, Quality Gates, Bereitschaftspläne, Anreizsysteme
+* Bei einer technischen Entscheidung, deren Kosten später anfallen als ihr Nutzen
+* Immer wenn ein Vorschlag ausschließlich mit seiner unmittelbaren Wirkung begründet wird
+* Als Gegengewicht, wenn eine Kennzahl gerade zum Ziel gemacht wird
+
+[discrete]
+== *Häufige Missverständnisse*:
+
+Mehr statt tiefer:: Zwanzig Wirkungen erster Ordnung sind immer noch erster Ordnung. Eine Folge über drei Schritte verfolgt ist die Technik.
+
+Es als Argument gegen Handeln lesen:: Es ändert, was man entscheidet, nicht ob man entscheidet. Nichtstun bekommt dieselbe Analyse.
+
+Es mit Risikoanalyse verwechseln:: Risiken sind Dinge, die eintreten könnten. Wirkungen zweiter Ordnung sind Dinge, die eintreten werden -- auf die nur noch niemand reagiert hat.
+====
+
+== *Kritik*:
+
+* *Zum Begriff selbst wurde keine benannte Kritik gefunden.* Eine Suche auf Englisch und Deutsch ergab keinen zitierbaren Autor, der Second-Order Thinking als trivial, unfalsifizierbar oder unbrauchbar angreift. Was Suchmaschinen als Kritik ausgeben -- Analyseparalyse, Zeitaufwand, Kontextabhängigkeit --, steht in Ratgeberblogs ohne Urheber und zählt nicht.
+* *Die Literatur, die ihn populär gemacht hat, ist umstritten.* Die Kritik trifft das Genre der Mental Models, nicht diesen Begriff. Cedric Chin nennt Farnam Street in https://commoncog.com/the-mental-model-fallacy/[„The Mental Model Fallacy"] direkt: „The mental model fallacy is that it's worth it to read descriptions of mental models, written and aggregated by non-practitioners, in the pursuit of self-improvement and success" -- und ergänzt, „the most valuable mental models do not survive codification". Richard Hughes-Jones argumentiert in https://www.richardhughesjones.com/mental-models/[„The Mental Models Paradox"], solche Rahmenwerke „make us smarter but only up to a point, after which they can actually constrain our thinking". Der Data Scientist Boris Gorelik bewertet Parrishs _The Great Mental Models_ mit https://gorelik.net/2020/02/12/book-review-great-mental-models-by-shane-parrish[zwei von fünf] als „ambitious but yet shallow".
+* *Keiner dieser drei Kritiker behandelt Second-Order Thinking.* Sie kritisieren die Verpackung, nicht diesen Eintrag. Der Unterschied zählt, und die Zitate sind kein Urteil über die Technik.
+
+[discrete]
+== *Aktueller Stand*:
+
+* *Der Name, der wirkt, ist nicht der Name in den Quellen.* Howard Marks stellt in https://cup.columbia.edu/book/the-most-important-thing/9780231153683/[_The Most Important Thing_] (Columbia University Press, 2011) „first-level" und „second-*level* thinking" gegenüber. Ray Dalios Prinzip lautet https://www.principles.com/principles/7658aec7-c3f6-4248-8cc6-57aa84b0a955/[„Consider second- and third-order consequences, not just first-order ones"]. Keiner der beiden schreibt „second-order thinking"; diese Fassung gehört den Popularisierern, allen voran https://fs.blog/second-order-thinking/[Farnam Street], das beide zitiert, ohne die Formulierung eines der beiden zu verwenden. Der Eintrag ist nach der Zeichenfolge benannt, die das Konzept zuverlässig auslöst, nicht nach der mit der besseren Herkunft -- und hier fallen die beiden auseinander. Die Messung dahinter steht im link:#/prior-tests[Prior-Test-Register].
+* *Die Idee ist viel älter als das Etikett.* Frédéric Bastiats „Ce qu'on voit et ce qu'on ne voit pas" formuliert die Kernbewegung für die Ökonomie: eine Maßnahme an ihren ungesehenen späteren Wirkungen messen, nicht nur an ihrer sichtbaren unmittelbaren. https://fr.wikisource.org/wiki/Ce_qu%E2%80%99on_voit_et_ce_qu%E2%80%99on_ne_voit_pas[Französisches Wikisource] führt den Text und datiert das Pamphlet auf Juli 1850, Bastiats letztes. Robert K. Merton formalisierte einen nahen Verwandten in „The Unanticipated Consequences of Purposive Social Action", _American Sociological Review_ 1(6), Dezember 1936, 894–904.
