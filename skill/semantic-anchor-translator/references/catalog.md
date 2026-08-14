@@ -678,6 +678,11 @@ Source: https://github.com/LLM-Coding/Semantic-Anchors
 - **Proponents:** Ralf D. Müller
 - **Core:** Docs in version control, CI/CD, same workflow as code
 
+### Simplified Technical English (ASD-STE100)
+- **Also known as:** STE; formerly AECMA Simplified English
+- **Proponents:** ASD (AeroSpace and Defence Industries Association of Europe), maintained by the STEMG
+- **Core:** Controlled language for technical documentation — 53 writing rules in 9 sections plus a dictionary of ~900 approved words (each admitted in one meaning and one part of speech) and ~1,200 non-approved words with alternatives; separate rules for procedures and descriptions; Issue 9 (2025), free of charge. Tier 2: use the qualified form, the spelled-out name carries better than the specification number on weak models
+
 ## Development Workflow
 
 ### GTD — Getting Things Done

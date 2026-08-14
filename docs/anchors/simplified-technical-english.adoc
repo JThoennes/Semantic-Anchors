@@ -1,0 +1,55 @@
+= Simplified Technical English (ASD-STE100)
+:categories: documentation
+:roles: technical-writer, software-developer, requirements-engineer
+:proponents: ASD (AeroSpace and Defence Industries Association of Europe), STEMG
+:tags: Simplified Technical English, ASD-STE100, STE, controlled language, controlled natural language, technical documentation, approved words, AECMA
+:related: plain-english-strunk-white, gutes-deutsch-wolf-schneider, docs-as-code
+:tier: 2
+:prior-test: 2026-08-14
+:tested-on: haiku-4.5=no, sonnet-5=yes, opus-5=yes
+
+[%collapsible]
+====
+Full Name:: ASD-STE100, Simplified Technical English
+
+Also known as:: STE; formerly AECMA Simplified English
+
+[discrete]
+== *Core Concepts*:
+
+* *A specification, not a style preference.* 53 writing rules in 9 sections, plus a dictionary of roughly 900 approved words and about 1,200 non-approved words with suggested alternatives.
+* *One word, one meaning, one part of speech.* Each approved word is admitted in a single sense. "To follow" means to come after, never to obey.
+* *Write for the reader who is not a native speaker*, and for the translator and the machine that come after them.
+* *Procedures and descriptions are different text types* with different rules, rather than one undifferentiated notion of "clear writing".
+* *Compliance is not fully checkable.* Boeing, whose checker has been in use since 1990, states plainly that "no language checker can guarantee full compliance with STE, because the goal of STE is clarity."
+
+[discrete]
+== *When to Use*:
+
+* Maintenance, operating and safety instructions, especially where readers are not native English speakers
+* Documentation that will be translated, where source ambiguity multiplies across target languages
+* Regulated or safety-critical contexts where a misread instruction has physical consequences
+
+[discrete]
+== *Common Misunderstandings*:
+
+* *Reading it as "write simply".* The specific content is the closed word list and the 53 rules; a general instruction to simplify is not STE and does not need the name.
+* *Using the bare abbreviation.* "STE" is unambiguous in this field, but the qualified form is what the measurement covers -- see the link:#/prior-tests[prior-test register] for which models were tested and with what result.
+* *Assuming it is an ISO standard.* ASD describes the move "from specification to international standard" as its own ambition; no formal ISO status is documented.
+* *Confusing it with Plain Language.* https://www.sis.se/en/produkter/standardization/information-sciences-publishing/writing-and-transliteration/iso-24495-12023/[ISO 24495-1:2023] is principle-based and audience-oriented; STE is rule- and wordlist-based. The ISO scope names controlled languages as a neighbouring field, not the same one.
+====
+
+== *Criticism*:
+
+* *The efficacy evidence is thinner than the reputation, and its own authors say so.* Heather Holmback (Boeing) with Serena Shubert and Jan Spyridakis (University of Washington), who conducted the Boeing-funded evaluations, name the limits in https://mt-archive.net/90/CLAW-1996-Holmback.pdf["Issues in Conducting Empirical Evaluations of Controlled Languages"] (CLAW '96): there is "no compliance standard for SE", so "there is no universal agreement as to what counts as 'good,' 'typical' or even acceptable SE"; the measured benefit appeared only for the more complex of two procedures; and "we did not find any significant differences for time between the SE and non-SE documents". Translatability results were "less clear-cut", with no significant difference for Chinese.
+* *The open question is whether the standard beats good writing at all.* The same paper asks "whether SE is any more beneficial than good quality, professional technical writing that does not conform to the SE standard". That question is still open, and our own measurement reproduced it: on a weak model the anchored rewrite was not distinguishable from an unanchored one. The entry therefore records Haiku as tested with no measurable effect, and Sonnet and Opus as tested and working. See the link:#/prior-tests[prior-test register].
+* *Adoption costs are real.* Karin Disborg's https://liu.diva-portal.org/smash/record.jsf?pid=diva2%3A16816[2007 thesis at Linköping University] names the "extensive learning time" and reports, from her literature base, roughly 20 percent more writing time in a controlled language. The study is qualitative with a small sample and was commissioned by a documentation service provider; its readability results favoured STE.
+* *Strict compliance can work against other goals.* TechScribe notes that following STE strictly harms findability in search engines, because synonyms are what readers actually search for, and cites Barry Rosenberg's argument that synonyms improve readability for non-technical verbs.
+
+[discrete]
+== *Current Status*:
+
+* *Actively maintained, and free.* https://www.asd-ste100.org/about_STE.html[ASD-STE100] is published by the AeroSpace and Defence Industries Association of Europe and maintained by the Simplified Technical English Maintenance Group. *Issue 9* appeared on 15 January 2025: no new rules, but 31 of the 53 rules reworded and 555 dictionary entries revised. The specification is https://www.asd-ste100.org/STE_faq.html[available free of charge], as PDF, on request.
+* *Older than its name.* It began as AECMA Simplified English, first issued in 1986; the maintenance group was founded in 1983 and renamed STEMG in 2004 when AECMA became ASD. The official site dates the origin to the late 1970s, Wikipedia to the 1980s -- the starting point is not settled, the 1986 first issue is.
+* *In use beyond aerospace.* ASD names land and sea vehicles, renewable energy and medical technology. Tooling exists (the Boeing Simplified English Checker, in use since 1990, and commercial alternatives), but ASD and the STEMG explicitly "do not endorse or certify any company, organization, or individual that sells tools claimed to be 'fully compliant'".
+* *Detail beyond the counts is second-hand here.* The sentence-length limits usually quoted -- 20 words for procedures, 25 for descriptions -- and the restrictions on -ing forms come from secondary sources. The specification is distributed only on individual request, so we did not read the rule text itself.
