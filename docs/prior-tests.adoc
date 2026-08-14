@@ -152,7 +152,7 @@ No worked rebuttal from the established frontend or SPA side was found in either
 
 *One difference did appear, as a single observation.* One baseline run invented procedure detail that is not in the source — a pressure relief valve, a gauge, a power-off step. Neither anchored run added anything the source did not state. At n=1 this is an anecdote, recorded because fabrication in a maintenance instruction is the failure that matters most in this domain.
 
-*The spelled-out name beats the specification number on the weak tier.* Asked about "ASD-STE100", Haiku reported `richness=moderate` and `reaching=yes` in both runs; asked about "Simplified Technical English", it recognised the term without reaching in one of two. Opus handles both equally.
+*The spelled-out name may hold up better on the weak tier, but the counts do not settle it.* Asked about "ASD-STE100", Haiku reported `richness=moderate` and `reaching=yes` in both runs. Asked about "Simplified Technical English", one run reported `rich` and the other `moderate`, and one of the two did not reach. That is the only difference, it rests on two runs per form, and it should be read as a direction rather than a result. Opus handles both equally.
 
 *The literature reached the same conclusion thirty years ago.* Holmback, Shubert and Spyridakis — the authors of the Boeing-funded evaluations — ask in CLAW '96 "whether SE is any more beneficial than good quality, professional technical writing that does not conform to the SE standard", and report no significant time difference and unclear translatability results. Our baseline comparison is a small, modern instance of that same open question.
 

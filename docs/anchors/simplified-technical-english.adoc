@@ -34,7 +34,7 @@ Also known as:: STE; formerly AECMA Simplified English
 == *Common Misunderstandings*:
 
 * *Reading it as "write simply".* The specific content is the closed word list and the 53 rules; a general instruction to simplify is not STE and does not need the name.
-* *Using the bare abbreviation.* "STE" is unambiguous in this field, but the qualified form is what carries reliably across models -- see the tier note below.
+* *Using the bare abbreviation.* "STE" is unambiguous in this field, but the qualified form is what the measurement covers -- see the link:#/prior-tests[prior-test register] for which models were tested and with what result.
 * *Assuming it is an ISO standard.* ASD describes the move "from specification to international standard" as its own ambition; no formal ISO status is documented.
 * *Confusing it with Plain Language.* https://www.sis.se/en/produkter/standardization/information-sciences-publishing/writing-and-transliteration/iso-24495-12023/[ISO 24495-1:2023] is principle-based and audience-oriented; STE is rule- and wordlist-based. The ISO scope names controlled languages as a neighbouring field, not the same one.
 ====

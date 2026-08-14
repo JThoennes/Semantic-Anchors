@@ -39,7 +39,7 @@ Konformität ist nicht vollständig prüfbar:: Boeing, dessen Checker seit 1990 
 
 Es als „schreib einfach" lesen:: Der spezifische Inhalt sind die geschlossene Wortliste und die 53 Regeln. Eine allgemeine Aufforderung zu vereinfachen ist kein STE und braucht den Namen nicht.
 
-Das nackte Kürzel verwenden:: „STE" ist in diesem Feld eindeutig, aber die qualifizierte Form ist die, die über Modelle hinweg zuverlässig trägt -- siehe Tier-Hinweis unten.
+Das nackte Kürzel verwenden:: „STE" ist in diesem Feld eindeutig, aber gemessen wurde die qualifizierte Form -- welche Modelle mit welchem Ergebnis geprüft wurden, steht im link:#/prior-tests[Prior-Test-Register].
 
 Es für eine ISO-Norm halten:: Den Weg „from specification to international standard" beschreibt ASD als eigenes Ziel; ein formaler ISO-Status ist nicht belegt.
 
