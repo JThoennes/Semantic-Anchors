@@ -1,0 +1,62 @@
+= Simplified Technical English (ASD-STE100)
+:categories: documentation
+:roles: technical-writer, software-developer, requirements-engineer
+:proponents: ASD (AeroSpace and Defence Industries Association of Europe), STEMG
+:tags: Simplified Technical English, ASD-STE100, STE, kontrollierte Sprache, Controlled Natural Language, technische Dokumentation, Approved Words, AECMA
+:related: plain-english-strunk-white, gutes-deutsch-wolf-schneider, docs-as-code
+:tier: 2
+:prior-test: 2026-08-14
+:tested-on: haiku-4.5=no, sonnet-5=yes, opus-5=yes
+
+[%collapsible]
+====
+Vollständiger Name:: ASD-STE100, Simplified Technical English
+
+Auch bekannt als:: STE; früher AECMA Simplified English
+
+[discrete]
+== *Kernkonzepte*:
+
+Eine Spezifikation, keine Stilvorliebe:: 53 Schreibregeln in 9 Abschnitten, dazu ein Wörterbuch mit rund 900 zugelassenen und etwa 1.200 nicht zugelassenen Wörtern samt Alternativvorschlägen.
+
+Ein Wort, eine Bedeutung, eine Wortart:: Jedes zugelassene Wort ist in genau einem Sinn zugelassen. „To follow" heißt nachfolgen, nie befolgen.
+
+Für Leser schreiben, die kein Englisch als Muttersprache haben:: Und für die Übersetzerin und die Maschine, die danach kommen.
+
+Anweisung und Beschreibung sind verschiedene Textsorten:: Mit verschiedenen Regeln -- nicht ein undifferenziertes „schreib klar".
+
+Konformität ist nicht vollständig prüfbar:: Boeing, dessen Checker seit 1990 im Einsatz ist, sagt es selbst: „No language checker can guarantee full compliance with STE, because the goal of STE is clarity."
+
+[discrete]
+== *Wann einsetzen*:
+
+* Wartungs-, Bedien- und Sicherheitsanweisungen, besonders für Leser ohne englische Muttersprache
+* Dokumentation, die übersetzt wird -- dort vervielfacht sich jede Mehrdeutigkeit der Quelle über die Zielsprachen
+* Regulierte oder sicherheitskritische Kontexte, in denen eine missverstandene Anweisung körperliche Folgen hat
+
+[discrete]
+== *Häufige Missverständnisse*:
+
+Es als „schreib einfach" lesen:: Der spezifische Inhalt sind die geschlossene Wortliste und die 53 Regeln. Eine allgemeine Aufforderung zu vereinfachen ist kein STE und braucht den Namen nicht.
+
+Das nackte Kürzel verwenden:: „STE" ist in diesem Feld eindeutig, aber gemessen wurde die qualifizierte Form -- welche Modelle mit welchem Ergebnis geprüft wurden, steht im link:#/prior-tests[Prior-Test-Register].
+
+Es für eine ISO-Norm halten:: Den Weg „from specification to international standard" beschreibt ASD als eigenes Ziel; ein formaler ISO-Status ist nicht belegt.
+
+Es mit Plain Language verwechseln:: https://www.sis.se/en/produkter/standardization/information-sciences-publishing/writing-and-transliteration/iso-24495-12023/[ISO 24495-1:2023] ist prinzipienbasiert und zielgruppenoffen, STE regel- und wortlistenbasiert. Der ISO-Geltungsbereich nennt kontrollierte Sprachen als Nachbarfeld, nicht als dasselbe.
+====
+
+== *Kritik*:
+
+* *Die Wirksamkeitsbelege sind dünner als der Ruf -- und ihre eigenen Verfasser sagen das.* Heather Holmback (Boeing) mit Serena Shubert und Jan Spyridakis (University of Washington), die die Boeing-finanzierten Untersuchungen durchführten, benennen die Grenzen in https://mt-archive.net/90/CLAW-1996-Holmback.pdf[„Issues in Conducting Empirical Evaluations of Controlled Languages"] (CLAW '96): Es gebe „no compliance standard for SE", folglich „no universal agreement as to what counts as 'good,' 'typical' or even acceptable SE"; der gemessene Nutzen zeigte sich nur bei der komplexeren von zwei Prozeduren; und „we did not find any significant differences for time between the SE and non-SE documents". Die Übersetzbarkeitsergebnisse waren „less clear-cut", für Chinesisch ohne signifikanten Unterschied.
+* *Die offene Frage ist, ob der Standard gutes Schreiben überhaupt schlägt.* Dieselbe Arbeit fragt, „whether SE is any more beneficial than good quality, professional technical writing that does not conform to the SE standard". Die Frage ist bis heute offen, und unsere eigene Messung hat sie reproduziert: Auf einem schwachen Modell war die Umschreibung mit Anker nicht von der ohne unterscheidbar. Der Eintrag vermerkt Haiku deshalb als getestet ohne messbare Wirkung, Sonnet und Opus als getestet und wirksam. Siehe link:#/prior-tests[Prior-Test-Register].
+* *Die Einführungskosten sind real.* Karin Disborgs https://liu.diva-portal.org/smash/record.jsf?pid=diva2%3A16816[Arbeit von 2007 an der Universität Linköping] nennt die „extensive learning time" und berichtet aus ihrer Literaturbasis rund 20 Prozent mehr Schreibzeit in einer kontrollierten Sprache. Die Studie ist qualitativ mit kleiner Stichprobe und entstand im Auftrag eines Dokumentationsdienstleisters; ihre Lesbarkeitsmessung fiel für STE positiv aus.
+* *Strikte Befolgung kann anderen Zielen schaden.* TechScribe hält fest, dass striktes STE die Auffindbarkeit in Suchmaschinen verschlechtert, weil Leser nach Synonymen suchen, und zitiert Barry Rosenbergs Argument, Synonyme erhöhten bei nicht-technischen Verben die Lesbarkeit.
+
+[discrete]
+== *Aktueller Stand*:
+
+* *Aktiv gepflegt und kostenlos.* https://www.asd-ste100.org/about_STE.html[ASD-STE100] wird von der AeroSpace and Defence Industries Association of Europe herausgegeben und von der Simplified Technical English Maintenance Group gepflegt. *Issue 9* erschien am 15. Januar 2025: keine neuen Regeln, aber 31 der 53 Regeln neu formuliert und 555 Wörterbucheinträge überarbeitet. Die Spezifikation ist https://www.asd-ste100.org/STE_faq.html[kostenlos erhältlich], als PDF, auf Anfrage.
+* *Älter als ihr Name.* Sie begann als AECMA Simplified English, Erstausgabe 1986; die Pflegegruppe wurde 1983 gegründet und 2004 in STEMG umbenannt, als aus AECMA die ASD wurde. Die offizielle Seite datiert den Ursprung auf die späten 1970er, Wikipedia auf die 1980er -- der Startpunkt ist strittig, die Erstausgabe 1986 nicht.
+* *Auch außerhalb der Luftfahrt im Einsatz.* ASD nennt Land- und Seefahrzeuge, erneuerbare Energien und Medizintechnik. Werkzeuge existieren (der Boeing Simplified English Checker seit 1990, dazu kommerzielle Alternativen), aber ASD und STEMG stellen ausdrücklich klar, sie „do not endorse or certify any company, organization, or individual that sells tools claimed to be 'fully compliant'".
+* *Details jenseits der Zahlen sind hier Sekundärbelege.* Die üblich zitierten Satzlängen -- 20 Wörter für Anweisungen, 25 für Beschreibungen -- und die Einschränkungen bei -ing-Formen stammen aus Sekundärquellen. Die Spezifikation wird nur auf individuelle Anfrage ausgegeben; den Regeltext selbst haben wir nicht gelesen.
