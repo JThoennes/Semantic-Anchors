@@ -266,17 +266,25 @@ html {
   @apply border border-amber-300 dark:border-amber-800;
 }
 
-/* Verified-on note: which models the anchor was measured to work on. Provenance,
-   not a claim about quality — the tier stays out of the UI deliberately, because
-   it is a judgement while the model list is a fact. Quiet foot-of-entry styling,
-   so it informs without competing with the content. */
-.anchor-verified-on {
+/* Tested-on note: every model the anchor was measured against, each with its
+   result. Provenance, not a quality claim — the tier stays out of the UI because
+   it is a judgement while this is a fact. A model that was tested and showed no
+   effect must look different from one that was never tried, hence two classes. */
+.anchor-tested-on {
   @apply mt-8 pt-4 text-sm;
   @apply border-t border-[var(--color-border)];
   @apply text-[var(--color-text-secondary)];
 }
 
-.anchor-verified-on a {
+.anchor-tested-on .tested-yes {
+  @apply text-emerald-700 dark:text-emerald-400;
+}
+
+.anchor-tested-on .tested-no {
+  @apply text-[var(--color-text-secondary)] line-through decoration-1;
+}
+
+.anchor-tested-on a {
   @apply underline underline-offset-2;
 }
 

@@ -186,7 +186,7 @@ describe('anchor-modal', () => {
     })
   })
 
-  describe('verified-on note', () => {
+  describe('tested-on note', () => {
     beforeEach(async () => {
       global.fetch = vi.fn()
       createModal()
@@ -194,10 +194,24 @@ describe('anchor-modal', () => {
       const { fetchAnchorsData } = await import('../utils/data-loader.js')
       fetchAnchorsData.mockResolvedValue([
         {
-          id: 'measured-anchor',
-          title: 'Measured Anchor',
+          id: 'works-everywhere',
+          title: 'Works Everywhere',
           priorTest: '2026-08-14',
-          verifiedOn: ['haiku-4.5', 'sonnet-5', 'opus-5'],
+          testedOn: [
+            { model: 'haiku-4.5', works: true },
+            { model: 'sonnet-5', works: true },
+            { model: 'opus-5', works: true },
+          ],
+        },
+        {
+          id: 'partial-anchor',
+          title: 'Partial Anchor',
+          priorTest: '2026-08-14',
+          testedOn: [
+            { model: 'haiku-4.5', works: false },
+            { model: 'sonnet-5', works: true },
+            { model: 'opus-5', works: true },
+          ],
         },
         { id: 'unmeasured-anchor', title: 'Unmeasured Anchor' },
         { id: 'dated-only-anchor', title: 'Dated Only', priorTest: '2026-08-14' },
@@ -208,25 +222,46 @@ describe('anchor-modal', () => {
       delete global.fetch
     })
 
-    it('should name the models an anchor was verified on', async () => {
-      global.fetch.mockResolvedValue({ ok: true, text: async () => '= Measured Anchor\n\nContent' })
+    it('should name every model that was tested, including ones where it did not work', async () => {
+      global.fetch.mockResolvedValue({ ok: true, text: async () => '= Partial\n\nContent' })
 
-      await showAnchorDetails('measured-anchor')
+      await showAnchorDetails('partial-anchor')
 
-      const note = document.querySelector('.anchor-verified-on')
+      const note = document.querySelector('.anchor-tested-on')
       expect(note).not.toBeNull()
       expect(note.textContent).toContain('haiku-4.5')
       expect(note.textContent).toContain('sonnet-5')
       expect(note.textContent).toContain('opus-5')
     })
 
+    it('should distinguish a model where the anchor did not work from one where it did', async () => {
+      global.fetch.mockResolvedValue({ ok: true, text: async () => '= Partial\n\nContent' })
+
+      await showAnchorDetails('partial-anchor')
+
+      const failed = document.querySelector('.anchor-tested-on .tested-no')
+      const worked = document.querySelector('.anchor-tested-on .tested-yes')
+      expect(failed).not.toBeNull()
+      expect(failed.textContent).toContain('haiku-4.5')
+      expect(worked).not.toBeNull()
+      expect(worked.textContent).toContain('sonnet-5')
+    })
+
+    it('should mark every model as working when the anchor worked everywhere', async () => {
+      global.fetch.mockResolvedValue({ ok: true, text: async () => '= Works\n\nContent' })
+
+      await showAnchorDetails('works-everywhere')
+
+      expect(document.querySelectorAll('.anchor-tested-on .tested-yes')).toHaveLength(3)
+      expect(document.querySelectorAll('.anchor-tested-on .tested-no')).toHaveLength(0)
+    })
+
     it('should link the note to the prior-test register', async () => {
-      global.fetch.mockResolvedValue({ ok: true, text: async () => '= Measured Anchor\n\nContent' })
+      global.fetch.mockResolvedValue({ ok: true, text: async () => '= Works\n\nContent' })
 
-      await showAnchorDetails('measured-anchor')
+      await showAnchorDetails('works-everywhere')
 
-      const link = document.querySelector('.anchor-verified-on a')
-      expect(link).not.toBeNull()
+      const link = document.querySelector('.anchor-tested-on a')
       expect(link.getAttribute('href')).toContain('/prior-tests')
     })
 
@@ -235,7 +270,7 @@ describe('anchor-modal', () => {
 
       await showAnchorDetails('unmeasured-anchor')
 
-      expect(document.querySelector('.anchor-verified-on')).toBeNull()
+      expect(document.querySelector('.anchor-tested-on')).toBeNull()
     })
 
     it('should render nothing when a date exists but no models are recorded', async () => {
@@ -243,7 +278,7 @@ describe('anchor-modal', () => {
 
       await showAnchorDetails('dated-only-anchor')
 
-      expect(document.querySelector('.anchor-verified-on')).toBeNull()
+      expect(document.querySelector('.anchor-tested-on')).toBeNull()
     })
   })
 

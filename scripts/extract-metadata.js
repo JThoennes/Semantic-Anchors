@@ -139,13 +139,20 @@ function parseAnchorFile(filePath) {
   const priorTestAttr = attributes['prior-test']
   if (priorTestAttr) anchor.priorTest = priorTestAttr.trim()
 
-  // Which models the anchor was shown to work on — a fact, unlike the tier, which
-  // is a judgement and stays out of the UI. Records where the anchor *delivered*,
-  // not where it was tried: an anchor tested on three tiers but only distinguishable
-  // from a no-anchor baseline on two lists those two. The run behind the date, with
-  // the resolved model identifiers, lives in the prior-test register.
-  const verifiedOn = parseList(attributes['verified-on'])
-  if (verifiedOn.length > 0) anchor.verifiedOn = verifiedOn
+  // Which models the anchor was tested on, and what came out — a fact, unlike the
+  // tier, which is a judgement and stays out of the UI. Both halves matter: a model
+  // that was tested and showed no effect is a different statement from one that was
+  // never tried, and listing only the successes would hide that difference. Written
+  // as `model=yes|no` pairs; the run behind the date, with the resolved model
+  // identifiers, lives in the prior-test register.
+  const testedOn = parseList(attributes['tested-on'])
+    .map((entry) => {
+      const [model, result] = entry.split('=').map((part) => part.trim())
+      if (!model || !result) return null
+      return { model, works: result.toLowerCase() === 'yes' }
+    })
+    .filter(Boolean)
+  if (testedOn.length > 0) anchor.testedOn = testedOn
 
   // Optional advisory: a short caution label for anchors whose activated framing
   // conflicts with their field's own consensus (#624). The detail/source lives in

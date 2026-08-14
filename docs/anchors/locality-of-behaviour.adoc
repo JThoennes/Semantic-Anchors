@@ -6,7 +6,7 @@
 :related: separation-of-concerns, dry, deep-modules, solid-srp
 :tier: 3
 :prior-test: 2026-08-14
-:verified-on: haiku-4.5, sonnet-5, opus-5
+:tested-on: haiku-4.5=yes, sonnet-5=yes, opus-5=yes
 
 [%collapsible]
 ====

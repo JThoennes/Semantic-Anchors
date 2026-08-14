@@ -4,12 +4,11 @@ A chronological record of all semantic anchors added to the catalog. Community c
 
 == 2026-08-14
 
-*New: measured anchors now say which models they were verified on:*
+*New: measured anchors now say which models they were tested on, and what came out:*
 
-* Anchors carry a `:verified-on:` attribute, and the modal renders it at the foot of the entry, linked to the link:#/prior-tests[prior-test register]. The tier stays out of the interface deliberately: a tier is a judgement, a model list is a fact, and the fact is what gives a reader confidence.
-* The field records where an anchor *delivered*, never merely where it was tried. *link:#/anchor/premortem[Premortem]*, *link:#/anchor/second-order-thinking[Second-Order Thinking]* and *link:#/anchor/locality-of-behaviour[Locality of Behaviour]* list all three tiers; *link:#/anchor/simplified-technical-english[Simplified Technical English]* lists only two, because on a weak model its rewrite was not distinguishable from an unanchored one. Listing it there would have claimed a result the measurement did not produce.
+* Anchors carry a `:tested-on:` attribute and the modal renders it at the foot of the entry, linked to the link:#/prior-tests[prior-test register]. The tier stays out of the interface deliberately: a tier is a judgement, a test result is a fact.
+* *Every tested model is named, including the ones where the anchor did nothing.* Listing only the successes would read as "the others were not tried", which is a weaker and different claim than "tried, no effect". *link:#/anchor/simplified-technical-english[Simplified Technical English]* is the case in point: it is marked as tested on all three tiers, and as having no measurable effect on the weakest one, where its rewrite was not distinguishable from an unanchored prompt.
 * Anchors without the attribute show nothing at all. Absence is a statement about our records, not about the term.
-
 
 *New anchor — Locality of Behaviour (#701), the first community proposal triaged with the prior test:*
 

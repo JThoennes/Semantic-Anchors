@@ -140,5 +140,9 @@
   "feedback.discuss": "Diskutieren",
   "feedback.cta": "Ist dieser Anker hilfreich?",
   "feedback.discussionHeading": "Community-Diskussion",
-  "feedback.requiresLogin": "Erfordert GitHub-Login"
+  "feedback.requiresLogin": "Erfordert GitHub-Login",
+  "anchor.testedOn": "Getestet auf ",
+  "anchor.testedWorks": "der Anker hat das Ergebnis auf diesem Modell verändert",
+  "anchor.testedNoEffect": "getestet, aber das Ergebnis war nicht von einem Prompt ohne den Anker zu unterscheiden",
+  "anchor.testedMeasured": "gemessen am"
 }
