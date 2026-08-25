@@ -1,4 +1,5 @@
 import { i18n } from '../i18n.js'
+import { renderAppearances } from '../data/appearances.js'
 
 export function renderFooter(version) {
   return `
@@ -66,79 +67,11 @@ export function renderFooter(version) {
           </div>
           <div class="flex flex-wrap items-center justify-center gap-2 pt-1">
             <span class="text-xs text-[var(--color-text-secondary)]" data-i18n="footer.asSeenOn">${i18n.t('footer.asSeenOn')}</span>
-            <a
-              href="https://www.youtube.com/watch?v=rQj-B3VTx48"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 hover:opacity-80 transition-opacity"
-              title="${i18n.t('footer.hmzeAlt')}"
-            >
-              <img
-                src="${import.meta.env.BASE_URL}hmze-logo.png"
-                alt="HMZE Podcast"
-                width="28"
-                height="24"
-                class="h-6 w-auto"
-                loading="lazy"
-              />
-              <span class="text-xs text-[var(--color-text-secondary)]">HMZE (DE)</span>
-            </a>
-            <span class="text-gray-300 dark:text-gray-600">|</span>
-            <a
-              href="https://rabauer.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 hover:opacity-80 transition-opacity"
-              title="${i18n.t('footer.rabauerAlt')}"
-            >
-              <img
-                src="${import.meta.env.BASE_URL}rabauer-logo.png"
-                alt="rabauer.dev"
-                width="24"
-                height="24"
-                class="h-6 w-auto"
-                loading="lazy"
-              />
-              <span class="text-xs text-[var(--color-text-secondary)]">rabauer.dev (EN)</span>
-            </a>
-            <span class="text-gray-300 dark:text-gray-600">|</span>
-            <a
-              href="https://byndcode.com/episodes/ep016-ralf-d-mueller/"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 hover:opacity-80 transition-opacity"
-              title="${i18n.t('footer.byndcodeAlt')}"
-            >
-              <img
-                src="${import.meta.env.BASE_URL}byndcode-logo.png"
-                alt="Beyond Code Podcast"
-                width="24"
-                height="24"
-                class="h-6 w-auto rounded"
-                loading="lazy"
-              />
-              <span class="text-xs text-[var(--color-text-secondary)]">Beyond Code (DE)</span>
-            </a>
+            ${renderAppearances('appearance', import.meta.env.BASE_URL, (k) => i18n.t(k))}
           </div>
           <div class="flex flex-wrap items-center justify-center gap-2 pt-1">
             <span class="text-xs text-[var(--color-text-secondary)]" data-i18n="footer.featuredIn">${i18n.t('footer.featuredIn')}</span>
-            <a
-              href="https://www.heise.de/news/Semantische-Anker-verkuerzen-den-Kontext-fuer-das-agentische-Coden-11311061.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 hover:opacity-80 transition-opacity rounded bg-white px-1.5 py-0.5"
-              title="${i18n.t('footer.heiseAlt')}"
-            >
-              <img
-                src="${import.meta.env.BASE_URL}heise-logo.svg"
-                alt="heise online"
-                width="24"
-                height="21"
-                class="h-5 w-auto"
-                loading="lazy"
-              />
-              <span class="text-xs text-gray-700">heise online (DE)</span>
-            </a>
+            ${renderAppearances('press', import.meta.env.BASE_URL, (k) => i18n.t(k))}
           </div>
         </div>
       </div>

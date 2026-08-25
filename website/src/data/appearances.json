@@ -1,0 +1,50 @@
+[
+  {
+    "id": "heise",
+    "kind": "press",
+    "href": "https://www.heise.de/news/Semantische-Anker-verkuerzen-den-Kontext-fuer-das-agentische-Coden-11311061.html",
+    "logo": "heise-logo.svg",
+    "alt": "heise online",
+    "label": "heise online (DE)",
+    "titleKey": "footer.heiseAlt",
+    "width": 24,
+    "height": 21,
+    "imgClass": "h-5 w-auto",
+    "linkClass": "rounded bg-white px-1.5 py-0.5",
+    "labelClass": "text-gray-700"
+  },
+  {
+    "id": "hmze",
+    "kind": "appearance",
+    "href": "https://www.youtube.com/watch?v=rQj-B3VTx48",
+    "logo": "hmze-logo.png",
+    "alt": "HMZE Podcast",
+    "label": "HMZE (DE)",
+    "titleKey": "footer.hmzeAlt",
+    "width": 28,
+    "height": 24
+  },
+  {
+    "id": "rabauer",
+    "kind": "appearance",
+    "href": "https://rabauer.dev",
+    "logo": "rabauer-logo.png",
+    "alt": "rabauer.dev",
+    "label": "rabauer.dev (EN)",
+    "titleKey": "footer.rabauerAlt",
+    "width": 24,
+    "height": 24
+  },
+  {
+    "id": "byndcode",
+    "kind": "appearance",
+    "href": "https://byndcode.com/episodes/ep016-ralf-d-mueller/",
+    "logo": "byndcode-logo.png",
+    "alt": "Beyond Code Podcast",
+    "label": "Beyond Code (DE)",
+    "titleKey": "footer.byndcodeAlt",
+    "width": 24,
+    "height": 24,
+    "imgClass": "h-6 w-auto rounded"
+  }
+]
