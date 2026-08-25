@@ -2,6 +2,7 @@
   {
     "id": "business-analyst",
     "name": "Business Analyst / Requirements Engineer",
+    "name_de": "Business Analyst / Anforderungsmanager",
     "anchors": [
       "bdd-given-when-then",
       "bluf",
@@ -43,6 +44,7 @@
   {
     "id": "consultant",
     "name": "Consultant / Coach",
+    "name_de": "Berater / Coach",
     "anchors": [
       "4mat",
       "addie-model",
@@ -59,6 +61,7 @@
       "decisional-balance-sheet",
       "devils-advocate",
       "disc-model",
+      "dmaic",
       "double-diamond",
       "dreyfus-skill-acquisition",
       "eisenhower-matrix",
@@ -98,10 +101,13 @@
       "owasp-top-10",
       "pert",
       "plain-english-strunk-white",
+      "premortem",
       "problem-space-nvc",
       "pyramid-principle",
       "regulated-environment",
+      "residuality-theory",
       "save-the-cat",
+      "second-order-thinking",
       "sender-receiver-discrepancy",
       "simon-constructivism",
       "socratic-method",
@@ -122,13 +128,28 @@
     ]
   },
   {
+    "id": "data-protection-officer",
+    "name": "Data Protection Officer",
+    "name_de": "Datenschutzbeauftragter",
+    "anchors": [
+      "linddun",
+      "meaningful-human-control",
+      "owasp-top-10",
+      "quality-attribute-scenario",
+      "regulated-environment",
+      "stride"
+    ]
+  },
+  {
     "id": "data-scientist",
     "name": "Data Scientist / Statistician",
+    "name_de": "Datenanalyst / Statistiker / Datenarchitekt",
     "anchors": [
       "big-five",
       "cap-theorem",
       "chain-of-thought",
       "control-chart-shewhart",
+      "dmaic",
       "fermi-estimation",
       "goodharts-law",
       "hexaco",
@@ -144,6 +165,7 @@
   {
     "id": "devops-engineer",
     "name": "DevOps Engineer",
+    "name_de": "DevOps-Engineer",
     "anchors": [
       "50-72-rule",
       "cap-theorem",
@@ -171,6 +193,7 @@
   {
     "id": "educator",
     "name": "Educator / Trainer",
+    "name_de": "Dozent / Trainer",
     "anchors": [
       "4mat",
       "addie-model",
@@ -227,8 +250,36 @@
     ]
   },
   {
+    "id": "ethics-officer",
+    "name": "Ethics Officer / AI Ethics Board",
+    "name_de": "Ethikbeauftragter / KI-Ethikgremium",
+    "anchors": [
+      "iec-61508-sil-levels",
+      "meaningful-human-control",
+      "quality-attribute-scenario",
+      "regulated-environment"
+    ]
+  },
+  {
+    "id": "legal-compliance",
+    "name": "Legal / Compliance Counsel",
+    "name_de": "Syndikusanwalt / Unternehmensjurist / Compliance-Beauftragter",
+    "anchors": [
+      "adr-according-to-nygard",
+      "arc42",
+      "c4-diagrams",
+      "iec-61508-sil-levels",
+      "meaningful-human-control",
+      "regulated-environment",
+      "site-reliability-engineering",
+      "testing-pyramid",
+      "twelve-factor-app"
+    ]
+  },
+  {
     "id": "product-owner",
     "name": "Product Owner / Product Manager",
+    "name_de": "Product Owner / Produktmanager",
     "anchors": [
       "aida-model",
       "atam",
@@ -266,10 +317,12 @@
       "okr",
       "pert",
       "prd",
+      "premortem",
       "problem-space-nvc",
       "pugh-matrix",
       "quality-attribute-scenario",
       "req42",
+      "second-order-thinking",
       "semantic-versioning",
       "swot",
       "team-topologies",
@@ -281,10 +334,12 @@
   {
     "id": "qa-engineer",
     "name": "QA Engineer / Tester",
+    "name_de": "QA-Engineer / Tester",
     "anchors": [
       "bdd-given-when-then",
       "definition-of-done",
       "devils-advocate",
+      "dmaic",
       "ears-requirements",
       "fagan-inspection",
       "five-whys",
@@ -296,6 +351,7 @@
       "llm-evaluations",
       "mutation-testing",
       "owasp-top-10",
+      "premortem",
       "property-based-testing",
       "red-green-tdd",
       "regulated-environment",
@@ -316,13 +372,16 @@
   {
     "id": "requirements-engineer",
     "name": "Requirements Engineer",
+    "name_de": "Requirements Engineer",
     "anchors": [
-      "lehmans-classification"
+      "lehmans-classification",
+      "simplified-technical-english"
     ]
   },
   {
     "id": "software-architect",
     "name": "Software Architect",
+    "name_de": "Softwarearchitekt",
     "anchors": [
       "adr-according-to-nygard",
       "arc42",
@@ -345,6 +404,7 @@
       "dry",
       "effective-go",
       "effective-java",
+      "effective-python",
       "event-driven-architecture",
       "event-storming",
       "fagan-inspection",
@@ -388,6 +448,7 @@
       "lehmans-classification",
       "linddun",
       "llm-evaluations",
+      "locality-of-behaviour",
       "luhmann-system-theory",
       "madr",
       "meaningful-human-control",
@@ -397,10 +458,13 @@
       "occams-razor",
       "owasp-top-10",
       "postels-law",
+      "premortem",
       "pugh-matrix",
       "quality-attribute-scenario",
       "regulated-environment",
       "req42",
+      "residuality-theory",
+      "second-order-thinking",
       "separation-of-concerns",
       "single-level-of-abstraction-principle",
       "site-reliability-engineering",
@@ -431,6 +495,7 @@
   {
     "id": "software-developer",
     "name": "Software Developer / Engineer",
+    "name_de": "Softwareentwickler",
     "anchors": [
       "50-72-rule",
       "adr-according-to-nygard",
@@ -454,6 +519,7 @@
       "dry",
       "effective-go",
       "effective-java",
+      "effective-python",
       "event-driven-architecture",
       "fagan-inspection",
       "fallacies-of-distributed-computing",
@@ -499,6 +565,7 @@
       "law-of-demeter",
       "linddun",
       "llm-evaluations",
+      "locality-of-behaviour",
       "madr",
       "mental-model-according-to-naur",
       "mikado-method",
@@ -513,8 +580,10 @@
       "property-based-testing",
       "red-green-tdd",
       "regulated-environment",
+      "residuality-theory",
       "semantic-versioning",
       "separation-of-concerns",
+      "simplified-technical-english",
       "single-level-of-abstraction-principle",
       "site-reliability-engineering",
       "solid-dip",
@@ -553,9 +622,12 @@
   {
     "id": "systems-thinker",
     "name": "Systems Thinker",
+    "name_de": "Systems Thinker",
     "anchors": [
       "luhmann-system-theory",
       "meaningful-human-control",
+      "residuality-theory",
+      "second-order-thinking",
       "simon-constructivism",
       "systemic-consulting"
     ]
@@ -563,6 +635,7 @@
   {
     "id": "team-lead",
     "name": "Team Lead / Engineering Manager",
+    "name_de": "Teamleiter / Engineering Manager",
     "anchors": [
       "4mat",
       "adr-according-to-nygard",
@@ -581,6 +654,7 @@
       "definition-of-done",
       "devils-advocate",
       "disc-model",
+      "dmaic",
       "domain-driven-design",
       "dreyfus-skill-acquisition",
       "eisenhower-matrix",
@@ -603,6 +677,7 @@
       "kotter-8-step-change-model",
       "lasr",
       "lehmans-classification",
+      "locality-of-behaviour",
       "luhmann-system-theory",
       "madr",
       "meaningful-human-control",
@@ -616,11 +691,14 @@
       "para-method",
       "pert",
       "prd",
+      "premortem",
       "problem-space-nvc",
       "pugh-matrix",
       "pyramid-principle",
       "quality-attribute-scenario",
       "regulated-environment",
+      "residuality-theory",
+      "second-order-thinking",
       "simon-constructivism",
       "site-reliability-engineering",
       "socratic-method",
@@ -644,6 +722,7 @@
   {
     "id": "technical-writer",
     "name": "Technical Writer / Documentation Specialist",
+    "name_de": "Technischer Redakteur",
     "anchors": [
       "4mat",
       "addie-model",
@@ -669,6 +748,7 @@
       "pyramid-principle",
       "save-the-cat",
       "sender-receiver-discrepancy",
+      "simplified-technical-english",
       "story-circle-dan-harmon",
       "three-act-structure",
       "todotxt-flavoured-markdown",
@@ -678,6 +758,7 @@
   {
     "id": "ux-designer",
     "name": "UX Designer / Researcher",
+    "name_de": "UX-Designer / UX-Researcher",
     "anchors": [
       "aida-model",
       "bem-methodology",

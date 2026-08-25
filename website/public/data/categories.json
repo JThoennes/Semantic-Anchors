@@ -76,6 +76,7 @@
       "iosp",
       "kiss-principle",
       "law-of-demeter",
+      "locality-of-behaviour",
       "postels-law",
       "separation-of-concerns",
       "single-level-of-abstraction-principle",
@@ -100,6 +101,7 @@
       "definition-of-done",
       "effective-go",
       "effective-java",
+      "effective-python",
       "github-flow",
       "mental-model-according-to-naur",
       "mikado-method",
@@ -126,7 +128,8 @@
     "name": "Documentation",
     "anchors": [
       "diataxis-framework",
-      "docs-as-code"
+      "docs-as-code",
+      "simplified-technical-english"
     ]
   },
   {
@@ -157,6 +160,7 @@
       "chain-of-thought",
       "decisional-balance-sheet",
       "devils-advocate",
+      "dmaic",
       "double-diamond",
       "fermi-estimation",
       "feynman-technique",
@@ -165,6 +169,8 @@
       "luhmann-system-theory",
       "morphological-box",
       "occams-razor",
+      "premortem",
+      "second-order-thinking",
       "simon-constructivism",
       "systemic-consulting",
       "what-would-chuck-norris-do",
@@ -214,6 +220,7 @@
       "lehmans-classification",
       "madr",
       "quality-attribute-scenario",
+      "residuality-theory",
       "strangler-fig",
       "team-topologies",
       "tracer-bullet",
@@ -227,6 +234,7 @@
     "name": "Statistical Methods & Process Monitoring",
     "anchors": [
       "control-chart-shewhart",
+      "dmaic",
       "nelson-rules",
       "spc"
     ]
@@ -249,7 +257,9 @@
       "mvp",
       "okr",
       "pert",
+      "premortem",
       "pugh-matrix",
+      "second-order-thinking",
       "swot",
       "wardley-mapping"
     ]

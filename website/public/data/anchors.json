@@ -99,7 +99,8 @@
     "roles": [
       "software-architect",
       "software-developer",
-      "team-lead"
+      "team-lead",
+      "legal-compliance"
     ],
     "related": [
       "madr",
@@ -161,7 +162,8 @@
     "roles": [
       "software-architect",
       "technical-writer",
-      "team-lead"
+      "team-lead",
+      "legal-compliance"
     ],
     "related": [
       "c4-diagrams",
@@ -399,7 +401,8 @@
       "software-architect",
       "technical-writer",
       "team-lead",
-      "consultant"
+      "consultant",
+      "legal-compliance"
     ],
     "related": [
       "arc42",
@@ -502,7 +505,8 @@
     "related": [
       "fallacies-of-distributed-computing",
       "cap-theorem",
-      "event-driven-architecture"
+      "event-driven-architecture",
+      "residuality-theory"
     ],
     "proponents": [
       "Michael Nygard",
@@ -695,7 +699,8 @@
     ],
     "related": [
       "spc",
-      "nelson-rules"
+      "nelson-rules",
+      "dmaic"
     ],
     "proponents": [
       "Walter A. Shewhart"
@@ -889,7 +894,8 @@
       "software-architect"
     ],
     "related": [
-      "wardley-mapping"
+      "wardley-mapping",
+      "residuality-theory"
     ],
     "proponents": [
       "Dave Snowden"
@@ -1131,6 +1137,43 @@
     "addedAt": "2026-07-07T06:48:54+02:00"
   },
   {
+    "id": "dmaic",
+    "title": "DMAIC",
+    "categories": [
+      "problem-solving",
+      "statistical-methods"
+    ],
+    "roles": [
+      "team-lead",
+      "consultant",
+      "data-scientist",
+      "qa-engineer"
+    ],
+    "related": [
+      "spc",
+      "control-chart-shewhart",
+      "nelson-rules",
+      "five-whys"
+    ],
+    "proponents": [
+      "Bill Smith (Motorola)",
+      "Mikel J. Harry",
+      "General Electric"
+    ],
+    "tags": [
+      "DMAIC",
+      "Six Sigma",
+      "process improvement",
+      "define measure analyze improve control",
+      "root cause analysis",
+      "control plan",
+      "quality"
+    ],
+    "filePath": "docs/anchors/dmaic.adoc",
+    "tier": 3,
+    "addedAt": "2026-07-24T20:50:56+02:00"
+  },
+  {
     "id": "docs-as-code",
     "title": "Docs-as-Code according to Ralf D. Müller",
     "categories": [
@@ -1176,7 +1219,8 @@
     "related": [
       "hexagonal-architecture",
       "clean-architecture",
-      "event-storming"
+      "event-storming",
+      "residuality-theory"
     ],
     "proponents": [
       "Eric Evans"
@@ -1377,6 +1421,35 @@
     "filePath": "docs/anchors/effective-java.adoc",
     "tier": 3,
     "addedAt": "2026-06-26T20:19:59+00:00"
+  },
+  {
+    "id": "effective-python",
+    "title": "Effective Python",
+    "categories": [
+      "development-workflow"
+    ],
+    "roles": [
+      "software-developer",
+      "software-architect"
+    ],
+    "related": [
+      "effective-java",
+      "effective-go",
+      "solid-principles"
+    ],
+    "proponents": [
+      "Brett Slatkin"
+    ],
+    "tags": [
+      "python",
+      "best-practices",
+      "idiomatic",
+      "pythonic",
+      "style-guide"
+    ],
+    "filePath": "docs/anchors/effective-python.adoc",
+    "tier": 3,
+    "addedAt": "2026-07-14T11:34:13+02:00"
   },
   {
     "id": "eisenhower-matrix",
@@ -1690,7 +1763,8 @@
     "related": [
       "socratic-method",
       "xy-problem",
-      "first-principles-thinking"
+      "first-principles-thinking",
+      "dmaic"
     ],
     "proponents": [
       "Sakichi Toyoda",
@@ -3069,7 +3143,9 @@
       "software-architect",
       "qa-engineer",
       "devops-engineer",
-      "consultant"
+      "consultant",
+      "legal-compliance",
+      "ethics-officer"
     ],
     "related": [
       "testing-pyramid",
@@ -3560,7 +3636,8 @@
       "qa-engineer",
       "business-analyst",
       "consultant",
-      "devops-engineer"
+      "devops-engineer",
+      "data-protection-officer"
     ],
     "related": [
       "owasp-top-10",
@@ -3618,6 +3695,56 @@
     "filePath": "docs/anchors/llm-evaluations.adoc",
     "tier": 3,
     "addedAt": "2026-03-18T09:46:17+00:00"
+  },
+  {
+    "id": "locality-of-behaviour",
+    "title": "Locality of Behaviour",
+    "categories": [
+      "design-principles"
+    ],
+    "roles": [
+      "software-developer",
+      "software-architect",
+      "team-lead"
+    ],
+    "related": [
+      "separation-of-concerns",
+      "dry",
+      "deep-modules",
+      "solid-srp"
+    ],
+    "proponents": [
+      "Carson Gross"
+    ],
+    "tags": [
+      "locality of behaviour",
+      "locality of behavior",
+      "LoB",
+      "htmx",
+      "co-location",
+      "action at a distance",
+      "readability",
+      "hypermedia",
+      "separation of concerns"
+    ],
+    "filePath": "docs/anchors/locality-of-behaviour.adoc",
+    "tier": 3,
+    "priorTest": "2026-08-14",
+    "testedOn": [
+      {
+        "model": "haiku-4.5",
+        "works": true
+      },
+      {
+        "model": "sonnet-5",
+        "works": true
+      },
+      {
+        "model": "opus-5",
+        "works": true
+      }
+    ],
+    "addedAt": "2026-08-14T10:36:08+02:00"
   },
   {
     "id": "luhmann-system-theory",
@@ -3695,7 +3822,10 @@
       "educator",
       "team-lead",
       "data-scientist",
-      "systems-thinker"
+      "systems-thinker",
+      "data-protection-officer",
+      "ethics-officer",
+      "legal-compliance"
     ],
     "related": [
       "regulated-environment",
@@ -3986,7 +4116,8 @@
     ],
     "related": [
       "control-chart-shewhart",
-      "spc"
+      "spc",
+      "dmaic"
     ],
     "proponents": [
       "Lloyd S. Nelson"
@@ -4076,7 +4207,8 @@
       "qa-engineer",
       "devops-engineer",
       "consultant",
-      "team-lead"
+      "team-lead",
+      "data-protection-officer"
     ],
     "related": [
       "regulated-environment",
@@ -4263,6 +4395,58 @@
     "addedAt": "2026-03-13T20:35:23+00:00"
   },
   {
+    "id": "premortem",
+    "title": "Premortem",
+    "categories": [
+      "problem-solving",
+      "strategic-planning"
+    ],
+    "roles": [
+      "software-architect",
+      "team-lead",
+      "product-owner",
+      "consultant",
+      "qa-engineer"
+    ],
+    "related": [
+      "five-whys",
+      "second-order-thinking",
+      "devils-advocate",
+      "cynefin-framework"
+    ],
+    "proponents": [
+      "Gary Klein"
+    ],
+    "tags": [
+      "premortem",
+      "pre-mortem",
+      "prospective hindsight",
+      "project risk",
+      "planning",
+      "failure analysis",
+      "decision making",
+      "Klein"
+    ],
+    "filePath": "docs/anchors/premortem.adoc",
+    "tier": 3,
+    "priorTest": "2026-08-14",
+    "testedOn": [
+      {
+        "model": "haiku-4.5",
+        "works": true
+      },
+      {
+        "model": "sonnet-5",
+        "works": true
+      },
+      {
+        "model": "opus-5",
+        "works": true
+      }
+    ],
+    "addedAt": "2026-08-14T08:31:54+02:00"
+  },
+  {
     "id": "problem-space-nvc",
     "title": "Nonviolent Communication (Rosenberg)",
     "categories": [
@@ -4429,7 +4613,9 @@
       "software-architect",
       "business-analyst",
       "product-owner",
-      "team-lead"
+      "team-lead",
+      "data-protection-officer",
+      "ethics-officer"
     ],
     "related": [
       "atam",
@@ -4497,7 +4683,10 @@
       "devops-engineer",
       "team-lead",
       "consultant",
-      "business-analyst"
+      "business-analyst",
+      "data-protection-officer",
+      "legal-compliance",
+      "ethics-officer"
     ],
     "related": [
       "iec-61508-sil-levels",
@@ -4561,6 +4750,42 @@
     "addedAt": "2026-06-26T20:19:59+00:00"
   },
   {
+    "id": "residuality-theory",
+    "title": "Residuality Theory",
+    "categories": [
+      "software-architecture"
+    ],
+    "roles": [
+      "software-architect",
+      "software-developer",
+      "team-lead",
+      "consultant",
+      "systems-thinker"
+    ],
+    "related": [
+      "strangler-fig",
+      "cynefin-framework",
+      "domain-driven-design",
+      "circuit-breaker"
+    ],
+    "proponents": [
+      "Barry M. O'Reilly"
+    ],
+    "tags": [
+      "residuality",
+      "residues",
+      "stressors",
+      "contagion analysis",
+      "complexity science",
+      "uncertainty",
+      "software architecture",
+      "naive architecture"
+    ],
+    "filePath": "docs/anchors/residuality-theory.adoc",
+    "tier": 2,
+    "addedAt": "2026-07-24T20:57:14+02:00"
+  },
+  {
     "id": "save-the-cat",
     "title": "Save the Cat! (15-Beat Sheet)",
     "categories": [
@@ -4594,6 +4819,60 @@
     "filePath": "docs/anchors/save-the-cat.adoc",
     "tier": 3,
     "addedAt": "2026-03-29T15:18:24+00:00"
+  },
+  {
+    "id": "second-order-thinking",
+    "title": "Second-Order Thinking",
+    "categories": [
+      "problem-solving",
+      "strategic-planning"
+    ],
+    "roles": [
+      "software-architect",
+      "team-lead",
+      "product-owner",
+      "consultant",
+      "systems-thinker"
+    ],
+    "related": [
+      "first-principles-thinking",
+      "premortem",
+      "five-whys",
+      "cynefin-framework"
+    ],
+    "proponents": [
+      "Howard Marks",
+      "Ray Dalio",
+      "Shane Parrish (Farnam Street)"
+    ],
+    "tags": [
+      "second-order thinking",
+      "second-level thinking",
+      "consequences of consequences",
+      "unintended consequences",
+      "decision making",
+      "mental models",
+      "Marks",
+      "Dalio"
+    ],
+    "filePath": "docs/anchors/second-order-thinking.adoc",
+    "tier": 3,
+    "priorTest": "2026-08-14",
+    "testedOn": [
+      {
+        "model": "haiku-4.5",
+        "works": true
+      },
+      {
+        "model": "sonnet-5",
+        "works": true
+      },
+      {
+        "model": "opus-5",
+        "works": true
+      }
+    ],
+    "addedAt": "2026-08-14T08:31:54+02:00"
   },
   {
     "id": "semantic-versioning",
@@ -4727,6 +5006,55 @@
     "addedAt": "2026-05-21T07:45:07+02:00"
   },
   {
+    "id": "simplified-technical-english",
+    "title": "Simplified Technical English (ASD-STE100)",
+    "categories": [
+      "documentation"
+    ],
+    "roles": [
+      "technical-writer",
+      "software-developer",
+      "requirements-engineer"
+    ],
+    "related": [
+      "plain-english-strunk-white",
+      "gutes-deutsch-wolf-schneider",
+      "docs-as-code"
+    ],
+    "proponents": [
+      "ASD (AeroSpace and Defence Industries Association of Europe)",
+      "STEMG"
+    ],
+    "tags": [
+      "Simplified Technical English",
+      "ASD-STE100",
+      "STE",
+      "controlled language",
+      "controlled natural language",
+      "technical documentation",
+      "approved words",
+      "AECMA"
+    ],
+    "filePath": "docs/anchors/simplified-technical-english.adoc",
+    "tier": 2,
+    "priorTest": "2026-08-14",
+    "testedOn": [
+      {
+        "model": "haiku-4.5",
+        "works": false
+      },
+      {
+        "model": "sonnet-5",
+        "works": true
+      },
+      {
+        "model": "opus-5",
+        "works": true
+      }
+    ],
+    "addedAt": "2026-08-14T11:05:06+02:00"
+  },
+  {
     "id": "single-level-of-abstraction-principle",
     "title": "Single Level of Abstraction Principle (SLAP)",
     "categories": [
@@ -4768,7 +5096,8 @@
       "devops-engineer",
       "software-architect",
       "team-lead",
-      "software-developer"
+      "software-developer",
+      "legal-compliance"
     ],
     "related": [
       "five-whys",
@@ -5061,7 +5390,8 @@
     ],
     "related": [
       "control-chart-shewhart",
-      "nelson-rules"
+      "nelson-rules",
+      "dmaic"
     ],
     "proponents": [
       "Walter A. Shewhart (founder)",
@@ -5195,7 +5525,8 @@
     "related": [
       "domain-driven-design",
       "event-driven-architecture",
-      "clean-architecture"
+      "clean-architecture",
+      "residuality-theory"
     ],
     "proponents": [
       "Martin Fowler"
@@ -5224,7 +5555,8 @@
       "qa-engineer",
       "devops-engineer",
       "consultant",
-      "team-lead"
+      "team-lead",
+      "data-protection-officer"
     ],
     "related": [
       "owasp-top-10",
@@ -5641,7 +5973,8 @@
       "software-developer",
       "qa-engineer",
       "team-lead",
-      "devops-engineer"
+      "devops-engineer",
+      "legal-compliance"
     ],
     "related": [
       "tdd-london-school",
@@ -5834,7 +6167,8 @@
     "roles": [
       "software-developer",
       "devops-engineer",
-      "software-architect"
+      "software-architect",
+      "legal-compliance"
     ],
     "related": [
       "clean-architecture",
