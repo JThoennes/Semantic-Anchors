@@ -27,6 +27,7 @@
 const fs = require('fs')
 const path = require('path')
 const { extractDescription } = require('./generate-jsonld.js')
+const APPEARANCES = require('../website/src/data/appearances.json')
 
 const DIST = path.join(__dirname, '..', 'website', 'dist')
 const SHELL = path.join(DIST, 'index.html')
@@ -613,6 +614,32 @@ function prerenderAnchorPages(shell) {
  * single-sourced from the translations so it never drifts from the live
  * hero. EN overwrites dist/index.html, DE goes to dist/de/index.html.
  */
+/**
+ * Static mirror of the appearances strip under the hero. Deliberately simpler
+ * markup than the live component — same reason the static hero drops the
+ * before/after example: crawlers need the links and the labels, not the
+ * styling. The data is the same JSON the app renders, so the two cannot drift
+ * on who is listed.
+ */
+function buildAppearancesMarkup(tr) {
+  const group = (kind) =>
+    APPEARANCES.filter((entry) => entry.kind === kind)
+      .map(
+        (entry) =>
+          `<a href="${entry.href}" target="_blank" rel="noopener noreferrer">${escapeHtml(
+            entry.label
+          )}</a>`
+      )
+      .join(', ')
+
+  return `
+      <section class="mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8">
+        <p>${escapeHtml(tr['footer.featuredIn'] || '')}: ${group('press')}. ${escapeHtml(
+          tr['footer.asSeenOn'] || ''
+        )}: ${group('appearance')}.</p>
+      </section>`
+}
+
 function writeHomeVariant(shell, lang) {
   const tr = loadWebsiteJson(`src/translations/${lang}.json`)
   const title = tr['hero.title'] || ''
@@ -634,6 +661,7 @@ function writeHomeVariant(shell, lang) {
         <h2 class="text-2xl font-bold mb-2">${escapeHtml(answerHeading)}</h2>
         <p class="anchor-answer max-w-3xl" data-answer-block>${escapeHtml(answerBody)}</p>
       </section>
+      ${buildAppearancesMarkup(tr)}
       ${buildCatalogMarkup(lang, tr)}
     `
 

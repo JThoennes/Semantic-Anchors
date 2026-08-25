@@ -1,4 +1,5 @@
 import { i18n } from '../i18n.js'
+import { renderAppearances } from '../data/appearances.js'
 
 const HERO_EXAMPLE_COUNT = 6
 
@@ -46,6 +47,27 @@ export function renderMain() {
           <p class="text-sm text-[var(--color-text-secondary)] italic mb-8 max-w-3xl" data-i18n="${keyExpansion}">
             ${i18n.t(keyExpansion)}
           </p>
+
+          <!-- Third-party coverage belongs where people actually look. In the
+               footer it sat below ~200 anchor cards, which nobody scrolls to.
+               Press and appearances stay separately labelled: one is written
+               about us, the other is a conversation we joined. -->
+          <section
+            id="appearances"
+            class="mb-8 border-y border-[var(--color-border)] py-3"
+            aria-label="${i18n.t('footer.featuredIn')}"
+          >
+            <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+              <span class="text-xs text-[var(--color-text-secondary)]" data-i18n="footer.featuredIn">${i18n.t('footer.featuredIn')}</span>
+              ${renderAppearances('press', import.meta.env.BASE_URL, (k) => i18n.t(k))}
+              <span
+              class="w-full sm:mx-1 sm:h-4 sm:w-px sm:bg-[var(--color-border)]"
+              aria-hidden="true"
+            ></span>
+              <span class="text-xs text-[var(--color-text-secondary)]" data-i18n="footer.asSeenOn">${i18n.t('footer.asSeenOn')}</span>
+              ${renderAppearances('appearance', import.meta.env.BASE_URL, (k) => i18n.t(k))}
+            </div>
+          </section>
 
           <h2 class="text-lg font-semibold text-[var(--color-text)] mb-3" data-i18n="hero.howToUseTitle">
             ${i18n.t('hero.howToUseTitle')}
