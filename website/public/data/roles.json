@@ -119,6 +119,7 @@
       "systemic-consulting",
       "three-act-structure",
       "timtowtdi",
+      "tufte-style",
       "wardley-mapping",
       "what-qualifies-as-a-semantic-anchor",
       "what-would-chuck-norris-do",
@@ -159,7 +160,8 @@
       "nelson-rules",
       "sota",
       "spc",
-      "ssot-principle"
+      "ssot-principle",
+      "tufte-style"
     ]
   },
   {
@@ -610,6 +612,7 @@
       "timtowtdi",
       "todotxt-flavoured-markdown",
       "tracer-bullet",
+      "tufte-style",
       "twelve-factor-app",
       "unix-philosophy",
       "vertical-slice-architecture",
@@ -752,6 +755,7 @@
       "story-circle-dan-harmon",
       "three-act-structure",
       "todotxt-flavoured-markdown",
+      "tufte-style",
       "zone-of-proximal-development"
     ]
   },
@@ -772,6 +776,7 @@
       "myers-briggs-type-indicator",
       "problem-space-nvc",
       "progressive-disclosure",
+      "tufte-style",
       "user-story-mapping"
     ]
   }

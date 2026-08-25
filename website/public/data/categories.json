@@ -21,6 +21,7 @@
       "progressive-disclosure",
       "pyramid-principle",
       "sender-receiver-discrepancy",
+      "tufte-style",
       "zone-of-proximal-development"
     ]
   },
@@ -87,6 +88,7 @@
       "solid-principles",
       "solid-srp",
       "ssot-principle",
+      "tufte-style",
       "unix-philosophy",
       "yagni"
     ]

@@ -62,6 +62,9 @@ include::anchors/pyramid-principle.adoc[leveloffset=+2]
 [[sender-receiver-discrepancy]]
 include::anchors/sender-receiver-discrepancy.adoc[leveloffset=+2]
 
+[[tufte-style]]
+include::anchors/tufte-style.adoc[leveloffset=+2]
+
 [[zone-of-proximal-development]]
 include::anchors/zone-of-proximal-development.adoc[leveloffset=+2]
 
@@ -231,6 +234,8 @@ include::anchors/solid-srp.adoc[leveloffset=+2]
 
 [[ssot-principle]]
 include::anchors/ssot-principle.adoc[leveloffset=+2]
+
+include::anchors/tufte-style.adoc[leveloffset=+2]
 
 [[unix-philosophy]]
 include::anchors/unix-philosophy.adoc[leveloffset=+2]

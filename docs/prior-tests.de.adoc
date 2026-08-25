@@ -188,3 +188,92 @@ Derselbe Absatz wurde dreifach umgeschrieben: mit Zinssers Namen, nur mit den vi
 *Ein Contract wurde ebenfalls nicht angelegt.* Der bestehende `writing-style`-Contract nennt Strunk & White und Wolf Schneider bereits und stellt acht konkrete Regeln auf. Vier Adjektive fügen dem operativ nichts hinzu; das ehrliche Ergebnis ist deshalb ein Ablehnungseintrag, kein drittes Etikett auf demselben Regal.
 
 *Kritik-Recherche, 14.08.2026, Englisch und Deutsch.* Geoffrey K. Pullum hat _On Writing Well_ eigenständig angegriffen, nicht nur Strunk & White („Awful book, so I bought it", Language Log, 21. März 2015) und nennt die Kapitel zu Passiv und Modifikatoren „mendacious drivel"; Mark Liberman legte drei Tage später mit Korpusdaten nach. Deutsche Rezeption: null — keine Übersetzung, keine Diskussion auffindbar. Die Nachbarschaft zu _Gutes Deutsch nach Wolf Schneider_ wäre unsere Konstruktion gewesen, keine belegte Linie.
+
+== Lauf vom 25.08.2026
+
+[cols="1,3"]
+|===
+|Verfahren |`anchor-prior-test` v1.0
+|Modelle |`claude-haiku-4-5-20251001` (schwach), `claude-sonnet-5` (mittel), `claude-opus-5` (stark)
+|Läufe |P1 und P3 zweimal je Tier; P3 auf einer zweiten Aufgabe zweimal auf schwachem und starkem Tier; P2 und P4 auf schwachem und starkem Tier; ein Vergleich dreier Namensformen auf dem schwachen Tier
+|Reinraum |`claude -p --strict-mcp-config --setting-sources ""` aus `/tmp/anchor-probe`; geprüft mit der Frage nach eigenen Instruktionen, Antwort: „None are currently loaded in my context."
+|Nicht geprüft |Ältere Modellgenerationen sind über diesen Weg nicht erreichbar. Die Befunde sind eine Untergrenze.
+|===
+
+=== Tufte Style
+
+[cols="2,1,3"]
+|===
+|Kriterium |Urteil |Beleg
+
+|Präzise |erfüllt |P2 liefert auf beiden Tiers Datenvisualisierung und Informationsdesign als dominantes Feld; Dokumenttypografie erscheint als benannte Zweitbedeutung, nicht als Konkurrent
+|Reichhaltig |erfüllt |5 von 6 Läufen melden `richness=rich`, einer auf dem schwachen Tier `moderate`. Alle sechs nennen Tuftes eigenes Vokabular -- Data-Ink-Ratio, Chartjunk, Small Multiples, Sparklines, Lie Factor
+|Konsistent |erfüllt |P1 und P3 stimmen über alle drei Tiers überein
+|Zuschreibbar |erfüllt |P4 liefert auf beiden Tiers Edward Tufte mit `confidence=high`
+|Prior-Dichte |stark |Auf dem schwachen Tier erkannt und als Anweisung wirksam
+|===
+
+Tier ★★★, Route: Anker. Drei Befunde stehen unten einzeln statt im Urteil verrechnet, und der erste betrifft das Verfahren, nicht den Begriff.
+
+*Die erste Aktionsprobe maß nichts, weil die Antwort schon in der Aufgabe steckte.* Verlangt war ein CI-Dashboard auf einem Screen, drei Metriken, zwölf Teams, neunzig Tage. Dichte war damit eine Anforderung der Aufgabe und keine Leistung des Ankers -- die neutrale Baseline des starken Tiers nannte mehr Sparklines als der geankerte Lauf (10 und 11 gegen 8 und 7). Nur auf dem schwachen Tier zeigte sich ein Lift (7 und 7 gegen 1 und 3).
+
+Das ist ein Fehler der Probe, und er verallgemeinert sich: *eine Aktionsaufgabe darf den charakteristischen Zug des Begriffs nicht schon enthalten.* Erzwingt die Aufgabe die Struktur, ist ein Nullbefund wertlos -- er unterscheidet nicht zwischen „das Modell hat das längst verinnerlicht" und „ich habe im Prompt danach gefragt".
+
+*Auf einer Aufgabe, deren Default dekorativ ist, trennt die Probe auf jedem Tier sauber.* Die zweite Aufgabe verlangte einen einseitigen Monatsbericht für die Geschäftsleitung eines SaaS-Unternehmens. Nichts daran ruft nach Dichte.
+
+[cols="3,1,1"]
+|===
+| |Geankert |Neutrale Baseline
+
+|Sparklines genannt (schwaches Tier) |6, 5 |0, 0
+|Sparklines genannt (starkes Tier) |4, 4 |2, 1
+|Small Multiples (starkes Tier) |2, 2 |0, 0
+|„Data-Ink" genannt (beide Tiers) |1, 1, 1, 1 |0, 0, 0, 0
+|===
+
+Das selbst benannte Gestaltungsprinzip trennt entlang derselben Linie. Alle vier geankerten Läufe antworten mit einer Variante von „maximize data-ink"; die Baseline antwortet „inverted pyramid -- metrics first", „fixed-skeleton inverted pyramid -- answer first, evidence beneath" und „answer-first hierarchy on a fixed 12-column grid". Der ungeankerte Default für einen Vorstandsbericht ist eine rhetorische Hierarchie, keine grafische.
+
+Am schärfsten zeigt es ein einzelnes Gestaltungselement, das in beide Richtungen entschieden wurde. Der geankerte Lauf verlangt eine Übersichtstabelle, in der „`vs. plan` carries a signed value only, no arrows, no traffic lights". Die Baseline verlangt an derselben Stelle „change vs. prior month and vs. plan, in that order, with arrow glyphs -- `▲ 3.1% MoM · ▲ 1.2% vs plan`".
+
+*Die geankerten Läufe greifen zu Konstrukten, die generischer Minimalismus nicht enthält* -- daran unterscheidet sich ein dichter Prior von einer plausiblen Rekonstruktion. Wörtlich vom starken Tier:
+
+[quote]
+____
+A range-frame vertical axis: the axis line is drawn only from the series minimum to its maximum, with ticks at min, first quartile, median, third quartile, max, labeled with the actual data values ($18.2M, $21.4M, …), not round numbers.
+____
+
+[quote]
+____
+a dot-dash plot of weekly ticket volume over 52 weeks -- the data points as 1 pt dots joined by a hairline, with marginal rug ticks on both axes marking each observation's x and y position, so the distribution of the data doubles as the axis.
+____
+
+Range-Frame und Dot-Dash-Plot sind Tuftes eigene Erfindungen aus _The Visual Display of Quantitative Information_. Keines von beiden stand im Prompt.
+
+*Das schwache Tier meldet in beiden P1-Läufen `reaching=yes` -- und widerspricht sich mit dem eigenen Text.* Reproduziertes, selbst gemeldetes Reaching ist sonst das klarste Zeichen für einen dünnen Prior; es hat im Eintrag zu Second-Order Thinking oben den Namen entschieden. Hier ist es ein falscher Alarm. Reaching heißt operativ: allgemeiner Inhalt ohne Spezifika. Der Inhalt des schwachen Tiers ist beides nicht -- beide Läufe nennen Lie Factor, Moiré-Muster, Small Multiples, Sparklines und die Data-Ink-Ratio.
+
+Ein Vergleich dreier Namensformen auf dem schwachen Tier zeigt, woran die Meldung hängt:
+
+[cols="3,1,1,1"]
+|===
+| |„Tufte style" |„Tufte's design principles" |„Tufte's principles of information design"
+
+|`reaching=yes` (schwaches Tier) |2 von 2 |2 von 2 |2 von 2
+|Lie Factor genannt |2/2 |2/2 |2/2
+|Chartjunk genannt |2/2 |2/2 |2/2
+|Small Multiples genannt |2/2 |2/2 |2/2
+|`reaching` (starkes Tier) |nein |nein |nein
+|===
+
+Keine Namensform trennt sich von einer anderen. Die Meldung hängt am Eigennamen, nicht am Zusatz, und trägt damit keine Namensentscheidung -- der Eintrag behält den String des Vorschlagenden, der zugleich der String der Werkzeuge ist (`theme_tufte`, Tufte CSS, `matplotlib-tufte`).
+
+*Die Lehre für die Batterie: `reaching` ist eine Selbstauskunft und muss am Inhalt geprüft werden, nicht an der `SELF:`-Zeile.* Ein Modell, das unaufgefordert das Privatvokabular eines Autors produziert, rekonstruiert nicht aus den Wörtern des Begriffs.
+
+*Der Name deckt zwei getrennte Bedeutungen ab, und beide sind real.* P2 liefert auf dem starken Tier „data visualization / information design" als dominant und „typography and document design" als sekundär. Die zweite Bedeutung ist kein Modellartefakt: https://edwardtufte.github.io/tufte-css/[Tufte CSS] beschreibt sich selbst als „tools to style web articles using the ideas demonstrated by Edward Tufte's books and handouts" und nennt Seitennoten „one of the most distinctive features of Tufte's style"; https://ctan.org/pkg/tufte-latex[tufte-latex] bietet auf CTAN „document classes inspired by the work of Edward Tufte". Die Diagramm-Bedeutung ist genauso tokenisiert: `theme_tufte` in ggthemes ist dokumentiert als „Theme based on Chapter 6 'Data-Ink Maximization and Graphical Design' of Edward Tufte The Visual Display of Quantitative Information. No border, no axis lines, no grids." Da die dominante Lesart über die Tiers stabil ist, braucht der Katalogname keinen Zusatz; die Mehrdeutigkeit steht stattdessen im Anker.
+
+*Kritik-Recherche, 25.08.2026, Englisch und Deutsch.* Das ist der bestbelegte Kritik-Abschnitt des Katalogs bisher: fünf benannte Quellen, per Abruf verifiziert, verteilt auf drei Ziele, die regelmäßig verwechselt werden. Bateman et al. (CHI 2010), Inbar/Tractinsky/Meyer (ECCE 2007) und Borkin et al. (InfoVis 2013) prüfen die *Prinzipien*; Robison, Boisjoly, Hoeker und Young (2002) bestreiten die *Challenger-Analyse*; Don Norman streitet mit dem *PowerPoint-Essay*. Roger Boisjoly, Zweitautor der Challenger-Arbeit, ist einer der Ingenieure, über die Tufte geschrieben hat -- mehr Standing für diesen Einwand gibt es nicht.
+
+*Eine Vorhersage wurde getroffen und korrigiert.* Stephen Few galt als der hauseigene Tufte-Kritiker der Disziplin. Er ist das Gegenteil: In „The Chartjunk Debate" (2011) greift er *Batemans* Schlussfolgerung an und verteidigt die minimalistische Position. Er steht im Anker als Gegenstimme, nicht als Kritiker.
+
+*Drei Grenzen, benannt statt geglättet.* Der viel zitierte Borkin-Befund, wonach niedrige Data-Ink-Ratio und hohe visuelle Dichte die Erinnerbarkeit verbessern, steht im Fließtext der Arbeit, und jeder menschenlesbare Spiegel schlug fehl -- IEEE und ACM antworten mit 403, die MIT-Kopien sind nicht erreichbar, die Wayback-Kopie ist abgeschnitten. Verifiziert sind nur Abstract und Harvard-Pressemitteilung, deshalb zitiert der Anker die Rahmung und nicht diesen Befund. Die meistzitierte Zeile aus Robison et al. -- Tuftes Kritik stelle „so badly misrepresents the position of those being critiqued" -- erschien nur in Suchzusammenfassungen und auf keiner abrufbaren Seite, sie wird deshalb nirgends im Katalog zitiert; der Springer-Volltext ist kostenpflichtig. Und Li & Moacdiehs Erweiterung von Bateman aus 2014 tauchte in der Suche auf, wurde aber nicht verifiziert und wird nicht zitiert.
+
+*Deutsch: nichts Zuschreibbares, und der Grund ist der Rahmen, nicht das Thema.* Sechs deutsche Frageformen lieferten Methodenbeschreibungen, Hochschulfolien und Übersetzungen englischer Originale; der deutsche Wikipedia-Artikel hat keinen Kritik-Abschnitt. Das einzige deutsch geführte Medium mit echter kritischer Diskussion, der Datawrapper-Bookclub aus Berlin, veröffentlicht sie auf Englisch -- dort heißt es „I personally think most of his redesigns fail horribly" und „Tufte tries to make too many absolute theorems". Das ist Ebene 2 des Sprachrahmens: Die deutschsprachige Visualisierungsszene publiziert ihre Spitze auf Englisch, und ein eigenständig benanntes deutsches Werkzeug oder ein eigener Diskurs um Tufte, der auf eine verborgene Szene hindeuten würde, existiert nicht. Romanische und ostasiatische Rezeption wurde nicht gesucht.

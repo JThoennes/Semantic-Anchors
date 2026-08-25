@@ -6159,6 +6159,63 @@
     "addedAt": "2026-04-12T13:39:43+02:00"
   },
   {
+    "id": "tufte-style",
+    "title": "Tufte Style",
+    "categories": [
+      "communication-presentation",
+      "design-principles"
+    ],
+    "roles": [
+      "technical-writer",
+      "ux-designer",
+      "data-scientist",
+      "software-developer",
+      "consultant"
+    ],
+    "related": [
+      "progressive-disclosure",
+      "c4-diagrams",
+      "plain-english-strunk-white",
+      "bluf"
+    ],
+    "proponents": [
+      "Edward R. Tufte"
+    ],
+    "tags": [
+      "Tufte style",
+      "Edward Tufte",
+      "data-ink ratio",
+      "chartjunk",
+      "small multiples",
+      "sparklines",
+      "lie factor",
+      "graphical integrity",
+      "information design",
+      "data visualization",
+      "direct labeling",
+      "Tufte CSS",
+      "sidenotes",
+      "dashboard design"
+    ],
+    "filePath": "docs/anchors/tufte-style.adoc",
+    "tier": 3,
+    "priorTest": "2026-08-25",
+    "testedOn": [
+      {
+        "model": "haiku-4.5",
+        "works": true
+      },
+      {
+        "model": "sonnet-5",
+        "works": true
+      },
+      {
+        "model": "opus-5",
+        "works": true
+      }
+    ]
+  },
+  {
     "id": "twelve-factor-app",
     "title": "Twelve-Factor App",
     "categories": [
