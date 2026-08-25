@@ -6213,7 +6213,8 @@
         "model": "opus-5",
         "works": true
       }
-    ]
+    ],
+    "addedAt": "2026-08-25T09:12:59+02:00"
   },
   {
     "id": "twelve-factor-app",
