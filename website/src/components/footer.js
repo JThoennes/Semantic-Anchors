@@ -101,6 +101,24 @@ export function renderFooter(version) {
               />
               <span class="text-xs text-[var(--color-text-secondary)]">rabauer.dev (EN)</span>
             </a>
+            <span class="text-gray-300 dark:text-gray-600">|</span>
+            <a
+              href="https://byndcode.com/episodes/ep016-ralf-d-mueller/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 hover:opacity-80 transition-opacity"
+              title="${i18n.t('footer.byndcodeAlt')}"
+            >
+              <img
+                src="${import.meta.env.BASE_URL}byndcode-logo.png"
+                alt="Beyond Code Podcast"
+                width="24"
+                height="24"
+                class="h-6 w-auto rounded"
+                loading="lazy"
+              />
+              <span class="text-xs text-[var(--color-text-secondary)]">Beyond Code (DE)</span>
+            </a>
           </div>
           <div class="flex flex-wrap items-center justify-center gap-2 pt-1">
             <span class="text-xs text-[var(--color-text-secondary)]" data-i18n="footer.featuredIn">${i18n.t('footer.featuredIn')}</span>
