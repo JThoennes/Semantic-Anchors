@@ -1,6 +1,6 @@
 # Semantic Contracts
 
-> 19 composable contracts that define what terms mean in your project —
+> 21 composable contracts that define what terms mean in your project —
 > by composing established Semantic Anchors or by providing custom team definitions.
 > Add them to your AGENTS.md or CLAUDE.md.
 > Source: https://github.com/LLM-Coding/Semantic-Anchors
@@ -43,22 +43,9 @@ Document the result as a PRD (problem, goals, personas, success criteria, scope)
 
 _How we document architecture with diagrams, ADRs, and decision evaluation_
 
-Architecture documentation follows arc42. Scaffold the arc42 "with-help" template into the project's `src/docs/` via docToolchain `downloadTemplate` rather than restating chapter structure here — each chapter's help text is its structural spec, which the process fills and then replaces.
+Architecture documentation follows arc42. Diagrams are C4 via PlantUML's bundled C4-PlantUML standard library (the `!include <C4/...>` stdlib form), not Mermaid. Decisions are Nygard ADRs with a 3-point Pugh matrix. Quality requirements are six-part Quality Attribute Scenarios (Source, Stimulus, Artifact, Environment, Response, Response Measure) with a literal Response Measure.
 
-Every context, building-block and runtime chapter carries at least one diagram. Diagrams are PlantUML, not Mermaid; building blocks use C4 via PlantUML's bundled C4-PlantUML standard library — the `!include <C4/...>` stdlib form (angle brackets), never the remote `https://` URL and never vendored file copies. Not generic boxes.
-
-Decisions are ADRs (Nygard) with a 3-point Pugh Matrix (-1/0/+1). When the rationale is unconfirmed, ADR Status is "Accepted (inferred)" and Pugh cells needing team judgment are marked `?` rather than guessed. Each ADR's Consequences name the risks the decision creates, referencing the Chapter 11 risk IDs (R-NNN); a decision that creates a risk not yet in Chapter 11 either adds it there or records the consequence as explicitly accepted without a tracked risk. Conversely, Chapter 8 concepts back-reference the ADR that decided them.
-
-Cross-section traceability — arc42 templates do not enforce these, so the contract does:
-- Every Chapter 1.2 quality goal maps to a named approach in Chapter 4.
-- The external systems in Chapter 3 (context) and the Chapter 5 Level-1 building-block view are the same set — one system boundary in both.
-- Every Chapter 5 building block appears in at least one Chapter 6 runtime scenario; Chapter 6 includes at least one error/recovery scenario, not only the happy path.
-- Chapter 9 carries an in-document ADR index (ADR | Title | Status), even when the ADRs live in a separate register.
-- Each Chapter 5 building block states responsibility, interface, and source location.
-
-Chapter 1.2 lists only the top 3-5 quality goals — the ones that drive architecture decisions. Chapter 10 may elaborate further quality characteristics beyond those top goals; that is correct arc42, not a defect. The Chapter 10 quality tree marks each characteristic as either concretising a Chapter 1.2 top goal or as a derived quality requirement, and each Chapter 10 quality scenario cross-links back to the Chapter 1.2 goal it concretises (or is marked "derived"). Each Chapter 10 scenario is written in the six-part quality attribute scenario form (Source, Stimulus, Artifact, Environment, Response, Response Measure); the Response Measure carries a literal figure, so the requirement is testable rather than an adjective.
-
-Chapter 11 separates Risks from Technical Debt into two subsections. Each Risk carries probability, impact, a derived priority, and a mitigation/action cross-referencing an existing mitigation in Chapter 8 or a quality scenario where one exists; risks are ordered by priority. Each Technical Debt item references the specific Chapter 5 building block it burdens.
+That is the shared vocabulary. The procedure for actually producing such a document — scaffolding the arc42 with-help template, the cross-section traceability rules, the Chapter 11 Risks-vs-Technical-Debt structure, the ADR-to-risk-ID wiring, and the Chapter 1.2-vs-10 quality-goal marking — lives in the arc42-documentation skill, loaded on demand.
 
 *Referenced anchors: arc42, c4-diagrams, adr-according-to-nygard, pugh-matrix, quality-attribute-scenario*
 
@@ -124,11 +111,12 @@ For each issue:
 - Analyze and document analysis as a comment on the issue
 - Implement using TDD (London or Chicago School as appropriate)
 - Each test references its Use Case ID for traceability
+- Beyond example-based tests, write invariant tests: name the property that connects a calculation's inputs to its output and test it over a range of values. Ask which of these tests would still fail if a change altered the units, the granularity, or the cardinality of an input
 - Commit with Conventional Commits, reference issue number
-- Check if spec or architecture docs need updating
+- Verify the spec and architecture docs against the code: for each structural claim, confirm it still holds. Correct the document, never the code
 - When EPIC is complete, create a Pull Request
 
-*Referenced anchors: tdd-london-school, tdd-chicago-school, definition-of-done, conventional-commits*
+*Referenced anchors: tdd-london-school, tdd-chicago-school, property-based-testing, definition-of-done, conventional-commits*
 
 ## Refactoring
 
@@ -206,6 +194,22 @@ Recover a program's "theory" (Naur 1985) from source code through recursive ques
 
 *Referenced anchors: socratic-method, arc42, iso-25010, adr-according-to-nygard, mental-model-according-to-naur*
 
+## Documentation Verification
+
+_Check documented claims against the code, never the code against the document_
+
+Verify the documentation against the code, in both directions.
+- Ask what implementation revealed that the documents do not yet say
+- For each structural claim in the architecture and specification documents, confirm that it holds today: module names, class names, file paths, table and column names, enum values, invariants, start commands, and claims of the form "the only place where X happens"
+- List every claim that no longer holds, with document location and code location
+- Never change the code to match the document. The document states an intention, the code states reality. Correct the document, or open an issue where the code is wrong
+- Report how many claims were checked and how many had drifted
+- Make structural claims mechanically verifiable where the project allows it: table names, column names, module paths, enum values. Traceability tooling that only runs forward (every rule has a test) never notices a documented column the schema does not have
+- A structural claim that no test can verify does not belong in the documentation. Either make it verifiable or delete it
+- Run the verification again after the bug-fix loop, before release: fixes change behaviour, and changed behaviour is what makes a correct claim stale
+
+*Referenced anchors: docs-as-code, mental-model-according-to-naur, fagan-inspection*
+
 ## Concise Response (TLDR)
 
 _How responses should be structured for brevity_
@@ -228,7 +232,7 @@ _How to teach a topic until understanding is verified, not just explained_
 
 When asked to explain or teach something (including "why does X…"), act as a teacher running a dialogue, not a lecture — your goal is that the learner can apply it afterwards, not that you delivered it.
 
-Start by having the learner restate what they already understand (Socratic Method), so you teach the gap, not the whole topic; adjust depth on request (ELI5 / ELI-intern). Keep a short running checklist of what they must grasp — the problem and why it exists, the solution with its design decisions and edge cases, and why it matters — a Definition of Done for understanding, worked one item at a time.
+Start by having the learner restate what they already understand (Socratic Method), so you teach the gap, not the whole topic; adjust depth on request (ELI5 / ELI-intern). Keep a short running checklist of what they must grasp — the problem and why it exists, the solution with its design decisions and edge cases, and why it matters — a Definition of Done for understanding, worked one item at a time; for a long or multi-session explanation, persist that checklist as a file so it survives context loss and can be resumed.
 
 Take one small step per turn: fill the gap with questions, not answers; ask, or explain the next smallest piece in a few sentences and then check it — then stop and wait. Never stack several steps in one turn. Lead with why something matters before its mechanics (4MAT), and keep drilling into the why beneath the why — the reasoning behind the design, not just what it does (Naur); cover what and how too.
 
@@ -291,3 +295,17 @@ Evaluate the shortlisted architectures against the quality goals with ATAM, nami
 When the root cause of a problem stays unclear, drill down with the Five Whys before committing to a direction.
 
 *Referenced anchors: wardley-mapping, cynefin-framework, morphological-box, atam, five-whys*
+
+## Presentation Planning
+
+_How to plan a presentation around one audience and one core message_
+
+When asked to plan a presentation or talk, act as a planning partner in dialogue, not a slide generator — the goal is a plan the speaker can deliver, built around one audience and one core message.
+
+Elicit the brief with the Socratic Method — a few questions at a time, not a form: who the audience is and what they already know and care about, the single change you want in them (the core message or call to action), the setting and time budget, and the hard constraints. Design against the Curse of Knowledge — assume the audience lacks your context; cut jargon or unpack it.
+
+Shape the content top-down with the Pyramid Principle: one governing message, supported by a few MECE argument groups — no overlap, no gaps. Give the talk a spine with a narrative arc (Three-Act Structure, or Story Circle for a more personal journey): a setup that sets the stakes, a middle that builds through the supporting points, and a resolution that lands the core message. Lead each section with why it matters before the detail (4MAT); open with the bottom line, not a wind-up (BLUF), then earn it.
+
+Produce a plan, not slides: the one-sentence core message, the audience, the arc, and per section the single takeaway plus its evidence and rough timing. Work one part at a time — propose the core message and audience first, check them, then the arc, then fill the sections; stop and wait between steps instead of dumping a full deck. If the speaker says "just draft it", give the whole outline at once. Don't announce the method — let it shape the plan, not the talk about it.
+
+*Referenced anchors: socratic-method, curse-of-knowledge, pyramid-principle, mece, three-act-structure, story-circle-dan-harmon, 4mat, bluf*

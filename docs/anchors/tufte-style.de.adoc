@@ -1,0 +1,61 @@
+= Tufte Style
+:categories: communication-presentation, design-principles
+:roles: technical-writer, ux-designer, data-scientist, software-developer, consultant
+:proponents: Edward R. Tufte
+:tags: Tufte Style, Edward Tufte, Data-Ink-Ratio, Chartjunk, Small Multiples, Sparklines, Lie Factor, grafische Integrität, Informationsdesign, Datenvisualisierung, Direktbeschriftung, Tufte CSS, Seitennoten, Dashboard-Design
+:related: progressive-disclosure, c4-diagrams, plain-english-strunk-white, bluf
+:tier: 3
+:prior-test: 2026-08-25
+:tested-on: haiku-4.5=yes, sonnet-5=yes, opus-5=yes
+
+[%collapsible]
+====
+Vollständiger Name:: Tufte Style -- die Informationsdesign-Prinzipien von Edward R. Tufte
+
+Auch bekannt als:: Tuftes Prinzipien des Informationsdesigns. In Werkzeugen ist der Eigenname längst ein Style-Token: `theme_tufte` im R-Paket ggthemes, https://edwardtufte.github.io/tufte-css/[Tufte CSS], die Dokumentklassen https://ctan.org/pkg/tufte-latex[tufte-latex], `matplotlib-tufte`.
+
+[discrete]
+== *Kernkonzepte*:
+
+* *Data-Ink-Ratio.* Von allen sichtbaren Markierungen auf der Seite soll der Anteil, der Daten kodiert, so groß sein wie sinnvoll möglich. Gitternetze, Rahmen, Füllungen, Schatten und 3-D-Effekte kodieren keine Daten; sie helfen dem Auge bestenfalls bei der Orientierung. Sie sind damit die ersten Kandidaten zum Streichen, keine automatischen Löschungen: Ein Gitternetz, an dem das Auge einen Wert ablesen kann, leistet etwas, und es zurückzunehmen ist meist besser, als es zu löschen.
+* *Chartjunk.* Der Name für Schmuck, der mit der Evidenz konkurriert: Moiré-Muster, dekorative Icons, überflüssige Farbe. Erst weil er als Defekt benannt ist, lässt er sich entfernen.
+* *Grafische Integrität, gemessen am Lie Factor.* Die gezeigte Größe eines Effekts soll seiner Größe in den Daten entsprechen. Eine gestauchte Achse oder ein flächig skaliertes Symbol ist ein Rechenfehler, keine Geschmacksfrage.
+* *Small Multiples.* Dasselbe kleine Panel über alle Teilmengen wiederholen, auf identischen Achsen. Der Vergleich findet dann im Auge statt und nicht im Gedächtnis des Lesers.
+* *Sparklines.* Eine wortgroße Grafik mitten im Satz, zu dem sie gehört. Zahl und Verlauf stehen so in derselben Zeile.
+* *Direkt beschriften statt Legende.* Der Name gehört an die Linie. Eine Legende zwingt den Leser, sich eine Farbe zu merken und für jede Marke erneut nachzuschlagen.
+* *Dichte ist das Ziel, nicht Leere.* An dieser Unterscheidung zeigt sich, ob der Begriff verstanden wurde: Entferne, was keine Information trägt, und fülle den gewonnenen Platz mit mehr Information. Eine Seite im Tufte Style enthält meist *mehr* als die, die sie ersetzt.
+* *Wörter, Zahlen und Bilder gehören zusammen.* Beschriftung, Anmerkung und Grafik stehen an einer Stelle statt an dreien. Das Seitennoten-Layout, das Tuftes Namen trägt, ist genau dieses Prinzip, angewandt auf Fließtext.
+
+[discrete]
+== *Wann einsetzen*:
+
+* Beim Entwurf eines Dashboards oder Statusberichts, besonders dort, wo große Kennzahlen-Kacheln, Tachometer und Ampeln der Default sind
+* Beim Review eines Diagramms, bevor es in Dokumentation, Foliensatz oder Papier wandert
+* Überall dort, wo eine Grafik den Schwarzweißdruck überstehen oder auf einen Blick lesbar sein muss
+* Wenn ein Bericht auf mehrere Seiten gewachsen ist, weil jede Zahl ihr eigenes Panel bekam
+
+[discrete]
+== *Häufige Missverständnisse*:
+
+Es als Minimalismus lesen:: Ein minimalistisches Diagramm enthält wenig; ein Diagramm im Tufte Style enthält oft sehr viel und verschwendet nur keine Markierung. Details zu streichen, damit es aufgeräumt aussieht, kehrt das Prinzip um.
+Es für eine Optik halten:: Es sind Entscheidungen über Evidenz -- was wird verglichen, in welchem Maßstab, gegen welche Basislinie -- und nicht Palette plus Schriftart.
+Die Data-Ink-Ratio für ein Gesetz halten:: Sie ist eine Faustregel, und das Experiment hat einige ihrer Prämissen infrage gestellt. Siehe _Kritik_.
+Die beiden Bedeutungen verwechseln:: „Tufte Style" bezeichnet sowohl die Diagramm-Prinzipien als auch das Seitennoten-Layout von Tufte CSS und tufte-latex. Beide teilen Autor und Motiv, aber wer das eine bestellt, bekommt nicht das andere. Sag dazu, was du meinst.
+====
+
+== *Kritik*:
+
+* *Die Data-Ink-Position wurde empirisch geprüft und ging nicht unbeschädigt daraus hervor.* Bateman, Mandryk, Gutwin, Genest, McDine und Brooks stellten in https://sites.stat.columbia.edu/gelman/communication/Bateman2010.pdf[„Useful Junk?"] (CHI 2010) geschmückte Diagramme gegen schmucklose und berichten: „people's accuracy in describing the embellished charts was no worse than for plain charts, and their recall after a two-to-three-week gap was significantly better. Although we are cautious about recommending that all charts be produced in this style, our results question some of the premises of the minimalist approach to chart design." Schmuck, der dem Gedächtnis hilft, ist nach Tuftes eigenem Nützlichkeitsmaßstab kein Junk.
+* *Auch die Leser wollen nicht das Minimum.* Inbar, Tractinsky und Meyer, https://cris.bgu.ac.il/en/publications/minimalism-in-information-visualization-attitudes-towards-maximiz/[„Minimalism in information visualization"] (ECCE 2007): „The results indicate a clear preference of non-minimalist bar-graphs, suggesting low acceptance of minimalist design principles such as high data-ink ratio." Gemessen wird Vorliebe, nicht Verständnis -- eine schwächere Aussage als die von Bateman, und deshalb getrennt zu halten.
+* *Die Debatte läuft, sie ist nicht entschieden, und sie hat Verteidiger auf Tuftes Seite.* Stephen Few, der von derselben minimalistischen Position aus schreibt, zerlegt Batemans Schlussfolgerung in https://www.perceptualedge.com/articles/visual_business_intelligence/the_chartjunk_debate.pdf[„The Chartjunk Debate"] (Perceptual Edge, 2011) und quittiert die Behauptung, „many examples exist of embellished charts that seem to be successful", mit einem trockenen „Many examples?" Harvards eigene Zusammenfassung der https://seas.harvard.edu/news/what-makes-data-visualization-memorable[Memorability-Studie] von Borkin et al. beschreibt das Feld genauso: Forscher, die antreten, „to settle a debate over 'chart junk'", der „still rages among visualization experts".
+* *Die Challenger-Analyse bestreitet einer der Ingenieure, um die es darin geht.* Wade Robison, *Roger Boisjoly*, David Hoeker und Stefan Young veröffentlichten „Representation and misrepresentation: Tufte and the Morton Thiokol engineers on the Challenger" in _Science and Engineering Ethics_ 8(1), Januar 2002, 59-81 -- und Boisjoly war einer der Thiokol-Ingenieure, die gegen den Start argumentierten. Die Arbeit „examines the role of the Morton Thiokol engineers in the decisions surrounding the launch of the Challenger, particularly with reference to an analysis of this event by Edward Tufte", und kommt zu dem Schluss, „that the engineers thus did what they were ethically as well as professionally obligated to do" -- gegen Tuftes Lesart, eine bessere Grafik hätte die Startentscheidung verhindert.
+* *Don Norman greift den PowerPoint-Essay an, und der Angriff trifft die Methode.* In https://jnd.org/in-defense-of-powerpoint/[„In Defense of PowerPoint"], einer Antwort auf Tuftes _The Cognitive Style of PowerPoint_, schreibt Norman: „Just because Tufte, in hindsight (when he already knows the answers), can look back and show they were wrong, and then point to discrepancies in their presentation, does not mean the fault lies in the presentation, nor in the tool used to present it." Und zur fraglichen Folie: „the slide should have had less information on it -- Tufte wants more information."
+* *Die drei Ziele auseinanderhalten.* Bateman, Inbar und Borkin prüfen die *Prinzipien*; Robison und Kollegen bestreiten die *Challenger-Analyse*; Norman streitet mit dem *PowerPoint-Essay* und dessen Lesart der Columbia-Folie. Keiner widerlegt den anderen -- und die Columbia ist nicht die Challenger.
+
+[discrete]
+== *Aktueller Stand*:
+
+* *Die vier Bücher, wie der Verlag sie führt.* https://www.edwardtufte.com/books/[Graphics Press] nennt _The Visual Display of Quantitative Information_ mit „1983 / 2nd Edition 2001" -- dasselbe Buch unter zwei Jahreszahlen, und im Handel ist die zweite Auflage. Danach _Envisioning Information_ (1990), _Visual Explanations_ (1996, verbreitet falsch als 1997 zitiert) und _Beautiful Evidence_ (2006). 2020 kam mit _Seeing with Fresh Eyes_ ein fünftes hinzu; „seine vier Bücher" stimmt also nicht mehr.
+* *Der Name steckt in Werkzeugen, und deshalb trägt er als Anker.* `theme_tufte` im R-Paket https://jrnold.github.io/ggthemes/reference/theme_tufte.html[ggthemes] zitiert das Data-Ink-Kapitel wörtlich: „No border, no axis lines, no grids." https://edwardtufte.github.io/tufte-css/[Tufte CSS] und die Klassen https://ctan.org/pkg/tufte-latex[tufte-latex] tragen das Seitennoten-Layout, https://pypi.org/project/matplotlib-tufte/[matplotlib-tufte] die Diagrammregeln nach Python. Ein Begriff, der als installierbarer Default ausgeliefert wird, ist einem Modell nicht nur in Prosa begegnet, sondern auch in Code.
+* *Der typografische Zweig ist stabil bis zur Ruhe.* CTAN führt tufte-latex in 3.5.2, die jüngste Ankündigung stammt von 2015. Das ist kein Verfall -- das Layout war fertig -- bedeutet aber, dass die zweite Bedeutung des Namens in Kopien weiterlebt und nicht in aktiver Entwicklung.
+* *Eine deutschsprachige Kritik-Ebene gibt es nicht zu zitieren.* Eine Suche am 25.08.2026 über sechs deutsche Frageformen lieferte Methodenbeschreibungen, Hochschulfolien und Übersetzungen englischer Originale; der deutsche Wikipedia-Artikel hat keinen Kritik-Abschnitt. Was an Kritik aus dem deutschsprachigen Raum existiert, erscheint auf Englisch -- am deutlichsten beim https://www.datawrapper.de/blog/bookclub-tufte-review/[Datawrapper-Bookclub] aus Berlin. Das ist ein Ergebnis des Sprachrahmens, nicht ein Fehlen von Meinung; die gesuchten Begriffe stehen im link:#/prior-tests[Prior-Test-Register].

@@ -2,6 +2,16 @@
 
 A chronological record of all semantic anchors added to the catalog. Community contributors are credited with thanks.
 
+== 2026-08-25
+
+*New anchor — Tufte Style (#712):*
+
+* *link:#/anchor/tufte-style[Tufte Style]* (Edward R. Tufte, _The Visual Display of Quantitative Information_, Graphics Press 1983; 2nd ed. 2001) — communication-presentation + design-principles: maximise the data-ink ratio, remove chartjunk, keep the lie factor near 1, compare with small multiples on shared axes, set sparklines inside the sentence, label directly instead of with a legend. The point that decides whether the term was understood: density is the goal, not emptiness — remove what carries no information, then spend the reclaimed space on more information. Tier ★★★, proposed by https://github.com/follperson[@follperson] in #712.
+* *The anchored runs reach for constructs generic minimalism does not contain.* Asked for a one-page executive report, the anchored strong tier specifies a range-frame axis "drawn only from the series minimum to its maximum" and a dot-dash plot "with marginal rug ticks on both axes … so the distribution of the data doubles as the axis". Both are Tufte's own inventions, and neither was named in the prompt. The sharpest single contrast is one element decided in opposite directions: anchored, the summary table carries "a signed value only, no arrows, no traffic lights"; the neutral baseline puts "arrow glyphs — ▲ 3.1% MoM" in exactly that cell.
+* *The first action probe measured nothing, and that is recorded as a defect in our method rather than smoothed away.* It asked for a dense CI dashboard — twelve teams, ninety days, one screen — so density was a requirement of the task, not a contribution of the anchor, and the strong tier's baseline out-scored the anchored run. The rule this produces: an action task must not pre-load the term's characteristic move, or a null result cannot distinguish "the model absorbed this long ago" from "I asked for it in the prompt". The probe was repeated on a task whose default is decorative, and there it separates on every tier.
+* *A second correction to the battery.* The weak tier reported `reaching=yes` in both runs — normally the clearest sign of a thin prior — while naming the lie factor, moiré patterns, small multiples and sparklines. Testing three name forms showed the flag attaches to the eponym, not to any suffix. `reaching` is a self-report and has to be graded against the content, not read off the `SELF:` line.
+* *The Criticism section is the best-supplied in the catalog so far, and it keeps three targets apart* that are routinely conflated: Bateman et al. (CHI 2010) and Inbar/Tractinsky/Meyer (ECCE 2007) test the *principles* — embellished charts were recalled significantly better; Robison, *Roger Boisjoly*, Hoeker and Young (2002) dispute the *Challenger analysis*, and Boisjoly is one of the engineers Tufte wrote about; Don Norman argues with the *PowerPoint essay*. Stephen Few, expected to be the in-house critic, turns out to defend Tufte against Bateman and is cited as the counter-voice.
+
 == 2026-08-14
 
 *New: measured anchors now say which models they were tested on, and what came out:*

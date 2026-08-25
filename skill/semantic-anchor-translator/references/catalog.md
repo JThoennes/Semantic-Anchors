@@ -664,6 +664,11 @@ Source: https://github.com/LLM-Coding/Semantic-Anchors
 - **Proponents:** Claude Shannon & Warren Weaver, Friedemann Schulz von Thun, Stuart Hall, Herbert H. Clark & Susan E. Brennan (umbrella — no single proponent)
 - **Core:** Intended meaning ≠ received meaning; the sender encodes and the receiver decodes through independent cognitive processes, so the reconstructed meaning is not guaranteed to match the intent. Cause-agnostic umbrella over Shannon-Weaver (noise in channel), Schulz von Thun (four-sides mismatched ears), Hall (active decoding positions), and Clark (insufficient common ground); names the phenomenon before choosing a diagnostic framework. Candidate contract rather than single-proponent anchor.
 
+### Tufte Style
+- **Also known as:** Tufte's principles of information design; shipped as `theme_tufte` (ggthemes), Tufte CSS, tufte-latex, matplotlib-tufte
+- **Proponents:** Edward R. Tufte
+- **Core:** Information-design principles for charts, dashboards and reports — maximize the data-ink ratio, remove chartjunk, keep graphical integrity (lie factor ≈ 1), use small multiples on shared axes, sparklines inline in text, and direct labels instead of legends; density is the goal, not emptiness (remove waste, then spend the space on more information); the name also covers the sidenote page layout of Tufte CSS/tufte-latex, so say which you mean
+
 ## Documentation
 
 ### P.A.R.A. Method

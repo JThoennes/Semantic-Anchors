@@ -188,3 +188,92 @@ The same paragraph was rewritten three ways: naming Zinsser, naming only the fou
 *No contract was added either.* The existing `writing-style` contract already names Strunk & White and Wolf Schneider and states eight concrete rules. Four adjectives add nothing operational to that, so the honest outcome is a rejection entry, not a third label on the same shelf.
 
 *Criticism research, 2026-08-14, English and German.* Geoffrey K. Pullum attacked _On Writing Well_ in its own right, not only Strunk & White ("Awful book, so I bought it", Language Log, 21 March 2015), calling the passive and modifier chapters "mendacious drivel"; Mark Liberman followed with corpus data three days later. German reception: zero — no translation, no discussion found. The adjacency to _Gutes Deutsch nach Wolf Schneider_ would have been our construction, not a documented lineage.
+
+== Run 2026-08-25
+
+[cols="1,3"]
+|===
+|Procedure |`anchor-prior-test` v1.0
+|Models |`claude-haiku-4-5-20251001` (weak), `claude-sonnet-5` (mid), `claude-opus-5` (strong)
+|Runs |P1 and P3 twice per tier; P3 repeated on a second task twice on the weak and strong tier; P2 and P4 on the weak and strong tier; a three-name comparison on the weak tier
+|Clean room |`claude -p --strict-mcp-config --setting-sources ""` from `/tmp/anchor-probe`; verified with a "do you have custom instructions?" probe answering "None are currently loaded in my context."
+|Not tested |Older model generations are unreachable over this path. Findings are a lower bound.
+|===
+
+=== Tufte Style
+
+[cols="2,1,3"]
+|===
+|Criterion |Verdict |Evidence
+
+|Precise |met |P2 returns data visualisation and information design as the dominant field on both tiers; document typography appears as a named secondary meaning, not as a rival
+|Rich |met |5/6 runs report `richness=rich`; one weak-tier run reports `moderate`. All six name Tufte's own vocabulary -- data-ink ratio, chartjunk, small multiples, sparklines, lie factor
+|Consistent |met |P1 and P3 agree across all three tiers
+|Attributable |met |P4 returns Edward Tufte with `confidence=high` on both tiers
+|Prior density |strong |Recognised and acting as an instruction on the weak tier
+|===
+
+Tier ★★★, route: anchor. Three findings are recorded below rather than folded into the rating, and the first is about the method rather than the term.
+
+*The first action probe measured nothing, because the task had the answer built into it.* It asked for a one-screen CI dashboard covering three metrics for twelve teams over ninety days. Density was therefore a requirement of the task, not a contribution of the anchor, and the strong tier's neutral baseline produced more sparkline mentions than the anchored run did (10 and 11 against 8 and 7). Only the weak tier showed a lift (7 and 7 against 1 and 3).
+
+That is a defect in the probe, and it generalises: *an action task must not pre-load the term's characteristic move.* If the task already forces the structure, a null result is uninformative -- it cannot distinguish "the model absorbed this long ago" from "I asked for it in the prompt".
+
+*Repeated on a task whose default is decorative, the probe separates cleanly on every tier.* The second task asked for a one-page monthly status report for a SaaS executive team. Nothing in it calls for density.
+
+[cols="3,1,1"]
+|===
+| |Anchored |Neutral baseline
+
+|Sparklines named (weak tier) |6, 5 |0, 0
+|Sparklines named (strong tier) |4, 4 |2, 1
+|Small multiples (strong tier) |2, 2 |0, 0
+|"Data-ink" named (both tiers) |1, 1, 1, 1 |0, 0, 0, 0
+|===
+
+The self-reported design principle splits along the same line. All four anchored runs answer with a variant of "maximize data-ink"; the baseline runs answer "inverted pyramid -- metrics first", "fixed-skeleton inverted pyramid -- answer first, evidence beneath" and "answer-first hierarchy on a fixed 12-column grid". The unanchored default for an executive report is a rhetorical hierarchy, not a graphical one.
+
+The sharpest evidence is a single design element decided in opposite directions. The anchored run specifies a summary table where "`vs. plan` carries a signed value only, no arrows, no traffic lights". The baseline specifies, at the same place, "change vs. prior month and vs. plan, in that order, with arrow glyphs -- `▲ 3.1% MoM · ▲ 1.2% vs plan`".
+
+*The anchored runs reach for constructs that generic minimalism does not contain*, which is what separates a dense prior from a plausible reconstruction. Verbatim from the strong tier:
+
+[quote]
+____
+A range-frame vertical axis: the axis line is drawn only from the series minimum to its maximum, with ticks at min, first quartile, median, third quartile, max, labeled with the actual data values ($18.2M, $21.4M, …), not round numbers.
+____
+
+[quote]
+____
+a dot-dash plot of weekly ticket volume over 52 weeks -- the data points as 1 pt dots joined by a hairline, with marginal rug ticks on both axes marking each observation's x and y position, so the distribution of the data doubles as the axis.
+____
+
+Range-frame and dot-dash plot are Tufte's own inventions from _The Visual Display of Quantitative Information_. Neither was named in the prompt.
+
+*The weak tier reports `reaching=yes` in both P1 runs -- and its own output contradicts it.* Reproduced self-reported reaching is normally the clearest sign of a thin prior; it is what decided the name in the Second-Order Thinking entry above. Here it is a false positive. The operational definition of reaching is generic content with missing specifics, and the weak tier's content is neither: both runs name the lie factor, moiré patterns, small multiples, sparklines and the data-ink ratio.
+
+A three-name comparison on the weak tier shows what the flag actually attaches to:
+
+[cols="3,1,1,1"]
+|===
+| |"Tufte style" |"Tufte's design principles" |"Tufte's principles of information design"
+
+|`reaching=yes` (weak tier) |2 of 2 |2 of 2 |2 of 2
+|Lie factor named |2/2 |2/2 |2/2
+|Chartjunk named |2/2 |2/2 |2/2
+|Small multiples named |2/2 |2/2 |2/2
+|`reaching` (strong tier) |no |no |no
+|===
+
+No name separates from any other. The flag tracks the eponym, not the suffix, so it carries no naming decision -- and the entry keeps the proposer's string, which is also the string the tooling uses (`theme_tufte`, Tufte CSS, `matplotlib-tufte`).
+
+*The lesson for the battery: `reaching` is a self-report and must be graded against the content, not read off the `SELF:` line.* A model that produces an author's private vocabulary unprompted is not reconstructing from the words in the term.
+
+*The name covers two disjoint referents, and both are real.* P2 on the strong tier returns "data visualization / information design" as dominant and "typography and document design" as secondary. The second meaning is not a model artefact: https://edwardtufte.github.io/tufte-css/[Tufte CSS] describes itself as providing "tools to style web articles using the ideas demonstrated by Edward Tufte's books and handouts" and calls sidenotes "one of the most distinctive features of Tufte's style", while https://ctan.org/pkg/tufte-latex[tufte-latex] on CTAN offers "document classes inspired by the work of Edward Tufte". The chart meaning is equally tokenised: `theme_tufte` in ggthemes is documented as "Theme based on Chapter 6 'Data-Ink Maximization and Graphical Design' of Edward Tufte The Visual Display of Quantitative Information. No border, no axis lines, no grids." Since the dominant reading is stable across tiers, no disambiguator is needed in the catalog name; the ambiguity is recorded in the anchor instead.
+
+*Criticism research, 2026-08-25, English and German.* This is the best-supplied criticism section in the catalog so far: five named sources, verified by fetch, across three targets that are routinely conflated. Bateman et al. (CHI 2010), Inbar/Tractinsky/Meyer (ECCE 2007) and Borkin et al. (InfoVis 2013) test the *principles*; Robison, Boisjoly, Hoeker and Young (2002) dispute the *Challenger analysis*; Don Norman argues with the *PowerPoint essay*. Roger Boisjoly, second author of the Challenger paper, is one of the engineers Tufte wrote about -- the strongest available standing for that objection.
+
+*A prediction was made and corrected.* Stephen Few was expected to be the discipline's in-house Tufte critic. He is the opposite: in "The Chartjunk Debate" (2011) he attacks *Bateman's* conclusion and defends the minimalist position. He is cited in the anchor as the counter-voice, not as a critic.
+
+*Three limits, stated rather than smoothed over.* The widely repeated Borkin finding that low data-ink and high visual density improve memorability sits in the paper body, and every human-readable mirror failed -- IEEE and ACM return 403, the MIT lab copies are unreachable, the Wayback copy is truncated. Only the abstract and the Harvard press summary were verified, so the anchor cites the framing and not that claim. The most-quoted line from Robison et al. -- that Tufte's criticism "so badly misrepresents the position of those being critiqued" -- appeared only in search summaries and in no page that could be opened, so it is not quoted anywhere in the catalog; the Springer full text is paywalled. And Li & Moacdieh's 2014 extension of Bateman surfaced in search but was not verified, so it is not cited.
+
+*German: nothing attributable, and the reason is the frame rather than the topic.* Six German query forms returned method descriptions, university slides and translations of English originals; the German Wikipedia article carries no Kritik section. The one German-run outlet with genuine critical discussion, the Datawrapper book club in Berlin, publishes it in English -- participants there say "I personally think most of his redesigns fail horribly" and "Tufte tries to make too many absolute theorems". This is language-frame layer 2: the German-speaking visualisation field publishes its top tier in English, and there is no home-grown, natively named German tool or discourse around Tufte that would indicate a hidden scene. Romance and East Asian reception was not searched.
