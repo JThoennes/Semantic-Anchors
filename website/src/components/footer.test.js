@@ -22,17 +22,28 @@ describe('renderFooter — "as seen on" row', () => {
     },
   ]
 
-  it.each(appearances)('links to $label with its logo', ({ href, logo }) => {
-    const html = renderFooter('1.2.3')
-    expect(html).toContain(`href="${href}"`)
-    expect(html).toContain(logo)
+  // Slice out the one <a> element that carries this href, so a logo sitting
+  // on the wrong link cannot satisfy the assertion from somewhere else in
+  // the footer.
+  const anchorFor = (html, href) => {
+    const start = html.indexOf(`href="${href}"`)
+    expect(start).toBeGreaterThan(-1)
+    const open = html.lastIndexOf('<a', start)
+    const close = html.indexOf('</a>', start)
+    return html.slice(open, close)
+  }
+
+  it.each(appearances)('links to $label with its own logo', ({ href, logo }) => {
+    const anchor = anchorFor(renderFooter('1.2.3'), href)
+    expect(anchor).toContain(logo)
   })
 
-  it('opens every appearance in a new tab without leaking the referrer opener', () => {
+  it('opens every appearance in a new tab without handing over the opener', () => {
     const html = renderFooter('1.2.3')
     for (const { href } of appearances) {
-      const anchor = html.slice(html.indexOf(`href="${href}"`))
-      expect(anchor.slice(0, 200)).toContain('rel="noopener noreferrer"')
+      const anchor = anchorFor(html, href)
+      expect(anchor).toContain('target="_blank"')
+      expect(anchor).toContain('rel="noopener noreferrer"')
     }
   })
 
