@@ -366,3 +366,83 @@ describe('recently-added filter behaviour', () => {
     expect(seen).toEqual([])
   })
 })
+
+describe('recency selection invariant', () => {
+  const day = 24 * 60 * 60 * 1000
+  const categories = [
+    { id: 'testing-quality', name: 'Testing' },
+    { id: 'design-principles', name: 'Design' },
+  ]
+
+  // The property: however the input is shaped, exactly
+  // min(12, eligible) anchors are marked — where eligible means non-umbrella
+  // and carrying a parsable date. Undated, unparsable and umbrella anchors are
+  // not candidates and must never appear in the marked set.
+  function buildCorpus(eligibleCount, noise) {
+    const eligible = Array.from({ length: eligibleCount }, (_, i) => ({
+      id: `ok${i}`,
+      title: `OK${i}`,
+      categories: [i % 2 === 0 ? 'testing-quality' : 'design-principles'],
+      roles: ['r'],
+      tags: [],
+      proponents: [],
+      addedAt: new Date(Date.now() - i * day).toISOString(),
+    }))
+
+    const undated = {
+      id: 'undated',
+      title: 'U',
+      categories: ['testing-quality'],
+      roles: ['r'],
+      tags: [],
+      proponents: [],
+    }
+    const unparsable = { ...undated, id: 'unparsable', addedAt: 'not-a-date' }
+    const sub = {
+      id: 'sub',
+      title: 'S',
+      categories: ['design-principles'],
+      roles: ['r'],
+      tags: [],
+      proponents: [],
+      umbrella: 'ok0',
+      tier: 1,
+      addedAt: new Date().toISOString(),
+    }
+
+    return noise ? [...eligible, undated, unparsable, sub] : eligible
+  }
+
+  const markedIds = (html) => {
+    const cards = html.match(/<div[^>]*class="anchor-card[^>]*>/g) || []
+    return new Set(
+      cards
+        .filter((card) => card.includes('data-recent="true"'))
+        .map((card) => card.match(/data-anchor="([^"]+)"/)[1])
+    )
+  }
+
+  it.each([0, 1, 5, 11, 12, 13, 30])('marks min(12, eligible) for %i eligible anchors', (n) => {
+    for (const noise of [false, true]) {
+      const html = renderCardGrid(categories, buildCorpus(n, noise))
+      const ids = markedIds(html)
+      expect(ids.size).toBe(Math.min(12, n))
+      for (const id of ids) expect(id.startsWith('ok')).toBe(true)
+    }
+  })
+
+  it('never marks an anchor that is newer only because it is undated', () => {
+    const html = renderCardGrid(categories, buildCorpus(3, true))
+    const ids = markedIds(html)
+    expect(ids.has('undated')).toBe(false)
+    expect(ids.has('unparsable')).toBe(false)
+    expect(ids.has('sub')).toBe(false)
+  })
+
+  it('marks the newest anchors, not an arbitrary twelve', () => {
+    const html = renderCardGrid(categories, buildCorpus(20, true))
+    const ids = markedIds(html)
+    for (let i = 0; i < 12; i++) expect(ids.has(`ok${i}`)).toBe(true)
+    for (let i = 12; i < 20; i++) expect(ids.has(`ok${i}`)).toBe(false)
+  })
+})
