@@ -4,6 +4,11 @@ A chronological record of all semantic anchors added to the catalog. Community c
 
 == 2026-08-25
 
+*New: a recency filter in the category row*
+
+* The quick-nav now opens with a ✨ chip that filters the catalog down to the twelve most recently added anchors. The category chips beside it jump; this one filters, so it is a toggle button with a pressed state and a dashed border rather than a link — a jump link is never "on".
+* *Twelve newest, not "added in the last 30 days".* A time window empties out between release bursts, and a control that filters to nothing is worse than no control at all. The consequence is deliberate and visible: the list reaches back further than the NEW badge, so an anchor can appear in it without carrying the badge. The badge is a claim about age, the chip is a claim about order.
+
 *New anchor — Tufte Style (#712):*
 
 * *link:#/anchor/tufte-style[Tufte Style]* (Edward R. Tufte, _The Visual Display of Quantitative Information_, Graphics Press 1983; 2nd ed. 2001) — communication-presentation + design-principles: maximise the data-ink ratio, remove chartjunk, keep the lie factor near 1, compare with small multiples on shared axes, set sparklines inside the sentence, label directly instead of with a legend. The point that decides whether the term was understood: density is the goal, not emptiness — remove what carries no information, then spend the reclaimed space on more information. Tier ★★★, proposed by https://github.com/follperson[@follperson] in #712.

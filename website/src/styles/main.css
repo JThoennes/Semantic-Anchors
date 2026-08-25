@@ -164,6 +164,26 @@ body {
   border-color: var(--color-primary);
 }
 
+/* The recency chip sits in the same row as the category chips but does a
+   different thing: those jump, this one filters. A pressed state is the only
+   honest way to say so — a jump link is never "on". */
+.category-nav-toggle {
+  cursor: pointer;
+  border-style: dashed;
+}
+
+.category-nav-toggle-active {
+  background: var(--color-primary);
+  border-style: solid;
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.category-nav-toggle-active .category-nav-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
 .category-nav-icon {
   @apply text-base leading-none;
 }

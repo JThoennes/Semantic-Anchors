@@ -21,6 +21,30 @@ function isRecentlyAdded(anchor) {
   return Date.now() - added < NEW_WINDOW_MS
 }
 
+// The "recently added" filter shows a fixed number of newest anchors rather
+// than a time window. A window empties out between release bursts, and a
+// control that filters to nothing is worse than no control. The consequence is
+// deliberate: the list and the NEW badge above can disagree at the edge, since
+// the badge is a claim about age and this is a claim about order.
+const RECENT_LIMIT = 12
+
+// Whether the quick-nav's recency chip is pressed. Held here rather than
+// passed in, because the chip lives inside this component while the role and
+// search values belong to the header — applyCardFilters reads it directly.
+let recentOnly = false
+
+function recentAnchorIds(allAnchors) {
+  return new Set(
+    allAnchors
+      .filter(
+        (anchor) => !anchor.umbrella && anchor.addedAt && !Number.isNaN(Date.parse(anchor.addedAt))
+      )
+      .sort((a, b) => Date.parse(b.addedAt) - Date.parse(a.addedAt))
+      .slice(0, RECENT_LIMIT)
+      .map((anchor) => anchor.id)
+  )
+}
+
 /**
  * Category color palette (matching previous categories)
  */
@@ -74,10 +98,12 @@ export function setFeedbackData(data) {
 export function renderCardGrid(categories, anchors) {
   if (!categories || !anchors) return '<div>Loading...</div>'
 
+  const recent = recentAnchorIds(anchors)
+
   return `
     <div class="card-grid-container">
-      ${renderCategoryNav(categories, anchors)}
-      ${categories.map((category) => renderCategorySection(category, anchors)).join('')}
+      ${renderCategoryNav(categories, anchors, recent)}
+      ${categories.map((category) => renderCategorySection(category, anchors, recent)).join('')}
     </div>
   `
 }
@@ -101,7 +127,7 @@ function countCategoryAnchors(category, allAnchors) {
  * (`#category-<id>`) so they work without JavaScript; the count badges are kept
  * in sync with the active search/role filter by applyCardFilters().
  */
-function renderCategoryNav(categories, allAnchors) {
+function renderCategoryNav(categories, allAnchors, recent = new Set()) {
   const items = categories
     .map((category) => ({ category, count: countCategoryAnchors(category, allAnchors) }))
     .filter(({ count }) => count > 0)
@@ -131,13 +157,33 @@ function renderCategoryNav(categories, allAnchors) {
     })
     .join('')
 
+  const recentChip =
+    recent.size > 0
+      ? `
+        <li>
+          <button
+            type="button"
+            class="category-nav-link category-nav-toggle"
+            data-recent-filter
+            aria-pressed="false"
+            title="${escapeHtml(i18n.t('nav.recentlyAdded'))}"
+            data-i18n-title="nav.recentlyAdded"
+            aria-label="${escapeHtml(i18n.t('nav.recentlyAdded'))}"
+            data-i18n-aria="nav.recentlyAdded"
+          >
+            <span class="category-nav-icon" aria-hidden="true">\u2728</span>
+            <span class="category-nav-count">${recent.size}</span>
+          </button>
+        </li>`
+      : ''
+
   return `
     <nav
       class="category-nav"
       aria-label="${escapeHtml(i18n.t('nav.categoryJump'))}"
       data-i18n-aria="nav.categoryJump"
     >
-      <ul class="category-nav-list">${links}</ul>
+      <ul class="category-nav-list">${recentChip}${links}</ul>
     </nav>
   `
 }
@@ -145,7 +191,7 @@ function renderCategoryNav(categories, allAnchors) {
 /**
  * Render a single category section with its anchors
  */
-function renderCategorySection(category, allAnchors) {
+function renderCategorySection(category, allAnchors, recent = new Set()) {
   const categoryAnchors = allAnchors.filter(
     (anchor) => anchor.categories && anchor.categories.includes(category.id) && !anchor.umbrella
   )
@@ -164,7 +210,7 @@ function renderCategorySection(category, allAnchors) {
       </h2>
 
       <div class="anchor-cards-grid">
-        ${categoryAnchors.map((anchor) => renderAnchorCard(anchor, color, category.id)).join('')}
+        ${categoryAnchors.map((anchor) => renderAnchorCard(anchor, color, category.id, recent.has(anchor.id))).join('')}
       </div>
     </section>
   `
@@ -178,7 +224,7 @@ function renderCategorySection(category, allAnchors) {
  * category sections (anchors can belong to more than one category) and
  * the DOM must not contain duplicate ids.
  */
-function renderAnchorCard(anchor, categoryColor, categoryId) {
+function renderAnchorCard(anchor, categoryColor, categoryId, isRecent = false) {
   const isUmbrella = anchor.subAnchors && anchor.subAnchors.length > 0
   const umbrellaClass = isUmbrella ? ' anchor-card-umbrella' : ''
   const rolesCount = anchor.roles ? anchor.roles.length : 0
@@ -196,6 +242,7 @@ function renderAnchorCard(anchor, categoryColor, categoryId) {
     <div
       class="anchor-card${umbrellaClass}"
       data-anchor="${safeId}"
+      ${isRecent ? 'data-recent="true"' : ''}
       data-roles="${escapeHtml(anchor.roles ? anchor.roles.join(',') : '')}"
       data-tags="${escapeHtml(anchor.tags ? anchor.tags.join(',') : '')}"
       tabindex="0"
@@ -334,6 +381,11 @@ export function initCardGrid() {
   const container = document.getElementById('main-content')
   if (!container) return
 
+  // The grid is re-rendered on every return to the catalog, and the fresh chip
+  // comes back unpressed. Without this reset the flag would survive the markup
+  // that shows it, and the grid would filter with the chip looking inactive.
+  recentOnly = false
+
   // Remove existing listeners if any
   if (clickHandler) {
     container.removeEventListener('click', clickHandler)
@@ -366,6 +418,16 @@ export function initCardGrid() {
 
     if (e.target.closest('.anchor-edit-btn')) {
       e.stopPropagation()
+      return
+    }
+
+    const recentChip = e.target.closest('[data-recent-filter]')
+    if (recentChip) {
+      e.stopPropagation()
+      recentOnly = !recentOnly
+      recentChip.setAttribute('aria-pressed', String(recentOnly))
+      recentChip.classList.toggle('category-nav-toggle-active', recentOnly)
+      reapplyCurrentFilters()
       return
     }
 
@@ -456,7 +518,25 @@ export function filterCardsBySearch(query) {
 }
 
 /**
- * Apply combined filters (role + search)
+ * Re-run the filters after the recency chip toggled. The role and search
+ * values live in the header inputs, which own that state; reading them back is
+ * how main.js does it too, so there is one source rather than a mirrored copy
+ * that can fall behind.
+ */
+function reapplyCurrentFilters() {
+  const roleId =
+    document.getElementById('header-role-filter')?.value ||
+    document.getElementById('role-filter')?.value ||
+    ''
+  const query =
+    document.getElementById('header-search-input')?.value ||
+    document.getElementById('search-input')?.value ||
+    ''
+  applyCardFilters(roleId, query)
+}
+
+/**
+ * Apply combined filters (role + search + recency)
  */
 export function applyCardFilters(roleId, searchQuery) {
   const cards = document.querySelectorAll('.anchor-card')
@@ -499,7 +579,9 @@ export function applyCardFilters(roleId, searchQuery) {
       }
     }
 
-    const isVisible = roleMatch && searchMatch
+    const recentMatch = !recentOnly || card.dataset.recent === 'true'
+
+    const isVisible = roleMatch && searchMatch && recentMatch
     card.style.display = isVisible ? 'block' : 'none'
     if (isVisible) visibleCount++
   })
