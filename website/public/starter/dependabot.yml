@@ -1,0 +1,15 @@
+# Wheel: SCA · Supply chain / SBOM. Copy to .github/dependabot.yml
+# Keeps your GitHub Actions and dependencies patched automatically.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+  # Change / duplicate this block for your ecosystem(s):
+  # npm | pip | maven | gradle | gomod | cargo | bundler | composer | nuget ...
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5

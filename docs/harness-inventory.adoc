@@ -13,6 +13,11 @@ Two levers improve the transmission: the _signal_ (link:#/spec-driven-developmen
 Ingo Eichhorst made this connection explicit in his JavaLand 2026 keynote.
 This document is the second lever, written out in full.
 
+[TIP]
+====
+*Try it interactively.* The link:harness-coverage-wheel.html[Harness Coverage Wheel^] turns this inventory into a self-assessment: tick the layers you run and watch coverage grow across the nine sections, filter by risk tier, and click any layer for its explanation. (The layer list, explanations and tier assignments there are LLM-generated suggestions -- adapt them to your project.)
+====
+
 When you read about "harness engineering" -- a phrase OpenAI's Codex team, Anthropic, and Martin Fowler all use -- this is what they mean.
 A harness is the bundle of layers that catch the LLM's mistakes before they reach your production system.
 
@@ -871,4 +876,5 @@ Each of these deserves its own sub-matrix when the time comes.
 
 * link:#/spec-driven-development[Spec-Driven Development] — the signal lever of Eichhorst's Principle.
 * link:#/brownfield[Brownfield Workflow] — applying both levers to existing codebases.
+* link:harness-coverage-wheel.html[Interactive Harness Coverage Wheel^] -- self-assess your harness against this inventory across the nine sections.
 * link:#/socratic-recovery-skill[Socratic Code-Theory Recovery] — recovering the theory of the program when it lives only in developers' heads.
