@@ -23,6 +23,7 @@ jobs:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
       - uses: gitleaks/gitleaks-action@v2
+        continue-on-error: true   # non-blocking; remove to fail the job on findings
         # Private repos need a (free) GITLEAKS_LICENSE org secret.
 
   # Wheel: SCA · Container/image scanning · IaC scanning · Supply chain/SBOM
@@ -47,7 +48,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: github/codeql-action/init@v3
-        with: { languages: ${{ matrix.language }} }
+        with:
+          languages: ${{ matrix.language }}
       - uses: github/codeql-action/analyze@v3
 
   # Wheel: Link checker (lychee)
@@ -63,7 +65,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: crate-ci/typos@master
+      - uses: crate-ci/typos@v1.50.0
+        continue-on-error: true   # non-blocking; remove to fail the job on findings
 
   # Wheel: Markdown / AsciiDoc lint  (markdown here; add asciidoctor-lint if you use .adoc)
   markdown-lint:
@@ -71,6 +74,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: DavidAnson/markdownlint-cli2-action@v17
+        continue-on-error: true   # non-blocking; remove to fail the job on findings
         with: { globs: '**/*.md' }
 
   # Wheel: Accessibility automated (axe-core) — needs a built site / URL.

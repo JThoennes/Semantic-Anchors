@@ -22,6 +22,13 @@
     border-radius:14px;padding:12px;align-self:flex-start;max-height:100%;overflow:auto}
   .list-panel{flex:1 1 420px;min-width:340px;display:flex;flex-direction:column;min-height:0}
   #inv{flex:1 1 auto;min-height:0;overflow-y:auto;padding-right:8px}
+  /* Narrow screens: stack the two panels and let the page scroll normally. */
+  @media (max-width:780px){
+    body{overflow:auto}
+    .layout{flex-direction:column;align-items:stretch}
+    .wheel-panel,.list-panel{flex:none;min-width:0;max-height:none}
+    #inv{overflow-y:visible}
+  }
   .src{font-size:11.5px;color:#9aa4af;padding:8px 6px 2px}
   .src.topnote{margin:0 0 12px;padding:9px 11px;background:#fbfcfe;border:1px solid var(--line);
     border-radius:9px;line-height:1.45}
@@ -329,7 +336,7 @@ const TOOLS=[
   {name:'pre-commit', href:'https://pre-commit.com/', covers:['Formatter (Prettier, Black, gofmt)','Linter (ESLint, Ruff, golangci-lint)','Import sorter / dead-code','Secret scanning (gitleaks)','Spell check (cspell)']},
   {name:'Vale', href:'https://vale.sh/docs/', covers:['UI prose lint (Vale)','Prose lint (Vale, alex)']},
   {name:'OpenTelemetry', href:'https://opentelemetry.io/docs/', covers:['Distributed tracing (Jaeger)','Observability gates (SLO)']},
-  {name:'GH Actions starter', href:'starter/README.md', covers:['Secret scanning (gitleaks)','SCA (Dependabot, Snyk, Trivy)','Container / image scanning','IaC scanning (Checkov, tfsec)','Supply chain / SBOM / SLSA','SAST (Semgrep, CodeQL)','Link checker (lychee)','Spell check (cspell)','Markdown / AsciiDoc lint','Accessibility automated (axe-core)']},
+  {name:'GH Actions starter', href:'starter/README.md', covers:['Secret scanning (gitleaks)','SCA (Dependabot, Snyk, Trivy)','Container / image scanning','IaC scanning (Checkov, tfsec)','Supply chain / SBOM / SLSA','SAST (Semgrep, CodeQL)','Link checker (lychee)','Spell check (cspell)','Markdown / AsciiDoc lint']},
 ];
 function toggleTool(t){
   const items=t.covers.map(n=>byName[n]).filter(Boolean);

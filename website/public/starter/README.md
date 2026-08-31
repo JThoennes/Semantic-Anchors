@@ -7,7 +7,7 @@ turn these on and you stop paying LLM tokens to chase errors a free tool would h
 
 ## Install
 
-```
+```sh
 cp harness-starter.yml  <your-repo>/.github/workflows/harness.yml
 cp dependabot.yml        <your-repo>/.github/dependabot.yml
 ```
@@ -16,8 +16,10 @@ Then adjust the two spots the tools cannot guess:
 - **CodeQL** — set `matrix.language` to your language(s).
 - **Dependabot / Trivy** — set your package ecosystem(s).
 
-Jobs start **non-blocking** so nothing breaks on day one. Flip `exit-code: '1'` /
-`fail: true` once each is clean.
+Jobs start **non-blocking** so nothing breaks on day one. To make a check blocking
+once it is clean: for `trivy` flip `exit-code: '1'`, for `link-check` flip
+`fail: true`, and for `secret-scan` / `spell-check` / `markdown-lint` remove their
+`continue-on-error: true` line.
 
 ## What it covers on the wheel
 
@@ -32,8 +34,8 @@ Jobs start **non-blocking** so nothing breaks on day one. Flip `exit-code: '1'` 
 | dependabot | Dependabot | SCA · Supply chain |
 | a11y (optional) | Lighthouse CI | Accessibility automated |
 
-That is ~10 of the wheel's layers from one paste — matching the **"GH Actions starter"**
-tool preset in the coverage wheel.
+That is ~9 of the wheel's layers from one paste (10 with the optional a11y job) —
+matching the **"GH Actions starter"** tool preset in the coverage wheel.
 
 > ⚠️ These job choices and the layer mapping are **LLM-generated suggestions**.
 > They are a sensible starting point, not gospel — pin action versions, review
