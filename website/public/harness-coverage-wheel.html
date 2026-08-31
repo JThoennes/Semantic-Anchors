@@ -16,20 +16,26 @@
     display:flex;flex-direction:column;overflow:hidden}
   header{padding:16px 28px 6px;flex:0 0 auto}
   h1{font-size:21px;margin:0 0 3px}
-  header p{margin:0;color:var(--muted);max-width:90ch;font-size:13.5px}
+  .wheel-intro{margin:2px 6px 12px;color:var(--muted);font-size:13px;line-height:1.5}
   .layout{display:flex;gap:24px;align-items:stretch;padding:14px 28px 18px;flex:1 1 auto;min-height:0}
   .wheel-panel{flex:1 1 460px;min-width:360px;background:var(--surface);border:1px solid var(--line);
     border-radius:14px;padding:12px;align-self:flex-start;max-height:100%;overflow:auto}
   .list-panel{flex:1 1 420px;min-width:340px;display:flex;flex-direction:column;min-height:0}
   #inv{flex:1 1 auto;min-height:0;overflow-y:auto;padding-right:8px}
   .src{font-size:11.5px;color:#9aa4af;padding:8px 6px 2px}
+  .src.topnote{margin:0 0 12px;padding:9px 11px;background:#fbfcfe;border:1px solid var(--line);
+    border-radius:9px;line-height:1.45}
+  .src.topnote a{color:var(--cov);text-decoration:none}
+  .src.topnote a:hover{text-decoration:underline}
   svg{width:100%;height:auto;display:block}
   .sector-bg{fill:#eef2f7}
   .sector-fill{fill:var(--covsoft)}
   .divider{stroke:#dbe3ec;stroke-width:1}
   .seclabel{font:600 12px var(--font);fill:var(--ink)}
   .secpct{font:500 10px var(--font);fill:var(--muted)}
-  .dot{stroke-width:1.5;cursor:pointer}
+  .dot{stroke-width:1.5;cursor:pointer;stroke-linejoin:round}
+  .human-mark{fill:#868e96;pointer-events:none}
+  .human-mark.hollow{fill:var(--surface);stroke:#868e96;stroke-width:1.1;stroke-linejoin:round}
   .dot.exposed{fill:var(--surface)}
   .center-num{font:700 46px var(--font);fill:var(--ink);text-anchor:middle}
   .center-lbl{font:500 12px var(--font);fill:var(--muted);text-anchor:middle;letter-spacing:.04em}
@@ -40,8 +46,13 @@
   button.primary{background:var(--cov);border-color:var(--cov);color:#fff}
   .legend{display:flex;gap:16px;flex-wrap:wrap;padding:10px 6px 2px;color:var(--muted);font-size:12px}
   .legend span{display:inline-flex;align-items:center;gap:6px}
-  .sw{width:12px;height:12px;border-radius:50%;display:inline-block}
-  .sw.hollow{background:var(--surface);border:1.5px solid var(--muted)}
+  .legend svg{flex:none;width:16px;height:17px}
+  .sw{width:12px;height:12px;display:inline-block}
+  .sw.g{border-radius:50%;background:var(--green)}
+  .sw.a{border-radius:2px;background:var(--amber)}
+  .sw.r{width:0;height:0;background:none;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:11px solid var(--red)}
+  .sw.solid{border-radius:50%;background:var(--ink)}
+  .sw.hollow{border-radius:50%;background:var(--surface);border:1.5px solid var(--muted)}
   .stat{color:var(--muted);font-size:13px;margin:2px 6px 12px}
   .stat b{color:var(--ink)}
   section.grp{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-bottom:12px;overflow:hidden}
@@ -97,8 +108,21 @@
   .tiers .tlbl{font-size:12px;color:var(--muted);margin-right:2px}
   .tiers button{padding:5px 9px;font-size:12px}
   .tiers button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .tier-radar{font-size:12px;color:var(--cov);text-decoration:none;margin-left:4px;white-space:nowrap}
+  .tier-radar:hover{text-decoration:underline}
   li.dim{opacity:.38} .dot.dim{opacity:.22}
   .stat .req{color:var(--ink)}
+  /* quick-cover by tool */
+  .tools-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+  .tools-row .tlbl{font-size:12px;color:var(--muted);margin-right:2px}
+  .tool{padding:4px 9px;font-size:12px;border-radius:20px}
+  .tool .n{display:inline-block;text-align:center;background:#eef2f7;color:var(--muted);
+    border-radius:10px;padding:0 6px;font-size:10.5px;margin-left:4px}
+  .tool.active{background:var(--cov);border-color:var(--cov);color:#fff}
+  .tool.active .n{background:rgba(255,255,255,.25);color:#fff}
+  .tool-item{display:inline-flex;align-items:center;gap:1px}
+  .tool-doc{font-size:13px;color:var(--muted);text-decoration:none;padding:2px 5px;border-radius:6px;line-height:1}
+  .tool-doc:hover{color:var(--cov);background:#eef2f7}
   .note{padding:0 28px 34px;color:var(--muted);font-size:12.5px;max-width:80ch}
   footer{padding:0 28px 30px;color:#9aa4af;font-size:12px}
 </style>
@@ -106,30 +130,33 @@
 <body>
 <header>
   <h1>Harness Coverage Wheel</h1>
-  <p>Nine sections of the harness inventory as a ring. Tick a layer to mark it covered; the dot fills,
-     its petal grows, completeness updates. Click a name or dot for the explanation. Empty arcs are exposure.</p>
 </header>
 
 <div class="layout">
   <div class="wheel-panel">
+    <p class="wheel-intro">Nine sections of the harness inventory as a ring. Tick a layer to mark it covered; the dot
+       fills, its petal grows, completeness updates. Click a name or dot for the explanation. Empty arcs are exposure.</p>
     <svg id="wheel" viewBox="0 0 680 620" role="img" aria-label="Harness coverage wheel"></svg>
     <div class="legend">
-      <span><i class="sw" style="background:var(--green)"></i>🟢 extrinsic (turn it on)</span>
-      <span><i class="sw" style="background:var(--amber)"></i>🟡 hybrid</span>
-      <span><i class="sw" style="background:var(--red)"></i>🔴 intrinsic (you define it)</span>
-      <span><i class="sw hollow"></i>exposed</span>
-      <span><i class="sw" style="background:var(--ink)"></i>covered</span>
+      <span><i class="sw g"></i>circle = extrinsic (turn it on)</span>
+      <span><i class="sw a"></i>square = hybrid</span>
+      <span><i class="sw r"></i>triangle = intrinsic (you define it)</span>
+      <span><i class="sw hollow"></i>hollow = exposed</span>
+      <span><i class="sw solid"></i>filled = covered</span>
+      <span><svg viewBox="-7 -8 14 15" aria-hidden="true"><circle cx="0" cy="-4" r="3" fill="#868e96"/><path d="M -5.2,4.8 A 5.2,5.2 0 0 1 5.2,4.8 Z" fill="#868e96"/></svg>human only (no tool)</span>
+      <span><svg viewBox="-7 -8 14 15" aria-hidden="true"><circle cx="0" cy="-4" r="3" fill="#fff" stroke="#868e96" stroke-width="1.1"/><path d="M -5.2,4.8 A 5.2,5.2 0 0 1 5.2,4.8 Z" fill="#fff" stroke="#868e96" stroke-width="1.1" stroke-linejoin="round"/></svg>tool assists, human decides</span>
     </div>
-    <p class="src"><b>Heads up:</b> the layer list, the explanations and the risk-tier assignments are
-      <b>LLM-generated suggestions</b>. They are a starting point and may not match what your project
-      actually needs — treat them as a draft to adapt, not a checklist to obey.</p>
-    <p class="src">Prototype · self-assessment (one tick = one layer you run) ·
-      based on llm-coding.github.io/Semantic-Anchors/harness-inventory</p>
   </div>
 
   <div class="list-panel">
+    <p class="src topnote"><b>Heads up:</b> the layer list, the explanations and the risk-tier assignments are
+      <b>LLM-generated suggestions</b>. They are a starting point and may not match what your project
+      actually needs — treat them as a draft to adapt, not a checklist to obey.
+      <br>Prototype · self-assessment (one tick = one layer you run) · based on
+      <a href="https://llm-coding.github.io/Semantic-Anchors/harness-inventory" target="_blank" rel="noopener">llm-coding.github.io/Semantic-Anchors/harness-inventory</a>.
+      Spot something wrong? <a href="https://github.com/llm-coding/Semantic-Anchors/issues/new" target="_blank" rel="noopener">Open an issue</a> with your change request.</p>
     <div class="controls">
-      <button class="primary" id="btnMin">Pragmatic minimum (all 🟢)</button>
+      <button id="btnMin">Pragmatic minimum (all 🟢)</button>
       <button id="btnAll">Select all</button>
       <button id="btnClear">Clear</button>
     </div>
@@ -140,7 +167,9 @@
       <button data-tier="2">Standard</button>
       <button data-tier="3">Regulated</button>
       <button data-tier="4">Safety-critical</button>
+      <a class="tier-radar" href="https://llm-coding.github.io/vibe-coding-risk-radar/" target="_blank" rel="noopener">Which tier? → Risk Radar ↗</a>
     </div>
+    <div class="tools-row" id="toolrow"><span class="tlbl">Quick-cover by tool <span style="opacity:.65">(↗ = setup docs)</span>:</span></div>
     <p class="stat" id="stat"></p>
 
     <!-- Inventory = static HTML content. JS reads these to build the wheel. -->
@@ -286,16 +315,51 @@
 const CLR={G:getCSS('--green'),A:getCSS('--amber'),R:getCSS('--red')};
 // Per-aspect explanations, keyed by exact aspect name. Populated below (inlined for file://).
 const EXPL={};
+
+// Simple tool config: one tool → the aspects it covers (exact aspect names).
+const byName={}; let toolsReady=false;
+const TOOLS=[
+  {name:'Ruff', href:'https://docs.astral.sh/ruff/', covers:['Linter (ESLint, Ruff, golangci-lint)','Formatter (Prettier, Black, gofmt)','Import sorter / dead-code']},
+  {name:'Trivy', href:'https://trivy.dev/latest/docs/', covers:['SCA (Dependabot, Snyk, Trivy)','Container / image scanning','IaC scanning (Checkov, tfsec)','Secret scanning (gitleaks)','Supply chain / SBOM / SLSA']},
+  {name:'Snyk', href:'https://docs.snyk.io/', covers:['SCA (Dependabot, Snyk, Trivy)','Container / image scanning','SAST (Semgrep, CodeQL)','IaC scanning (Checkov, tfsec)','License compliance (FOSSA)']},
+  {name:'SonarQube', href:'https://docs.sonarsource.com/sonarqube-server/latest/', covers:['Linter (ESLint, Ruff, golangci-lint)','Complexity metrics (cyclomatic)','SAST (Semgrep, CodeQL)']},
+  {name:'GitHub Advanced Security', href:'https://docs.github.com/en/code-security', covers:['SAST (Semgrep, CodeQL)','Secret scanning (gitleaks)','SCA (Dependabot, Snyk, Trivy)']},
+  {name:'Playwright', href:'https://playwright.dev/docs/intro', covers:['End-to-end / UI (Playwright)','Snapshot / visual regression','Accessibility automated (axe-core)']},
+  {name:'Lighthouse CI', href:'https://github.com/GoogleChrome/lighthouse-ci', covers:['Performance / benchmark','Accessibility automated (axe-core)']},
+  {name:'pre-commit', href:'https://pre-commit.com/', covers:['Formatter (Prettier, Black, gofmt)','Linter (ESLint, Ruff, golangci-lint)','Import sorter / dead-code','Secret scanning (gitleaks)','Spell check (cspell)']},
+  {name:'Vale', href:'https://vale.sh/docs/', covers:['UI prose lint (Vale)','Prose lint (Vale, alex)']},
+  {name:'OpenTelemetry', href:'https://opentelemetry.io/docs/', covers:['Distributed tracing (Jaeger)','Observability gates (SLO)']},
+  {name:'GH Actions starter', href:'starter/README.md', covers:['Secret scanning (gitleaks)','SCA (Dependabot, Snyk, Trivy)','Container / image scanning','IaC scanning (Checkov, tfsec)','Supply chain / SBOM / SLSA','SAST (Semgrep, CodeQL)','Link checker (lychee)','Spell check (cspell)','Markdown / AsciiDoc lint','Accessibility automated (axe-core)']},
+];
+function toggleTool(t){
+  const items=t.covers.map(n=>byName[n]).filter(Boolean);
+  const allOn=items.length>0 && items.every(it=>it.cb.checked);
+  items.forEach(it=>it.cb.checked=!allOn);
+  sync();
+}
+function refreshTools(){
+  if(!toolsReady)return;
+  document.querySelectorAll('#toolrow .tool').forEach(ch=>{
+    const t=TOOLS[+ch.dataset.i];
+    const items=t.covers.map(n=>byName[n]).filter(Boolean);
+    ch.classList.toggle('active', items.length>0 && items.every(it=>it.cb.checked));
+  });
+}
 function getCSS(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim();}
 const SVG='http://www.w3.org/2000/svg';
 const CX=340, CY=300, R_DOT=250, R0=96, R_BAND_MAX=244, R_LABEL=274;
 
 // --- read the static inventory into a model ---
 const groups=[...document.querySelectorAll('#inv .grp')].map(g=>{
-  const items=[...g.querySelectorAll('li')].map(li=>({
-    li, cb:li.querySelector('input'), cls:li.dataset.class, mintier:+li.dataset.mintier,
-    name:li.querySelector('.name').textContent
-  }));
+  const items=[...g.querySelectorAll('li')].map(li=>{
+    // "needs a human": no tool can close the loop (Closed-loop No / Partial).
+    const cl=(li.querySelector('.body').textContent.match(/Closed-loop:\s*(Yes|Partial|No)/)||[])[1];
+    return {
+      li, cb:li.querySelector('input'), cls:li.dataset.class, mintier:+li.dataset.mintier,
+      name:li.querySelector('.name').textContent, closed: cl,
+      human: cl==='No'||cl==='Partial', toolAssist: cl==='Partial'
+    };
+  });
   g.querySelector('.cnt').textContent=items.length+' layers';
   return {section:g.dataset.section, short:g.dataset.short, items};
 });
@@ -308,6 +372,24 @@ function annulus(rIn,rOut,a0,a1){
   return `M${x0} ${y0} A${rOut} ${rOut} 0 ${large} 1 ${x1} ${y1} L${x2} ${y2} A${rIn} ${rIn} 0 ${large} 0 ${x3} ${y3} Z`;
 }
 function el(tag,attrs){const e=document.createElementNS(SVG,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);return e;}
+
+// Shape encodes the economic class so it survives greyscale / colour-blindness:
+// G = circle (extrinsic/free), A = square (intrinsic/cheap), R = triangle (intrinsic/expensive).
+function dotShape(cls,dx,dy){
+  if(cls==='A'){const s=4.1;return el('rect',{x:dx-s,y:dy-s,width:2*s,height:2*s,rx:1,class:'dot',stroke:CLR[cls]});}
+  if(cls==='R'){const r=6.0,p=[[0,-r],[r*0.866,r*0.5],[-r*0.866,r*0.5]]
+     .map(([x,y])=>`${(dx+x).toFixed(1)},${(dy+y).toFixed(1)}`).join(' ');
+     return el('polygon',{points:p,class:'dot',stroke:CLR[cls]});}
+  return el('circle',{cx:dx,cy:dy,r:4.6,class:'dot',stroke:CLR[cls]});
+}
+// Small person pictogram (head + shoulders) marking an aspect no tool can close —
+// "covered" here means a human did the work, not a tool that runs.
+function personGlyph(mx,my,hollow){
+  const g=el('g',{class:'human-mark'+(hollow?' hollow':'')});
+  g.appendChild(el('circle',{cx:mx,cy:my-4,r:3}));
+  g.appendChild(el('path',{d:`M ${(mx-5.2).toFixed(1)},${(my+4.8).toFixed(1)} A 5.2,5.2 0 0 1 ${(mx+5.2).toFixed(1)},${(my+4.8).toFixed(1)} Z`}));
+  return g;
+}
 
 const svg=document.getElementById('wheel');
 const dotEls=[];
@@ -333,7 +415,7 @@ function build(){
     g.items.forEach((it,k)=>{
       const aa = n===1? mid : a0+ (a1-a0)*(k/(n-1));
       const[dx,dy]=xy(R_DOT,aa);
-      const c=el('circle',{cx:dx,cy:dy,r:4.6,class:'dot',stroke:CLR[it.cls]});
+      const c=dotShape(it.cls,dx,dy);
       c.style.fill=CLR[it.cls];
       it.dot=c; it.covered=it.cb.checked;
       c.addEventListener('mouseenter',e=>showTip(e,it));
@@ -342,6 +424,7 @@ function build(){
       c.addEventListener('click',()=>openModal(it));
       it.li.querySelector('.name').addEventListener('click',e=>{e.preventDefault();openModal(it);});
       svg.appendChild(c); dotEls.push(it);
+      if(it.human){const[hx,hy]=xy(R_DOT+17,aa); const hg=personGlyph(hx,hy,it.toolAssist); it.hmark=hg; svg.appendChild(hg);}
     });
   });
   // center
@@ -350,42 +433,49 @@ function build(){
   const cl=el('text',{x:CX,y:CY+26,class:'center-lbl'}); cl.textContent='COVERAGE'; svg.appendChild(cl);
 }
 
+// In scope = counts toward the percentage. Aspects dimmed by the risk tier
+// (mintier above the selected tier) are out of scope and do not count.
+function inScope(it){return TIER==='all' || it.mintier<=+TIER;}
 function sync(){
   let cov=0,tot=0, gOn=0,gTot=0;
   groups.forEach((g,i)=>{
-    let c=0;
+    let c=0,sc=0;
     g.items.forEach(it=>{
       it.covered=it.cb.checked;
       it.dot.classList.toggle('exposed',!it.covered);
       it.dot.style.fill = it.covered?CLR[it.cls]:'';
       it.li.classList.toggle('on',it.covered); it.li.classList.toggle('off',!it.covered);
-      if(it.covered)c++; tot++; if(it.covered)cov++;
+      if(inScope(it)){sc++; tot++; if(it.covered){c++; cov++;}}
       if(it.cls==='G'){gTot++; if(it.covered)gOn++;}
     });
-    const frac=c/g.items.length;
+    const frac= sc>0 ? c/sc : 0;
     const rOut=R0+frac*(R_BAND_MAX-R0);
     const a0=i*SPAN+GAP/2, a1=(i+1)*SPAN-GAP/2;
     const fp=svg.querySelector(`.sector-fill[data-i="${i}"]`);
     fp.setAttribute('d', frac>0?annulus(R0,rOut,a0,a1):'');
     const pe=svg.querySelector(`.secpct[data-i="${i}"]`);
-    pe.textContent=Math.round(frac*100)+'%';
+    pe.textContent= sc>0 ? Math.round(frac*100)+'%' : '–';
   });
-  document.getElementById('cnum').textContent=Math.round(cov/tot*100)+'%';
+  document.getElementById('cnum').textContent=(tot>0?Math.round(cov/tot*100):0)+'%';
   let stat=`<b>${cov}/${tot}</b> layers covered &nbsp;·&nbsp; free 🟢 floor: <b>${gOn}/${gTot}</b> on`;
   if(TIER!=='all'){
-    let req=0,reqCov=0;
-    dotEls.forEach(it=>{if(it.mintier<=+TIER){req++; if(it.covered)reqCov++;}});
-    stat=`<span class="req">${TIERNAME[TIER]}</span>: <b>${reqCov}/${req}</b> required layers covered `+
-         `&nbsp;·&nbsp; overall <b>${cov}/${tot}</b>`;
+    const deferred=dotEls.length-tot;
+    stat=`<span class="req">${TIERNAME[TIER]}</span>: <b>${cov}/${tot}</b> required layers covered `+
+         `&nbsp;·&nbsp; ${deferred} below this tier (not counted)`;
   }
   document.getElementById('stat').innerHTML=stat;
+  // "Pragmatic minimum" shows active (blue) only when the selection is exactly that preset.
+  const isMin=groups.every(g=>g.items.every(it=>it.cb.checked===(it.cls==='G')));
+  document.getElementById('btnMin').classList.toggle('primary',isMin);
+  refreshTools();
 }
 
 // tooltip
 const tip=document.getElementById('tip');
 function showTip(e,it){
   const cls={G:'extrinsic 🟢',A:'hybrid 🟡',R:'intrinsic 🔴'}[it.cls];
-  tip.innerHTML=`<b>${it.name}</b><br>${cls} · ${it.covered?'covered':'exposed'}`;
+  const loop = it.closed==='No' ? ' · 🧑 human only' : it.closed==='Partial' ? ' · 🧑 tool + human' : '';
+  tip.innerHTML=`<b>${it.name}</b><br>${cls} · ${it.covered?'covered':'exposed'}${loop}`;
   tip.style.opacity=1; moveTip(e); it.li.classList.add('hl');
   it._clear=()=>it.li.classList.remove('hl');
 }
@@ -434,7 +524,25 @@ document.getElementById('btnAll').onclick=()=>{groups.forEach(g=>g.items.forEach
 document.getElementById('btnClear').onclick=()=>{groups.forEach(g=>g.items.forEach(it=>it.cb.checked=false));sync();};
 document.querySelectorAll('#inv input').forEach(cb=>cb.addEventListener('change',sync));
 
-build(); sync();
+build();
+// tools: build name→item map and render the quick-cover chips
+dotEls.forEach(it=>byName[it.name]=it);
+{const tr=document.getElementById('toolrow');
+ TOOLS.forEach((t,i)=>{
+   const wrap=document.createElement('span'); wrap.className='tool-item';
+   const b=document.createElement('button'); b.className='tool'; b.dataset.i=i;
+   b.innerHTML=`${t.name}<span class="n">${t.covers.length}</span>`;
+   b.title='Covers: '+t.covers.join(', ');
+   b.onclick=()=>toggleTool(t);
+   wrap.appendChild(b);
+   if(t.href){const a=document.createElement('a'); a.className='tool-doc'; a.href=t.href;
+     a.target='_blank'; a.rel='noopener'; a.textContent='↗';
+     a.title=(t.href.startsWith('http')?'Setup docs':'Starter workflow')+' — '+t.name;
+     a.setAttribute('aria-label','Setup docs for '+t.name);
+     wrap.appendChild(a);}
+   tr.appendChild(wrap);});
+ toolsReady=true;}
+sync();
 </script>
 </body>
 </html>

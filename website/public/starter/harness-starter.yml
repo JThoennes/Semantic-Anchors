@@ -1,0 +1,83 @@
+# Harness starter — turns on the free "green" (extrinsic) error-correction layers
+# with minimal configuration. Copy to .github/workflows/harness.yml
+#
+# Each job notes which Harness Coverage Wheel aspects it covers. Jobs start
+# NON-blocking (exit-code 0 / fail:false) so you can adopt them without breaking
+# the build; flip them to blocking once the repo is clean.
+name: harness
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+  security-events: write   # CodeQL / SARIF upload
+
+jobs:
+  # Wheel: Secret scanning (gitleaks)
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: gitleaks/gitleaks-action@v2
+        # Private repos need a (free) GITLEAKS_LICENSE org secret.
+
+  # Wheel: SCA · Container/image scanning · IaC scanning · Supply chain/SBOM
+  trivy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: fs
+          scanners: vuln,secret,misconfig,license
+          format: table
+          exit-code: '0'        # set to '1' to block once clean
+
+  # Wheel: SAST (CodeQL). Set the language(s) your repo uses.
+  codeql:
+    runs-on: ubuntu-latest
+    permissions: { security-events: write, contents: read }
+    strategy:
+      matrix:
+        language: [javascript-typescript]   # python | java-kotlin | go | ...
+    steps:
+      - uses: actions/checkout@v4
+      - uses: github/codeql-action/init@v3
+        with: { languages: ${{ matrix.language }} }
+      - uses: github/codeql-action/analyze@v3
+
+  # Wheel: Link checker (lychee)
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with: { args: '--no-progress .', fail: false }
+
+  # Wheel: Spell check (cspell → typos)
+  spell-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: crate-ci/typos@master
+
+  # Wheel: Markdown / AsciiDoc lint  (markdown here; add asciidoctor-lint if you use .adoc)
+  markdown-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v17
+        with: { globs: '**/*.md' }
+
+  # Wheel: Accessibility automated (axe-core) — needs a built site / URL.
+  # Enable once you have a preview or a public URL, pointing at your sitemap.
+  # a11y:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: treosh/lighthouse-ci-action@v12
+  #       with: { urls: 'https://example.com/', configPath: './lighthouserc.json' }
