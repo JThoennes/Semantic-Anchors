@@ -66,90 +66,28 @@ The prompts in this phase are also packaged as an installable Claude Code Skill.
 
 === Phase 1: Build the Question Tree
 
-Start with five root questions about the bounded context. Their *second level is fixed*: every run emits the same prescribed set of sub-questions — the six PRD elements (Q1.1–Q1.6), six specification categories (Q2.1–Q2.6), the twelve arc42 chapters (Q3.1–Q3.12), the eight ISO/IEC 25010 characteristics plus a priority question (Q4.1–Q4.9), and five risk categories (Q5.1–Q5.5). Free, code-driven decomposition applies only *below* that fixed level. The fixed level keeps Q-IDs stable — Q3.7 is always the Deployment View — so trees from different runs can be diffed node-by-node.
+Start with five root questions about the bounded context. Their *second level is fixed*: every run emits the same prescribed set of sub-questions — the six PRD elements (Q1.1–Q1.6), six specification categories (Q2.1–Q2.6), the twelve arc42 chapters (Q3.1–Q3.12), the eight ISO/IEC 25010 characteristics plus a priority question (Q4.1–Q4.9), and five risk categories (Q5.1–Q5.5). One node fixes a third level too: Q3.2 (constraints) always emits Q3.2.1–Q3.2.3 (technical, organisational, and convention constraints — where instruction files such as CLAUDE.md, CI workflows, and linter configs count as evidence). Below the fixed levels, decomposition is adaptive and code-driven, capped at four levels under a fixed node. The fixed levels keep Q-IDs stable — Q3.7 is always the Deployment View — so trees from different runs can be diffed node-by-node.
 
-Each leaf in the tree is either `[ANSWERED]` (with code evidence: file, function, line) or `[OPEN]` (with Category and Ask role). The output is two AsciiDoc files: `QUESTION_TREE.adoc` (full reasoning trace) and `OPEN_QUESTIONS.adoc` (handoff document, grouped by role).
+Each leaf in the tree is `[ANSWERED]` (with code evidence: `file:line` — a directory is not valid evidence), `[ANSWERED: not applicable]` (for fixed nodes that do not apply to this context), or `[OPEN]` (with Category and Ask role). The output is two AsciiDoc files, suffixed per context so runs on different contexts do not overwrite each other (a rerun of the same context reuses its paths): `QUESTION_TREE-[context-name].adoc` (full reasoning trace) and `OPEN_QUESTIONS-[context-name].adoc` (handoff document, grouped by role).
 
-Copy the prompt below into a session that has read access to the bounded context. Adapt `[bounded context path]` and the example questions if your domain warrants it; do not change the leaf classification, Q-ID scheme, or output files.
+The full Phase 1 prompt — including the post-run checklist (evidence spot-check against hallucination, question-count sanity band, deferred-answer markers) — is maintained *in one place*, the skill:
 
-.Prompt: Phase 1 — Build the Question Tree
+[NOTE]
+====
+*Canonical prompt:* https://github.com/LLM-Coding/Semantic-Anchors/blob/main/skill/socratic-code-theory-recovery/prompts/phase-1-question-tree.md[skill/socratic-code-theory-recovery/prompts/phase-1-question-tree.md]
+
+Copy it into a session with read access to the bounded context. Replace `[bounded context path]` and `[context-name]` (kebab-case). Adapt the Q1–Q5 wording if your domain warrants it; do not change the fixed levels, the leaf classification, the Q-ID scheme, or the output-file naming.
+====
+
+To give you the shape without duplicating the prompt, its five root questions:
+
 [source,txt]
 ----
-You are performing Socratic Code-Theory Recovery on a brownfield bounded
-context located at [bounded context path]. Phase 1 of two.
-
-Goal: recover the program's theory (Naur, 1985) from source code through
-recursive question refinement, before any documentation is written.
-
-Process:
-
-1. Start with five root questions about the bounded context:
-   Q1 What problem does this bounded context solve, and for whom?
-   Q2 What is the specification of this bounded context?
-   Q3 What is the architecture of this bounded context?
-   Q4 What quality goals drive the design?
-   Q5 What risks and technical debt exist?
-
-2. The second level of the tree is FIXED, not free. Emit exactly these
-   nodes, in this order, even when a node's only leaf is [OPEN] or
-   [ANSWERED: not applicable]:
-     Q1.1-Q1.6  product identity, primary users, channels, why-built,
-                success metrics, segment priority
-     Q2.1-Q2.6  actors, use-case catalog, per-interface system specs,
-                data/entity model, acceptance criteria, cross-cutting
-                business rules
-     Q3.1-Q3.12 the twelve arc42 chapters, in arc42 order
-     Q4.1-Q4.8  the eight ISO/IEC 25010 characteristics;
-     Q4.9       which characteristic has priority
-     Q5.1-Q5.5  technical debt, security risks, operational risks,
-                dependency/supply-chain risks, scaling/performance risks
-
-3. Below the fixed second level, decompose freely and code-driven. Stop
-   when a leaf is small enough to answer from a single piece of code
-   evidence, or to pose as a single precise question to a stakeholder.
-   Third-level depth varies between runs — that is expected. Q-IDs are
-   stable: Q3.7 is always the Deployment View, in every run, so trees
-   from different runs can be diffed node-by-node.
-
-4. For each leaf, classify it:
-
-   [ANSWERED]
-     - You found the answer in the code.
-     - Cite the evidence as <file>:<line> or <file>::<function>.
-     - Be exact. No "see X for details."
-
-   [OPEN]
-     - The answer is not derivable from code alone.
-     - Category: business-context | design-rationale | quality-goals |
-                 stakeholder-context | future-direction
-     - Ask role: Product Owner | Architect | Developer | Domain Expert |
-                 Operations
-     - State precisely what cannot be answered, and why.
-
-   Quality (the Q4 branch) is not wholly team knowledge. Where the code
-   shows measurable behaviour — a timeout, a truncation limit, a budget,
-   a retry policy, the threats and test concept from Q3.8 — write it as
-   an [ANSWERED] quality scenario with file:line. Never invent a target
-   number. Only the quality-goal ranking (Q4.9) is [OPEN].
-
-5. Output two files in AsciiDoc:
-
-   QUESTION_TREE.adoc
-     - Full hierarchical tree with all nodes and Q-IDs
-     - Each leaf marked [ANSWERED] (with evidence) or [OPEN] (with Category
-       and Ask role)
-     - Includes all reasoning, not only the leaves
-
-   OPEN_QUESTIONS.adoc
-     - Only the [OPEN] leaves, copied verbatim from QUESTION_TREE.adoc
-     - Always one section per Ask role (Product Owner, Architect,
-       Developer, Domain Expert, Operations) — emit every section even
-       when it is empty ("No open questions for this role")
-     - Each question short enough to be answered in 1-3 sentences
-
-Do not write any other documentation in this phase. Phase 2 will synthesize
-the answered tree into PRD, specification, arc42, and ADRs — only after the
-team has filled in the [OPEN] leaves.
+Q1 What problem does this bounded context solve, and for whom?
+Q2 What is the specification of this bounded context?
+Q3 What is the architecture of this bounded context?
+Q4 What quality goals drive the design?
+Q5 What risks and technical debt exist?
 ----
 
 === Between Phases: Team Answers the Open Questions
@@ -171,14 +109,19 @@ Typical questions the LLM cannot answer from code:
 
 === Phase 2: Synthesize Documentation
 
-The LLM synthesizes the answered questions plus the code evidence from Phase 1 into documentation following the spec-driven workflow:
+The LLM synthesizes the answered questions plus the code evidence from Phase 1 into four artifacts following the spec-driven workflow, each suffixed with the context name:
 
-* *PRD* from Q-1 branch answers
-* *Specification* (Cockburn Use Cases, CLI spec, data models, Gherkin acceptance criteria) from Q-2 branch
-* *arc42* with all 12 chapters from Q-3 branch
-* *Nygard ADRs* with Pugh Matrix from Q-3.9 branch
+* *PRD* (`docs/specs/prd-[context-name].adoc`) from the Q1 branch
+* *Specification* (`docs/specs/use-cases-[context-name].adoc`: Cockburn Use Cases, CLI spec, data models, Gherkin acceptance criteria) from the Q2 branch
+* *arc42* (`docs/arc42/arc42-[context-name].adoc`) with all 12 chapters from the Q3 branch — Chapter 10 synthesizes the measurable quality scenarios recovered in Q4, it is never a bare `[OPEN]` pointer
+* *Nygard ADRs* with Pugh Matrix from the Q3.9 branch, filenames prefixed with the context name
 
-Code-derived claims carry the `file:line` evidence from their `[ANSWERED]` leaf — a reference to the code, the only durable artifact; team-provided information is marked `(team answer)`. The Question Tree is temporary scaffolding, so Q-IDs are not written into the final documents — during synthesis every claim is traced back to a leaf as a build-time check. This dual traceability (code evidence + team input) is the key difference from a simple reverse-engineering prompt.
+[NOTE]
+====
+*Canonical prompt:* https://github.com/LLM-Coding/Semantic-Anchors/blob/main/skill/socratic-code-theory-recovery/prompts/phase-2-synthesize.md[skill/socratic-code-theory-recovery/prompts/phase-2-synthesize.md] — run it only after the team has answered (or explicitly deferred) the `[OPEN]` questions.
+====
+
+Code-derived claims carry the `file:line` evidence from their `[ANSWERED]` leaf, copied verbatim — a reference to the code, the only durable artifact; team-provided information is marked `(team answer)`, and questions the team deferred stay visible as explicit `(deferred)` gaps rather than silently disappearing. The Question Tree is temporary scaffolding, so Q-IDs are not written into the final documents — during synthesis every claim is traced back to a leaf as a build-time check. This dual traceability (code evidence + team input) is the key difference from a simple reverse-engineering prompt.
 
 === Establish Baseline Tests
 
@@ -268,15 +211,15 @@ Stable code that nobody touches does not need specs.
 |link:#/anchor/domain-driven-design[DDD]
 
 |Theory Recovery (Phase 1)
-|`You have access to [bounded context path]. No documentation exists. Build a Question Tree: 5 root questions (Problem/Users, Specification, Architecture, Quality Goals, Risks), each with a FIXED second level (Q1.1-Q5.5: 6 PRD elements, 6 spec categories, 12 arc42 chapters, 8 ISO 25010 characteristics + priority, 5 risk categories); free decomposition only below it. Each leaf: [ANSWERED] with file:line evidence or [OPEN] with Category and Ask role.`
+|Use the canonical https://github.com/LLM-Coding/Semantic-Anchors/blob/main/skill/socratic-code-theory-recovery/prompts/phase-1-question-tree.md[Phase 1 prompt] (5 root questions, fixed second level Q1.1–Q5.5 plus Q3.2.1–3, adaptive decomposition below, at most four levels below each fixed node). Each leaf: `[ANSWERED]` with `file:line` evidence or `[OPEN]` with Category and Ask role. Output: `QUESTION_TREE-[context-name].adoc`, `OPEN_QUESTIONS-[context-name].adoc`.
 |link:#/anchor/arc42[arc42], link:#/anchor/cockburn-use-cases[Cockburn], link:#/anchor/iso-25010[ISO 25010], link:#/anchor/nygard-adrs[Nygard ADR]
 
 |Team Answers
-|Route OPEN_QUESTIONS.adoc to the team by Ask role. Typically 10-15 questions.
+|Route `OPEN_QUESTIONS-[context-name].adoc` to the team by Ask role. Typically 10-15 questions; 50+ means the bounded context is too large.
 |{empty}--
 
 |Theory Recovery (Phase 2)
-|`Synthesize self-contained documentation from the Question Tree and team answers. Cite file:line evidence for code-derived claims, mark team input with (team answer), keep deferred questions as explicit gaps. Q-IDs stay out of the output.`
+|Use the canonical https://github.com/LLM-Coding/Semantic-Anchors/blob/main/skill/socratic-code-theory-recovery/prompts/phase-2-synthesize.md[Phase 2 prompt]: four context-suffixed artifacts (PRD, use cases, arc42, ADRs), `file:line` evidence copied verbatim, team input marked `(team answer)`, deferred questions as explicit `(deferred)` gaps. Q-IDs stay out of the output.
 |link:#/spec-driven-development[Spec-Driven Workflow]
 
 |Baseline Tests
