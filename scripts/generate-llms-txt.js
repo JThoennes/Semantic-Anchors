@@ -202,6 +202,59 @@ function generateAllAnchorsAdoc() {
   console.warn(`Generated: docs/all-anchors.adoc (${categories.length} categories)`)
 }
 
+// ─── Generate website/public/llms-index.txt ─────────────────────────────────
+
+const SITE_URL = 'https://llm-coding.github.io/Semantic-Anchors/'
+
+function anchorTitle(anchorId, filepath) {
+  const heading = fs
+    .readFileSync(filepath, 'utf-8')
+    .split('\n')
+    .find((line) => line.startsWith('= '))
+  return heading ? heading.slice(2).trim() : anchorId
+}
+
+/**
+ * An index in the sense of the llms.txt convention: one link per anchor, no
+ * definitions. llms.txt carries the full text (over half a megabyte), which an
+ * LLM asked to read it truncates — it then answers from whatever fit in its
+ * window. A list of links lets it fetch the two or three anchors that actually
+ * match the question.
+ */
+function generateLlmsIndexTxt() {
+  const lines = [
+    '# Semantic Anchors — Index',
+    '',
+    '> Every entry links to the source text of one anchor. This file carries no',
+    '> definitions on purpose: fetch the entries you need.',
+    `> Website: ${SITE_URL}`,
+    `> German variant of any anchor: replace .adoc with .de.adoc`,
+    `> Everything in one file (large): ${SITE_URL}llms.txt`,
+    '',
+  ]
+
+  // An anchor that belongs to two categories is listed under both, the same way
+  // all-anchors.adoc includes it under both: the entry is a way in, and dropping
+  // it from the second category would make that category look incomplete.
+  let total = 0
+  for (const category of categories) {
+    lines.push(`## ${category.name}`)
+    lines.push('')
+    for (const anchorId of category.anchors) {
+      const filepath = path.join(ROOT, 'docs/anchors', `${anchorId}.adoc`)
+      if (!fs.existsSync(filepath)) continue
+      lines.push(`- [${anchorTitle(anchorId, filepath)}](${SITE_URL}docs/anchors/${anchorId}.adoc)`)
+      total += 1
+    }
+    lines.push('')
+  }
+
+  const output = lines.join('\n')
+  fs.writeFileSync(path.join(ROOT, 'website/public/llms-index.txt'), output, 'utf-8')
+  const kb = Math.round(Buffer.byteLength(output, 'utf-8') / 1024)
+  console.warn(`Generated: website/public/llms-index.txt (${total} entries, ~${kb} KB)`)
+}
+
 // ─── Generate website/public/llms.txt ───────────────────────────────────────
 
 function generateLlmsTxt() {
@@ -499,4 +552,5 @@ function generateAllAnchorsWebAdoc() {
 generateAllAnchorsAdoc()
 generateAllAnchorsWebAdoc()
 generateLlmsTxt()
+generateLlmsIndexTxt()
 generateContractsTxt()

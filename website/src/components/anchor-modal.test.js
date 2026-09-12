@@ -186,6 +186,104 @@ describe('anchor-modal', () => {
     })
   })
 
+  describe('TalkItOver button', () => {
+    beforeEach(async () => {
+      global.fetch = vi.fn()
+      createModal()
+      const { fetchAnchorsData } = await import('../utils/data-loader.js')
+      fetchAnchorsData.mockResolvedValue([])
+    })
+
+    afterEach(() => {
+      delete global.fetch
+    })
+
+    it('hands over the very file that was rendered', async () => {
+      global.fetch.mockResolvedValue({
+        ok: true,
+        url: 'http://localhost/Semantic-Anchors/docs/anchors/test-anchor.adoc',
+        text: async () => '= Test Anchor\n\nTest content',
+      })
+
+      await showAnchorDetails('test-anchor')
+
+      const button = document.getElementById('modal-talk-it-over')
+      expect(button.getAttribute('url')).toBe(
+        'http://localhost/Semantic-Anchors/docs/anchors/test-anchor.adoc'
+      )
+      expect(button.getAttribute('prompt')).toContain('{url}')
+      expect(button.getAttribute('data-prompt')).toBe('referenz@1')
+      expect(button.style.display).not.toBe('none')
+    })
+
+    it('stays hidden when the anchor fails to load', async () => {
+      global.fetch.mockResolvedValue({ ok: false, status: 404 })
+
+      await showAnchorDetails('missing-anchor')
+
+      expect(document.getElementById('modal-talk-it-over').style.display).toBe('none')
+    })
+
+    it('lets the newer anchor win when two loads overlap', async () => {
+      // The first fetch resolves LAST: without a guard its late write would land
+      // on top of the anchor the reader actually clicked second.
+      let releaseFirst
+      global.fetch.mockReturnValueOnce(
+        new Promise((resolve) => {
+          releaseFirst = () =>
+            resolve({
+              ok: true,
+              url: 'http://localhost/Semantic-Anchors/docs/anchors/slow.adoc',
+              text: async () => '= Slow\n\nBody.',
+            })
+        })
+      )
+      global.fetch.mockResolvedValue({
+        ok: true,
+        url: 'http://localhost/Semantic-Anchors/docs/anchors/fast.adoc',
+        text: async () => '= Fast\n\nBody.',
+      })
+
+      const slow = showAnchorDetails('slow')
+      await showAnchorDetails('fast')
+      releaseFirst()
+      await slow
+
+      const button = document.getElementById('modal-talk-it-over')
+      expect(button.getAttribute('url')).toContain('fast.adoc')
+      expect(document.getElementById('modal-title').textContent).toBe('Fast')
+    })
+
+    it('never points at the previous anchor while the next one loads', async () => {
+      global.fetch.mockResolvedValue({
+        ok: true,
+        url: 'http://localhost/Semantic-Anchors/docs/anchors/first.adoc',
+        text: async () => '= First\n\nBody.',
+      })
+      await showAnchorDetails('first')
+
+      let release
+      global.fetch.mockReturnValue(
+        new Promise((resolve) => {
+          release = () =>
+            resolve({
+              ok: true,
+              url: 'http://localhost/Semantic-Anchors/docs/anchors/second.adoc',
+              text: async () => '= Second\n\nBody.',
+            })
+        })
+      )
+      const pending = showAnchorDetails('second')
+
+      const button = document.getElementById('modal-talk-it-over')
+      expect(button.style.display).toBe('none')
+
+      release()
+      await pending
+      expect(button.getAttribute('url')).toContain('second.adoc')
+    })
+  })
+
   describe('tested-on note', () => {
     beforeEach(async () => {
       global.fetch = vi.fn()
