@@ -1,5 +1,5 @@
 /**
- * Prompts for the TalkItOver buttons.
+ * Prompt for the TalkItOver button.
  *
  * Taken verbatim from the content-type prompts on
  * https://raifdmueller.github.io/talkitover/prompts/ and inserted here at
@@ -9,18 +9,6 @@
  * Buttons carry the version as data-prompt="<type>@<n>" so a later update can
  * find them. Nothing reads that attribute at runtime.
  */
-
-/** referenz@1 — a page the reader looks things up in. */
-export const REFERENCE_PROMPT = [
-  'Load {url}. It is a reference page, and I want to use it — not have it summarised.',
-  '',
-  'Ask me what I am trying to look up before you answer anything.',
-  '',
-  'Then keep your answers short and name the section you took them from. If the',
-  'page does not cover what I ask, say so instead of filling the gap from memory.',
-].join('\n')
-
-export const REFERENCE_VERSION = 'referenz@1'
 
 /** katalog@1 — an index the reader wants to find their way through. */
 export const CATALOG_PROMPT = [

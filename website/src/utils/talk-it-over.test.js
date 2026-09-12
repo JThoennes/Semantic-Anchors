@@ -1,12 +1,11 @@
 import { describe, it, expect } from 'vitest'
-import { promptAttribute, CATALOG_PROMPT, REFERENCE_PROMPT } from './talk-it-over.js'
+import { promptAttribute, CATALOG_PROMPT } from './talk-it-over.js'
 
 const decode = (value) => value.replace(/&#10;/g, '\n')
 
 describe('promptAttribute', () => {
   const prompts = [
     CATALOG_PROMPT,
-    REFERENCE_PROMPT,
     'one line, no break at all',
     'two\nlines',
     'a paragraph\n\nand another\n\nand a third',
