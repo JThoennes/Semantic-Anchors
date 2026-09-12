@@ -8,6 +8,7 @@ vi.mock('../i18n.js', () => ({
 }))
 
 import { renderMain } from './main-content.js'
+import { CATALOG_PROMPT, CATALOG_VERSION } from '../utils/talk-it-over.js'
 import { APPEARANCES } from '../data/appearances.js'
 
 describe('renderMain — appearances strip', () => {
@@ -39,5 +40,31 @@ describe('renderMain — appearances strip', () => {
     const strip = html.slice(html.indexOf('id="appearances"'), html.indexOf('id="filters"'))
     expect(strip).toContain('footer.featuredIn')
     expect(strip).toContain('footer.asSeenOn')
+  })
+})
+
+describe('renderMain — TalkItOver catalog button', () => {
+  it('hands over the index, not the full-text file', () => {
+    const html = renderMain()
+
+    expect(html).toContain('llms-index.txt')
+    expect(html).not.toContain('url="/Semantic-Anchors/llms.txt"')
+  })
+
+  it('carries the catalog prompt and its version', () => {
+    const html = renderMain()
+
+    expect(html).toContain(`data-prompt="${CATALOG_VERSION}"`)
+    expect(html).toContain(CATALOG_PROMPT.split('\n')[0])
+  })
+
+  // A blank line inside an HTML attribute ends the element in most Markdown and
+  // template pipelines, which would tear the page apart at exactly this spot.
+  it('keeps the prompt on one line so the attribute survives the markup', () => {
+    const html = renderMain()
+    const prompt = html.match(/<talk-it-over[\s\S]*?prompt="([^"]*)"/)[1]
+
+    expect(prompt).not.toContain('\n')
+    expect(prompt).toContain('&#10;')
   })
 })

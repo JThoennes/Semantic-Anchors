@@ -1,5 +1,6 @@
 import { i18n } from '../i18n.js'
 import { renderAppearances } from '../data/appearances.js'
+import { CATALOG_PROMPT, CATALOG_VERSION } from '../utils/talk-it-over.js'
 
 const HERO_EXAMPLE_COUNT = 6
 
@@ -92,6 +93,23 @@ export function renderMain() {
               </span>
             </li>
           </ol>
+
+          <!-- The catalog, handed to the reader's own LLM as an INDEX: one link
+               per anchor, 23 KB. llms.txt carries the same catalog as full text
+               at over half a megabyte, which every LLM truncates — it would then
+               answer from whatever happened to fit. Links let it fetch the two
+               or three anchors the reader actually asked about. -->
+          <div class="flex flex-wrap items-center gap-3 mb-6">
+            <talk-it-over
+              url="${import.meta.env.BASE_URL}llms-index.txt"
+              prompt="${CATALOG_PROMPT.replace(/\n/g, '&#10;')}"
+              data-prompt="${CATALOG_VERSION}"
+              label="${i18n.t('hero.talkCatalogTitle')}"
+            ></talk-it-over>
+            <span class="text-sm text-[var(--color-text-secondary)]" data-i18n="hero.talkCatalogHint">
+              ${i18n.t('hero.talkCatalogHint')}
+            </span>
+          </div>
 
           <div class="flex flex-wrap gap-3 text-sm">
             <a

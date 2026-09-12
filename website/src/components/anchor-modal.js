@@ -1,4 +1,5 @@
 import { i18n } from '../i18n.js'
+import { REFERENCE_PROMPT, REFERENCE_VERSION } from '../utils/talk-it-over.js'
 import { fetchAnchorsData, fetchFeedbackData } from '../utils/data-loader.js'
 import { getRouteBeforeModal, buildPath, navigate } from '../utils/router.js'
 
@@ -42,7 +43,7 @@ export function createModal() {
           </button>
         </div>
         <div class="flex items-center gap-2">
-          <talk-it-over id="modal-talk-it-over" style="display: none" label="Talk it over"></talk-it-over>
+          <talk-it-over id="modal-talk-it-over" style="display: none" label="${i18n.t('modal.talkItOver')}"></talk-it-over>
           <button id="modal-share" class="text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors p-2" data-i18n-aria="modal.share" aria-label="${i18n.t('modal.share')}">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
@@ -145,19 +146,6 @@ export function closeModal() {
 }
 
 const SAFE_ANCHOR_ID = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
-// Button prompt for the content type "reference", taken verbatim from
-// https://raifdmueller.github.io/talkitover/prompts/referenz.md (referenz@1).
-// Inserted at pull-request time, not fetched at runtime: the page must not
-// depend on another site being up.
-const TALK_IT_OVER_PROMPT = [
-  'Load {url}. It is a reference page, and I want to use it — not have it summarised.',
-  '',
-  'Ask me what I am trying to look up before you answer anything.',
-  '',
-  'Then keep your answers short and name the section you took them from. If the',
-  'page does not cover what I ask, say so instead of filling the gap from memory.',
-].join('\n')
-
 const SAFE_LANG = /^[a-z]{2}$/
 
 function renderSubAnchorList(subAnchorIds, allAnchors) {
@@ -288,8 +276,8 @@ export async function loadAnchorContent(anchorId) {
     // original source text rather than a copy made for the button.
     if (talkItOverEl) {
       talkItOverEl.setAttribute('url', response.url)
-      talkItOverEl.setAttribute('prompt', TALK_IT_OVER_PROMPT)
-      talkItOverEl.setAttribute('data-prompt', 'referenz@1')
+      talkItOverEl.setAttribute('prompt', REFERENCE_PROMPT)
+      talkItOverEl.setAttribute('data-prompt', REFERENCE_VERSION)
       talkItOverEl.style.display = ''
     }
 
