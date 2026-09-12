@@ -35,3 +35,15 @@ export const CATALOG_PROMPT = [
 ].join('\n')
 
 export const CATALOG_VERSION = 'katalog@1'
+
+/**
+ * Serialise a prompt for an HTML attribute.
+ *
+ * A blank line inside an attribute value ends the HTML block in kramdown and in
+ * most template pipelines, which tears the page apart at exactly that spot. The
+ * newlines therefore travel as &#10; — the browser decodes them back before the
+ * component ever reads the attribute.
+ */
+export function promptAttribute(prompt) {
+  return String(prompt).replace(/\n/g, '&#10;')
+}

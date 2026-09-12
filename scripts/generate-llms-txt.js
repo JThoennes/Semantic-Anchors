@@ -233,6 +233,9 @@ function generateLlmsIndexTxt() {
     '',
   ]
 
+  // An anchor that belongs to two categories is listed under both, the same way
+  // all-anchors.adoc includes it under both: the entry is a way in, and dropping
+  // it from the second category would make that category look incomplete.
   let total = 0
   for (const category of categories) {
     lines.push(`## ${category.name}`)

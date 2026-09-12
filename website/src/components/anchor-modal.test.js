@@ -224,6 +224,36 @@ describe('anchor-modal', () => {
       expect(document.getElementById('modal-talk-it-over').style.display).toBe('none')
     })
 
+    it('lets the newer anchor win when two loads overlap', async () => {
+      // The first fetch resolves LAST: without a guard its late write would land
+      // on top of the anchor the reader actually clicked second.
+      let releaseFirst
+      global.fetch.mockReturnValueOnce(
+        new Promise((resolve) => {
+          releaseFirst = () =>
+            resolve({
+              ok: true,
+              url: 'http://localhost/Semantic-Anchors/docs/anchors/slow.adoc',
+              text: async () => '= Slow\n\nBody.',
+            })
+        })
+      )
+      global.fetch.mockResolvedValue({
+        ok: true,
+        url: 'http://localhost/Semantic-Anchors/docs/anchors/fast.adoc',
+        text: async () => '= Fast\n\nBody.',
+      })
+
+      const slow = showAnchorDetails('slow')
+      await showAnchorDetails('fast')
+      releaseFirst()
+      await slow
+
+      const button = document.getElementById('modal-talk-it-over')
+      expect(button.getAttribute('url')).toContain('fast.adoc')
+      expect(document.getElementById('modal-title').textContent).toBe('Fast')
+    })
+
     it('never points at the previous anchor while the next one loads', async () => {
       global.fetch.mockResolvedValue({
         ok: true,

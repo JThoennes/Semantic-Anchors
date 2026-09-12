@@ -177,10 +177,21 @@ function renderSubAnchorList(subAnchorIds, allAnchors) {
   `
 }
 
+/**
+ * Every call to loadAnchorContent takes the next number; only the newest call is
+ * allowed to touch the DOM. Without that, two quick clicks race: the slower
+ * earlier fetch finishes last and writes its anchor over the one the reader is
+ * actually looking at — title, content and the TalkItOver URL together.
+ */
+let latestAnchorRequest = 0
+
 export async function loadAnchorContent(anchorId) {
   const modal = document.getElementById('anchor-modal')
   const titleEl = modal.querySelector('#modal-title')
   const contentEl = modal.querySelector('#modal-content')
+
+  const request = ++latestAnchorRequest
+  const superseded = () => request !== latestAnchorRequest
 
   // Hide the TalkItOver button until this anchor has loaded — a visible button
   // between two anchors would still carry the previous anchor's URL.
@@ -249,10 +260,14 @@ export async function loadAnchorContent(anchorId) {
       throw new Error(`Failed to load anchor: ${response.status}`)
     }
 
+    if (superseded()) return
+
     const adocContent = await response.text()
+    if (superseded()) return
 
     // Convert AsciiDoc to HTML
     const asciidocEngine = await getAsciidoctor()
+    if (superseded()) return
     const htmlContent = asciidocEngine.convert(adocContent, {
       safe: 'secure',
       attributes: {
@@ -283,6 +298,7 @@ export async function loadAnchorContent(anchorId) {
 
     // Umbrella anchor support: show sub-anchor list
     const allAnchors = await fetchAnchorsData()
+    if (superseded()) return
     const currentAnchor = allAnchors.find((a) => a.id === anchorId)
 
     // Both blocks are prepended with insertBefore(firstChild), so the one
@@ -382,6 +398,7 @@ export async function loadAnchorContent(anchorId) {
 
     // Feedback section
     const feedback = await fetchFeedbackData()
+    if (superseded()) return
     const fb = feedback[anchorId]
     const safeFeedbackUrl =
       fb &&
@@ -437,6 +454,7 @@ export async function loadAnchorContent(anchorId) {
     }
   } catch (error) {
     console.error('Error loading anchor content:', error)
+    if (superseded()) return
     titleEl.textContent = 'Error'
     const message = error instanceof Error ? error.message : String(error)
     contentEl.innerHTML = `

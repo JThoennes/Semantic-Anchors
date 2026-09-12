@@ -60,11 +60,13 @@ describe('renderMain — TalkItOver catalog button', () => {
 
   // A blank line inside an HTML attribute ends the element in most Markdown and
   // template pipelines, which would tear the page apart at exactly this spot.
+  // The serialisation itself is covered in utils/talk-it-over.test.js; here it
+  // only matters that the rendered page actually went through it.
   it('keeps the prompt on one line so the attribute survives the markup', () => {
     const html = renderMain()
-    const prompt = html.match(/<talk-it-over[\s\S]*?prompt="([^"]*)"/)[1]
+    const attribute = html.match(/<talk-it-over[\s\S]*?prompt="([^"]*)"/)[1]
 
-    expect(prompt).not.toContain('\n')
-    expect(prompt).toContain('&#10;')
+    expect(attribute).not.toContain('\n')
+    expect(attribute.replace(/&#10;/g, '\n')).toBe(CATALOG_PROMPT)
   })
 })
