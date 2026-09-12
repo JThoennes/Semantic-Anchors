@@ -1,6 +1,7 @@
 import { i18n } from '../i18n.js'
 import { renderAppearances } from '../data/appearances.js'
 import { CATALOG_PROMPT, CATALOG_VERSION, promptAttribute } from '../utils/talk-it-over.js'
+import { SITE_URL } from '../utils/site.js'
 
 const HERO_EXAMPLE_COUNT = 6
 
@@ -101,7 +102,7 @@ export function renderMain() {
                or three anchors the reader actually asked about. -->
           <div class="flex flex-wrap items-center gap-3 mb-6">
             <talk-it-over
-              url="${import.meta.env.BASE_URL}llms-index.txt"
+              url="${new URL(`${import.meta.env.BASE_URL}llms-index.txt`, SITE_URL).href}"
               prompt="${promptAttribute(CATALOG_PROMPT)}"
               data-prompt="${CATALOG_VERSION}"
               label="${i18n.t('hero.talkCatalogTitle')}"
