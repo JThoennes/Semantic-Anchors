@@ -51,6 +51,17 @@ describe('renderMain — TalkItOver catalog button', () => {
     expect(html).not.toContain('url="/Semantic-Anchors/llms.txt"')
   })
 
+  // The prompt is all the reader's LLM gets. A path like /Semantic-Anchors/… has
+  // no host to resolve against, so the file would simply be unreachable for it.
+  it('names the index by a URL that works outside this page', () => {
+    const html = renderMain()
+    const url = html.match(/<talk-it-over[\s\S]*?url="([^"]*)"/)[1]
+
+    expect(url).toMatch(/^https:\/\//)
+    expect(new URL(url).href).toBe(url)
+    expect(url.endsWith('/llms-index.txt')).toBe(true)
+  })
+
   it('carries the catalog prompt and its version', () => {
     const html = renderMain()
 
