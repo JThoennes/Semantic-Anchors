@@ -148,6 +148,6 @@
   "anchor.testedNoEffect": "tested, but the result was not distinguishable from a prompt without the anchor",
   "anchor.testedMeasured": "measured",
   "modal.talkItOver": "Talk it over",
-  "hero.talkCatalogTitle": "Or talk the whole catalog over",
-  "hero.talkCatalogHint": "Hands the anchor index to your own LLM — it fetches the entries that match your question."
+  "hero.talkCatalogTitle": "Or talk this site over",
+  "hero.talkCatalogHint": "Hands an index of everything here — documentation, contracts, all anchors — to your own LLM. It fetches what your question needs."
 }

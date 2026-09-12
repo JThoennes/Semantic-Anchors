@@ -148,6 +148,6 @@
   "anchor.testedNoEffect": "getestet, aber das Ergebnis war nicht von einem Prompt ohne den Anker zu unterscheiden",
   "anchor.testedMeasured": "gemessen am",
   "modal.talkItOver": "Besprechen",
-  "hero.talkCatalogTitle": "Oder besprich den ganzen Katalog",
-  "hero.talkCatalogHint": "Übergibt den Anchor-Index an deinen eigenen LLM — er holt sich die Einträge, die zu deiner Frage passen."
+  "hero.talkCatalogTitle": "Oder besprich diese Site",
+  "hero.talkCatalogHint": "Übergibt einen Index von allem hier — Doku, Contracts, alle Anchors — an deinen eigenen LLM. Er holt sich, was deine Frage braucht."
 }
