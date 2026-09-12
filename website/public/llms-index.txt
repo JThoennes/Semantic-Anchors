@@ -1,12 +1,35 @@
-# Semantic Anchors — Index
+# Semantic Anchors — Index of this site
 
-> Every entry links to the source text of one anchor. This file carries no
-> definitions on purpose: fetch the entries you need.
+> Everything published here, as links: documentation, semantic contracts and
+> the anchor catalogue. This file carries no definitions on purpose — fetch
+> the entries you need.
 > Website: https://llm-coding.github.io/Semantic-Anchors/
 > German variant of any anchor: replace .adoc with .de.adoc
 > Everything in one file (large): https://llm-coding.github.io/Semantic-Anchors/llms.txt
 
-## Communication & Presentation
+## Documentation
+
+- [About](https://llm-coding.github.io/Semantic-Anchors/about): What semantic anchors are, why they matter for LLM communication, and how the catalog is curated.
+- [Spec-Driven Development](https://llm-coding.github.io/Semantic-Anchors/spec-driven-development): Greenfield workflow — from requirements to specification to implementation, powered by semantic anchors.
+- [Brownfield Workflow](https://llm-coding.github.io/Semantic-Anchors/brownfield): Applying semantic anchors to brownfield codebases using a bounded-context approach with reverse-engineered safety nets.
+- [Brownfield Experiment 1a Report](https://llm-coding.github.io/Semantic-Anchors/brownfield-experiment-report): Controlled experiment: delete documentation from a greenfield project, regenerate from code, compare. Methodology, findings, and the Brownfield Preparation Checklist.
+- [Brownfield Fair Comparison](https://llm-coding.github.io/Semantic-Anchors/brownfield-fair-comparison): Three approaches (Direct, Socratic, Two-Phase) compared with identical team answers. Measures the structural value of the Question Tree, not the answers.
+- [Socratic Code-Theory Recovery Skill](https://llm-coding.github.io/Semantic-Anchors/socratic-recovery-skill): Installable Claude Code Skill that packages the brownfield documentation-recovery workflow as a two-phase Question Tree with Q-ID traceability.
+- [Semantic Contracts](https://llm-coding.github.io/Semantic-Anchors/contracts): Composable contracts that define what terms mean in your project — pick and copy into your AGENTS.md or CLAUDE.md.
+- [AgentSkill](https://llm-coding.github.io/Semantic-Anchors/agentskill): The semantic-anchor-translator AgentSkill — install semantic anchors into Claude Code, Codex, Cursor, and other coding agents.
+- [Evaluations](https://llm-coding.github.io/Semantic-Anchors/evaluations): Multiple-choice evaluations of semantic anchor recognition across 10 LLMs.
+- [Full Reference](https://llm-coding.github.io/Semantic-Anchors/all-anchors): All semantic anchors in one long document — readable offline, linkable, easy to Ctrl-F.
+- [Changelog](https://llm-coding.github.io/Semantic-Anchors/changelog): Chronological record of all semantic anchors added to the catalog.
+- [Contributing](https://llm-coding.github.io/Semantic-Anchors/contributing): How to propose new semantic anchors, quality criteria, and the contribution workflow.
+
+## Semantic Contracts
+
+- [All contracts as one text](https://llm-coding.github.io/Semantic-Anchors/contracts.txt): what terms mean in a project, composed from anchors or defined by a team.
+- [Contracts overview](https://llm-coding.github.io/Semantic-Anchors/contracts): the same contracts as pages.
+
+## Anchors
+
+### Communication & Presentation
 
 - [4MAT](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/4mat.adoc)
 - [AIDA Model](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/aida-model.adoc)
@@ -29,7 +52,7 @@
 - [Tufte Style](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/tufte-style.adoc)
 - [Zone of Proximal Development](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/zone-of-proximal-development.adoc)
 
-## Creative Writing
+### Creative Writing
 
 - [Fichtean Curve](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/fichtean-curve.adoc)
 - [Freytag's Pyramid](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/freytags-pyramid.adoc)
@@ -39,7 +62,7 @@
 - [Story Circle (Dan Harmon)](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/story-circle-dan-harmon.adoc)
 - [Three-Act Structure](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/three-act-structure.adoc)
 
-## Design Principles & Patterns
+### Design Principles & Patterns
 
 - [Code Smells](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/code-smells.adoc)
 - [Cohesion Criteria](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/cohesion-criteria.adoc)
@@ -91,7 +114,7 @@
 - [Unix Philosophy](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/unix-philosophy.adoc)
 - [YAGNI (You Aren't Gonna Need It)](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/yagni.adoc)
 
-## Development Workflow
+### Development Workflow
 
 - [50/72 Rule](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/50-72-rule.adoc)
 - [BEM Methodology](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/bem-methodology.adoc)
@@ -111,19 +134,19 @@
 - [Thin Vertical Slice](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/thin-vertical-slice.adoc)
 - [TIMTOWTDI](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/timtowtdi.adoc)
 
-## Dialogue Interaction
+### Dialogue Interaction
 
 - [Socratic Method](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/socratic-method.adoc)
 - [Systemic Consulting (Heidelberg School)](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/systemic-consulting.adoc)
 - [XY Problem](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/xy-problem.adoc)
 
-## Documentation
+### Documentation
 
 - [Diátaxis Framework](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/diataxis-framework.adoc)
 - [Docs-as-Code according to Ralf D. Müller](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/docs-as-code.adoc)
 - [Simplified Technical English (ASD-STE100)](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/simplified-technical-english.adoc)
 
-## Knowledge Management
+### Knowledge Management
 
 - [ADDIE Model](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/addie-model.adoc)
 - [Dreyfus Model of Skill Acquisition](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/dreyfus-skill-acquisition.adoc)
@@ -132,13 +155,13 @@
 - [P.A.R.A. Method](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/para-method.adoc)
 - [todo.txt-flavoured Markdown](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/todotxt-flavoured-markdown.adoc)
 
-## Meta
+### Meta
 
 - [Luhmann's System Theory](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/luhmann-system-theory.adoc)
 - [Simon's Constructivism](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/simon-constructivism.adoc)
 - [The Spectrum of Semantic Anchors](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/what-qualifies-as-a-semantic-anchor.adoc)
 
-## Problem Solving
+### Problem Solving
 
 - [Chain of Thought (CoT)](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/chain-of-thought.adoc)
 - [Decisional Balance Sheet](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/decisional-balance-sheet.adoc)
@@ -159,7 +182,7 @@
 - [What Would Chuck Norris Do? (WWCND)](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/what-would-chuck-norris-do.adoc)
 - [XY Problem](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/xy-problem.adoc)
 
-## Requirements Engineering
+### Requirements Engineering
 
 - [Cockburn Use Cases](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/cockburn-use-cases.adoc)
 - [Double Diamond](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/double-diamond.adoc)
@@ -175,7 +198,7 @@
 - [req42 Requirements Framework](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/req42.adoc)
 - [User Story Mapping](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/user-story-mapping.adoc)
 
-## Software Architecture
+### Software Architecture
 
 - [ADR according to Nygard](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/adr-according-to-nygard.adoc)
 - [arc42 Architecture Documentation](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/arc42.adoc)
@@ -205,14 +228,14 @@
 - [Vertical Slice Architecture (VSA)](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/vertical-slice-architecture.adoc)
 - [Walking Skeleton](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/walking-skeleton.adoc)
 
-## Statistical Methods & Process Monitoring
+### Statistical Methods & Process Monitoring
 
 - [Control Chart (Shewhart)](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/control-chart-shewhart.adoc)
 - [DMAIC](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/dmaic.adoc)
 - [Nelson Rules](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/nelson-rules.adoc)
 - [SPC (Statistical Process Control)](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/spc.adoc)
 
-## Strategic Planning
+### Strategic Planning
 
 - [Consent vs. Consensus](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/consent-vs-consensus.adoc)
 - [Cynefin Framework](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/cynefin-framework.adoc)
@@ -234,7 +257,7 @@
 - [SWOT](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/swot.adoc)
 - [Wardley Mapping](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/wardley-mapping.adoc)
 
-## Testing & Quality Practices
+### Testing & Quality Practices
 
 - [BDD (Behavior-Driven Development)](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/bdd-given-when-then.adoc)
 - [Fagan Inspection](https://llm-coding.github.io/Semantic-Anchors/docs/anchors/fagan-inspection.adoc)

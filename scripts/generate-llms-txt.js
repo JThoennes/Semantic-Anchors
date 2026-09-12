@@ -202,6 +202,81 @@ function generateAllAnchorsAdoc() {
   console.warn(`Generated: docs/all-anchors.adoc (${categories.length} categories)`)
 }
 
+// Top-level documentation pages (each pre-rendered as a standalone HTML page).
+// Shared by llms.txt and llms-index.txt so the two cannot drift apart.
+const DOC_PAGES = [
+  {
+    title: 'About',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/about',
+    summary:
+      'What semantic anchors are, why they matter for LLM communication, and how the catalog is curated.',
+  },
+  {
+    title: 'Spec-Driven Development',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/spec-driven-development',
+    summary:
+      'Greenfield workflow — from requirements to specification to implementation, powered by semantic anchors.',
+  },
+  {
+    title: 'Brownfield Workflow',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/brownfield',
+    summary:
+      'Applying semantic anchors to brownfield codebases using a bounded-context approach with reverse-engineered safety nets.',
+  },
+  {
+    title: 'Brownfield Experiment 1a Report',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/brownfield-experiment-report',
+    summary:
+      'Controlled experiment: delete documentation from a greenfield project, regenerate from code, compare. Methodology, findings, and the Brownfield Preparation Checklist.',
+  },
+  {
+    title: 'Brownfield Fair Comparison',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/brownfield-fair-comparison',
+    summary:
+      'Three approaches (Direct, Socratic, Two-Phase) compared with identical team answers. Measures the structural value of the Question Tree, not the answers.',
+  },
+  {
+    title: 'Socratic Code-Theory Recovery Skill',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/socratic-recovery-skill',
+    summary:
+      'Installable Claude Code Skill that packages the brownfield documentation-recovery workflow as a two-phase Question Tree with Q-ID traceability.',
+  },
+  {
+    title: 'Semantic Contracts',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/contracts',
+    summary:
+      'Composable contracts that define what terms mean in your project — pick and copy into your AGENTS.md or CLAUDE.md.',
+  },
+  {
+    title: 'AgentSkill',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/agentskill',
+    summary:
+      'The semantic-anchor-translator AgentSkill — install semantic anchors into Claude Code, Codex, Cursor, and other coding agents.',
+  },
+  {
+    title: 'Evaluations',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/evaluations',
+    summary: 'Multiple-choice evaluations of semantic anchor recognition across 10 LLMs.',
+  },
+  {
+    title: 'Full Reference',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/all-anchors',
+    summary:
+      'All semantic anchors in one long document — readable offline, linkable, easy to Ctrl-F.',
+  },
+  {
+    title: 'Changelog',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/changelog',
+    summary: 'Chronological record of all semantic anchors added to the catalog.',
+  },
+  {
+    title: 'Contributing',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/contributing',
+    summary:
+      'How to propose new semantic anchors, quality criteria, and the contribution workflow.',
+  },
+]
+
 // ─── Generate website/public/llms-index.txt ─────────────────────────────────
 
 const SITE_URL = 'https://llm-coding.github.io/Semantic-Anchors/'
@@ -223,13 +298,28 @@ function anchorTitle(anchorId, filepath) {
  */
 function generateLlmsIndexTxt() {
   const lines = [
-    '# Semantic Anchors — Index',
+    '# Semantic Anchors — Index of this site',
     '',
-    '> Every entry links to the source text of one anchor. This file carries no',
-    '> definitions on purpose: fetch the entries you need.',
+    '> Everything published here, as links: documentation, semantic contracts and',
+    '> the anchor catalogue. This file carries no definitions on purpose — fetch',
+    '> the entries you need.',
     `> Website: ${SITE_URL}`,
     `> German variant of any anchor: replace .adoc with .de.adoc`,
     `> Everything in one file (large): ${SITE_URL}llms.txt`,
+    '',
+    '## Documentation',
+    '',
+    ...DOC_PAGES.map(
+      (page) => `- [${page.title}](${page.url}): ${page.summary.replace(/\s+/g, ' ').trim()}`
+    ),
+    '',
+    '## Semantic Contracts',
+    '',
+    `- [All contracts as one text](${SITE_URL}contracts.txt): what terms mean in a project,` +
+      ' composed from anchors or defined by a team.',
+    `- [Contracts overview](${SITE_URL}contracts): the same contracts as pages.`,
+    '',
+    '## Anchors',
     '',
   ]
 
@@ -238,7 +328,7 @@ function generateLlmsIndexTxt() {
   // it from the second category would make that category look incomplete.
   let total = 0
   for (const category of categories) {
-    lines.push(`## ${category.name}`)
+    lines.push(`### ${category.name}`)
     lines.push('')
     for (const anchorId of category.anchors) {
       const filepath = path.join(ROOT, 'docs/anchors', `${anchorId}.adoc`)
@@ -280,79 +370,7 @@ function generateLlmsTxt() {
     lines.push('')
   }
 
-  // Top-level documentation pages (each pre-rendered as a standalone HTML page)
-  const DOC_PAGES = [
-    {
-      title: 'About',
-      url: 'https://llm-coding.github.io/Semantic-Anchors/about',
-      summary:
-        'What semantic anchors are, why they matter for LLM communication, and how the catalog is curated.',
-    },
-    {
-      title: 'Spec-Driven Development',
-      url: 'https://llm-coding.github.io/Semantic-Anchors/spec-driven-development',
-      summary:
-        'Greenfield workflow — from requirements to specification to implementation, powered by semantic anchors.',
-    },
-    {
-      title: 'Brownfield Workflow',
-      url: 'https://llm-coding.github.io/Semantic-Anchors/brownfield',
-      summary:
-        'Applying semantic anchors to brownfield codebases using a bounded-context approach with reverse-engineered safety nets.',
-    },
-    {
-      title: 'Brownfield Experiment 1a Report',
-      url: 'https://llm-coding.github.io/Semantic-Anchors/brownfield-experiment-report',
-      summary:
-        'Controlled experiment: delete documentation from a greenfield project, regenerate from code, compare. Methodology, findings, and the Brownfield Preparation Checklist.',
-    },
-    {
-      title: 'Brownfield Fair Comparison',
-      url: 'https://llm-coding.github.io/Semantic-Anchors/brownfield-fair-comparison',
-      summary:
-        'Three approaches (Direct, Socratic, Two-Phase) compared with identical team answers. Measures the structural value of the Question Tree, not the answers.',
-    },
-    {
-      title: 'Socratic Code-Theory Recovery Skill',
-      url: 'https://llm-coding.github.io/Semantic-Anchors/socratic-recovery-skill',
-      summary:
-        'Installable Claude Code Skill that packages the brownfield documentation-recovery workflow as a two-phase Question Tree with Q-ID traceability.',
-    },
-    {
-      title: 'Semantic Contracts',
-      url: 'https://llm-coding.github.io/Semantic-Anchors/contracts',
-      summary:
-        'Composable contracts that define what terms mean in your project — pick and copy into your AGENTS.md or CLAUDE.md.',
-    },
-    {
-      title: 'AgentSkill',
-      url: 'https://llm-coding.github.io/Semantic-Anchors/agentskill',
-      summary:
-        'The semantic-anchor-translator AgentSkill — install semantic anchors into Claude Code, Codex, Cursor, and other coding agents.',
-    },
-    {
-      title: 'Evaluations',
-      url: 'https://llm-coding.github.io/Semantic-Anchors/evaluations',
-      summary: 'Multiple-choice evaluations of semantic anchor recognition across 10 LLMs.',
-    },
-    {
-      title: 'Full Reference',
-      url: 'https://llm-coding.github.io/Semantic-Anchors/all-anchors',
-      summary:
-        'All semantic anchors in one long document — readable offline, linkable, easy to Ctrl-F.',
-    },
-    {
-      title: 'Changelog',
-      url: 'https://llm-coding.github.io/Semantic-Anchors/changelog',
-      summary: 'Chronological record of all semantic anchors added to the catalog.',
-    },
-    {
-      title: 'Contributing',
-      url: 'https://llm-coding.github.io/Semantic-Anchors/contributing',
-      summary:
-        'How to propose new semantic anchors, quality criteria, and the contribution workflow.',
-    },
-  ]
+  // Documentation pages: see DOC_PAGES above.
 
   lines.push('## Documentation')
   lines.push('')
