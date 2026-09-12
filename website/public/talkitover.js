@@ -1,4 +1,4 @@
-/*! TalkItOver v1.0.3 — hand this page to the reader's own LLM.
+/*! TalkItOver v1.0.5 — hand this page to the reader's own LLM.
  *
  * MIT License · Copyright (c) 2026 Ralf D. Müller
  * https://github.com/raifdmueller/talkitover
@@ -19,7 +19,7 @@
  * update pull requests. This file never reads it.
  */
 (function () {
-  const VERSION = "1.0.3";
+  const VERSION = "1.0.5";
   const STORAGE_KEY = "talkitover.provider";
 
   /* Above this length a provider link is no longer safe: browsers, proxies and
@@ -27,6 +27,10 @@
    * silently. Beyond it the prompt goes to the clipboard instead.
    * The number is a conservative guess until Spike #9 measures the real one. */
   const MAX_URL_LENGTH = 6000;
+
+  /* The reader meets a button nobody explained. One entry in the menu leads to
+   * the page that says what a click does — and what it does not. */
+  const ABOUT_URL = "https://raifdmueller.github.io/talkitover/";
 
   const DEFAULTS = {
     label: "Let's talk it over",
@@ -41,8 +45,8 @@
 
   // ─── Logik ──────────────────────────────────────────────────────────────────
 
-  /* Das LLM bekommt nur den Prompt-Text. Ein Pfad ohne Host ist dort wertlos —
-   * also wird jede Referenz gegen die Seite aufgelöst, bevor sie hinausgeht. */
+  /* The LLM receives the prompt text and nothing else. A path without a host is
+   * worthless there, so every reference is resolved against the page first. */
   function absoluteUrl(reference, base) {
     const page = base || (typeof location === "undefined" ? undefined : location.href);
     try {
@@ -61,7 +65,7 @@
       .split(",")
       .map((id) => id.trim())
       .filter((id) => providers[id]);
-    // Ein Provider, zweimal genannt, ergab zwei gleiche Einträge im Menü.
+    // One provider named twice used to produce two identical menu entries.
     return [...new Set(ids)];
   }
 
@@ -78,6 +82,7 @@
 
   const api = {
     version: VERSION,
+    aboutUrl: ABOUT_URL,
     providers,
     defaults: DEFAULTS,
     maxUrlLength: MAX_URL_LENGTH,
@@ -129,6 +134,10 @@
     .menu button { border: 0; border-radius: 6px; width: 100%; justify-content: flex-end;
       white-space: nowrap; background: transparent; gap: .6em; }
     .menu button:hover { background: color-mix(in srgb, currentColor 8%, transparent); }
+    .about { display: block; padding: .45em .6em; margin-top: 4px; text-align: right;
+      border-top: 1px solid var(--tio-border, color-mix(in srgb, currentColor 20%, transparent));
+      color: inherit; opacity: .7; text-decoration: none; font-size: .9em; white-space: nowrap; }
+    .about:hover, .about:focus-visible { opacity: 1; text-decoration: underline; }
     .menu svg { visibility: hidden; }
     .menu button[aria-checked="true"] svg { visibility: visible; }
   `;
@@ -147,6 +156,8 @@
         <div class="menu" role="menu" hidden>
           ${ids.map((id) => `<button type="button" role="menuitemradio" data-id="${id}" aria-checked="false">
             ${CHECK}<span>… ${providers[id].name}</span></button>`).join("")}
+          <a class="about" role="menuitem" href="${api.aboutUrl}"
+            target="_blank" rel="noopener noreferrer">About TalkItOver</a>
         </div>`;
 
       this.$main = root.querySelector(".main");
@@ -190,7 +201,7 @@
         b.setAttribute("aria-checked", String(b.dataset.id === current)));
       this.$menu.hidden = !open;
       this.$more.setAttribute("aria-expanded", String(open));
-      // Ein providers-Attribut aus lauter unbekannten IDs lässt das Menü leer.
+      // A providers attribute of unknown ids only leaves the menu empty.
       if (open) this.$menu.querySelector("button")?.focus();
     }
 
