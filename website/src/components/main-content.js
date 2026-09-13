@@ -1,8 +1,16 @@
 import { i18n } from '../i18n.js'
 import { renderAppearances } from '../data/appearances.js'
-import { CATALOG_PROMPT, CATALOG_VERSION, promptAttribute } from '../utils/talk-it-over.js'
+import {
+  catalogPrompt,
+  CATALOG_VERSION,
+  fromManifest,
+  promptAttribute,
+} from '../utils/talk-it-over.js'
 import { SITE_URL } from '../utils/site.js'
-import { LLMS_INDEX_VERSION } from '../utils/llms-index-version.js'
+import * as manifest from '../utils/llms-index-manifest.js'
+
+const { LLMS_INDEX_VERSION } = manifest
+const CATALOG_PROMPT = catalogPrompt(fromManifest(manifest))
 
 const HERO_EXAMPLE_COUNT = 6
 

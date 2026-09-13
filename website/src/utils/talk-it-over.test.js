@@ -1,11 +1,13 @@
 import { describe, it, expect } from 'vitest'
-import { promptAttribute, CATALOG_PROMPT } from './talk-it-over.js'
+import { promptAttribute } from './talk-it-over.js'
+import { catalogPrompt, CATALOG_VERSION, fromManifest } from './talk-it-over.js'
+import * as realManifest from './llms-index-manifest.js'
 
 const decode = (value) => value.replace(/&#10;/g, '\n')
 
 describe('promptAttribute', () => {
   const prompts = [
-    CATALOG_PROMPT,
+    catalogPrompt(fromManifest(realManifest)),
     'one line, no break at all',
     'two\nlines',
     'a paragraph\n\nand another\n\nand a third',
@@ -31,5 +33,92 @@ describe('promptAttribute', () => {
 
   it('leaves a prompt without newlines untouched', () => {
     expect(promptAttribute('nothing to escape')).toBe('nothing to escape')
+  })
+})
+
+// ─── catalogPrompt ───────────────────────────────────────────────────────────
+
+import fs from 'node:fs'
+import path from 'node:path'
+
+const manifest = {
+  docPages: [
+    { title: 'About', url: 'https://example.org/site/about/' },
+    { title: 'Brownfield Workflow', url: 'https://example.org/site/brownfield/' },
+  ],
+  contractsUrl: 'https://example.org/site/contracts.txt',
+  fullTextUrl: 'https://example.org/site/llms.txt',
+}
+
+const urlsIn = (text) => text.match(/https?:\/\/\S+/g) || []
+
+/** The component's own ceiling, read from the file the site actually ships. */
+function maxUrlLength() {
+  const source = fs.readFileSync(
+    path.join(import.meta.dirname, '../../public/talkitover.js'),
+    'utf-8'
+  )
+  return Number(source.match(/MAX_URL_LENGTH = (\d+)/)[1])
+}
+
+describe('catalogPrompt — the reader’s LLM may only fetch URLs it was given', () => {
+  // The measured rule: a URL found inside a fetched document is refused, a URL
+  // from the user's own message is not. Every page the prompt names is therefore
+  // reachable, and every page it omits may not be.
+  it('names every page of the manifest', () => {
+    const prompt = catalogPrompt(manifest)
+
+    for (const page of manifest.docPages) expect(prompt).toContain(page.url)
+    expect(prompt).toContain(manifest.contractsUrl)
+    expect(prompt).toContain(manifest.fullTextUrl)
+  })
+
+  // Cardinality: the prompt must grow with the list, not sample it. A template
+  // that hard-coded three lines would pass the example above and fail here.
+  it.each([0, 1, 5, 40])('carries all %i pages, however many there are', (count) => {
+    const docPages = Array.from({ length: count }, (_, i) => ({
+      title: `Page ${i}`,
+      url: `https://example.org/site/page-${i}/`,
+    }))
+    const prompt = catalogPrompt({ ...manifest, docPages })
+
+    for (const page of docPages) expect(prompt).toContain(page.url)
+  })
+
+  // A relative path has no host to resolve against once the text sits in a chat
+  // window. Every URL in the prompt has to survive that move.
+  it('names every page absolutely', () => {
+    for (const url of urlsIn(catalogPrompt(manifest))) {
+      expect(() => new URL(url)).not.toThrow()
+      expect(url).toMatch(/^https:\/\//)
+    }
+  })
+
+  it('still leaves the index placeholder for the component to fill', () => {
+    expect(catalogPrompt(manifest)).toContain('{url}')
+  })
+
+  // Searching solved the provenance rule in a measurement, and answered from
+  // heise and two unrelated blogs instead of from this site. The prompt keeps
+  // the reader's LLM on the pages it was handed.
+  it('forbids answering from memory or from elsewhere', () => {
+    const prompt = catalogPrompt(manifest).toLowerCase()
+
+    expect(prompt).toContain('do not answer from memory')
+    expect(prompt).toContain('elsewhere')
+  })
+
+  // The budget that decides whether the button stays one click. Above the
+  // component's ceiling every provider falls back to the clipboard, and the
+  // reader has to paste instead of click.
+  it('leaves the one-click path intact for the real manifest', () => {
+    const prompt = catalogPrompt(fromManifest(realManifest)).replace('{url}', 'https://llm-coding.github.io/Semantic-Anchors/llms-index.md?v=00000000')
+    const providerUrl = 'https://claude.ai/new?q=' + encodeURIComponent(prompt)
+
+    expect(providerUrl.length).toBeLessThan(maxUrlLength())
+  })
+
+  it('announces its own version', () => {
+    expect(CATALOG_VERSION).toBe('katalog@3')
   })
 })
