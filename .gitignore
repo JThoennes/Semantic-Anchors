@@ -15,3 +15,6 @@ website/public/CONTRIBUTING.html
 website/public/CONTRIBUTING.de.html
 website/public/CONTRIBUTING.toc.html
 website/public/CONTRIBUTING.de.toc.html
+
+# Generated per-anchor Markdown for the llms index (see scripts/generate-llms-txt.js)
+website/public/anchors/
