@@ -6,7 +6,7 @@ import path from 'node:path'
 const root = path.join(import.meta.dirname, '..')
 const index = readFileSync(path.join(root, 'website/public/llms-index.md'), 'utf-8')
 const versionFile = readFileSync(
-  path.join(root, 'website/src/utils/llms-index-version.js'),
+  path.join(root, 'website/src/utils/llms-index-manifest.js'),
   'utf-8'
 )
 

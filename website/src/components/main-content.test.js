@@ -57,7 +57,7 @@ describe('renderMain — TalkItOver catalog button', () => {
   // earlier. Whatever caches the file between the site and the reader's LLM
   // caches it by URL, so the URL has to change when the content does.
   it('carries the index version, so a stale copy is not reused', async () => {
-    const { LLMS_INDEX_VERSION } = await import('../utils/llms-index-version.js')
+    const { LLMS_INDEX_VERSION } = await import('../utils/llms-index-manifest.js')
     const url = renderMain().match(/<talk-it-over[\s\S]*?url="([^"]*)"/)[1]
 
     expect(new URL(url).searchParams.get('v')).toBe(LLMS_INDEX_VERSION)
