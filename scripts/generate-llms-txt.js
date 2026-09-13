@@ -277,6 +277,34 @@ const DOC_PAGES = [
   },
 ]
 
+// ─── Generate website/public/anchors/*.md ───────────────────────────────────
+
+/**
+ * One small Markdown file per anchor, for whoever fetches a link from the index.
+ *
+ * The .adoc sources are served by GitHub Pages as application/octet-stream —
+ * the extension is unknown to it, so it declares a binary download. A web
+ * fetcher, and therefore a reader's LLM, refuses that. Markdown arrives as
+ * text/markdown and is read.
+ */
+function generateAnchorMarkdown() {
+  const dest = path.join(ROOT, 'website/public/anchors')
+  fs.mkdirSync(dest, { recursive: true })
+
+  let written = 0
+  for (const file of fs.readdirSync(path.join(ROOT, 'docs/anchors'))) {
+    if (!file.endsWith('.adoc')) continue
+    const adoc = fs.readFileSync(path.join(ROOT, 'docs/anchors', file), 'utf-8')
+    fs.writeFileSync(
+      path.join(dest, file.replace(/\.adoc$/, '.md')),
+      `${adocToMarkdown(adoc)}\n`,
+      'utf-8'
+    )
+    written += 1
+  }
+  console.warn(`Generated: website/public/anchors/ (${written} Markdown files)`)
+}
+
 // ─── Generate website/public/llms-index.txt ─────────────────────────────────
 
 const SITE_URL = 'https://llm-coding.github.io/Semantic-Anchors/'
@@ -302,22 +330,24 @@ function generateLlmsIndexTxt() {
     '',
     '> Everything published here, as links: documentation, semantic contracts and',
     '> the anchor catalogue. This file carries no definitions on purpose — fetch',
-    '> the entries you need.',
+    '> the entries you need. Every link is small and plain enough to be fetched.',
     `> Website: ${SITE_URL}`,
-    `> German variant of any anchor: replace .adoc with .de.adoc`,
-    `> Everything in one file (large): ${SITE_URL}llms.txt`,
+    `> German variant of any anchor: replace .md with .de.md`,
     '',
     '## Documentation',
     '',
+    // Trailing slash: without it every page answers 301 first, and a redirect is
+    // one more thing that can go wrong on the reader's side.
     ...DOC_PAGES.map(
-      (page) => `- [${page.title}](${page.url}): ${page.summary.replace(/\s+/g, ' ').trim()}`
+      (page) =>
+        `- [${page.title}](${page.url.replace(/\/?$/, '/')}): ${page.summary.replace(/\s+/g, ' ').trim()}`
     ),
     '',
     '## Semantic Contracts',
     '',
     `- [All contracts as one text](${SITE_URL}contracts.txt): what terms mean in a project,` +
       ' composed from anchors or defined by a team.',
-    `- [Contracts overview](${SITE_URL}contracts): the same contracts as pages.`,
+    `- [Contracts overview](${SITE_URL}contracts/): the same contracts as pages.`,
     '',
     '## Anchors',
     '',
@@ -333,7 +363,7 @@ function generateLlmsIndexTxt() {
     for (const anchorId of category.anchors) {
       const filepath = path.join(ROOT, 'docs/anchors', `${anchorId}.adoc`)
       if (!fs.existsSync(filepath)) continue
-      lines.push(`- [${anchorTitle(anchorId, filepath)}](${SITE_URL}docs/anchors/${anchorId}.adoc)`)
+      lines.push(`- [${anchorTitle(anchorId, filepath)}](${SITE_URL}anchors/${anchorId}.md)`)
       total += 1
     }
     lines.push('')
@@ -570,5 +600,6 @@ function generateAllAnchorsWebAdoc() {
 generateAllAnchorsAdoc()
 generateAllAnchorsWebAdoc()
 generateLlmsTxt()
+generateAnchorMarkdown()
 generateLlmsIndexTxt()
 generateContractsTxt()
