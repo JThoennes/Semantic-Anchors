@@ -11,6 +11,7 @@
 const crypto = require('crypto')
 const fs = require('fs')
 const path = require('path')
+const { packBundles } = require('./anchor-bundles.js')
 
 const ROOT = path.join(__dirname, '..')
 
@@ -306,6 +307,59 @@ function generateAnchorMarkdown() {
   console.warn(`Generated: website/public/anchors/ (${written} Markdown files)`)
 }
 
+/*
+ * One fetch per category instead of one per anchor.
+ *
+ * The reader's LLM may only fetch URLs that stood in the message it was given,
+ * and 196 anchor URLs do not fit in the provider URL the button builds. Twenty
+ * bundle URLs do. Each bundle carries the full text of its anchors, so nothing
+ * is left to follow and nothing is condensed away.
+ */
+const BUNDLE_LIMIT = 40 * 1024
+
+function generateAnchorBundles() {
+  const source = path.join(ROOT, 'website/public/anchors')
+  const dest = path.join(ROOT, 'website/public/bundles')
+  fs.rmSync(dest, { recursive: true, force: true })
+  fs.mkdirSync(dest, { recursive: true })
+
+  const sizeOf = (id) => {
+    try {
+      return fs.statSync(path.join(source, `${id}.md`)).size
+    } catch {
+      return undefined
+    }
+  }
+  const bundles = packBundles(categories, sizeOf, BUNDLE_LIMIT)
+
+  for (const bundle of bundles) {
+    const body = bundle.anchors.map((id) =>
+      fs.readFileSync(path.join(source, `${id}.md`), 'utf-8').trim()
+    )
+    const header = [
+      `# ${bundle.title}`,
+      '',
+      `> ${bundle.anchors.length} semantic anchors in full, from`,
+      `> ${SITE_URL}`,
+      '',
+    ].join('\n')
+    fs.writeFileSync(
+      path.join(dest, `${bundle.id}.md`),
+      `${header}\n${body.join('\n\n---\n\n')}\n`,
+      'utf-8'
+    )
+  }
+
+  const largest = Math.max(
+    ...bundles.map((b) => fs.statSync(path.join(dest, `${b.id}.md`)).size)
+  )
+  console.warn(
+    `Generated: website/public/bundles/ (${bundles.length} files, largest ` +
+      `${Math.round(largest / 1024)} KB)`
+  )
+  return bundles
+}
+
 // ─── The index as HTML ───────────────────────────────────────────────────────
 
 function escapeHtml(text) {
@@ -366,7 +420,7 @@ function anchorTitle(anchorId, filepath) {
  * window. A list of links lets it fetch the two or three anchors that actually
  * match the question.
  */
-function generateLlmsIndexTxt() {
+function generateLlmsIndexTxt(bundles) {
   // Counts, so a reader sees the shape of the site before the longest section
   // swamps the others: 210 anchor lines under twelve documentation lines read
   // as an anchor catalogue unless the file says otherwise.
@@ -385,14 +439,16 @@ function generateLlmsIndexTxt() {
     '',
     '> This site publishes three kinds of thing, and all of them are listed below:',
     `> ${DOC_PAGES.length} documentation pages, ${contractCount} semantic contracts, and`,
-    `> ${anchorCount} anchors in ${categories.length} categories.`,
+    `> ${anchorCount} anchors in ${categories.length} categories — the anchors both`,
+    `> one by one and bundled into ${bundles.length} files that hold a whole category.`,
     '>',
     '> The anchor list is the longest section but not the most important one: a',
     '> question about a workflow, a method or this project is usually answered by a',
     '> documentation page, a question about a single term by an anchor.',
     '>',
     '> No definitions here on purpose — fetch the entries you need. Every link is',
-    '> small and served as plain text.',
+    '> small and served as plain text, except the bundles, which are larger by',
+    '> design: one fetch instead of twenty.',
     `> Website: ${SITE_URL}`,
     `> German variant of any anchor: replace .md with .de.md`,
     '',
@@ -410,6 +466,16 @@ function generateLlmsIndexTxt() {
     `- [All contracts as one text](${SITE_URL}contracts.txt): what terms mean in a project,` +
       ' composed from anchors or defined by a team.',
     `- [Contracts overview](${SITE_URL}contracts/): the same contracts as pages.`,
+    '',
+    `## Anchor bundles — the same ${anchorCount} terms in full, ${bundles.length} files`,
+    '',
+    '> One file per category, or per part of a large one. Fetch a bundle instead',
+    '> of the single anchors below when you want a whole category at once.',
+    '',
+    ...bundles.map(
+      (bundle) => `- [${bundle.title}](${SITE_URL}bundles/${bundle.id}.md): ` +
+        `${bundle.anchors.length} anchors in full.`
+    ),
     '',
     `## Anchors — ${anchorCount} named terms, grouped by category`,
     '',
@@ -480,6 +546,14 @@ function generateLlmsIndexTxt() {
     `export const DOC_PAGES = [`,
     ...DOC_PAGES.map(
       (page) => `  { title: ${JSON.stringify(page.title)}, url: '${page.url}/' },`
+    ),
+    `]`,
+    ``,
+    `/** The anchors in full, a few dozen per file, so nothing is left to follow. */`,
+    `export const BUNDLES = [`,
+    ...bundles.map(
+      (bundle) =>
+        `  { title: ${JSON.stringify(bundle.title)}, url: '${SITE_URL}bundles/${bundle.id}.md' },`
     ),
     `]`,
     ``,
@@ -722,5 +796,5 @@ generateAllAnchorsAdoc()
 generateAllAnchorsWebAdoc()
 generateLlmsTxt()
 generateAnchorMarkdown()
-generateLlmsIndexTxt()
+generateLlmsIndexTxt(generateAnchorBundles())
 generateContractsTxt()

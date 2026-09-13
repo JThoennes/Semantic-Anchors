@@ -24,35 +24,35 @@
  * against this site returned five of its 459 pages, no anchor among them, and
  * answered the question from heise and two unrelated blogs instead.
  */
-export function catalogPrompt({ docPages, contractsUrl, fullTextUrl }) {
+export function catalogPrompt({ docPages, bundles, contractsUrl, fullTextUrl }) {
   return [
-    'Load {url}. It is an index of what one site publishes, not the content',
-    'itself: every entry links to a page or a file.',
+    'Load {url}. It is the index of one site: it names everything published',
+    'there, and holds none of it in full.',
     '',
-    'Read the whole index before you decide anything. It holds more than one kind',
-    'of entry — pages about the project, ready-made contracts, a long list of',
-    'named terms — and the longest section is not automatically the one that',
-    'answers me.',
+    'Your fetch tool may refuse a link it only found inside that index. So every',
+    'URL you might need is here in my message instead.',
     '',
-    'Your fetch tool may refuse a link it only found inside that index. So here',
-    'are the pages of the site in full, and you may fetch any of them directly:',
+    'The pages about the project and how to work with it. A question about a',
+    'workflow or a method is usually answered here, not by a single term:',
     '',
     ...docPages.map((page) => `- ${page.title}: ${page.url}`),
     '',
+    'The named terms, grouped by category. Each file holds its terms in full:',
+    '',
+    ...bundles.map((bundle) => `- ${bundle.title}: ${bundle.url}`),
+    '',
     `All the contracts in one file: ${contractsUrl}`,
-    `Everything the site has, in one large file — last resort, and expect it to`,
-    `be cut short: ${fullTextUrl}`,
+    `Everything at once, large and likely cut short: ${fullTextUrl}`,
     '',
-    'For the named terms the index stays the map: it lists each term with its',
-    'URL. If a fetch of one is refused, say so and ask me to paste the URL. I',
-    'will paste it, and then you can read it.',
+    'Use the index to find which category a term sits in, then fetch that',
+    'category from the list above. If a fetch is refused, say so and ask me to',
+    'paste the URL. I will paste it.',
     '',
-    'Ask me what I am looking for before you fetch anything.',
+    'Ask me what I am looking for before you fetch anything. Then fetch what',
+    'matches, read it, and answer from what you read. Keep it short and name',
+    'where each answer came from.',
     '',
-    'Then fetch what matches, read it, and answer from what you read. Keep it',
-    'short and name the entry each answer came from.',
-    '',
-    'If nothing here fits, say that — do not answer from memory and do not go',
+    'If nothing here fits, say so — do not answer from memory and do not go',
     'looking elsewhere.',
   ].join('\n')
 }
@@ -69,6 +69,7 @@ export const CATALOG_VERSION = 'katalog@3'
 export function fromManifest(manifest) {
   return {
     docPages: manifest.DOC_PAGES,
+    bundles: manifest.BUNDLES,
     contractsUrl: manifest.CONTRACTS_URL,
     fullTextUrl: manifest.FULL_TEXT_URL,
   }
