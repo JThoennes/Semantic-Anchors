@@ -11,7 +11,7 @@
 const crypto = require('crypto')
 const fs = require('fs')
 const path = require('path')
-const { packBundles } = require('./anchor-bundles.js')
+const { packBundles, withPageLink } = require('./anchor-bundles.js')
 
 const ROOT = path.join(__dirname, '..')
 
@@ -334,7 +334,10 @@ function generateAnchorBundles() {
 
   for (const bundle of bundles) {
     const body = bundle.anchors.map((id) =>
-      fs.readFileSync(path.join(source, `${id}.md`), 'utf-8').trim()
+      withPageLink(
+        fs.readFileSync(path.join(source, `${id}.md`), 'utf-8').trim(),
+        `${SITE_URL}anchor/${id}`
+      )
     )
     const header = [
       `# ${bundle.title}`,
@@ -451,6 +454,10 @@ function generateLlmsIndexTxt(bundles) {
     '> design: one fetch instead of twenty.',
     `> Website: ${SITE_URL}`,
     `> German variant of any anchor: replace .md with .de.md`,
+    // The .md files are for reading into a context window. A reader who asks
+    // for "the link" wants a page they can open and send to someone.
+    `> Page for a human reader: ${SITE_URL}anchor/<id>, where <id> is the file`,
+    `> name without .md. Give that one when someone asks for a link.`,
     '',
     `## Documentation — ${DOC_PAGES.length} pages about this project and how to work with it`,
     '',

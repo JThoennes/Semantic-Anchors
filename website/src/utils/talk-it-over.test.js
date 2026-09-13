@@ -142,6 +142,17 @@ describe('catalogPrompt — the reader’s LLM may only fetch URLs it was given'
     expect(providerUrl.length).toBeLessThan(maxUrlLength())
   })
 
+  // Measured: asked for "the link to the Diátaxis anchor", the reader's LLM
+  // handed over the raw .md file it had fetched — a download, not a page. The
+  // .md files are how it reads; they are not what a reader sends to a
+  // colleague.
+  it('says which URL to hand over when the reader asks for a link', () => {
+    const prompt = catalogPrompt(manifest).toLowerCase()
+
+    expect(prompt).toContain('link')
+    expect(prompt).toMatch(/not the \.md|never the \.md|not a \.md/)
+  })
+
   it('announces its own version', () => {
     expect(CATALOG_VERSION).toBe('katalog@3')
   })
