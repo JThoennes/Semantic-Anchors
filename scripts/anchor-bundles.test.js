@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { packBundles } from './anchor-bundles.js'
+import { packBundles, withPageLink } from './anchor-bundles.js'
 
 const sizes = (map) => (id) => map[id]
 const allAnchors = (bundles) => bundles.flatMap((b) => b.anchors)
@@ -74,5 +74,48 @@ describe('packBundles', () => {
 
   it('returns nothing for no categories', () => {
     expect(packBundles([], sizeOf, 100)).toEqual([])
+  })
+})
+
+describe('withPageLink', () => {
+  const url = 'https://example.org/anchor/mikado-method'
+
+  /*
+   * A reader who asks "give me the link" wants the page, not the raw Markdown
+   * the LLM happened to read. The bundle is what it reads from, so the bundle
+   * carries the link — otherwise the LLM has nothing to quote but the file it
+   * was handed, and hands the reader a download.
+   */
+  it('puts the page link directly under the heading', () => {
+    const out = withPageLink('# Mikado Method\n\nBody text.\n', url)
+
+    expect(out.split('\n')[0]).toBe('# Mikado Method')
+    expect(out.split('\n').slice(0, 3).join('\n')).toContain(url)
+    expect(out).toContain('Body text.')
+  })
+
+  it.each([
+    '# Title\n\nBody.\n',
+    '# Title\nBody with no blank line.\n',
+    '\n\n# Title\n\nLeading blank lines.\n',
+    '# Title\n\n## Sub\n\n# Not the first heading\n',
+  ])('keeps the body intact: %j', (markdown) => {
+    const out = withPageLink(markdown, url)
+
+    // Exactly one link is added, and every original line survives.
+    expect(out.split(url)).toHaveLength(2)
+    for (const line of markdown.split('\n')) expect(out).toContain(line)
+  })
+
+  it('adds the link only once, however often it is applied', () => {
+    const once = withPageLink('# Title\n\nBody.\n', url)
+
+    expect(withPageLink(once, url).split(url)).toHaveLength(2)
+  })
+
+  // Without a heading there is nothing to attach the link to. Prepending it
+  // would silently change what the section looks like it is about.
+  it('leaves markdown without a heading alone', () => {
+    expect(withPageLink('No heading here.\n', url)).toBe('No heading here.\n')
   })
 })

@@ -14,6 +14,8 @@
 > design: one fetch instead of twenty.
 > Website: https://llm-coding.github.io/Semantic-Anchors/
 > German variant of any anchor: replace .md with .de.md
+> Page for a human reader: https://llm-coding.github.io/Semantic-Anchors/anchor/<id>, where <id> is the file
+> name without .md. Give that one when someone asks for a link.
 
 ## Documentation — 12 pages about this project and how to work with it
 

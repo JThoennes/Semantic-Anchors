@@ -58,4 +58,27 @@ function packBundles(categories, sizeOf, limit) {
   return bundles
 }
 
-module.exports = { packBundles }
+/**
+ * Put the anchor's page link under its heading.
+ *
+ * Operation: text in, text out. A reader who asks for the link wants the page
+ * a person can open, not the Markdown file the LLM was handed. The bundle is
+ * what it reads from, so the link belongs in the bundle — the alternative is
+ * an LLM that can only quote the file it has, and hands over a download.
+ *
+ * Idempotent: applying it twice adds one link, so a regenerated bundle does
+ * not accumulate them.
+ */
+function withPageLink(markdown, url) {
+  const lines = markdown.split('\n')
+  const heading = lines.findIndex((line) => line.startsWith('# '))
+  // Without a heading there is nothing to attach the link to, and prepending it
+  // would change what the section looks like it is about.
+  if (heading === -1) return markdown
+  if (lines[heading + 1] === `Page: ${url}`) return markdown
+
+  lines.splice(heading + 1, 0, `Page: ${url}`)
+  return lines.join('\n')
+}
+
+module.exports = { packBundles, withPageLink }

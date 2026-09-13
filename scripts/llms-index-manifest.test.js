@@ -147,6 +147,27 @@ describe('anchor bundles — nothing falls out of the catalogue', () => {
     expect(sections).toBe(categories.flatMap((c) => c.anchors).length)
   })
 
+  /*
+   * Measured: asked for "the link to the Diátaxis anchor", the reader's LLM
+   * offered the raw .md file — a download, not a page. It had nothing else:
+   * the bundle it read from named no page at all.
+   */
+  it('names a page a person can open for every anchor section', () => {
+    for (const name of readdirSync(bundleDir)) {
+      const text = readFileSync(path.join(bundleDir, name), 'utf-8')
+      // One heading is the bundle's own; the rest are anchors.
+      const sections = text.match(/^# /gm).length - 1
+      const pages = text.match(/^Page: https:\/\/\S+\/anchor\/\S+$/gm) || []
+
+      expect(pages).toHaveLength(sections)
+    }
+  })
+
+  it('tells the index reader how a page URL is built', () => {
+    expect(index).toContain('anchor/<id>')
+    expect(index).toMatch(/asks for a link/)
+  })
+
   it('keeps every bundle inside the size limit it was packed with', () => {
     for (const name of readdirSync(bundleDir)) {
       const bytes = statSync(path.join(bundleDir, name)).size
