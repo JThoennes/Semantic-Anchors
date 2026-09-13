@@ -325,16 +325,36 @@ function anchorTitle(anchorId, filepath) {
  * match the question.
  */
 function generateLlmsIndexTxt() {
+  // Counts, so a reader sees the shape of the site before the longest section
+  // swamps the others: 210 anchor lines under twelve documentation lines read
+  // as an anchor catalogue unless the file says otherwise.
+  const anchorCount = new Set(categories.flatMap((c) => c.anchors)).size
+  let contractCount = 0
+  try {
+    contractCount = JSON.parse(
+      fs.readFileSync(path.join(ROOT, 'website/public/data/contracts.json'), 'utf-8')
+    ).length
+  } catch {
+    contractCount = 0
+  }
+
   const lines = [
     '# Semantic Anchors — Index of this site',
     '',
-    '> Everything published here, as links: documentation, semantic contracts and',
-    '> the anchor catalogue. This file carries no definitions on purpose — fetch',
-    '> the entries you need. Every link is small and plain enough to be fetched.',
+    '> This site publishes three kinds of thing, and all of them are listed below:',
+    `> ${DOC_PAGES.length} documentation pages, ${contractCount} semantic contracts, and`,
+    `> ${anchorCount} anchors in ${categories.length} categories.`,
+    '>',
+    '> The anchor list is the longest section but not the most important one: a',
+    '> question about a workflow, a method or this project is usually answered by a',
+    '> documentation page, a question about a single term by an anchor.',
+    '>',
+    '> No definitions here on purpose — fetch the entries you need. Every link is',
+    '> small and served as plain text.',
     `> Website: ${SITE_URL}`,
     `> German variant of any anchor: replace .md with .de.md`,
     '',
-    '## Documentation',
+    `## Documentation — ${DOC_PAGES.length} pages about this project and how to work with it`,
     '',
     // Trailing slash: without it every page answers 301 first, and a redirect is
     // one more thing that can go wrong on the reader's side.
@@ -343,13 +363,13 @@ function generateLlmsIndexTxt() {
         `- [${page.title}](${page.url.replace(/\/?$/, '/')}): ${page.summary.replace(/\s+/g, ' ').trim()}`
     ),
     '',
-    '## Semantic Contracts',
+    `## Semantic Contracts — ${contractCount} ready-made definitions to drop into a project`,
     '',
     `- [All contracts as one text](${SITE_URL}contracts.txt): what terms mean in a project,` +
       ' composed from anchors or defined by a team.',
     `- [Contracts overview](${SITE_URL}contracts/): the same contracts as pages.`,
     '',
-    '## Anchors',
+    `## Anchors — ${anchorCount} named terms, grouped by category`,
     '',
   ]
 
