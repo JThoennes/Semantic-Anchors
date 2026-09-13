@@ -47,19 +47,29 @@ describe('renderMain — TalkItOver catalog button', () => {
   it('hands over the index, not the full-text file', () => {
     const html = renderMain()
 
-    expect(html).toContain('llms-index.txt')
+    expect(html).toContain('llms-index.md')
     expect(html).not.toContain('url="/Semantic-Anchors/llms.txt"')
   })
 
   // The prompt is all the reader's LLM gets. A path like /Semantic-Anchors/… has
   // no host to resolve against, so the file would simply be unreachable for it.
+  // An assistant kept answering from an index we had replaced half an hour
+  // earlier. Whatever caches the file between the site and the reader's LLM
+  // caches it by URL, so the URL has to change when the content does.
+  it('carries the index version, so a stale copy is not reused', async () => {
+    const { LLMS_INDEX_VERSION } = await import('../utils/llms-index-version.js')
+    const url = renderMain().match(/<talk-it-over[\s\S]*?url="([^"]*)"/)[1]
+
+    expect(new URL(url).searchParams.get('v')).toBe(LLMS_INDEX_VERSION)
+  })
+
   it('names the index by a URL that works outside this page', () => {
     const html = renderMain()
     const url = html.match(/<talk-it-over[\s\S]*?url="([^"]*)"/)[1]
 
     expect(url).toMatch(/^https:\/\//)
     expect(new URL(url).href).toBe(url)
-    expect(url.endsWith('/llms-index.txt')).toBe(true)
+    expect(new URL(url).pathname.endsWith('/llms-index.md')).toBe(true)
   })
 
   it('carries the catalog prompt and its version', () => {

@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs'
 import path from 'node:path'
 
 const index = readFileSync(
-  path.join(import.meta.dirname, '../website/public/llms-index.txt'),
+  path.join(import.meta.dirname, '../website/public/llms-index.md'),
   'utf-8'
 )
 const links = [...index.matchAll(/\]\((https:\/\/[^)]+)\)/g)].map((m) => m[1])
@@ -39,5 +39,30 @@ describe('llms-index.txt', () => {
    */
   it('does not point at the full-text file', () => {
     expect(index).not.toContain('llms.txt')
+  })
+})
+
+describe('llms-index in three shapes', () => {
+  const read = (name) =>
+    readFileSync(path.join(import.meta.dirname, `../website/public/${name}`), 'utf-8')
+
+  it('serves the same entries as markdown, plain text and html', () => {
+    expect(read('llms-index.txt')).toBe(read('llms-index.md'))
+
+    const html = read('llms-index.html')
+    for (const url of links) expect(html).toContain(`href="${url}"`)
+  })
+
+  /*
+   * A reader's assistant listed the matching entries by name and then refused to
+   * fetch them: "not in any prior search or fetch result". The links were in the
+   * file — they had arrived as text/plain, and the tool had not recognised them
+   * as links. Markup is what makes a link a link to a parser.
+   */
+  it('marks every link up as a link in the html shape', () => {
+    const html = read('llms-index.html')
+    const anchors = [...html.matchAll(/<a href="([^"]+)"/g)].map((m) => m[1])
+
+    expect(anchors.length).toBe(links.length)
   })
 })
