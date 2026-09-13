@@ -42,6 +42,10 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 const manifest = {
+  bundles: [
+    { title: 'Documentation', url: 'https://example.org/site/bundles/documentation.md' },
+    { title: 'Testing (1/2)', url: 'https://example.org/site/bundles/testing-1.md' },
+  ],
   docPages: [
     { title: 'About', url: 'https://example.org/site/about/' },
     { title: 'Brownfield Workflow', url: 'https://example.org/site/brownfield/' },
@@ -69,6 +73,7 @@ describe('catalogPrompt — the reader’s LLM may only fetch URLs it was given'
     const prompt = catalogPrompt(manifest)
 
     for (const page of manifest.docPages) expect(prompt).toContain(page.url)
+    for (const bundle of manifest.bundles) expect(prompt).toContain(bundle.url)
     expect(prompt).toContain(manifest.contractsUrl)
     expect(prompt).toContain(manifest.fullTextUrl)
   })
@@ -83,6 +88,25 @@ describe('catalogPrompt — the reader’s LLM may only fetch URLs it was given'
     const prompt = catalogPrompt({ ...manifest, docPages })
 
     for (const page of docPages) expect(prompt).toContain(page.url)
+  })
+
+  it.each([0, 1, 5, 40])('carries all %i bundles, however many there are', (count) => {
+    const bundles = Array.from({ length: count }, (_, i) => ({
+      title: `Category ${i}`,
+      url: `https://example.org/site/bundles/cat-${i}.md`,
+    }))
+    const prompt = catalogPrompt({ ...manifest, bundles })
+
+    for (const bundle of bundles) expect(prompt).toContain(bundle.url)
+  })
+
+  // The point of the bundles: after them, nothing the LLM needs is behind a
+  // link it may not follow. A prompt that named the bundles but still sent the
+  // reader hunting through the index for single anchors would waste them.
+  it('tells the LLM the bundles hold the terms in full', () => {
+    const prompt = catalogPrompt(manifest).toLowerCase()
+
+    expect(prompt).toContain('in full')
   })
 
   // A relative path has no host to resolve against once the text sits in a chat
