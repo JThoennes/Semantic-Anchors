@@ -334,13 +334,13 @@ function generateAnchorMarkdown() {
     if (!file.endsWith('.adoc')) continue
     const adoc = fs.readFileSync(path.join(ROOT, 'docs/anchors', file), 'utf-8')
     fs.writeFileSync(
-      path.join(dest, file.replace(/\.adoc$/, '.md')),
+      path.join(dest, file.replace(/\.adoc$/, '.txt')),
       `${adocToMarkdown(adoc)}\n`,
       'utf-8'
     )
     written += 1
   }
-  console.warn(`Generated: website/public/anchors/ (${written} Markdown files)`)
+  console.warn(`Generated: website/public/anchors/ (${written} text files)`)
 }
 
 /*
@@ -374,7 +374,7 @@ function generateAnchorBundles() {
 
   const sizeOf = (id) => {
     try {
-      return fs.statSync(path.join(source, `${id}.md`)).size
+      return fs.statSync(path.join(source, `${id}.txt`)).size
     } catch {
       return undefined
     }
@@ -384,7 +384,7 @@ function generateAnchorBundles() {
   for (const bundle of bundles) {
     const body = bundle.anchors.map((id) =>
       withPageLink(
-        fs.readFileSync(path.join(source, `${id}.md`), 'utf-8').trim(),
+        fs.readFileSync(path.join(source, `${id}.txt`), 'utf-8').trim(),
         `${SITE_URL}anchor/${id}`
       )
     )
@@ -396,14 +396,14 @@ function generateAnchorBundles() {
       '',
     ].join('\n')
     fs.writeFileSync(
-      path.join(dest, `${bundle.id}.md`),
+      path.join(dest, `${bundle.id}.txt`),
       `${header}\n${body.join('\n\n---\n\n')}\n`,
       'utf-8'
     )
   }
 
   const largest = Math.max(
-    ...bundles.map((b) => fs.statSync(path.join(dest, `${b.id}.md`)).size)
+    ...bundles.map((b) => fs.statSync(path.join(dest, `${b.id}.txt`)).size)
   )
   console.warn(
     `Generated: website/public/bundles/ (${bundles.length} files, largest ` +
@@ -502,11 +502,11 @@ function generateLlmsIndexTxt(bundles) {
     '> small and served as plain text, except the bundles, which are larger by',
     '> design: one fetch instead of twenty.',
     `> Website: ${SITE_URL}`,
-    `> German variant of any anchor: replace .md with .de.md`,
-    // The .md files are for reading into a context window. A reader who asks
+    `> German variant of any anchor: replace .txt with .de.txt`,
+    // The .txt files are for reading into a context window. A reader who asks
     // for "the link" wants a page they can open and send to someone.
     `> Page for a human reader: ${SITE_URL}anchor/<id>, where <id> is the file`,
-    `> name without .md. Give that one when someone asks for a link.`,
+    `> name without .txt. Give that one when someone asks for a link.`,
     '',
     `## Documentation — ${DOC_PAGES.length} pages about this project and how to work with it`,
     '',
@@ -547,7 +547,7 @@ function generateLlmsIndexTxt(bundles) {
     for (const anchorId of category.anchors) {
       const filepath = path.join(ROOT, 'docs/anchors', `${anchorId}.adoc`)
       if (!fs.existsSync(filepath)) continue
-      lines.push(`- [${anchorTitle(anchorId, filepath)}](${SITE_URL}anchors/${anchorId}.md)`)
+      lines.push(`- [${anchorTitle(anchorId, filepath)}](${SITE_URL}anchors/${anchorId}.txt)`)
       total += 1
     }
     lines.push('')
@@ -609,7 +609,7 @@ function generateLlmsIndexTxt(bundles) {
     `export const BUNDLES = [`,
     ...bundles.map(
       (bundle) =>
-        `  { title: ${JSON.stringify(bundle.title)}, url: '${SITE_URL}bundles/${bundle.id}.md' },`
+        `  { title: ${JSON.stringify(bundle.title)}, url: '${SITE_URL}bundles/${bundle.id}.txt' },`
     ),
     `]`,
     ``,
