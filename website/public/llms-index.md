@@ -48,23 +48,23 @@
 > One file per category, or per part of a large one. Fetch a bundle instead
 > of the single anchors below when you want a whole category at once.
 
-- [Communication & Presentation (1/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/communication-presentation-1.md): 18 anchors in full.
-- [Communication & Presentation (2/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/communication-presentation-2.md): 2 anchors in full.
-- [Creative Writing](https://llm-coding.github.io/Semantic-Anchors/bundles/creative-writing.md): 7 anchors in full.
-- [Design Principles & Patterns (1/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/design-principles-1.md): 37 anchors in full.
-- [Design Principles & Patterns (2/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/design-principles-2.md): 12 anchors in full.
-- [Development Workflow](https://llm-coding.github.io/Semantic-Anchors/bundles/development-workflow.md): 17 anchors in full.
-- [Dialogue Interaction](https://llm-coding.github.io/Semantic-Anchors/bundles/dialogue-interaction.md): 3 anchors in full.
-- [Documentation](https://llm-coding.github.io/Semantic-Anchors/bundles/documentation.md): 3 anchors in full.
-- [Knowledge Management](https://llm-coding.github.io/Semantic-Anchors/bundles/knowledge-management.md): 6 anchors in full.
-- [Meta](https://llm-coding.github.io/Semantic-Anchors/bundles/meta.md): 3 anchors in full.
-- [Problem Solving](https://llm-coding.github.io/Semantic-Anchors/bundles/problem-solving.md): 18 anchors in full.
-- [Requirements Engineering](https://llm-coding.github.io/Semantic-Anchors/bundles/requirements-engineering.md): 13 anchors in full.
-- [Software Architecture (1/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/software-architecture-1.md): 24 anchors in full.
-- [Software Architecture (2/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/software-architecture-2.md): 3 anchors in full.
-- [Statistical Methods & Process Monitoring](https://llm-coding.github.io/Semantic-Anchors/bundles/statistical-methods.md): 4 anchors in full.
-- [Strategic Planning](https://llm-coding.github.io/Semantic-Anchors/bundles/strategic-planning.md): 19 anchors in full.
-- [Testing & Quality Practices](https://llm-coding.github.io/Semantic-Anchors/bundles/testing-quality.md): 21 anchors in full.
+- [Communication & Presentation (1/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/communication-presentation-1.txt): 18 anchors in full.
+- [Communication & Presentation (2/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/communication-presentation-2.txt): 2 anchors in full.
+- [Creative Writing](https://llm-coding.github.io/Semantic-Anchors/bundles/creative-writing.txt): 7 anchors in full.
+- [Design Principles & Patterns (1/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/design-principles-1.txt): 37 anchors in full.
+- [Design Principles & Patterns (2/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/design-principles-2.txt): 12 anchors in full.
+- [Development Workflow](https://llm-coding.github.io/Semantic-Anchors/bundles/development-workflow.txt): 17 anchors in full.
+- [Dialogue Interaction](https://llm-coding.github.io/Semantic-Anchors/bundles/dialogue-interaction.txt): 3 anchors in full.
+- [Documentation](https://llm-coding.github.io/Semantic-Anchors/bundles/documentation.txt): 3 anchors in full.
+- [Knowledge Management](https://llm-coding.github.io/Semantic-Anchors/bundles/knowledge-management.txt): 6 anchors in full.
+- [Meta](https://llm-coding.github.io/Semantic-Anchors/bundles/meta.txt): 3 anchors in full.
+- [Problem Solving](https://llm-coding.github.io/Semantic-Anchors/bundles/problem-solving.txt): 18 anchors in full.
+- [Requirements Engineering](https://llm-coding.github.io/Semantic-Anchors/bundles/requirements-engineering.txt): 13 anchors in full.
+- [Software Architecture (1/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/software-architecture-1.txt): 24 anchors in full.
+- [Software Architecture (2/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/software-architecture-2.txt): 3 anchors in full.
+- [Statistical Methods & Process Monitoring](https://llm-coding.github.io/Semantic-Anchors/bundles/statistical-methods.txt): 4 anchors in full.
+- [Strategic Planning](https://llm-coding.github.io/Semantic-Anchors/bundles/strategic-planning.txt): 19 anchors in full.
+- [Testing & Quality Practices](https://llm-coding.github.io/Semantic-Anchors/bundles/testing-quality.txt): 21 anchors in full.
 
 ## Anchors — 196 named terms, grouped by category
 

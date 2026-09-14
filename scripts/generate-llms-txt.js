@@ -457,6 +457,11 @@ function indexAsHtml(lines) {
 
 const SITE_URL = 'https://llm-coding.github.io/Semantic-Anchors/'
 
+/** Die AsciiDoc-Quelle eines Ankers. */
+function anchorPath(anchorId) {
+  return path.join(ROOT, 'docs/anchors', `${anchorId}.adoc`)
+}
+
 function anchorTitle(anchorId, filepath) {
   const heading = fs
     .readFileSync(filepath, 'utf-8')
@@ -529,7 +534,7 @@ function generateLlmsIndexTxt(bundles) {
     '> of the single anchors below when you want a whole category at once.',
     '',
     ...bundles.map(
-      (bundle) => `- [${bundle.title}](${SITE_URL}bundles/${bundle.id}.md): ` +
+      (bundle) => `- [${bundle.title}](${SITE_URL}bundles/${bundle.id}.txt): ` +
         `${bundle.anchors.length} anchors in full.`
     ),
     '',
@@ -609,7 +614,8 @@ function generateLlmsIndexTxt(bundles) {
     `export const BUNDLES = [`,
     ...bundles.map(
       (bundle) =>
-        `  { title: ${JSON.stringify(bundle.title)}, url: '${SITE_URL}bundles/${bundle.id}.txt' },`
+        `  { title: ${JSON.stringify(bundle.title)}, url: '${SITE_URL}bundles/${bundle.id}.txt',` +
+        ` terms: ${JSON.stringify(bundle.anchors.map((id) => anchorTitle(id, anchorPath(id))))} },`
     ),
     `]`,
     ``,

@@ -32,6 +32,71 @@ function addressesInPrompt() {
   ].filter(Boolean)
 }
 
+describe('a split bundle says which part holds what', () => {
+  /*
+   * "Design Principles & Patterns (1/2)" tells the reader's LLM nothing about
+   * what is inside. It has to guess which half holds the term it wants, and a
+   * wrong guess costs a fetch and looks like an answer.
+   *
+   * Measured: shrinking the bundles makes this worse, not better — at a 10 KB
+   * limit, 61 of 64 bundles are nameless parts. The fix is not smaller bundles
+   * but listing the terms, which the raised URL budget now affords.
+   */
+  it('gives every bundle its terms', () => {
+    const without = manifest.BUNDLES.filter((bundle) => !bundle.terms?.length)
+
+    expect(without.map((bundle) => bundle.title)).toEqual([])
+  })
+
+  it('loses no term on the way into the prompt', () => {
+    const terms = manifest.BUNDLES.flatMap((bundle) => bundle.terms)
+
+    expect(terms.length).toBeGreaterThan(100)
+
+    // 14 anchors sit in two categories each. That is deliberate: the reader
+    // finds them in whichever category they look. So the list is longer than
+    // the set, and asserting uniqueness here would be asserting the wrong
+    // thing — measured 210 entries, 196 distinct.
+    expect(new Set(terms).size).toBeLessThanOrEqual(terms.length)
+    expect(terms.filter((term) => !term.trim())).toEqual([])
+  })
+
+  it('puts the terms into the prompt, not just the manifest', async () => {
+    const { catalogPrompt, fromManifest } = await import('../utils/talk-it-over.js')
+    const prompt = catalogPrompt(fromManifest(manifest))
+
+    for (const bundle of manifest.BUNDLES) {
+      for (const term of bundle.terms) {
+        expect(prompt, `"${term}" fehlt im Prompt`).toContain(term)
+      }
+    }
+  })
+})
+
+describe('no generated file links to a markdown address', () => {
+  /*
+   * The prompt was checked, llms-index was not — and it kept linking the
+   * bundles as .md after the rename. Seventeen dead links in the file the
+   * reader's LLM is pointed at, live, unnoticed by a green test suite.
+   *
+   * A test that covers one output and not its siblings is how that happens.
+   * This one walks every generated file.
+   */
+  const GENERATED = ['llms.txt', 'llms-index.txt', 'llms-index.md', 'llms-index.html', 'contracts.txt']
+
+  for (const file of GENERATED) {
+    it(`${file} names no bundle or anchor as .md`, () => {
+      const full = path.join(PUBLIC, file)
+      if (!fs.existsSync(full)) return
+
+      const dead = [...fs.readFileSync(full, 'utf-8').matchAll(/(?:bundles|anchors)\/[A-Za-z0-9._-]+\.md/g)]
+        .map((found) => found[0])
+
+      expect([...new Set(dead)]).toEqual([])
+    })
+  }
+})
+
 describe('the button only names plain text', () => {
   it('names no address with a markdown extension', () => {
     const markdown = addressesInPrompt().filter((url) => url.endsWith('.md'))
