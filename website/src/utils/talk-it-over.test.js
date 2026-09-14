@@ -143,14 +143,17 @@ describe('catalogPrompt — the reader’s LLM may only fetch URLs it was given'
   })
 
   // Measured: asked for "the link to the Diátaxis anchor", the reader's LLM
-  // handed over the raw .md file it had fetched — a download, not a page. The
-  // .md files are how it reads; they are not what a reader sends to a
-  // colleague.
+  // handed over the raw file it had fetched — a download, not a page. Those
+  // files are how it reads; they are not what a reader sends to a colleague.
+  //
+  // The extension used to be .md and the rule named it. Since the files are
+  // .txt, naming an extension would pin the wrong thing — the rule is about
+  // page versus file, not about which suffix the file happens to carry.
   it('says which URL to hand over when the reader asks for a link', () => {
     const prompt = catalogPrompt(manifest).toLowerCase()
 
     expect(prompt).toContain('link')
-    expect(prompt).toMatch(/not the \.md|never the \.md|not a \.md/)
+    expect(prompt).toMatch(/never the (text|\.txt) file|not the (text|\.txt) file/)
   })
 
   it('announces its own version', () => {
