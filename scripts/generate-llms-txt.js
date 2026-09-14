@@ -238,6 +238,42 @@ const DOC_PAGES = [
       'Three approaches (Direct, Socratic, Two-Phase) compared with identical team answers. Measures the structural value of the Question Tree, not the answers.',
   },
   {
+    title: 'The Harness Inventory',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/harness-inventory',
+    summary:
+      'Layers of error correction for agentic coding — a categorised inventory of harness checks, sorted by how much project work each one costs to add.',
+  },
+  {
+    title: 'An Anchor Delivers Only as Far as the Prior Reaches',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/training-data-vs-practice',
+    summary:
+      'What a pull request about "use cases" taught us about the limits of anchors: the term fires, the practice behind it does not follow. Includes an experiment you can rerun.',
+  },
+  {
+    title: 'Anchor Prior Test Skill',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/anchor-prior-test',
+    summary:
+      'Installable Claude Code Skill that measures whether naming a term actually triggers the concept in a model you do not control. Clean-room probe battery across model tiers, then a tier rating and a route to anchor, contract or rejection.',
+  },
+  {
+    title: 'Prior-Test Register',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/prior-tests',
+    summary:
+      'The evidence behind each anchor\u2019s measured tier — resolved model identifiers, procedure version, run counts, criteria matrices and verbatim quotes. An anchor without a prior-test date was not tested; that is a statement about our records, not the term.',
+  },
+  {
+    title: 'arc42 Documentation Authoring Skill',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/arc42-documentation-skill',
+    summary:
+      'Installable Claude Code Skill carrying the procedure for authoring an arc42 document — the cross-section rules arc42\u2019s own templates do not enforce. The how-to companion to the Architecture Documentation contract.',
+  },
+  {
+    title: 'Rejected Proposals',
+    url: 'https://llm-coding.github.io/Semantic-Anchors/rejected-proposals',
+    summary:
+      'Anchor proposals that were evaluated and did not meet the quality criteria, each with the reason. Read this before proposing a term — it is also the clearest statement of where the catalog draws its line.',
+  },
+  {
     title: 'Socratic Code-Theory Recovery Skill',
     url: 'https://llm-coding.github.io/Semantic-Anchors/socratic-recovery-skill',
     summary:
@@ -311,11 +347,24 @@ function generateAnchorMarkdown() {
  * One fetch per category instead of one per anchor.
  *
  * The reader's LLM may only fetch URLs that stood in the message it was given,
- * and 196 anchor URLs do not fit in the provider URL the button builds. Twenty
- * bundle URLs do. Each bundle carries the full text of its anchors, so nothing
- * is left to follow and nothing is condensed away.
+ * and one URL per anchor does not fit in the provider URL the button builds.
+ * A handful of bundle URLs does. Each bundle carries the full text of its
+ * anchors, so nothing is left to follow and nothing is condensed away.
+ *
+ * The limit is the SMALLEST one that still fits the provider URL, because the
+ * two ends pull against each other: the URL must stay under 6000 characters,
+ * while a long document risks being truncated by the fetcher — and truncation
+ * is silent. Measured against 18 documentation pages:
+ *
+ *   40 KB   20 bundles   URL 6303   over
+ *   50 KB   19 bundles   URL 6156   over
+ *   60 KB   17 bundles   URL 5874   fits
+ *   70 KB   15 bundles   URL 5558   fits
+ *
+ * A bundle may still exceed the limit: packing splits between anchors, never
+ * inside one, so a single oversized category stays whole.
  */
-const BUNDLE_LIMIT = 40 * 1024
+const BUNDLE_LIMIT = 60 * 1024
 
 function generateAnchorBundles() {
   const source = path.join(ROOT, 'website/public/anchors')

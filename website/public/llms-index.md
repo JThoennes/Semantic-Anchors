@@ -1,9 +1,9 @@
 # Semantic Anchors — Index of this site
 
 > This site publishes three kinds of thing, and all of them are listed below:
-> 12 documentation pages, 21 semantic contracts, and
+> 18 documentation pages, 21 semantic contracts, and
 > 196 anchors in 14 categories — the anchors both
-> one by one and bundled into 20 files that hold a whole category.
+> one by one and bundled into 17 files that hold a whole category.
 >
 > The anchor list is the longest section but not the most important one: a
 > question about a workflow, a method or this project is usually answered by a
@@ -17,13 +17,19 @@
 > Page for a human reader: https://llm-coding.github.io/Semantic-Anchors/anchor/<id>, where <id> is the file
 > name without .md. Give that one when someone asks for a link.
 
-## Documentation — 12 pages about this project and how to work with it
+## Documentation — 18 pages about this project and how to work with it
 
 - [About](https://llm-coding.github.io/Semantic-Anchors/about/): What semantic anchors are, why they matter for LLM communication, and how the catalog is curated.
 - [Spec-Driven Development](https://llm-coding.github.io/Semantic-Anchors/spec-driven-development/): Greenfield workflow — from requirements to specification to implementation, powered by semantic anchors.
 - [Brownfield Workflow](https://llm-coding.github.io/Semantic-Anchors/brownfield/): Applying semantic anchors to brownfield codebases using a bounded-context approach with reverse-engineered safety nets.
 - [Brownfield Experiment 1a Report](https://llm-coding.github.io/Semantic-Anchors/brownfield-experiment-report/): Controlled experiment: delete documentation from a greenfield project, regenerate from code, compare. Methodology, findings, and the Brownfield Preparation Checklist.
 - [Brownfield Fair Comparison](https://llm-coding.github.io/Semantic-Anchors/brownfield-fair-comparison/): Three approaches (Direct, Socratic, Two-Phase) compared with identical team answers. Measures the structural value of the Question Tree, not the answers.
+- [The Harness Inventory](https://llm-coding.github.io/Semantic-Anchors/harness-inventory/): Layers of error correction for agentic coding — a categorised inventory of harness checks, sorted by how much project work each one costs to add.
+- [An Anchor Delivers Only as Far as the Prior Reaches](https://llm-coding.github.io/Semantic-Anchors/training-data-vs-practice/): What a pull request about "use cases" taught us about the limits of anchors: the term fires, the practice behind it does not follow. Includes an experiment you can rerun.
+- [Anchor Prior Test Skill](https://llm-coding.github.io/Semantic-Anchors/anchor-prior-test/): Installable Claude Code Skill that measures whether naming a term actually triggers the concept in a model you do not control. Clean-room probe battery across model tiers, then a tier rating and a route to anchor, contract or rejection.
+- [Prior-Test Register](https://llm-coding.github.io/Semantic-Anchors/prior-tests/): The evidence behind each anchor’s measured tier — resolved model identifiers, procedure version, run counts, criteria matrices and verbatim quotes. An anchor without a prior-test date was not tested; that is a statement about our records, not the term.
+- [arc42 Documentation Authoring Skill](https://llm-coding.github.io/Semantic-Anchors/arc42-documentation-skill/): Installable Claude Code Skill carrying the procedure for authoring an arc42 document — the cross-section rules arc42’s own templates do not enforce. The how-to companion to the Architecture Documentation contract.
+- [Rejected Proposals](https://llm-coding.github.io/Semantic-Anchors/rejected-proposals/): Anchor proposals that were evaluated and did not meet the quality criteria, each with the reason. Read this before proposing a term — it is also the clearest statement of where the catalog draws its line.
 - [Socratic Code-Theory Recovery Skill](https://llm-coding.github.io/Semantic-Anchors/socratic-recovery-skill/): Installable Claude Code Skill that packages the brownfield documentation-recovery workflow as a two-phase Question Tree with Q-ID traceability.
 - [Semantic Contracts](https://llm-coding.github.io/Semantic-Anchors/contracts/): Composable contracts that define what terms mean in your project — pick and copy into your AGENTS.md or CLAUDE.md.
 - [AgentSkill](https://llm-coding.github.io/Semantic-Anchors/agentskill/): The semantic-anchor-translator AgentSkill — install semantic anchors into Claude Code, Codex, Cursor, and other coding agents.
@@ -37,30 +43,27 @@
 - [All contracts as one text](https://llm-coding.github.io/Semantic-Anchors/contracts.txt): what terms mean in a project, composed from anchors or defined by a team.
 - [Contracts overview](https://llm-coding.github.io/Semantic-Anchors/contracts/): the same contracts as pages.
 
-## Anchor bundles — the same 196 terms in full, 20 files
+## Anchor bundles — the same 196 terms in full, 17 files
 
 > One file per category, or per part of a large one. Fetch a bundle instead
 > of the single anchors below when you want a whole category at once.
 
-- [Communication & Presentation (1/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/communication-presentation-1.md): 13 anchors in full.
-- [Communication & Presentation (2/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/communication-presentation-2.md): 7 anchors in full.
+- [Communication & Presentation (1/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/communication-presentation-1.md): 18 anchors in full.
+- [Communication & Presentation (2/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/communication-presentation-2.md): 2 anchors in full.
 - [Creative Writing](https://llm-coding.github.io/Semantic-Anchors/bundles/creative-writing.md): 7 anchors in full.
-- [Design Principles & Patterns (1/3)](https://llm-coding.github.io/Semantic-Anchors/bundles/design-principles-1.md): 31 anchors in full.
-- [Design Principles & Patterns (2/3)](https://llm-coding.github.io/Semantic-Anchors/bundles/design-principles-2.md): 16 anchors in full.
-- [Design Principles & Patterns (3/3)](https://llm-coding.github.io/Semantic-Anchors/bundles/design-principles-3.md): 2 anchors in full.
+- [Design Principles & Patterns (1/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/design-principles-1.md): 37 anchors in full.
+- [Design Principles & Patterns (2/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/design-principles-2.md): 12 anchors in full.
 - [Development Workflow](https://llm-coding.github.io/Semantic-Anchors/bundles/development-workflow.md): 17 anchors in full.
 - [Dialogue Interaction](https://llm-coding.github.io/Semantic-Anchors/bundles/dialogue-interaction.md): 3 anchors in full.
 - [Documentation](https://llm-coding.github.io/Semantic-Anchors/bundles/documentation.md): 3 anchors in full.
 - [Knowledge Management](https://llm-coding.github.io/Semantic-Anchors/bundles/knowledge-management.md): 6 anchors in full.
 - [Meta](https://llm-coding.github.io/Semantic-Anchors/bundles/meta.md): 3 anchors in full.
-- [Problem Solving (1/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/problem-solving-1.md): 13 anchors in full.
-- [Problem Solving (2/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/problem-solving-2.md): 5 anchors in full.
+- [Problem Solving](https://llm-coding.github.io/Semantic-Anchors/bundles/problem-solving.md): 18 anchors in full.
 - [Requirements Engineering](https://llm-coding.github.io/Semantic-Anchors/bundles/requirements-engineering.md): 13 anchors in full.
-- [Software Architecture (1/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/software-architecture-1.md): 18 anchors in full.
-- [Software Architecture (2/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/software-architecture-2.md): 9 anchors in full.
+- [Software Architecture (1/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/software-architecture-1.md): 24 anchors in full.
+- [Software Architecture (2/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/software-architecture-2.md): 3 anchors in full.
 - [Statistical Methods & Process Monitoring](https://llm-coding.github.io/Semantic-Anchors/bundles/statistical-methods.md): 4 anchors in full.
-- [Strategic Planning (1/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/strategic-planning-1.md): 12 anchors in full.
-- [Strategic Planning (2/2)](https://llm-coding.github.io/Semantic-Anchors/bundles/strategic-planning-2.md): 7 anchors in full.
+- [Strategic Planning](https://llm-coding.github.io/Semantic-Anchors/bundles/strategic-planning.md): 19 anchors in full.
 - [Testing & Quality Practices](https://llm-coding.github.io/Semantic-Anchors/bundles/testing-quality.md): 21 anchors in full.
 
 ## Anchors — 196 named terms, grouped by category
