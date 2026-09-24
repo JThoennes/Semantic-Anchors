@@ -1,0 +1,55 @@
+= CUPID Properties
+:categories: design-principles, software-architecture
+:roles: software-developer, software-architect, team-lead
+:proponents: Dan North
+:tags: CUPID, Composable, Unix Philosophy, Predictable, Idiomatic, Domain-based, joyful code, SOLID-Alternative, North
+:related: solid-principles, unix-philosophy, domain-driven-design, deep-modules, cohesion-criteria
+:tier: 2
+:prior-test: 2026-09-24
+:tested-on: haiku-4.5=yes, opus-5=yes
+
+[%collapsible]
+====
+Vollständiger Name:: CUPID -- the back story to five properties of joyful code
+
+Auch bekannt als:: Die CUPID-Properties, joyful code
+
+[discrete]
+== *Kernkonzepte*:
+
+* *Properties, keine Principles.* Ein Prinzip befolgt man oder man verletzt es. Eine Property ist eine Eigenschaft, die Code mehr oder weniger hat und auf die man sich zubewegt. Auf dieser Unterscheidung ist der Begriff gebaut, und sie geht beim Zusammenfassen als Erstes verloren.
+* *Composable.* Kleine Oberfläche, wenige Abhängigkeiten, klare Absicht -- so lässt sich der Code aufgreifen, wiederverwenden und mit Dingen kombinieren, die sein Autor nie gesehen hat.
+* *Unix Philosophy.* Macht eine Sache gut. Nah an Single Responsibility, aber von außen formuliert: Es geht darum, was der Code tut, nicht darum, warum er sich ändern müsste.
+* *Predictable.* Tut, was man erwartet. Verhält sich konsistent, ist deterministisch wo möglich, und beobachtbar genug, dass man den inneren Zustand an den Ausgaben ablesen kann.
+* *Idiomatic.* Fühlt sich natürlich an. Folgt den Konventionen von Sprache, Framework und Team, damit der nächste Leser seine Aufmerksamkeit auf das Problem verwendet und nicht auf den Stil.
+* *Domain-based.* Namen, Struktur und Grenzen folgen der Fachlichkeit statt technischen Schichten oder Framework-Begriffen.
+* *Gegen SOLID gestellt, nicht darüber.* Norths Argument: SOLID-Kriterien erfüllt oder verfehlt man auf Klassenebene, während das, was Code angenehm macht, ein Bündel überlappender Eigenschaften ist, die sich gegenseitig verstärken.
+
+[discrete]
+== *Wann einsetzen*:
+
+* Beim Review eines Moduls, dessen Probleme Eigenschaften sind und keine Regelverstöße -- eine Klasse, die kein Prinzip verletzt und in der trotzdem niemand gern arbeitet
+* Als Vokabular im Code-Review, wo „das lässt sich schlecht komponieren" ein brauchbarerer Satz ist als ein Prinzipien-Akronym
+* Wenn SOLID zur Checkliste geworden ist und die Diskussion aufgehört hat, vom Code zu handeln
+
+[discrete]
+== *Häufige Missverständnisse*:
+
+Das D als „Domain-driven" lesen:: Es heißt *Domain-based*. Der Sog Richtung DDD ist stark genug, dass schwächere Sprachmodelle diese Ersetzung zuverlässig vornehmen -- siehe Prior-Test-Register. Das D ist eine Aussage über Benennung und Struktur, keine Empfehlung für eine Methode.
+Das I als „Intelligible" lesen:: Es heißt *Idiomatic*. Verständlichkeit ist eine Folge, für die North argumentiert, nicht die Eigenschaft, die er benannt hat.
+Sie als fünf Häkchen behandeln:: Sie sind bewusst nicht binär, und eine Bewertungstabelle macht sie zu genau dem, wogegen sie vorgeschlagen wurden.
+====
+
+== *Kritik*:
+
+* *Die Properties lassen sich schwer von den Prinzipien unterscheiden, die sie ablösen sollen.* Stephan Roth, Autor von _Clean C++_, misst CUPID an seinem eigenen Test für ein gutes Prinzip: Es muss echte Orientierung geben, vom Team selbstständig anwendbar sein, gemeinsames Verständnis stiften, praktisch umsetzbar sein -- und im Code soll erkennbar sein, ob danach gehandelt wurde. Sein Urteil: „Dan Norths CUPID-Eigenschaften sind oberflächlich betrachtet nicht falsch, erfüllen aber meines Erachtens diese Qualitätskriterien für gute Prinzipien nicht immer." Der konkrete Vorwurf betrifft eine Verwechslung, die das Akronym nahelegt: „Zudem dürfte es herausfordernd für Anwendende sein, zu unterscheiden, was denn jetzt der genaue Unterschied beispielsweise zwischen Single Responsibility (aus SOLID) und Single Purpose (aus CUPID) ist." Und der Kern sei ohnehin unstrittig: „Es wird wohl eine weitgehend unumstrittene Vorstellung in unserer Disziplin darüber geben, dass kleine Module/Klassen mit einer klar definierten Aufgabe besser sind als große ‚Gemischtwarenläden'." https://www.developer-world.de/dwx-insights/testing-quality/solid-versus-cupid-gegner-verbuendete[Roth, developer-world.de] (16. Juni 2025). Sein Fazit ist keine Ablehnung: „CUPID steht in keiner Weise im Widerspruch zu SOLID."
+* *Die fünf Buchstaben sind eine Auswahl, keine Herleitung -- und North sagt das selbst.* Im kanonischen Artikel: „Because CUPID is a backronym, I had several candidates for each letter. I chose these five because they feel ‚foundational' somehow". Wer den Satz für vollständig oder minimal hält, erwartet etwas, das der Autor nicht behauptet hat.
+* *Eine häufig falsch zugeordnete Quelle.* Jeroen De Dauws https://www.entropywins.wtf/blog/2017/02/17/why-every-single-argument-of-dan-north-is-wrong/["Why Every Single Argument of Dan North is Wrong"] (2017) verteidigt SOLID gegen Norths früheren Vortrag. Der Text liegt fünf Jahre vor CUPID und erwähnt es nicht. Er lohnt als Vorgeschichte des Streits, aus dem CUPID hervorging -- eine Kritik an CUPID ist er nicht.
+* *Zum Einwand, der im Review am meisten zählt, fand sich keine zitierbare Quelle:* dass sich eine Eigenschaft, auf die man sich zubewegt, nicht so prüfen lässt wie eine Regel. North nimmt ihn im Artikel mit seinen „properties of properties" vorweg, aber niemand greift ihn nachweislich auf. Gesucht wurde auf Englisch und Deutsch, in keiner weiteren Sprache -- das ist eine Lücke unserer Suche, nicht des Diskurses.
+
+[discrete]
+== *Aktueller Stand*:
+
+* *Der Satz der Eigenschaften ist seit der Veröffentlichung unverändert.* Der kanonische Artikel https://dannorth.net/blog/cupid-for-joyful-coding/["CUPID: for joyful coding"] trägt das Datum 10. Februar 2022 und nennt die fünf wörtlich: „Composable: plays well with others / Unix philosophy: does one thing well / Predictable: does what you expect / Idiomatic: feels natural / Domain-based: the solution domain models the problem domain in language and structure". Vorher erschien https://dannorth.net/blog/cupid-the-back-story/["CUPID: the back story"] (16. März 2021), der die Entstehung erzählt und die fünf bewusst noch zurückhält.
+* *Die angekündigten Folgeartikel sind ungeprüft.* North schreibt: „I will expand on each property in future articles so that this one does not get any longer." Ob welche erschienen sind, haben wir nicht bestätigt -- das ist eine Lücke unserer Prüfung, kein Beleg für ihr Fehlen.
+* *Eine eigene Seite, https://cupid.dev/[cupid.dev], gibt dieselben fünf mit denselben Einzeilern wieder.* Ihre eigene Beschreibung nennt sie „based on an article by Daniel Terhorst-North". Ob North sie pflegt, ließ sich aus der Seite nicht feststellen.

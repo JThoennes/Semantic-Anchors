@@ -1,0 +1,56 @@
+= Dale Carnegie Principles
+:categories: communication-presentation, dialogue-interaction
+:roles: team-lead, consultant, educator, software-developer, product-owner
+:proponents: Dale Carnegie
+:tags: Dale Carnegie, Wie man Freunde gewinnt, zwischenmenschliche Kommunikation, Anerkennung, Kritik, Überzeugen, Feedback, Carnegie
+:related: problem-space-nvc, four-sides-model, sender-receiver-discrepancy, curse-of-knowledge, socratic-method
+:tier: 3
+:prior-test: 2026-09-24
+:tested-on: haiku-4.5=yes, opus-5=yes
+
+[%collapsible]
+====
+Vollständiger Name:: Die Prinzipien aus _How to Win Friends and Influence People_ (1936), deutsch _Wie man Freunde gewinnt_
+
+Auch bekannt als:: Carnegie-Prinzipien
+
+[discrete]
+== *Kernkonzepte*:
+
+* *Kritisiere nicht, verurteile nicht, beschwere dich nicht.* Carnegies erster Zug, und der, auf dem alles andere ruht: Kritik treibt Menschen in die Verteidigung, und dann rechtfertigen sie sich, statt umzudenken.
+* *Gib ehrliche, aufrichtige Anerkennung.* Als Voraussetzung formuliert, nicht als Technik -- Carnegie trennt Anerkennung immer wieder von Schmeichelei und besteht darauf, dass der Unterschied die Aufrichtigkeit ist.
+* *Wecke im anderen ein Verlangen.* Argumentiere aus seinem Interesse, nicht aus deinem. „Sprich über das, was den anderen interessiert" ist derselbe Zug, angewandt aufs Gespräch.
+* *Beginne mit Lob, dann komm zum Problem.* Die charakteristische Struktur: ehrliche Anerkennung zuerst, die Schwierigkeit danach, und die Korrektur so gerahmt, dass der andere sein Ansehen behält.
+* *Weise indirekt auf Fehler hin und lass den anderen das Gesicht wahren.* Nimm die Umstände in Haftung, die mehrdeutige Spezifikation, die eigene frühere Erklärung -- alles, was dem anderen erlaubt, seine Meinung zu ändern, ohne Unfähigkeit einzuräumen.
+* *Stelle Fragen, statt Befehle zu geben.* „Schaust du da nochmal rein?" statt „Mach das neu." Die Anweisung kommt genauso an, das Ansehen bleibt.
+* *Versuche ehrlich, die Sache mit den Augen des anderen zu sehen.* Frag nach seiner Überlegung, bevor du deine lieferst -- vielleicht hat er gesehen, was dir entging.
+
+[discrete]
+== *Wann einsetzen*:
+
+* Review-Kommentare, die derjenige lesen muss, der den Code geschrieben hat
+* Meinungsverschiedenheiten, in denen Rechthaben und Wirksamsein zweierlei sind
+* Als knappes Stichwort in einem dauerhaften Instruktionssatz, wo das Ausformulieren der Haltung jedes Mal teuer ist und mit der Zeit verrutscht
+
+[discrete]
+== *Häufige Missverständnisse*:
+
+Es als Erlaubnis lesen, in der Sache weich zu werden:: Die Prinzipien regeln, wie eine Korrektur überbracht wird, nicht ob sie stattfindet. Ein Review-Kommentar, der den Mangel nicht mehr benennt, ist auch nach Carnegie gescheitert.
+Es für Manipulation halten:: Das ist der übliche Vorwurf, und er verdient ernst genommen zu werden -- siehe _Kritik_. Carnegies eigene Antwort lautet, ohne Aufrichtigkeit sei jede Technik wertlos. Das ist eine Verteidigung, die man behaupten, aber nicht erzwingen kann.
+Erwarten, dass es einem heutigen Modell Takt hinzufügt, den es nicht hat:: In unserer Messung ging schon die ungeankerte Vergleichsfassung schonend mit der Person um. Was der Begriff verlässlich hinzufügt, ist die einleitende Anerkennung und der gesichtswahrende Rahmen -- eine engere und genauere Wirkung, als sein Ruf vermuten lässt.
+====
+
+== *Kritik*:
+
+* *Die Prinzipien ruhen auf Anekdoten, und das ist ordentlich untersucht worden.* Tessa E. Basford und Andrea Molberg, „Dale Carnegie's Leadership Principles: Examining the Theoretical and Empirical Support", _Journal of Leadership Studies_ 2013, https://doi.org/10.1002/jls.21265[DOI 10.1002/jls.21265]: Das Buch, „including its nine guiding leadership principles--is based on anecdotes, case studies, and personal examples rather than empirical evidence." Ihr Schluss lautet nicht, der Rat sei falsch, sondern seine Stützung müsse anderswo hergeholt werden, bevor eine Führungskraft sich darauf verlässt. (Die Verlagsseite blockt automatisierte Zugriffe; geprüft wurde über den DOI-Datensatz.)
+* *Der Vorwurf der Unaufrichtigkeit ist der übliche -- und Carnegies eigener Text liefert die Angriffsfläche.* Die wissenschaftliche Rezeption drehte sich genau darum: „chiding Carnegie for being insincere and manipulative" (https://en.wikipedia.org/wiki/How_to_Win_Friends_and_Influence_People[Wikipedia, mit der Rezeptionsgeschichte]). Die schärfste Fassung zeigt, wo die Forderung nach Aufrichtigkeit zur Regieanweisung wird: Carnegie, aus seinen Jahren als Schauspieler schöpfend, schreibt „you must actually ENTER INTO the character you impersonate, the cause you advocate, the case you argue" -- wozu Tom Jokinen anmerkt: „You have to mean it. Or, failing that, fake it." https://www.theglobeandmail.com/arts/books-and-media/book-reviews/how-dale-carnegies-self-help-movement-is-now-more-about-entitlement-than-enlightenment/article16187757/[_The Globe and Mail_] (4. Januar 2014). Carnegies Verteidigung -- ohne Aufrichtigkeit sei jede Technik wertlos -- lässt sich behaupten, aber nicht erzwingen.
+* *Der größere Vorwurf: Es verdrängt alles, was kein persönliches Gefühl ist.* Steven Watts in _Self-Help Messiah_, zitiert in Jokinens Rezension: „[T]he Carnegie code has undermined people's capacity to think about the world in terms that transcend personal feelings. Its stress on human relations… has pushed aside frameworks of morality, social justice, and even economic well-being." Zur Zuschreibung: Der Satz ist von Watts, nicht vom Rezensenten.
+* *Ein viel zitierter Satz, den wir nicht belegen konnten.* Sinclair Lewis' Verriss der Gattung wird überall wiederholt; die Originalquelle haben wir nicht erreicht, deshalb steht er hier nicht.
+* *Der Rahmen.* Zitierbare deutschsprachige Kritik fand sich keine. Französisch, Spanisch, Japanisch und Chinesisch wurden nicht durchsucht, und mindestens in den beiden letzten hat das Buch eine eigene, lange Rezeptionsgeschichte -- 人を動かす und 人性的弱点 gehören dort zu den meistverkauften Übersetzungen. Das Bild hier ist anglophon plus deutsch, und so sollte es gelesen werden.
+
+[discrete]
+== *Aktueller Stand*:
+
+* *Der Text, den der Prior bedient, ist die Überarbeitung von 1981, nicht das Original von 1936.* „In 1981, a revised edition containing updated language and anecdotes was released. The revised edition reduced the number of sections from six to four, eliminating sections on effective business letters and improving marital satisfaction." Entfallen sind „Letters That Produced Miraculous Results" und „Seven Rules for Making Your Home Life Happier" (https://en.wikipedia.org/wiki/How_to_Win_Friends_and_Influence_People[Wikipedia]).
+* *Unsere eigene Messung bestätigt das.* Im Prior-Test vom 24.09.2026 gaben beide Modellstufen die Vierteilung der Überarbeitung wieder, keine die Sechsteilung des Originals. Wer diesen Anker nennt, bekommt also das überarbeitete Buch. Wer den Text von 1936 braucht, muss das dazusagen -- der Name allein führt nicht dorthin.
+* *Die nummerierten Prinzipien innerhalb der vier Teile haben die Überarbeitung offenbar unverändert überstanden*, denn gestrichen wurden ganze Zusatzabschnitte und keine Prinzipien. Ein Inhaltsverzeichnis von 1936 haben wir dafür nicht aufgeschlagen.

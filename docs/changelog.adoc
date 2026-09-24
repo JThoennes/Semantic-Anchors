@@ -2,6 +2,30 @@
 
 A chronological record of all semantic anchors added to the catalog. Community contributors are credited with thanks.
 
+== 2026-09-24
+
+*Four new anchors, and the catalog reaches 200:*
+
+* *link:#/anchor/boy-scout-rule[Boy Scout Rule]* (Robert C. Martin, _Clean Code_, Prentice Hall 2008, chapter 1) — design-principles + development-workflow: every time you open a file for some other reason, leave it slightly better than you found it, bounded to the code the task already touched. Tier ★★★, proposed by https://github.com/PhilippJust[@PhilippJust] in #742.
+* *link:#/anchor/dale-carnegie-principles[Dale Carnegie Principles]* (Dale Carnegie, _How to Win Friends and Influence People_, 1936; revised 1981) — communication-presentation + dialogue-interaction: open with honest appreciation, raise the problem second, point out mistakes indirectly and let the other person keep their standing. Tier ★★★, proposed by https://github.com/xamurej[@xamurej] in #725.
+* *link:#/anchor/cupid-properties[CUPID Properties]* (Dan North, https://dannorth.net/blog/cupid-for-joyful-coding/[dannorth.net], 10 February 2022) — design-principles + software-architecture: Composable, Unix philosophy, Predictable, Idiomatic, Domain-based, offered against SOLID as qualities you move toward rather than rules you comply with. Tier ★★☆, proposed by https://github.com/simonthum[@simonthum] in #737.
+* *link:#/anchor/crisis-and-emergency-risk-communication[Crisis and Emergency Risk Communication (CERC)]* (Barbara Reynolds and Matthew W. Seeger, _Journal of Health Communication_ 10(1), 2005; manual by the US CDC) — communication-presentation + problem-solving: Be First, Be Right, Be Credible, Express Empathy, Promote Action, Show Respect, for the case where you have to speak before the facts are in. Tier ★★☆, `:tier: 1`, proposed by https://github.com/rweisleder[@rweisleder] in #741.
+
+*All four were measured in one 56-probe run before being accepted, and two of the four names changed because of it.*
+
+* *"Uncle Bob" was dropped from the Boy Scout Rule.* The proposal named it "Boyscout Rule Uncle Bob". The bare name already returns software engineering on both tiers, so the qualifier repairs nothing and the attribution belongs in `:proponents:`, where a reader looks for it.
+* *CERC had to be spelled out.* Asked about the bare acronym, the strong tier listed four expansions — *none of them the framework* — and closed with "If you don't specify a context, the Indian electricity regulator is the most likely meaning." The proposal's "(CDC)" qualifier did not survive into the model's own default reading. This is also the run's sharpest inversion: the *stronger* model is the more ambiguous one, because it knows more expansions.
+
+*The Boy Scout Rule produced the only clean behavioural delta on the weak tier.* Given a null-pointer bug in a 300-line payment module, the no-anchor baseline stayed strictly on the defect. With the term, both runs proposed cleanup scoped to the traced path and volunteered a boundary nobody asked for: "*What I would NOT do:* Refactor the payment flow or consolidate similar logic elsewhere in the file — too risky, too much scope creep." On the strong tier the baseline did it too, so the term lifts the weak tier rather than changing what a frontier model would have done anyway.
+
+*CUPID is the opposite case, and both halves are recorded.* In the no-anchor baseline — a prompt containing no mention of CUPID — the strong tier volunteered it: "I've used Dan North's CUPID properties as the lens because they fit this kind of problem well." That is the strongest recognition signal in the run and a measurable delta of zero on that task. Meanwhile the weak tier corrupted the acronym in *every* probe that spelled it out, rendering the D as "Domain-**driven**" and once the I as "Intelligible". Spelling the five properties out is exactly what the anchor file is for, and North's own wording is quoted against the drift.
+
+*Dale Carnegie is admitted with its effect stated narrowly rather than generously.* The unanchored baseline was already careful with the person — it separated code from author, allowed for a reasonable mistake, and asked instead of ordering. What the term reliably adds is the opening appreciation and the face-saving frame. That qualifies one claim in the proposal: on the models measured, a model's pull toward epistemic correction is weaker than the argument assumes. Edition drift is recorded too — the 1981 revision cut the book from six sections to four, and both tiers reproduced the four-part shape, so the name reaches the revision and not the 1936 original.
+
+*A defect in our own method is recorded rather than smoothed away.* On the weak tier, CUPID's action probe twice declined the task and demanded the actual source instead of reviewing from a description. Execution on that tier is therefore *unmeasured*, not measured-and-failed. The rule this produces: an action probe must not describe an artefact the model can plausibly ask to see. Full run details, including the criteria matrices and the verbatim quotes, are in the link:#/prior-tests[prior-test register].
+
+*Criticism sections carry what the research found, including what it did not.* CERC's load-bearing critique is a systematic review that screened 4,471 articles in 20 languages and found exactly one that tested a tenet of the model. Carnegie's is Basford and Molberg (2013) on the absence of empirical support; Steven Watts's broader charge is quoted through a review and attributed to Watts, not the reviewer, and the ubiquitous Sinclair Lewis dismissal is left out because we could not reach its original publication. CUPID has one substantive critic, Stephan Roth, and one source that is routinely miscited as criticism — De Dauw's 2017 reply predates CUPID by five years and targets the SOLID talk instead.
+
 == 2026-08-25
 
 *New: a recency filter in the category row*

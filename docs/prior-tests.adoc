@@ -277,3 +277,125 @@ No name separates from any other. The flag tracks the eponym, not the suffix, so
 *Three limits, stated rather than smoothed over.* The widely repeated Borkin finding that low data-ink and high visual density improve memorability sits in the paper body, and every human-readable mirror failed -- IEEE and ACM return 403, the MIT lab copies are unreachable, the Wayback copy is truncated. Only the abstract and the Harvard press summary were verified, so the anchor cites the framing and not that claim. The most-quoted line from Robison et al. -- that Tufte's criticism "so badly misrepresents the position of those being critiqued" -- appeared only in search summaries and in no page that could be opened, so it is not quoted anywhere in the catalog; the Springer full text is paywalled. And Li & Moacdieh's 2014 extension of Bateman surfaced in search but was not verified, so it is not cited.
 
 *German: nothing attributable, and the reason is the frame rather than the topic.* Six German query forms returned method descriptions, university slides and translations of English originals; the German Wikipedia article carries no Kritik section. The one German-run outlet with genuine critical discussion, the Datawrapper book club in Berlin, publishes it in English -- participants there say "I personally think most of his redesigns fail horribly" and "Tufte tries to make too many absolute theorems". This is language-frame layer 2: the German-speaking visualisation field publishes its top tier in English, and there is no home-grown, natively named German tool or discourse around Tufte that would indicate a hidden scene. Romance and East Asian reception was not searched.
+
+== Run 2026-09-24
+
+[cols="1,3"]
+|===
+|Procedure |`anchor-prior-test` v1.0
+|Models |`claude-haiku-4-5-20251001` (weak), `claude-opus-5` (strong)
+|Runs |P1 and P3 twice per tier; P2, P4 and a no-anchor P3 baseline once per tier. 14 probes per candidate, 56 in total, no errors and no rate limiting
+|Clean room |`claude -p --strict-mcp-config --setting-sources ""` from `/tmp/anchor-probe`; verified with an open question about loaded instructions, answering "None -- no CLAUDE.md file in this project, and the memory directory is empty"
+|Not tested |`claude-sonnet-5` was skipped in this run, so nothing is known about where between the two tiers a frontier-only term starts firing. Older model generations are unreachable over this path. Findings are a lower bound.
+|Method note |Every probe must run with `env -u ANTHROPIC_API_KEY -u ANTHROPIC_AUTH_TOKEN`. A key present in the environment overrides the claude.ai login and returns `401 API key is invalid`, which reads as an account problem and is an environment problem.
+|===
+
+=== Boy Scout Rule
+
+[cols="2,1,3"]
+|===
+|Criterion |Verdict |Evidence
+
+|Precise |met |P2 on the bare name returns software engineering as the dominant field on both tiers. The scouting origin appears as history, not as a rival meaning
+|Rich |met |4/4 recognition runs report `richness=rich`, each naming 10 to 14 linked concepts
+|Consistent |met |P1 and P3 agree across both tiers and all runs
+|Attributable |met |P4 returns Robert C. Martin on both tiers; the strong tier adds the Baden-Powell origin and lowers its own confidence to `med` accordingly
+|Prior density |strong |Acts as an instruction on the weak tier, where the baseline does not
+|===
+
+Tier ★★★, route: anchor. Registered as *Boy Scout Rule*; the proposal's "Uncle Bob" qualifier was dropped because P2 shows the bare name already resolving to software engineering, so the qualifier repairs nothing.
+
+The action probe: "There's a null-pointer bug in the payment module. The file is 300 lines. What would you do?" Both anchored weak-tier runs proposed incidental cleanup scoped to the traced code path, and both volunteered a boundary that was not asked for:
+
+[quote]
+____
+*What I would NOT do:* Refactor the payment flow or consolidate similar logic elsewhere in the file -- too risky, too much scope creep
+____
+
+The no-anchor baseline on the weak tier received the identical task and stayed strictly on the defect: stack trace, backward trace, defensive programming. It never proposed cleanup. On the strong tier the baseline proposed cleanup as well, so there is no measurable delta there -- the term lifts the weak tier rather than changing what a frontier model would have done anyway.
+
+*Criticism research, 2026-09-24, English and German.* Four citable critics found, converging on one point: Jason Swett (2018) on reviewability and atomicity, Philippe Bourgau (2016) on the rule being local and skill-bounded, Marius Elvert (2022) on review pollution with a `BSR:`-prefixed commit as remedy, and a 2025 DEV Community piece on scope limits. None reject the rule; all add guards. Kent Beck's _Tidy First?_ supplies exactly the separation discipline they ask for and does *not* mention the Boy Scout Rule -- so he is recorded as adjacent, not as a critic. Martin credits the rule to the Boy Scouts of America in _Clean Code_ chapter 1, which is why the anchor's attribution names the transfer to code rather than the formulation. No citable German-language criticism surfaced; French, Spanish, Japanese and Chinese were not searched.
+
+=== Dale Carnegie Principles
+
+[cols="2,1,3"]
+|===
+|Criterion |Verdict |Evidence
+
+|Precise |met |P2 returns interpersonal communication and self-help psychology on both tiers, with no competing field. Neither tier associates the term with software
+|Rich |met |4/4 recognition runs report `richness=rich`; both tiers reproduce the book's four-part structure
+|Consistent |met |Same principles, same grouping, across both tiers and all runs
+|Attributable |met |P4 returns Dale Carnegie with `confidence=high` on both tiers
+|Prior density |strong recognition, narrow delta |See below
+|===
+
+Tier ★★★, route: anchor.
+
+The action probe rewrote a harsh review comment: "This is wrong. You clearly did not read the spec. Redo it." The anchored strong-tier runs opened with appreciation and then named their own moves:
+
+[quote]
+____
+Thanks for getting this PR up so quickly. The structure is easy to follow, and I can see you put real effort into the error handling.
+____
+
+The honest part of the measurement is the baseline. Without the term, the strong tier was *already* careful with the person -- it separated the code from the author, allowed for a reasonable mistake ("The spec is easy to misread here … so I can see how you got here"), and asked rather than ordered. The delta the anchor adds is therefore narrower than the term's reputation suggests: opening appreciation and an explicit face-saving frame, not tact as such. The baseline's own `SELF:` line reported `avoided_direct_criticism=no`, which reading the output does not support; it is graded against the content and not counted as a delta. This also qualifies one claim in the proposal -- that the anchor counterbalances a model's tendency toward epistemic correction. On the models measured, that tendency is weaker than the argument assumes.
+
+*Criticism research, 2026-09-24, English and German.* Basford and Molberg (_Journal of Leadership Studies_, 2013) are the strongest citable source: the principles are "based on anecdotes, case studies, and personal examples rather than empirical evidence". The insincerity charge is documented in the scholarly reception, and Carnegie's own acting-derived instruction to "ENTER INTO the character you impersonate" is where it attaches. Steven Watts's broader charge is quoted through Tom Jokinen's _Globe and Mail_ review (2014) and attributed to Watts, not to the reviewer. The widely circulated Sinclair Lewis dismissal could not be traced to its original publication and is therefore not cited. Edition drift matters here and is recorded: the 1981 revision cut the book from six sections to four, and *both tiers reproduced the four-part shape*, so the prior serves the revision rather than the 1936 original. No citable German-language criticism was found; French, Spanish, Japanese and Chinese were not searched, and the book has independent reception histories in at least the last two.
+
+=== CUPID Properties
+
+[cols="2,1,3"]
+|===
+|Criterion |Verdict |Evidence
+
+|Precise |met |P2 returns software engineering on both tiers; the Roman god appears only as an afterthought on the strong tier
+|Rich |met |`rich` on the strong tier 2/2; one weak-tier run reports `moderate`
+|Consistent |*not met on the weak tier* |Two of the five letters drift -- see below
+|Attributable |met |P4 returns Dan North with `confidence=high` on both tiers
+|Prior density |very strong on the strong tier, corrupted on the weak tier |See below
+|===
+
+Tier ★★☆, route: anchor. The defect the measurement found is exactly the one an anchor file repairs.
+
+*The strong tier reaches for CUPID unprompted.* The no-anchor baseline asked only: "Review this module: a 2000-line OrderManager class that talks to the database, formats emails and validates input. Any format you like." CUPID appears nowhere in that prompt. The run opened:
+
+[quote]
+____
+I've used Dan North's CUPID properties as the lens because they fit this kind of problem well.
+____
+
+That is the strongest recognition signal in this run, and it means the measurable delta on that task is zero. Both readings are recorded rather than the flattering one alone.
+
+*The weak tier corrupts the acronym.* In every one of the four `haiku-4.5` probes that spelled CUPID out, the D was rendered as "Domain-*driven*" -- the term pulled into DDD's orbit -- for example: "5. *Domain-driven* -- Reflects business concepts; uses ubiquitous language; domain logic is primary". One further probe gave the I as "Intelligible" rather than "Idiomatic". The strong tier never did either. North's own wording, fetched from the canonical article, is the citable counterweight: "Composable : plays well with others / Unix philosophy : does one thing well / Predictable : does what you expect / Idiomatic : feels natural / Domain-based : the solution domain models the problem domain in language and structure."
+
+*A defect in our method, recorded rather than smoothed away.* On the weak tier the action probe twice declined the task and asked for the actual code instead of reviewing from the description. Execution on the weak tier is therefore *unmeasured*, not measured-and-failed. Notably the model listed all five properties correctly while declining, so recognition is not in doubt. The rule this produces: an action probe must not describe an artefact the model could plausibly demand to see.
+
+*Criticism research, 2026-09-24, English and German.* Stephan Roth (developer-world.de, June 2025) is the one substantive critic found: CUPID's properties do not always meet his criteria for a good principle, and practitioners will struggle to tell Single Responsibility from Single Purpose. His conclusion is not a rejection -- "CUPID steht in keiner Weise im Widerspruch zu SOLID." Jeroen De Dauw's 2017 reply to North is frequently miscited here; it predates CUPID by five years and targets the SOLID talk, so it is recorded as context and not as criticism. No citable source was found on the objection that matters most in review -- that a property cannot be checked the way a rule can -- which North pre-empts in the article and nobody appears to take up.
+
+=== Crisis and Emergency Risk Communication (CERC)
+
+[cols="2,1,3"]
+|===
+|Criterion |Verdict |Evidence
+
+|Precise |*not met on the bare acronym* |The two tiers disagree about what CERC is -- see below
+|Rich |partly |`rich` on the strong tier; `moderate` on both weak-tier runs
+|Consistent |*not met across tiers* |The weak tier cannot execute the framework even with the explicit term
+|Attributable |met |P4 on the strong tier returns "Barbara Reynolds (CDC), with Matthew Seeger co-authoring the 2005 theory paper", `confidence=high`; the weak tier returns only "CDC (organizational)", `confidence=med`
+|Prior density |thin on the weak tier |See below
+|===
+
+Tier ★★★? No -- *★★☆ and `:tier: 1`*, frontier-only, and registered under its spelled-out name. Route: anchor.
+
+*The bare acronym collapses, and it collapses harder on the stronger model.* Asked what "CERC" means with no context, the weak tier put the CDC framework first. The strong tier listed four expansions, none of them the framework -- India's Central Electricity Regulatory Commission, Canada Excellence Research Chairs, the US Army Corps' Coastal Engineering Research Center, and a UK air-quality consultancy -- and closed:
+
+[quote]
+____
+If you don't specify a context, the Indian electricity regulator is the most likely meaning.
+____
+
+The inversion is worth recording: the stronger model is the more ambiguous one, because it knows more expansions. The proposal's "(CDC)" qualifier did not survive into the model's own default reading, which is why the catalog name is spelled out in full.
+
+*The weak tier knows the name and cannot run the framework.* Given the explicit term and the task "draft the opening public statement for an ongoing incident whose cause is not yet known", `haiku-4.5` failed to name the six principles in both runs. The strong tier named all six correctly and structured the statement around them -- "1. Be First: it goes out early with a timestamp and says what is known, not waiting for a full picture. … 6. Show Respect: it uses plain, non-defensive language, doesn't downplay concerns, and treats the public as partners." The no-anchor baseline produced a competent status page with timestamp, scope and next-update time, and nothing resembling that structure. The delta is real and lives on the frontier tier only.
+
+*Criticism research, 2026-09-24, English and German.* The load-bearing source is a systematic review: Miller, Collins, Neuberger, Todd, Sellnow and Boutemen (_JICRCR_, March 2021) screened "4,471 articles in 20 languages", included 19, "of which one tested tenets of the CERC model", and conclude that "reformulation of the propositions is necessary for empirical support of the model to proceed". CERC is distilled practice, not an empirically established model. Sauer, Truelove, Gerste and Limaye (_Health Security_, February 2021) organise their COVID-19 analysis around the six principles and find the CDC breaking its own credibility principle. Edition drift is unusual here: the CDC now serves the manual as per-chapter PDFs dated 2014, 2018 and 2019, so there is no single current edition to cite. No citable German-language criticism was found -- and since the systematic review above screened 20 languages and still found almost nothing, genuine thinness is plausible rather than merely unmeasured.

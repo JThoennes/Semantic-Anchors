@@ -1,0 +1,57 @@
+= Boy Scout Rule
+:categories: design-principles, development-workflow
+:roles: software-developer, software-architect, team-lead, qa-engineer
+:proponents: Robert C. Martin
+:tags: boy scout rule, code cleanliness, refactoring, technical debt, code rot, opportunistic refactoring, Clean Code, Martin
+:related: code-smells, red-green-tdd, conventional-commits, mikado-method, lehmans-classification
+:tier: 3
+:prior-test: 2026-09-24
+:tested-on: haiku-4.5=yes, opus-5=yes
+
+[%collapsible]
+====
+Full Name:: The Boy Scout Rule
+
+Also known as:: Leave the campground cleaner than you found it, Check in cleaner than you checked out
+
+[discrete]
+== *Core Concepts*:
+
+* *Check the module in cleaner than you checked it out.* The unit of improvement is the visit, not the project. Every time a file is opened for some other reason, it leaves in slightly better shape than it arrived.
+* *Scoped to what you already touched.* The cleanup rides along with work that was going to happen anyway. Code you did not need to open is out of scope -- that is the line between the rule and drive-by refactoring.
+* *Small enough to need no permission.* Rename an unclear variable, extract a method, delete dead code, fix a stale comment. If it needs a ticket, it is no longer this rule.
+* *Aimed at entropy, not at perfection.* The target is the slow decay of a codebase nobody is responsible for, not a standard of cleanliness. Slightly better, repeatedly, beats a rewrite that never comes.
+* *Safe only under test.* The rule assumes a green test suite. Without one, "improvement" is an unverified change to code you opened for a different reason.
+
+[discrete]
+== *When to Use*:
+
+* Fixing a bug in a file nobody has read in years
+* Codebases with no dedicated refactoring budget, where improvement has to be smuggled into ordinary work
+* As a shared team norm, so the cleanup is expected rather than defended in review
+* Where code is generated or changed faster than humans critically review it, and decay would otherwise accumulate unobserved
+
+[discrete]
+== *Common Misunderstandings*:
+
+* *Reading it as a licence to refactor anything nearby.* The rule is bounded by what the task already touched. Unbounded, it produces pull requests whose reviewers cannot find the actual change.
+* *Mixing structural and behavioural change in one commit.* The cleanup and the fix should be separable, so that a reviewer can read one without the other and a revert does not take both. Kent Beck's _Tidy First?_ makes that separation its central rule.
+* *Confusing "cleaner" with "in my style".* Reformatting to personal preference adds diff noise and removes no decay.
+* *Applying it without tests.* Then it is not tidying, it is an unreviewed change under a virtuous name.
+====
+
+== *Criticism*:
+
+* *The cleanup and the fix arrive in the same diff.* Jason Swett states the two consequences plainly: "It will be harder for any pull request reviewer to tell what exactly changed between the old code and the new code", and "If a feature/bugfix and piece of refactoring are mixed into one piece of work, it's impossible to roll one back without rolling back the other." https://www.codewithjason.com/boy-scout-rule-insufficient/[Swett, "Why the Boy Scout Rule is insufficient"] (17 December 2018). He also names a class of change the rule cannot hold -- "park-level" problems that "need to be discussed among everyone and then applied as a distinct project".
+* *It cannot reach the debt that matters most.* Philippe Bourgau: "the boy scout rule is local and does not address large scale design or architecture issues". And a second bound that is rarely stated: "programmers will be able to clean the code only as much as their skills allow them to". https://philippe.bourgau.net/when-the-boy-scout-rule-fails/[Bourgau, "When the Boy Scout Rule Fails"] (2 August 2016). The rule is limited both by scope and by whoever happens to open the file.
+* *The review burden is real, and has a proposed remedy.* Marius Elvert writes that cleanup found along the way "'pollutes' your merge-/pull-requests, making it harder to review", and answers it with cleanup in its own commit, marked with a `BSR:` prefix so a reviewer can skip or read it separately -- an approach he restricts to small refactorings. https://schneide.blog/2022/01/13/the-boy-scout-rule-and-git-in-practice/[Elvert, Schneide Blog] (13 January 2022).
+* *The judgement the rule depends on is the one it does not supply.* Every critic above converges on the same missing piece: what counts as "minor" cleanup. The rule states the obligation and leaves the boundary to the person holding the editor.
+* *No citable German-language criticism surfaced* in a search for Pfadfinderregel and Pfadfinderprinzip -- the German results were advocacy. French, Spanish, Japanese and Chinese were not searched. This is an absence in our search, not in the discourse.
+
+[discrete]
+== *Current Status*:
+
+* *Martin credits the rule to the Boy Scouts, not to himself.* _Clean Code_ (Prentice Hall, 2008), chapter 1: "The Boy Scouts of America have a simple rule that we can apply to our profession. Leave the campground cleaner than you found it." https://www.informit.com/articles/article.aspx?p=1235624&seqNum=6[Excerpt at InformIT]. His contribution is the transfer to code, which is what this anchor names -- the campground formulation itself is older and not his.
+* *Still advocated, now with conditions attached.* The advocacy since 2022 keeps the rule and adds guards rather than dropping it: cleanup should be "local and limited", and "large refactoring still require a separate task with a separate time slot" -- https://dev.to/anton9/boy-scout-rule-and-its-limitations-5404[Anton, DEV Community] (23 February 2025).
+* *The discourse moved to the separation discipline, not away from the rule.* Kent Beck's _Tidy First?_ (2023) made "structural and behavioral changes should be kept in separate PRs (or at least in separate commits)" the mainstream framing -- which is exactly the remedy the rule's critics ask for. Worth stating precisely: Beck does not name the Boy Scout Rule. He supplies the discipline; he is not on record as correcting it.
+* *No retraction found.* Martin has publicly qualified several _Clean Code_ positions, and a second edition exists. We found no citable evidence that this rule is among the things he revised -- an absence in our check rather than a confirmed continuity.

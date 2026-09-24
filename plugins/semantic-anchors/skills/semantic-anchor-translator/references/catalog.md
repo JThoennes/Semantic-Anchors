@@ -436,6 +436,16 @@ Source: https://github.com/LLM-Coding/Semantic-Anchors
 - **Proponents:** Carson Gross (htmx essay, 2020)
 - **Core:** "The behaviour of a unit of code should be as obvious as possible by looking only at that unit of code" — optimise for read-time cost over write-time cost; behaviour at a distance (remote handlers, name-binding conventions, invisible framework hooks) is the failure mode, co-location the remedy; an explicit trade against DRY and Separation of Concerns where they scatter one feature across many files, not a claim that they are wrong
 
+### Boy Scout Rule
+- **Also known as:** Leave the campground cleaner than you found it, Check in cleaner than you checked out
+- **Proponents:** Robert C. Martin (Clean Code, 2008; the rule itself credited by him to the Boy Scouts of America)
+- **Core:** Every time you open a file for some other reason, leave it slightly better than you found it -- rename an unclear variable, delete dead code, fix a stale comment -- bounded to the code the task already touched, small enough to need no ticket, and kept separable from the behavioural change
+
+### CUPID Properties
+- **Also known as:** The CUPID properties, joyful code
+- **Proponents:** Dan North (dannorth.net, 2022)
+- **Core:** Five properties of code that is pleasant to work in -- Composable, Unix philosophy, Predictable, Idiomatic, Domain-based -- offered against SOLID as qualities you move toward rather than rules you comply with; note the exact words, since the D is Domain-*based* (not Domain-driven) and the I is *Idiomatic* (not Intelligible)
+
 ## Problem-Solving
 
 ### First Principles Thinking
@@ -665,6 +675,16 @@ Source: https://github.com/LLM-Coding/Semantic-Anchors
 - **Also known as:** Tufte's principles of information design; shipped as `theme_tufte` (ggthemes), Tufte CSS, tufte-latex, matplotlib-tufte
 - **Proponents:** Edward R. Tufte
 - **Core:** Information-design principles for charts, dashboards and reports — maximize the data-ink ratio, remove chartjunk, keep graphical integrity (lie factor ≈ 1), use small multiples on shared axes, sparklines inline in text, and direct labels instead of legends; density is the goal, not emptiness (remove waste, then spend the space on more information); the name also covers the sidenote page layout of Tufte CSS/tufte-latex, so say which you mean
+
+### Crisis and Emergency Risk Communication (CERC)
+- **Also known as:** CERC -- but the bare acronym does not carry the meaning; spell it out
+- **Proponents:** Barbara Reynolds and Matthew W. Seeger (Journal of Health Communication, 2005); US CDC as institutional owner of the manual
+- **Core:** Six principles for communicating while the facts are still missing -- Be First, Be Right, Be Credible, Express Empathy, Promote Action, Show Respect -- built on the premise that you must speak before you know, and organised along the crisis lifecycle
+
+### Dale Carnegie Principles
+- **Also known as:** Carnegie principles, How to Win Friends principles
+- **Proponents:** Dale Carnegie (How to Win Friends and Influence People, 1936; revised 1981)
+- **Core:** Open with honest appreciation, raise the problem second, point out mistakes indirectly and let the other person keep their standing; ask rather than order, argue from the other person's interest, and never criticise the person in place of the work
 
 ## Documentation
 

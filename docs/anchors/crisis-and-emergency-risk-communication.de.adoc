@@ -1,0 +1,57 @@
+= Crisis and Emergency Risk Communication (CERC)
+:categories: communication-presentation, problem-solving
+:roles: team-lead, consultant, technical-writer, devops-engineer, product-owner
+:proponents: Barbara Reynolds, Matthew W. Seeger, US Centers for Disease Control and Prevention
+:tags: CERC, Krisenkommunikation, Risikokommunikation, Incident-Kommunikation, Be First, Be Right, Be Credible, Ungewissheit, Reynolds, Seeger, CDC
+:related: bluf, inverted-pyramid-style, plain-english-strunk-white, site-reliability-engineering, four-sides-model
+:tier: 1
+:prior-test: 2026-09-24
+:tested-on: haiku-4.5=no, opus-5=yes
+
+[%collapsible]
+====
+Vollständiger Name:: Crisis and Emergency Risk Communication
+
+Auch bekannt als:: CERC -- aber siehe _Häufige Missverständnisse_: Das bloße Akronym trägt die Bedeutung nicht
+
+[discrete]
+== *Kernkonzepte*:
+
+* *Be First.* Ein Informationsvakuum bleibt nicht leer. Früh zu senden, mit Zeitstempel und einer ausdrücklichen Auskunft darüber, was noch nicht bekannt ist, schlägt das Warten auf das vollständige Bild.
+* *Be Right.* Genauigkeit vor Vollständigkeit: trennen, was bestätigt ist, was unbekannt ist und was noch untersucht wird -- und vorab zusagen, dass korrigiert wird, was sich als falsch erweist.
+* *Be Credible.* Ehrlichkeit und Konsistenz statt Beruhigung. Wer Ungewissheit einräumt, bewahrt das Ansehen, das er für die nächste Meldung braucht.
+* *Express Empathy.* Die Störung und die Zumutung benennen, bevor die Ursache erklärt wird. Wer sich nicht wahrgenommen fühlt, liest nicht weiter.
+* *Promote Action.* Etwas Konkretes und Machbares zu tun geben. Handeln stellt ein Stück Kontrolle her und verdrängt Spekulation.
+* *Show Respect.* Das Publikum als mündig ansprechen. Wer Sorgen als unvernünftig abtut, verspielt genau das Vertrauen, das die anderen fünf Prinzipien aufbauen.
+* *Kommunikation unter Ungewissheit ist die Entwurfsannahme.* Das Framework setzt voraus, dass gesprochen werden muss, bevor die Fakten vorliegen -- genau die Lage, in der ein Statusupdate während einer ungelösten Störung geschrieben wird.
+* *Die Krise hat einen Lebenszyklus.* Vorbereitung, erste Reaktion, Aufrechterhaltung, Auflösung, Auswertung. Was das Publikum braucht und was die Meldung tragen muss, unterscheidet sich je Phase.
+
+[discrete]
+== *Wann einsetzen*:
+
+* Beim ersten öffentlichen Statement zu einem Vorfall, dessen Ursache noch unbekannt ist
+* Statusseiten, Kundenmeldungen und interne Updates, solange eine Störung ungelöst ist
+* Sicherheitsmeldungen, wo die Versuchung, auf Gewissheit zu warten, am größten und am teuersten ist
+* Beim Vorbereiten des Kommunikationsplans vor dem Vorfall -- die Phase, die das Framework als die eigentliche behandelt
+
+[discrete]
+== *Häufige Missverständnisse*:
+
+Das bloße Akronym verwenden:: „CERC" allein ist kein verlässliches Vokabular. Ohne Kontext gefragt, nennt ein Frontier-Modell zuerst die indische Central Electricity Regulatory Commission, die Canada Excellence Research Chairs und ein Küsteningenieur-Zentrum -- und erreichte dieses Framework in unserer Messung gar nicht. Schreib den Namen aus. Die Belege stehen im Prior-Test-Register.
+„Be First" als Tempo vor Genauigkeit lesen:: Gemeint ist zuerst *mit dem, was bekannt ist*, einschließlich der Tatsache, dass es wenig ist. Die beiden Prinzipien begrenzen einander, sie konkurrieren nicht.
+Empathie für einen Tonfall halten:: Sie ist eine Anforderung an den Inhalt -- die konkrete Auswirkung auf den Leser benennen -- und kein weicheres Register für dieselben Sätze.
+====
+
+== *Kritik*:
+
+* *Das Framework ist fast nie geprüft worden, und das ist der zentrale Einwand.* Ann Neville Miller, Chad Collins, Lindsay Neuberger, Andrew Todd, Timothy L. Sellnow und Laura Boutemen, https://jicrcr.com/index.php/jicrcr/article/view/38["Being First, Being Right, and Being Credible Since 2002: A Systematic Review of Crisis and Emergency Risk Communication (CERC) Research"], _Journal of International Crisis and Risk Communication Research_ (19. März 2021). Sie halten den Vorwurf fest -- CERC „has been criticized as lacking the coherence and unity necessary to serve as a framework for research" -- und messen ihn nach: „A total of 4,471 articles in 20 languages were screened, 400 full texts examined, and 19 articles included in the research and theory analysis, of which one tested tenets of the CERC model." Ihr Fazit: „CERC has rarely been theoretically tested, and we argue that reformulation of the propositions is necessary for empirical support of the model to proceed." Das Framework ist verdichtete Praxis, kein empirisch abgesichertes Modell -- und so sollte man es nennen.
+* *Die eigene Trägerorganisation wich in der wichtigsten Krise davon ab.* Molly A. Sauer, Shaun Truelove, Amelia K. Gerste und Rupali J. Limaye ordnen ihre Analyse der US-Corona-Kommunikation entlang der sechs Prinzipien und finden das Glaubwürdigkeitsprinzip von der CDC selbst gebrochen. Zur überarbeiteten Schulöffnungs-Empfehlung von Ende Juli 2020: „This perceived bowing to political pressure, rather than relying on scientific rigor, was another blow to the CDC's credibility." https://pmc.ncbi.nlm.nih.gov/articles/PMC9195491/["A Failure to Communicate? How Public Messaging Has Strained the COVID-19 Response in the United States"], _Health Security_ 19(1), 65--74 (18. Februar 2021). Das ist ein Befund über Institutionen unter Druck, nicht über die Prinzipien -- und es ist der Fall, den jeder Leser vor Augen hat.
+* *Zitierbare deutschsprachige Kritik fand sich keine*, und es gab keinen Durchgang auf Französisch, Spanisch, Chinesisch, Japanisch oder Koreanisch. Da die genannte Übersichtsarbeit 20 Sprachen durchsuchte und fast nichts fand, ist echte Dünnheit hier plausibel und nicht bloß ungemessen -- die redliche Aussage bleibt trotzdem: in unserer Suche nicht vorhanden.
+
+[discrete]
+== *Aktueller Stand*:
+
+* *Eine einheitliche aktuelle Ausgabe des Handbuchs gibt es nicht.* Die CDC liefert es inzwischen als Kapitel-PDFs mit unterschiedlichen Jahrgängen aus: Introduction to CERC (2018), The Psychology of a Crisis (2019), Messages and Audiences (2018), Community Engagement (2018), Crisis Communication Plans (2014), Spokesperson (2014), Working with the Media (2014). https://www.cdc.gov/cerc/php/cerc-manual/index.html[Handbuch-Übersicht], Datumsstempel 20. November 2024. „Die Ausgabe von 2018" zu zitieren ist also nur halb richtig.
+* *Ältere CERC-Links zeigen vermutlich ins Leere.* Die Inhalte sind bei der Seitenreorganisation 2024 auf das Schema `/cerc/php/...` gewandert. Die sechs Prinzipien selbst stehen in aktuellem CDC-Material mit Datumsstempeln von 2024 -- das Framework ist also in Gebrauch und nicht archiviert.
+* *Die Modellarbeit.* Reynolds B, Seeger MW, „Crisis and emergency risk communication as an integrative model", _Journal of Health Communication_ 10(1), 43--55 (2005). Die Zuschreibung ist in der Praxis geteilt, und das sollte sie bleiben: Die Modellarbeit stammt von Reynolds und Seeger, das Handbuch, das Schulungsprogramm und die Fassung der sechs Prinzipien von der CDC als Institution.
+* *Ob sich der Wortlaut der Prinzipien zwischen den Kapitelgenerationen 2012, 2014 und 2018 verschoben hat, haben wir nicht geklärt.* Die Kapitelstruktur hat sich nachweislich geändert; die sechs Prinzipien wirken stabil, was eine Beobachtung ist und keine belegte Kontinuität.

@@ -277,3 +277,125 @@ Keine Namensform trennt sich von einer anderen. Die Meldung hängt am Eigennamen
 *Drei Grenzen, benannt statt geglättet.* Der viel zitierte Borkin-Befund, wonach niedrige Data-Ink-Ratio und hohe visuelle Dichte die Erinnerbarkeit verbessern, steht im Fließtext der Arbeit, und jeder menschenlesbare Spiegel schlug fehl -- IEEE und ACM antworten mit 403, die MIT-Kopien sind nicht erreichbar, die Wayback-Kopie ist abgeschnitten. Verifiziert sind nur Abstract und Harvard-Pressemitteilung, deshalb zitiert der Anker die Rahmung und nicht diesen Befund. Die meistzitierte Zeile aus Robison et al. -- Tuftes Kritik stelle „so badly misrepresents the position of those being critiqued" -- erschien nur in Suchzusammenfassungen und auf keiner abrufbaren Seite, sie wird deshalb nirgends im Katalog zitiert; der Springer-Volltext ist kostenpflichtig. Und Li & Moacdiehs Erweiterung von Bateman aus 2014 tauchte in der Suche auf, wurde aber nicht verifiziert und wird nicht zitiert.
 
 *Deutsch: nichts Zuschreibbares, und der Grund ist der Rahmen, nicht das Thema.* Sechs deutsche Frageformen lieferten Methodenbeschreibungen, Hochschulfolien und Übersetzungen englischer Originale; der deutsche Wikipedia-Artikel hat keinen Kritik-Abschnitt. Das einzige deutsch geführte Medium mit echter kritischer Diskussion, der Datawrapper-Bookclub aus Berlin, veröffentlicht sie auf Englisch -- dort heißt es „I personally think most of his redesigns fail horribly" und „Tufte tries to make too many absolute theorems". Das ist Ebene 2 des Sprachrahmens: Die deutschsprachige Visualisierungsszene publiziert ihre Spitze auf Englisch, und ein eigenständig benanntes deutsches Werkzeug oder ein eigener Diskurs um Tufte, der auf eine verborgene Szene hindeuten würde, existiert nicht. Romanische und ostasiatische Rezeption wurde nicht gesucht.
+
+== Lauf vom 24.09.2026
+
+[cols="1,3"]
+|===
+|Verfahren |`anchor-prior-test` v1.0
+|Modelle |`claude-haiku-4-5-20251001` (schwach), `claude-opus-5` (stark)
+|Läufe |P1 und P3 zweimal je Stufe; P2, P4 und eine ankerlose P3-Vergleichsmessung einmal je Stufe. 14 Proben je Kandidat, 56 insgesamt, ohne Fehler und ohne Drosselung
+|Reinraum |`claude -p --strict-mcp-config --setting-sources ""` aus `/tmp/anchor-probe`; geprüft mit einer offenen Frage nach geladenen Instruktionen, Antwort: „None -- no CLAUDE.md file in this project, and the memory directory is empty"
+|Nicht geprüft |`claude-sonnet-5` blieb in diesem Lauf aus. Damit ist unbekannt, wo zwischen den beiden Stufen ein Frontier-only-Begriff zu greifen beginnt. Ältere Modellgenerationen sind über diesen Weg nicht erreichbar. Die Befunde sind eine Untergrenze.
+|Methodenhinweis |Jede Probe muss mit `env -u ANTHROPIC_API_KEY -u ANTHROPIC_AUTH_TOKEN` laufen. Ein in der Umgebung gesetzter Schlüssel überstimmt den claude.ai-Login und liefert `401 API key is invalid` -- das liest sich wie ein Kontoproblem und ist ein Umgebungsproblem.
+|===
+
+=== Boy Scout Rule
+
+[cols="2,1,3"]
+|===
+|Kriterium |Urteil |Beleg
+
+|Precise |erfüllt |P2 auf den blanken Namen liefert auf beiden Stufen die Softwaretechnik als vorherrschendes Feld. Der Pfadfinder-Ursprung erscheint als Herkunft, nicht als konkurrierende Bedeutung
+|Rich |erfüllt |4/4 Erkennungsläufe melden `richness=rich` mit je 10 bis 14 verknüpften Konzepten
+|Consistent |erfüllt |P1 und P3 stimmen über beide Stufen und alle Läufe überein
+|Attributable |erfüllt |P4 liefert auf beiden Stufen Robert C. Martin; die starke Stufe ergänzt den Baden-Powell-Ursprung und senkt ihre eigene Konfidenz entsprechend auf `med`
+|Prior-Dichte |stark |Wirkt auf der schwachen Stufe als Anweisung, wo die Vergleichsmessung es nicht tut
+|===
+
+Tier ★★★, Route: Anker. Aufgenommen als *Boy Scout Rule*; der Zusatz „Uncle Bob" aus dem Vorschlag entfiel, weil P2 zeigt, dass der blanke Name bereits in der Softwaretechnik landet -- der Qualifizierer repariert nichts.
+
+Die Handlungsprobe lautete: „There's a null-pointer bug in the payment module. The file is 300 lines. What would you do?" Beide geankerten Läufe der schwachen Stufe schlugen beiläufige Bereinigung im verfolgten Codepfad vor und zogen unaufgefordert eine Grenze:
+
+[quote]
+____
+*What I would NOT do:* Refactor the payment flow or consolidate similar logic elsewhere in the file -- too risky, too much scope creep
+____
+
+Die ankerlose Vergleichsmessung erhielt dieselbe Aufgabe und blieb strikt beim Defekt: Stacktrace, Rückwärtsverfolgung, defensives Programmieren. Kein Wort von Bereinigung. Auf der starken Stufe schlug auch die Vergleichsmessung Bereinigung vor, dort gibt es also kein messbares Delta -- der Begriff hebt die schwache Stufe, statt zu ändern, was ein Frontier-Modell ohnehin getan hätte.
+
+*Kritik-Recherche, 24.09.2026, Englisch und Deutsch.* Vier zitierbare Kritiker, die auf denselben Punkt zulaufen: Jason Swett (2018) zu Prüfbarkeit und Rücknehmbarkeit, Philippe Bourgau (2016) dazu, dass die Regel lokal und durch das Können begrenzt ist, Marius Elvert (2022) zur Review-Last samt `BSR:`-Commit als Abhilfe, und ein Beitrag auf DEV Community (2025) zu Umfangsgrenzen. Keiner verwirft die Regel, alle ergänzen Leitplanken. Kent Becks _Tidy First?_ liefert genau die Trenndisziplin, die sie verlangen, und erwähnt die Boy Scout Rule *nicht* -- deshalb steht Beck als benachbart und nicht als Kritiker. Martin schreibt die Regel in _Clean Code_, Kapitel 1, den Pfadfindern zu; darum benennt die Zuschreibung des Ankers die Übertragung auf Code und nicht die Formulierung. Zitierbare deutschsprachige Kritik fand sich keine; Französisch, Spanisch, Japanisch und Chinesisch wurden nicht gesucht.
+
+=== Dale Carnegie Principles
+
+[cols="2,1,3"]
+|===
+|Kriterium |Urteil |Beleg
+
+|Precise |erfüllt |P2 liefert auf beiden Stufen zwischenmenschliche Kommunikation und Selbsthilfe-Psychologie, ohne konkurrierendes Feld. Keine Stufe verbindet den Begriff mit Software
+|Rich |erfüllt |4/4 Erkennungsläufe melden `richness=rich`; beide Stufen geben die Vierteilung des Buchs wieder
+|Consistent |erfüllt |Gleiche Prinzipien, gleiche Gruppierung, über beide Stufen und alle Läufe
+|Attributable |erfüllt |P4 liefert auf beiden Stufen Dale Carnegie mit `confidence=high`
+|Prior-Dichte |starke Erkennung, schmales Delta |Siehe unten
+|===
+
+Tier ★★★, Route: Anker.
+
+Die Handlungsprobe ließ einen harschen Review-Kommentar umschreiben: „This is wrong. You clearly did not read the spec. Redo it." Die geankerten Läufe der starken Stufe eröffneten mit Anerkennung und benannten danach ihre eigenen Züge:
+
+[quote]
+____
+Thanks for getting this PR up so quickly. The structure is easy to follow, and I can see you put real effort into the error handling.
+____
+
+Der redliche Teil der Messung ist die Vergleichsmessung. Ohne den Begriff ging die starke Stufe *schon* schonend mit der Person um -- sie trennte Code und Autor, räumte einen plausiblen Irrtum ein („The spec is easy to misread here … so I can see how you got here") und fragte, statt zu befehlen. Das Delta des Ankers ist damit enger, als der Ruf des Begriffs vermuten lässt: einleitende Anerkennung und ein ausdrücklich gesichtswahrender Rahmen, nicht Takt an sich. Die `SELF:`-Zeile der Vergleichsmessung meldete `avoided_direct_criticism=no`, was der Text nicht hergibt; sie wird am Inhalt gemessen und nicht als Delta gezählt. Das relativiert zugleich eine Behauptung des Vorschlags -- dass der Anker der Neigung des Modells zur epistemischen Korrektur entgegenwirke. Auf den gemessenen Modellen ist diese Neigung schwächer, als das Argument annimmt.
+
+*Kritik-Recherche, 24.09.2026, Englisch und Deutsch.* Basford und Molberg (_Journal of Leadership Studies_, 2013) sind die stärkste zitierbare Quelle: Die Prinzipien seien „based on anecdotes, case studies, and personal examples rather than empirical evidence". Der Vorwurf der Unaufrichtigkeit ist in der wissenschaftlichen Rezeption belegt, und Carnegies eigene, aus der Schauspielerei stammende Anweisung, „ENTER INTO the character you impersonate", ist die Stelle, an der er ansetzt. Steven Watts' weitergehender Vorwurf wird über Tom Jokinens Rezension im _Globe and Mail_ (2014) zitiert und Watts zugeschrieben, nicht dem Rezensenten. Der vielzitierte Verriss von Sinclair Lewis ließ sich nicht bis zur Originalquelle verfolgen und steht deshalb nicht drin. Die Editionsfrage ist hier wichtig und festgehalten: Die Überarbeitung von 1981 kürzte das Buch von sechs auf vier Abschnitte, und *beide Stufen gaben die Vierteilung wieder* -- der Prior bedient also die Überarbeitung und nicht das Original von 1936. Zitierbare deutschsprachige Kritik fand sich keine; Französisch, Spanisch, Japanisch und Chinesisch wurden nicht gesucht, und mindestens in den beiden letzten hat das Buch eine eigene Rezeptionsgeschichte.
+
+=== CUPID Properties
+
+[cols="2,1,3"]
+|===
+|Kriterium |Urteil |Beleg
+
+|Precise |erfüllt |P2 liefert auf beiden Stufen die Softwaretechnik; der römische Gott erscheint nur als Nachsatz auf der starken Stufe
+|Rich |erfüllt |`rich` auf der starken Stufe 2/2; ein Lauf der schwachen Stufe meldet `moderate`
+|Consistent |*auf der schwachen Stufe nicht erfüllt* |Zwei der fünf Buchstaben verrutschen -- siehe unten
+|Attributable |erfüllt |P4 liefert auf beiden Stufen Dan North mit `confidence=high`
+|Prior-Dichte |sehr stark auf der starken Stufe, verfälscht auf der schwachen |Siehe unten
+|===
+
+Tier ★★☆, Route: Anker. Der gefundene Defekt ist genau der, den eine Ankerdatei behebt.
+
+*Die starke Stufe greift von selbst zu CUPID.* Die ankerlose Vergleichsmessung fragte nur: „Review this module: a 2000-line OrderManager class that talks to the database, formats emails and validates input. Any format you like." CUPID kommt in diesem Prompt nicht vor. Der Lauf begann:
+
+[quote]
+____
+I've used Dan North's CUPID properties as the lens because they fit this kind of problem well.
+____
+
+Das ist der stärkste Erkennungsbeleg dieses Laufs -- und es bedeutet, dass das messbare Delta bei dieser Aufgabe null ist. Beide Lesarten stehen hier, nicht nur die schmeichelhafte.
+
+*Die schwache Stufe verfälscht das Akronym.* In jeder der vier `haiku-4.5`-Proben, die CUPID ausbuchstabierten, erschien das D als „Domain-*driven*" -- der Begriff in den Sog von DDD gezogen -- etwa: „5. *Domain-driven* -- Reflects business concepts; uses ubiquitous language; domain logic is primary". Eine weitere Probe gab das I als „Intelligible" statt „Idiomatic". Die starke Stufe tat beides kein einziges Mal. Norths eigener Wortlaut, aus dem kanonischen Artikel geholt, ist das zitierbare Gegengewicht: „Composable : plays well with others / Unix philosophy : does one thing well / Predictable : does what you expect / Idiomatic : feels natural / Domain-based : the solution domain models the problem domain in language and structure."
+
+*Ein Mangel unserer Methode, festgehalten statt geglättet.* Auf der schwachen Stufe verweigerte die Handlungsprobe zweimal die Aufgabe und verlangte den echten Quelltext, statt aus der Beschreibung zu prüfen. Die Ausführung auf der schwachen Stufe ist damit *ungemessen*, nicht gemessen-und-gescheitert. Bemerkenswert: Das Modell zählte beim Verweigern alle fünf Eigenschaften korrekt auf, an der Erkennung besteht also kein Zweifel. Die Regel daraus: Eine Handlungsprobe darf kein Artefakt beschreiben, dessen Vorlage das Modell plausibel einfordern kann.
+
+*Kritik-Recherche, 24.09.2026, Englisch und Deutsch.* Stephan Roth (developer-world.de, Juni 2025) ist der einzige gefundene substantielle Kritiker: CUPIDs Eigenschaften erfüllten seine Kriterien für ein gutes Prinzip nicht immer, und Anwendende dürften Single Responsibility und Single Purpose kaum auseinanderhalten. Sein Fazit ist keine Ablehnung -- „CUPID steht in keiner Weise im Widerspruch zu SOLID." Jeroen De Dauws Erwiderung auf North (2017) wird hier häufig falsch zitiert; sie liegt fünf Jahre vor CUPID und zielt auf den SOLID-Vortrag, steht also als Vorgeschichte und nicht als Kritik. Zum Einwand, der im Review am meisten zählt -- dass sich eine Property nicht wie eine Regel prüfen lässt -- fand sich keine Quelle; North nimmt ihn im Artikel vorweg, und niemand scheint ihn aufzugreifen.
+
+=== Crisis and Emergency Risk Communication (CERC)
+
+[cols="2,1,3"]
+|===
+|Kriterium |Urteil |Beleg
+
+|Precise |*auf dem blanken Akronym nicht erfüllt* |Die beiden Stufen sind sich uneinig, was CERC überhaupt ist -- siehe unten
+|Rich |teilweise |`rich` auf der starken Stufe; `moderate` in beiden Läufen der schwachen
+|Consistent |*über die Stufen nicht erfüllt* |Die schwache Stufe kann das Framework selbst mit dem ausgeschriebenen Begriff nicht ausführen
+|Attributable |erfüllt |P4 liefert auf der starken Stufe „Barbara Reynolds (CDC), with Matthew Seeger co-authoring the 2005 theory paper", `confidence=high`; die schwache Stufe nur „CDC (organizational)", `confidence=med`
+|Prior-Dichte |dünn auf der schwachen Stufe |Siehe unten
+|===
+
+Tier ★★☆ und `:tier: 1`, Frontier-only, aufgenommen unter dem ausgeschriebenen Namen. Route: Anker.
+
+*Das blanke Akronym zerfällt -- und auf dem stärkeren Modell stärker.* Ohne Kontext nach „CERC" gefragt, setzte die schwache Stufe das CDC-Framework an die erste Stelle. Die starke Stufe zählte vier Bedeutungen auf, keine davon das Framework -- Indiens Central Electricity Regulatory Commission, die Canada Excellence Research Chairs, das Coastal Engineering Research Center des US Army Corps und eine britische Beratung für Luftqualität -- und schloss:
+
+[quote]
+____
+If you don't specify a context, the Indian electricity regulator is the most likely meaning.
+____
+
+Die Umkehrung ist festzuhalten: Das stärkere Modell ist das mehrdeutigere, weil es mehr Bedeutungen kennt. Der Zusatz „(CDC)" aus dem Vorschlag drang nicht in die Standardlesart des Modells durch -- deshalb steht der Katalogname ausgeschrieben.
+
+*Die schwache Stufe kennt den Namen und kann das Framework nicht ausführen.* Mit dem ausgeschriebenen Begriff und der Aufgabe „draft the opening public statement for an ongoing incident whose cause is not yet known" gelang es `haiku-4.5` in beiden Läufen nicht, die sechs Prinzipien zu nennen. Die starke Stufe nannte alle sechs korrekt und baute die Meldung darauf auf -- „1. Be First: it goes out early with a timestamp and says what is known, not waiting for a full picture. … 6. Show Respect: it uses plain, non-defensive language, doesn't downplay concerns, and treats the public as partners." Die ankerlose Vergleichsmessung lieferte eine saubere Statusseite mit Zeitstempel, Betroffenheit und nächstem Update -- und nichts, was dieser Struktur ähnelte. Das Delta ist echt und lebt allein auf der Frontier-Stufe.
+
+*Kritik-Recherche, 24.09.2026, Englisch und Deutsch.* Die tragende Quelle ist eine Übersichtsarbeit: Miller, Collins, Neuberger, Todd, Sellnow und Boutemen (_JICRCR_, März 2021) sichteten „4,471 articles in 20 languages", nahmen 19 auf, „of which one tested tenets of the CERC model", und folgern, „reformulation of the propositions is necessary for empirical support of the model to proceed". CERC ist verdichtete Praxis, kein empirisch abgesichertes Modell. Sauer, Truelove, Gerste und Limaye (_Health Security_, Februar 2021) ordnen ihre Corona-Analyse entlang der sechs Prinzipien und finden die CDC beim Bruch ihres eigenen Glaubwürdigkeitsprinzips. Die Editionsfrage ist hier ungewöhnlich: Die CDC liefert das Handbuch inzwischen als Kapitel-PDFs mit den Jahrgängen 2014, 2018 und 2019 aus -- eine einheitliche aktuelle Ausgabe gibt es nicht. Zitierbare deutschsprachige Kritik fand sich keine -- und da die genannte Übersichtsarbeit 20 Sprachen sichtete und fast nichts fand, ist echte Dünnheit plausibel und nicht bloß ungemessen.

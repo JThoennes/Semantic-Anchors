@@ -1,0 +1,56 @@
+= Dale Carnegie Principles
+:categories: communication-presentation, dialogue-interaction
+:roles: team-lead, consultant, educator, software-developer, product-owner
+:proponents: Dale Carnegie
+:tags: Dale Carnegie, How to Win Friends and Influence People, interpersonal communication, appreciation, criticism, persuasion, feedback, Carnegie
+:related: problem-space-nvc, four-sides-model, sender-receiver-discrepancy, curse-of-knowledge, socratic-method
+:tier: 3
+:prior-test: 2026-09-24
+:tested-on: haiku-4.5=yes, opus-5=yes
+
+[%collapsible]
+====
+Full Name:: The principles of _How to Win Friends and Influence People_ (1936)
+
+Also known as:: Carnegie principles, How to Win Friends principles
+
+[discrete]
+== *Core Concepts*:
+
+* *Don't criticise, condemn or complain.* Carnegie's opening move and the one the rest depends on: criticism puts people on the defensive and they justify rather than reconsider.
+* *Give honest, sincere appreciation.* Stated as a precondition, not a technique -- Carnegie distinguishes appreciation from flattery repeatedly and insists the difference is sincerity.
+* *Arouse in the other person an eager want.* Argue from their interest rather than yours. "Talk in terms of the other person's interests" is the same move applied to conversation.
+* *Begin with praise, then raise the problem.* The characteristic structure: honest appreciation first, the difficulty second, and the correction framed so the other person keeps their standing.
+* *Point out mistakes indirectly, and let the other person save face.* Blame the circumstance, the ambiguous spec, your own earlier explanation -- anything that leaves the person room to change their mind without conceding incompetence.
+* *Ask questions instead of giving direct orders.* "Could you look at this?" rather than "redo it". The instruction lands the same and the standing does not.
+* *Try honestly to see things from the other person's point of view.* Invite their reasoning before delivering your own -- they may have seen what you did not.
+
+[discrete]
+== *When to Use*:
+
+* Review comments that have to be read by the person who wrote the code
+* Disagreements where being right is not the same as being effective
+* As a compact shorthand in a long-running instruction set, where spelling the posture out each time is expensive and drifts
+
+[discrete]
+== *Common Misunderstandings*:
+
+* *Reading it as a licence to soften the substance.* The principles govern how a correction is delivered, not whether it is made. A review comment that no longer names the defect has failed on Carnegie's terms too.
+* *Treating it as manipulation.* This is the standard charge and it is worth taking seriously -- see _Criticism_. Carnegie's own answer is that every technique is void without sincerity, which is a defence that can be stated but not enforced.
+* *Expecting it to add tact a current model lacks.* In our measurement the unanchored baseline was already careful with the person. What the term reliably adds is the opening appreciation and the face-saving frame -- a narrower and more specific effect than the reputation suggests.
+====
+
+== *Criticism*:
+
+* *The principles rest on anecdote, and that has been examined properly.* Tessa E. Basford and Andrea Molberg, "Dale Carnegie's Leadership Principles: Examining the Theoretical and Empirical Support", _Journal of Leadership Studies_ 2013, https://doi.org/10.1002/jls.21265[DOI 10.1002/jls.21265]: the book, "including its nine guiding leadership principles--is based on anecdotes, case studies, and personal examples rather than empirical evidence." Their conclusion is not that the advice is wrong but that its support has to be established from elsewhere before a leader relies on it. (The publisher's page blocks automated access; the record was verified through the DOI.)
+* *The insincerity charge is the standard one, and Carnegie's own text supplies the opening.* Scholarly reception turned on exactly this point, "chiding Carnegie for being insincere and manipulative" (https://en.wikipedia.org/wiki/How_to_Win_Friends_and_Influence_People[Wikipedia, with the reception history]). The sharpest version notes where the sincerity requirement becomes a stage direction: Carnegie, drawing on his years as an actor, writes that "you must actually ENTER INTO the character you impersonate, the cause you advocate, the case you argue" -- on which Tom Jokinen comments, "You have to mean it. Or, failing that, fake it." https://www.theglobeandmail.com/arts/books-and-media/book-reviews/how-dale-carnegies-self-help-movement-is-now-more-about-entitlement-than-enlightenment/article16187757/[_The Globe and Mail_] (4 January 2014). Carnegie's defence -- that every technique is void without sincerity -- can be stated but not enforced.
+* *The broader charge is that it crowds out everything that is not a personal feeling.* Steven Watts, in _Self-Help Messiah_, quoted in Jokinen's review: "[T]he Carnegie code has undermined people's capacity to think about the world in terms that transcend personal feelings. Its stress on human relations… has pushed aside frameworks of morality, social justice, and even economic well-being." Note the attribution: the sentence is Watts's, not the reviewer's.
+* *One widely circulated quotation we could not verify.* Sinclair Lewis's dismissal of the genre is repeated everywhere; we did not reach its original publication, and it is therefore not cited here.
+* *The frame.* No citable German-language criticism was found. French, Spanish, Japanese and Chinese were not searched, and the book has long independent reception histories in at least the last two -- 人を動かす and 人性的弱点 are among the best-selling translated titles in those markets. What follows is an anglophone-plus-German picture and should be read as one.
+
+[discrete]
+== *Current Status*:
+
+* *The text the prior serves is the 1981 revision, not the 1936 original.* "In 1981, a revised edition containing updated language and anecdotes was released. The revised edition reduced the number of sections from six to four, eliminating sections on effective business letters and improving marital satisfaction." The two removed sections are "Letters That Produced Miraculous Results" and "Seven Rules for Making Your Home Life Happier" (https://en.wikipedia.org/wiki/How_to_Win_Friends_and_Influence_People[Wikipedia]).
+* *Our own measurement confirms it.* In the prior test on 2026-09-24, both model tiers reproduced the four-part structure of the revision and neither produced the six-part shape of the original. Naming this anchor therefore reaches the revised book. If you need the 1936 text specifically, say so -- the name alone will not get you there.
+* *The numbered principles inside the four parts appear to have survived the revision intact*, since the cuts removed whole additional sections rather than principles. We did not open a 1936 table of contents to confirm it word for word.
