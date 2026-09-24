@@ -275,9 +275,6 @@ Source: https://github.com/LLM-Coding/Semantic-Anchors
 - **Proponents:** Ward Cunningham, Kent Beck
 - **Core:** Index cards for collaborative OO design — each card has Class name, Responsibilities (what it knows/does), and Collaborators (other classes it depends on); role-playing scenarios validate design; deliberately low-tech to encourage iterative thinking
 
-### DRY (Don't Repeat Yourself)
-- **Core:** Every piece of knowledge has single, unambiguous representation
-
 ### KISS (Keep It Simple, Stupid / Keep It Super Simple)
 - **Also known as:** KISS Principle, Keep It Simple
 - **Proponents:** Kelly Johnson, Robert C. Martin
