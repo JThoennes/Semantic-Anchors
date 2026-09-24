@@ -1,9 +1,17 @@
 ---
 name: arc42-documentation
-description: Author an arc42 architecture document with the project's cross-section traceability rules. Use when producing or extending an arc42 document — it carries the procedure the "Architecture Documentation" contract deliberately leaves out: scaffolding the with-help template, the five traceability rules arc42 does not enforce, the Chapter 11 Risks-vs-Technical-Debt structure, the ADR-to-risk-ID wiring, the Chapter 1.2-vs-10 quality-goal marking, and the six-part Quality Attribute Scenario form. The contract pins the vocabulary (arc42, C4/PlantUML, Nygard ADRs, Pugh); this skill is the how-to.
+description: >-
+  Author an arc42 architecture document with the project's cross-section
+  traceability rules. Use when producing or extending an arc42 document — it
+  carries the procedure the "Architecture Documentation" contract deliberately
+  leaves out: scaffolding the with-help template, the five traceability rules
+  arc42 does not enforce, the Chapter 11 Risks-vs-Technical-Debt structure,
+  the ADR-to-risk-ID wiring, the Chapter 1.2-vs-10 quality-goal marking, and
+  the six-part Quality Attribute Scenario form. The contract pins the
+  vocabulary (arc42, C4/PlantUML, Nygard ADRs, Pugh); this skill is the how-to.
 metadata:
   author: LLM-Coding
-  version: "0.1"
+  version: "0.2"
   source: https://github.com/LLM-Coding/Semantic-Anchors
 license: MIT
 ---
