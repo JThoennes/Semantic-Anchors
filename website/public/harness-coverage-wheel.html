@@ -777,7 +777,10 @@ dotEls.forEach(it=>byName[it.name]=it);
      wrap.appendChild(a);}
    tr.appendChild(wrap);});
  toolsReady=true;}
-sync();
+// applyTier() rather than sync(): a tier restored from the URL or from
+// localStorage must dim the out-of-scope layers on load, not only once a
+// tier button is clicked. applyTier() calls sync() itself.
+applyTier();
 function renderQtree(){
   const body=document.getElementById('qtreebody'); if(!body) return; let gaps=[], html='';
   // A sub-characteristic counts as covered when any layer names it as its
