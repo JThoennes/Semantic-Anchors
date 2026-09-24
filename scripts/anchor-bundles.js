@@ -46,10 +46,7 @@ function packBundles(categories, sizeOf, limit) {
       const suffix = parts.length > 1 ? `-${index + 1}` : ''
       bundles.push({
         id: `${category.id}${suffix}`,
-        title:
-          parts.length > 1
-            ? `${category.name} (${index + 1}/${parts.length})`
-            : category.name,
+        title: parts.length > 1 ? `${category.name} (${index + 1}/${parts.length})` : category.name,
         anchors,
       })
     })

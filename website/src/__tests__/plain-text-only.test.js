@@ -82,15 +82,22 @@ describe('no generated file links to a markdown address', () => {
    * A test that covers one output and not its siblings is how that happens.
    * This one walks every generated file.
    */
-  const GENERATED = ['llms.txt', 'llms-index.txt', 'llms-index.md', 'llms-index.html', 'contracts.txt']
+  const GENERATED = [
+    'llms.txt',
+    'llms-index.txt',
+    'llms-index.md',
+    'llms-index.html',
+    'contracts.txt',
+  ]
 
   for (const file of GENERATED) {
     it(`${file} names no bundle or anchor as .md`, () => {
       const full = path.join(PUBLIC, file)
       if (!fs.existsSync(full)) return
 
-      const dead = [...fs.readFileSync(full, 'utf-8').matchAll(/(?:bundles|anchors)\/[A-Za-z0-9._-]+\.md/g)]
-        .map((found) => found[0])
+      const dead = [
+        ...fs.readFileSync(full, 'utf-8').matchAll(/(?:bundles|anchors)\/[A-Za-z0-9._-]+\.md/g),
+      ].map((found) => found[0])
 
       expect([...new Set(dead)]).toEqual([])
     })
@@ -126,8 +133,9 @@ describe('the button only names plain text', () => {
     const dir = path.join(PUBLIC, 'bundles')
     if (!fs.existsSync(dir)) return
 
-    const missing = manifest.BUNDLES.map((bundle) => bundle.url.split('/bundles/')[1])
-      .filter((file) => file && !fs.existsSync(path.join(dir, file)))
+    const missing = manifest.BUNDLES.map((bundle) => bundle.url.split('/bundles/')[1]).filter(
+      (file) => file && !fs.existsSync(path.join(dir, file))
+    )
 
     expect(missing, 'The prompt names a file the build did not write').toEqual([])
   })

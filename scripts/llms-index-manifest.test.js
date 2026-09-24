@@ -139,8 +139,7 @@ describe('anchor bundles — nothing falls out of the catalogue', () => {
     )
     const sections = readdirSync(bundleDir).reduce(
       (n, name) =>
-        n +
-        (readFileSync(path.join(bundleDir, name), 'utf-8').match(/^# /gm).length - 1),
+        n + (readFileSync(path.join(bundleDir, name), 'utf-8').match(/^# /gm).length - 1),
       0
     )
 

@@ -50,12 +50,7 @@ describe('packBundles', () => {
     const split = packBundles(categories, sizeOf, 10)
 
     expect(whole.map((b) => b.title)).toEqual(['Alpha', 'Beta'])
-    expect(split.map((b) => b.title)).toEqual([
-      'Alpha (1/3)',
-      'Alpha (2/3)',
-      'Alpha (3/3)',
-      'Beta',
-    ])
+    expect(split.map((b) => b.title)).toEqual(['Alpha (1/3)', 'Alpha (2/3)', 'Alpha (3/3)', 'Beta'])
     expect(whole.map((b) => b.id)).toEqual(['a', 'b'])
     expect(split.map((b) => b.id)).toEqual(['a-1', 'a-2', 'a-3', 'b'])
   })

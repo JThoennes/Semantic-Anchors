@@ -50,7 +50,7 @@ export function catalogPrompt({ docPages, bundles, contractsUrl, fullTextUrl }) 
     `All the contracts in one file: ${contractsUrl}`,
     `Everything at once, large and likely cut short: ${fullTextUrl}`,
     '',
-    'Use the index to find a term\'s category, then fetch that category above.',
+    "Use the index to find a term's category, then fetch that category above.",
     'If a fetch is refused, say so and ask me to paste the URL.',
     '',
     'When I ask for a link, give me the page a person can open — each bundle',
