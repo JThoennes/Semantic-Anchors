@@ -436,7 +436,8 @@
         "model": "opus-5",
         "works": true
       }
-    ]
+    ],
+    "addedAt": "2026-09-24T14:26:26+02:00"
   },
   {
     "id": "c4-diagrams",
@@ -944,7 +945,8 @@
         "model": "opus-5",
         "works": true
       }
-    ]
+    ],
+    "addedAt": "2026-09-24T14:26:26+02:00"
   },
   {
     "id": "cupid-properties",
@@ -991,7 +993,8 @@
         "model": "opus-5",
         "works": true
       }
-    ]
+    ],
+    "addedAt": "2026-09-24T14:26:26+02:00"
   },
   {
     "id": "curse-of-knowledge",
@@ -1106,7 +1109,8 @@
         "model": "opus-5",
         "works": true
       }
-    ]
+    ],
+    "addedAt": "2026-09-24T14:26:26+02:00"
   },
   {
     "id": "decisional-balance-sheet",
