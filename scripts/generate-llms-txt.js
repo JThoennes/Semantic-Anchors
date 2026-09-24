@@ -402,9 +402,7 @@ function generateAnchorBundles() {
     )
   }
 
-  const largest = Math.max(
-    ...bundles.map((b) => fs.statSync(path.join(dest, `${b.id}.txt`)).size)
-  )
+  const largest = Math.max(...bundles.map((b) => fs.statSync(path.join(dest, `${b.id}.txt`)).size))
   console.warn(
     `Generated: website/public/bundles/ (${bundles.length} files, largest ` +
       `${Math.round(largest / 1024)} KB)`
@@ -482,7 +480,7 @@ function generateLlmsIndexTxt(bundles) {
   // swamps the others: 210 anchor lines under twelve documentation lines read
   // as an anchor catalogue unless the file says otherwise.
   const anchorCount = new Set(categories.flatMap((c) => c.anchors)).size
-  let contractCount = 0
+  let contractCount
   try {
     contractCount = JSON.parse(
       fs.readFileSync(path.join(ROOT, 'website/public/data/contracts.json'), 'utf-8')
@@ -534,7 +532,8 @@ function generateLlmsIndexTxt(bundles) {
     '> of the single anchors below when you want a whole category at once.',
     '',
     ...bundles.map(
-      (bundle) => `- [${bundle.title}](${SITE_URL}bundles/${bundle.id}.txt): ` +
+      (bundle) =>
+        `- [${bundle.title}](${SITE_URL}bundles/${bundle.id}.txt): ` +
         `${bundle.anchors.length} anchors in full.`
     ),
     '',
@@ -605,9 +604,7 @@ function generateLlmsIndexTxt(bundles) {
     ``,
     `/** The pages the TalkItOver prompt hands to the reader's LLM by name. */`,
     `export const DOC_PAGES = [`,
-    ...DOC_PAGES.map(
-      (page) => `  { title: ${JSON.stringify(page.title)}, url: '${page.url}/' },`
-    ),
+    ...DOC_PAGES.map((page) => `  { title: ${JSON.stringify(page.title)}, url: '${page.url}/' },`),
     `]`,
     ``,
     `/** The anchors in full, a few dozen per file, so nothing is left to follow. */`,

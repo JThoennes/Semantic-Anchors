@@ -72,6 +72,13 @@ jobs:
         working-directory: ./scripts
         run: npm ci
 
+      # The bundle tests read generated files: they check the wiring between
+      # packing and writing, which the packer's own unit test cannot see.
+      # Without this step they crash on a missing directory.
+      - name: Generate llms.txt artefacts (scripts)
+        working-directory: ./scripts
+        run: npm run generate-llms-txt
+
       - name: Run unit tests (scripts)
         working-directory: ./scripts
         run: npm test

@@ -31,17 +31,19 @@ function prerenderedDocPaths() {
 
   // Split on entry boundaries so a route's other fields stay with its path —
   // matching `path:` lines alone would count redirects as pages.
-  return routes
-    .split(/^ {2}\{$/m)
-    .map((entry) => ({
-      path: entry.match(/^ {4}path: '([^']+)'/m)?.[1],
-      redirect: / {4}redirectTo:/.test(entry),
-    }))
-    .filter((route) => route.path && !route.redirect)
-    .map((route) => route.path)
-    // Anchor pages carry their full text inside llms.txt already, and the
-    // German tree is a translation of pages the index names in English.
-    .filter((route) => !route.startsWith('/anchor/') && !route.startsWith('/de/'))
+  return (
+    routes
+      .split(/^ {2}\{$/m)
+      .map((entry) => ({
+        path: entry.match(/^ {4}path: '([^']+)'/m)?.[1],
+        redirect: / {4}redirectTo:/.test(entry),
+      }))
+      .filter((route) => route.path && !route.redirect)
+      .map((route) => route.path)
+      // Anchor pages carry their full text inside llms.txt already, and the
+      // German tree is a translation of pages the index names in English.
+      .filter((route) => !route.startsWith('/anchor/') && !route.startsWith('/de/'))
+  )
 }
 
 /** Paths the generated index names as documentation pages. */

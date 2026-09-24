@@ -121,7 +121,7 @@ describe('anchor bundles — nothing falls out of the catalogue', () => {
     // is the text a reader's LLM matches against, and it survives a change to
     // the slugging rules.
     const missing = [...new Set(categories.flatMap((c) => c.anchors))].filter((id) => {
-      const heading = readFileSync(path.join(anchorDir, `${id}.md`), 'utf-8')
+      const heading = readFileSync(path.join(anchorDir, `${id}.txt`), 'utf-8')
         .split('\n')
         .find((line) => line.startsWith('# '))
       return heading === undefined || !all.includes(heading)
@@ -139,8 +139,7 @@ describe('anchor bundles — nothing falls out of the catalogue', () => {
     )
     const sections = readdirSync(bundleDir).reduce(
       (n, name) =>
-        n +
-        (readFileSync(path.join(bundleDir, name), 'utf-8').match(/^# /gm).length - 1),
+        n + (readFileSync(path.join(bundleDir, name), 'utf-8').match(/^# /gm).length - 1),
       0
     )
 
@@ -171,8 +170,11 @@ describe('anchor bundles — nothing falls out of the catalogue', () => {
   it('keeps every bundle inside the size limit it was packed with', () => {
     for (const name of readdirSync(bundleDir)) {
       const bytes = statSync(path.join(bundleDir, name)).size
-      // The limit is 40 KB of anchor text; the bundle adds a short header.
-      expect(bytes).toBeLessThan(48 * 1024)
+      // generate-llms-txt.js packs 60 KB of anchor text per bundle; the file
+      // on disk carries a header and one page link per anchor on top, so the
+      // ceiling here is the packing limit plus that allowance. Raise both
+      // together — this assertion is what catches a header that runs away.
+      expect(bytes).toBeLessThan(68 * 1024)
     }
   })
 })
