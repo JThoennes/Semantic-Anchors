@@ -162,6 +162,13 @@
   .tool-doc:hover{color:var(--cov);background:#eef2f7}
   .note{padding:0 28px 34px;color:var(--muted);font-size:12.5px;max-width:80ch}
   footer{padding:0 28px 30px;color:#9aa4af;font-size:12px}
+  /* not applicable: visibly set aside, neither covered nor a gap */
+  .na-toggle{margin-left:6px;padding:0 5px;font-size:10px;line-height:16px;border:1px dashed var(--line);
+    border-radius:4px;background:transparent;color:var(--muted);cursor:pointer}
+  .na-toggle:hover{border-style:solid}
+  .na-toggle[aria-pressed="true"]{background:var(--muted);border-style:solid;color:#fff}
+  li.na .name,li.na .prop{opacity:.45;text-decoration:line-through}
+  circle.na,.dot.na{fill:none;stroke:var(--muted);stroke-dasharray:2 2;opacity:.5}
 </style>
 </head>
 <body>
@@ -236,6 +243,7 @@
       <button id="btnMin">Pragmatic minimum (all 🟢)</button>
       <button id="btnAll">Select all</button>
       <button id="btnClear">Clear</button>
+      <button id="btnCopyLink" title="Copy a link that restores this selection">Copy link</button>
     </div>
     <div class="tiers" id="tiers">
       <span class="tlbl">Risk tier:</span>
@@ -451,8 +459,17 @@ const harnessGroups=[...document.querySelectorAll('#inv .grp')].map(g=>{
       // secondary ones a layer also genuinely checks.
       quality: li.dataset.q, subquality: li.dataset.sq,
       subquality2: (li.dataset.sq2||'').split('|').filter(Boolean),
-      human: cl==='No'||cl==='Partial', toolAssist: cl==='Partial'
+      human: cl==='No'||cl==='Partial', toolAssist: cl==='Partial',
+      // Not applicable: the layer cannot apply to this project at all.
+      na:false
     };
+    const nb=document.createElement('button');
+    nb.className='na-toggle'; nb.type='button'; nb.textContent='n/a';
+    nb.setAttribute('aria-pressed','false');
+    nb.setAttribute('aria-label','Mark '+name+' not applicable');
+    nb.title='Not applicable to this project — excluded from the percentage';
+    nb.onclick=()=>setNa(it,!it.na);
+    it.cb.insertAdjacentElement('afterend', nb); it.naBtn=nb;
     allItems.push(it); return it;
   });
   g.querySelector('.cnt').textContent=items.length+' layers';
@@ -566,14 +583,27 @@ function build(){
 
 // In scope = counts toward the percentage. Aspects dimmed by the risk tier
 // (mintier above the selected tier) are out of scope and do not count.
-function inScope(it){return TIER==='all' || it.mintier<=+TIER;}
+// Not applicable leaves the denominator rather than counting against the
+// percentage: a layer that cannot apply is neither covered nor a gap. A
+// static site with no server has no database migration to dry-run.
+function inScope(it){return !it.na && (TIER==='all' || it.mintier<=+TIER);}
+function setNa(it,on){
+  it.na=on;
+  if(on)it.cb.checked=false;
+  it.cb.disabled=on;
+  it.naBtn.setAttribute('aria-pressed',on?'true':'false');
+  it.li.classList.toggle('na',on);
+  sync();
+}
 function sync(){
   let cov=0,tot=0, gOn=0,gTot=0;
   active.forEach((g,i)=>{
     let c=0,sc=0;
     g.items.forEach(it=>{
       it.covered=it.cb.checked;
-      if(it.dot){it.dot.classList.toggle('exposed',!it.covered); it.dot.style.fill = it.covered?CLR[it.cls]:'';}
+      if(it.dot){it.dot.classList.toggle('exposed',!it.covered && !it.na);
+        it.dot.classList.toggle('na',it.na);
+        it.dot.style.fill = it.covered?CLR[it.cls]:'';}
       it.li.classList.toggle('on',it.covered); it.li.classList.toggle('off',!it.covered);
       if(inScope(it)){sc++; tot++; if(it.covered){c++; cov++;}}
       if(it.cls==='G'){gTot++; if(it.covered)gOn++;}
@@ -587,15 +617,18 @@ function sync(){
     if(pe)pe.textContent= sc>0 ? Math.round(frac*100)+'%' : '–';
   });
   document.getElementById('cnum').textContent=(tot>0?Math.round(cov/tot*100):0)+'%';
-  let stat=`<b>${cov}/${tot}</b> layers covered &nbsp;·&nbsp; free 🟢 floor: <b>${gOn}/${gTot}</b> on`;
+  const naCount=dotEls.filter(it=>it.na).length;
+  const naNote=naCount?` &nbsp;·&nbsp; ${naCount} not applicable`:'';
+  let stat=`<b>${cov}/${tot}</b> layers covered &nbsp;·&nbsp; free 🟢 floor: <b>${gOn}/${gTot}</b> on`+naNote;
   if(TIER!=='all'){
-    const deferred=dotEls.length-tot;
+    // n/a layers are not 'below this tier' — they are outside the question.
+    const deferred=dotEls.length-tot-naCount;
     stat=`<span class="req">${TIERNAME[TIER]}</span>: <b>${cov}/${tot}</b> required layers covered `+
-         `&nbsp;·&nbsp; ${deferred} below this tier (not counted)`;
+         `&nbsp;·&nbsp; ${deferred} below this tier (not counted)`+naNote;
   }
   document.getElementById('stat').innerHTML=stat;
   // "Pragmatic minimum" shows active (blue) only when the selection is exactly that preset.
-  const isMin=dotEls.every(it=>it.cb.checked===(it.cls==='G'));
+  const isMin=dotEls.filter(it=>!it.na).every(it=>it.cb.checked===(it.cls==='G'));
   document.getElementById('btnMin').classList.toggle('primary',isMin);
   refreshTools();
   if(typeof saveState==='function')saveState();
@@ -661,9 +694,15 @@ document.querySelectorAll('#tiers button').forEach(b=>b.onclick=()=>{
 });
 
 // controls
-document.getElementById('btnMin').onclick=()=>{dotEls.forEach(it=>it.cb.checked=(it.cls==='G'));sync();};
-document.getElementById('btnAll').onclick=()=>{dotEls.forEach(it=>it.cb.checked=true);sync();};
-document.getElementById('btnClear').onclick=()=>{dotEls.forEach(it=>it.cb.checked=false);sync();};
+document.getElementById('btnMin').onclick=()=>{dotEls.forEach(it=>{if(!it.na)it.cb.checked=(it.cls==='G');});sync();};
+document.getElementById('btnAll').onclick=()=>{dotEls.forEach(it=>{if(!it.na)it.cb.checked=true;});sync();};
+document.getElementById('btnClear').onclick=()=>{dotEls.forEach(it=>{if(!it.na)it.cb.checked=false;});sync();};
+document.getElementById('btnCopyLink').onclick=async(e)=>{
+  const b=e.currentTarget, url=shareUrl(), old=b.textContent;
+  try{await navigator.clipboard.writeText(url); b.textContent='Copied';}
+  catch(err){window.prompt('Copy this link:',url);}
+  setTimeout(()=>{b.textContent=old;},1500);
+};
 document.querySelectorAll('#inv input').forEach(cb=>cb.addEventListener('change',sync));
 
 // Persist the self-assessment locally (this page has no backend): covered
@@ -672,22 +711,53 @@ const STORE='harness-wheel-v1';
 function saveState(){
   try{localStorage.setItem(STORE,JSON.stringify({
     ids:allItems.filter(it=>it.cb.checked).map(it=>it.id),
+    na:allItems.filter(it=>it.na).map(it=>it.id),
     tier:TIER, width:WIDTH,
     view:active===qualityGroups?'quality':'harness'
   }));}catch(e){}
 }
+// A selection can also arrive in the URL, which is the only way to share one:
+// an <iframe> embed gets a partitioned localStorage, so pre-seeding it fails.
+// The long id lists live in the hash, which never reaches a server.
+function readUrlState(){
+  const q=new URLSearchParams(location.search);
+  const h=new URLSearchParams(location.hash.replace(/^#/,''));
+  const pick=k=>h.get(k)!==null?h.get(k):q.get(k);
+  const tier=pick('tier'), on=pick('on'), na=pick('na');
+  if(tier===null&&on===null&&na===null)return null;
+  const split=v=>(v||'').split(',').map(s=>s.trim()).filter(Boolean);
+  return {tier, ids:split(on), na:split(na)};
+}
+function applyState(st){
+  const on=new Set(st.ids||[]), na=new Set(st.na||[]);
+  allItems.forEach(it=>{
+    it.na=na.has(it.id);
+    it.cb.checked=!it.na&&on.has(it.id);
+    it.cb.disabled=it.na;
+    if(it.naBtn)it.naBtn.setAttribute('aria-pressed',it.na?'true':'false');
+    it.li.classList.toggle('na',it.na);
+  });
+  if(st.tier){TIER=String(st.tier);
+    document.querySelectorAll('#tiers button').forEach(x=>x.classList.toggle('active',x.dataset.tier===TIER));}
+  if(st.width){WIDTH=st.width;
+    document.querySelectorAll('.wt').forEach(x=>x.classList.toggle('active',x.dataset.width===WIDTH));}
+  if(st.view==='quality'){active=qualityGroups;
+    document.querySelectorAll('.vt').forEach(x=>x.classList.toggle('active',x.dataset.view==='quality'));}
+}
+// A shared link must show what the sender meant, so a URL selection replaces
+// the stored one entirely instead of merging with it.
+function shareUrl(){
+  const on=allItems.filter(it=>it.cb.checked).map(it=>it.id);
+  const na=allItems.filter(it=>it.na).map(it=>it.id);
+  const u=new URL(location.href);
+  u.search=(TIER&&TIER!=='all')?'?tier='+TIER:'';
+  u.hash=[on.length?'on='+on.join(','):'', na.length?'na='+na.join(','):'']
+    .filter(Boolean).join('&');
+  return u.toString();
+}
 try{
-  const st=JSON.parse(localStorage.getItem(STORE)||'null');
-  if(st){
-    const on=new Set(st.ids||[]);
-    allItems.forEach(it=>{it.cb.checked=on.has(it.id);});
-    if(st.tier){TIER=st.tier;
-      document.querySelectorAll('#tiers button').forEach(x=>x.classList.toggle('active',x.dataset.tier===TIER));}
-    if(st.width){WIDTH=st.width;
-      document.querySelectorAll('.wt').forEach(x=>x.classList.toggle('active',x.dataset.width===WIDTH));}
-    if(st.view==='quality'){active=qualityGroups;
-      document.querySelectorAll('.vt').forEach(x=>x.classList.toggle('active',x.dataset.view==='quality'));}
-  }
+  const st=readUrlState()||JSON.parse(localStorage.getItem(STORE)||'null');
+  if(st)applyState(st);
 }catch(e){}
 layout(); build();
 // tools: build name→item map and render the quick-cover chips
