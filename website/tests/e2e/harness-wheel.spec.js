@@ -22,6 +22,26 @@ test.describe('harness wheel — state travels in the URL', () => {
     await expect(page.locator('#tiers button[data-tier="2"]')).toHaveClass(/active/)
   })
 
+  /*
+   * A shared link set the tier variable and highlighted the button, but nothing
+   * greyed out: applyTier() ran only from the click handler and from render(),
+   * never during init. The original test asserted the button's `active` class,
+   * which is a claim about the control and not about the wheel — so the defect
+   * passed. This asserts the effect instead.
+   */
+  test('a tier in the URL actually dims the out-of-scope layers', async ({ page }) => {
+    await page.goto(`${WHEEL}?tier=1`)
+
+    await expect(page.locator('#tiers button[data-tier="1"]')).toHaveClass(/active/)
+    // mintier 2 and above are out of scope at tier 1 and must be dimmed
+    await expect(page.locator('li[data-id="unit-tests"]')).toHaveClass(/dim/)
+    await expect(page.locator('li[data-id="mutation-testing"]')).toHaveClass(/dim/)
+    // mintier 1 stays in scope
+    await expect(page.locator('li[data-id="compiler"]')).not.toHaveClass(/dim/)
+    // and the wheel's own dots carry it too, not just the list
+    expect(await page.locator('.dot.dim').count()).toBeGreaterThan(0)
+  })
+
   test('the URL wins over a differing localStorage state', async ({ page }) => {
     await page.addInitScript(() => {
       localStorage.setItem(
