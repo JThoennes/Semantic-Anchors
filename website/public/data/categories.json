@@ -8,7 +8,9 @@
       "big-five",
       "blooms-taxonomy",
       "bluf",
+      "crisis-and-emergency-risk-communication",
       "curse-of-knowledge",
+      "dale-carnegie-principles",
       "disc-model",
       "four-sides-model",
       "gutes-deutsch-wolf-schneider",
@@ -42,9 +44,11 @@
     "id": "design-principles",
     "name": "Design Principles & Patterns",
     "anchors": [
+      "boy-scout-rule",
       "code-smells",
       "cohesion-criteria",
       "crc-cards",
+      "cupid-properties",
       "deep-modules",
       "design-by-contract",
       "dry",
@@ -99,6 +103,7 @@
     "anchors": [
       "50-72-rule",
       "bem-methodology",
+      "boy-scout-rule",
       "conventional-commits",
       "definition-of-done",
       "effective-go",
@@ -120,6 +125,7 @@
     "id": "dialogue-interaction",
     "name": "Dialogue Interaction",
     "anchors": [
+      "dale-carnegie-principles",
       "socratic-method",
       "systemic-consulting",
       "xy-problem"
@@ -160,6 +166,7 @@
     "name": "Problem Solving",
     "anchors": [
       "chain-of-thought",
+      "crisis-and-emergency-risk-communication",
       "decisional-balance-sheet",
       "devils-advocate",
       "dmaic",
@@ -211,6 +218,7 @@
       "clean-architecture",
       "conways-law",
       "cqrs",
+      "cupid-properties",
       "domain-driven-design",
       "event-driven-architecture",
       "event-storming",

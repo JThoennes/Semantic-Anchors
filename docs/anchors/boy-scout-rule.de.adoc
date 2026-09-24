@@ -1,0 +1,57 @@
+= Boy Scout Rule
+:categories: design-principles, development-workflow
+:roles: software-developer, software-architect, team-lead, qa-engineer
+:proponents: Robert C. Martin
+:tags: Boy Scout Rule, Pfadfinderregel, Codequalität, Refactoring, technische Schulden, Code-Verfall, Clean Code, Martin
+:related: code-smells, red-green-tdd, conventional-commits, mikado-method, lehmans-classification
+:tier: 3
+:prior-test: 2026-09-24
+:tested-on: haiku-4.5=yes, opus-5=yes
+
+[%collapsible]
+====
+Vollständiger Name:: The Boy Scout Rule
+
+Auch bekannt als:: Hinterlasse den Zeltplatz sauberer, als du ihn vorgefunden hast. Checke das Modul sauberer ein, als du es ausgecheckt hast.
+
+[discrete]
+== *Kernkonzepte*:
+
+* *Sauberer einchecken als ausgechecken.* Die Einheit der Verbesserung ist der Besuch, nicht das Projekt. Jede Datei, die aus einem anderen Grund geöffnet wird, verlässt die Sitzung etwas besser, als sie hineinging.
+* *Begrenzt auf das, was du ohnehin angefasst hast.* Die Aufräumarbeit fährt auf Arbeit mit, die sowieso stattgefunden hätte. Code, den du nicht öffnen musstest, ist außerhalb des Auftrags -- genau hier verläuft die Grenze zwischen der Regel und wildem Refactoring im Vorbeigehen.
+* *Klein genug, dass niemand um Erlaubnis fragt.* Eine unklare Variable umbenennen, eine Methode extrahieren, toten Code löschen, einen veralteten Kommentar richtigstellen. Wer dafür ein Ticket braucht, tut etwas anderes.
+* *Gerichtet gegen Entropie, nicht auf Perfektion.* Ziel ist der langsame Verfall eines Codebestands, für den sich niemand zuständig fühlt, nicht ein Reinheitsgrad. Wiederholt etwas besser schlägt eine Neuschreibung, die nie kommt.
+* *Nur unter Testabdeckung sicher.* Die Regel setzt eine grüne Testsuite voraus. Ohne sie ist „Verbesserung" eine ungeprüfte Änderung an Code, den man aus einem anderen Grund geöffnet hat.
+
+[discrete]
+== *Wann einsetzen*:
+
+* Beim Fehlerbeheben in einer Datei, die seit Jahren niemand gelesen hat
+* In Codebeständen ohne eigenes Refactoring-Budget, wo Verbesserung sich in die normale Arbeit einschmuggeln muss
+* Als Teamnorm, damit das Aufräumen erwartet und nicht im Review verteidigt wird
+* Überall dort, wo Code schneller entsteht oder sich ändert, als Menschen ihn kritisch prüfen -- sonst häuft sich der Verfall unbemerkt
+
+[discrete]
+== *Häufige Missverständnisse*:
+
+Sie als Freibrief für alles in der Nähe lesen:: Die Regel endet dort, wo die eigentliche Aufgabe endet. Unbegrenzt erzeugt sie Pull Requests, in denen der Reviewer die eigentliche Änderung nicht mehr findet.
+Struktur- und Verhaltensänderung in einen Commit mischen:: Aufräumen und Fix sollen trennbar bleiben, damit ein Reviewer das eine ohne das andere lesen kann und ein Revert nicht beides mitnimmt. Kent Becks _Tidy First?_ macht genau diese Trennung zur zentralen Regel.
+„Sauberer" mit „in meinem Stil" verwechseln:: Umformatieren nach persönlichem Geschmack erzeugt Diff-Rauschen und beseitigt keinen Verfall.
+Sie ohne Tests anwenden:: Dann ist es kein Aufräumen, sondern eine ungeprüfte Änderung unter einem tugendhaften Namen.
+====
+
+== *Kritik*:
+
+* *Aufräumen und Fix landen im selben Diff.* Jason Swett benennt die beiden Folgen unumwunden: „It will be harder for any pull request reviewer to tell what exactly changed between the old code and the new code" und „If a feature/bugfix and piece of refactoring are mixed into one piece of work, it's impossible to roll one back without rolling back the other." https://www.codewithjason.com/boy-scout-rule-insufficient/[Swett, „Why the Boy Scout Rule is insufficient"] (17. Dezember 2018). Er nennt außerdem eine Klasse von Änderungen, die die Regel nicht trägt -- Probleme auf „Parkebene", die „need to be discussed among everyone and then applied as a distinct project".
+* *Sie erreicht die teuerste Schuld nicht.* Philippe Bourgau: „the boy scout rule is local and does not address large scale design or architecture issues". Und eine zweite Grenze, die selten ausgesprochen wird: „programmers will be able to clean the code only as much as their skills allow them to". https://philippe.bourgau.net/when-the-boy-scout-rule-fails/[Bourgau, „When the Boy Scout Rule Fails"] (2. August 2016). Die Regel ist doppelt begrenzt -- durch den Auftrag und durch den, der die Datei zufällig öffnet.
+* *Die Review-Last ist real und hat einen Vorschlag zur Abhilfe.* Marius Elvert schreibt, nebenbei gefundenes Aufräumen „‚pollutes' your merge-/pull-requests, making it harder to review", und antwortet mit einem eigenen Commit, per `BSR:`-Präfix gekennzeichnet, damit der Reviewer ihn getrennt lesen oder überspringen kann -- beschränkt auf kleine Refactorings. https://schneide.blog/2022/01/13/the-boy-scout-rule-and-git-in-practice/[Elvert, Schneide Blog] (13. Januar 2022).
+* *Das Urteil, auf das die Regel angewiesen ist, liefert sie nicht mit.* Alle genannten Kritiker landen an derselben Leerstelle: Was gilt als „kleine" Bereinigung? Die Regel formuliert die Pflicht und überlässt die Grenze dem, der gerade im Editor sitzt.
+* *Zu „Pfadfinderregel" und „Pfadfinderprinzip" fand sich keine zitierbare deutschsprachige Kritik* -- die deutschen Treffer waren durchweg zustimmend. Französisch, Spanisch, Japanisch und Chinesisch wurden nicht gesucht. Das ist eine Lücke unserer Suche, nicht des Diskurses.
+
+[discrete]
+== *Aktueller Stand*:
+
+* *Martin schreibt die Regel den Pfadfindern zu, nicht sich selbst.* _Clean Code_ (Prentice Hall, 2008), Kapitel 1: „The Boy Scouts of America have a simple rule that we can apply to our profession. Leave the campground cleaner than you found it." https://www.informit.com/articles/article.aspx?p=1235624&seqNum=6[Auszug bei InformIT]. Seine Leistung ist die Übertragung auf Code, und genau die benennt dieser Anker -- die Zeltplatz-Formulierung selbst ist älter und stammt nicht von ihm.
+* *Weiterhin empfohlen, inzwischen mit Auflagen.* Die Fürsprache seit 2022 behält die Regel und ergänzt Leitplanken, statt sie fallenzulassen: Aufräumen soll „local and limited" bleiben, und „large refactoring still require a separate task with a separate time slot" -- https://dev.to/anton9/boy-scout-rule-and-its-limitations-5404[Anton, DEV Community] (23. Februar 2025).
+* *Der Diskurs ist zur Trenndisziplin gewandert, nicht von der Regel weg.* Kent Becks _Tidy First?_ (2023) hat „structural and behavioral changes should be kept in separate PRs (or at least in separate commits)" zur gängigen Lesart gemacht -- also genau die Abhilfe, die die Kritiker verlangen. Präzise gesagt: Beck nennt die Boy Scout Rule nicht. Er liefert die Disziplin, aber er ist nicht als ihr Korrektor belegt.
+* *Keine Rücknahme gefunden.* Martin hat mehrere _Clean-Code_-Positionen öffentlich relativiert, und es gibt eine zweite Auflage. Dass diese Regel dazugehört, ließ sich nicht belegen -- eine Lücke unserer Prüfung, keine bestätigte Kontinuität.

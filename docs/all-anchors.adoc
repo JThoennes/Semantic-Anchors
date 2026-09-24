@@ -23,8 +23,14 @@ include::anchors/blooms-taxonomy.adoc[leveloffset=+2]
 [[bluf]]
 include::anchors/bluf.adoc[leveloffset=+2]
 
+[[crisis-and-emergency-risk-communication]]
+include::anchors/crisis-and-emergency-risk-communication.adoc[leveloffset=+2]
+
 [[curse-of-knowledge]]
 include::anchors/curse-of-knowledge.adoc[leveloffset=+2]
+
+[[dale-carnegie-principles]]
+include::anchors/dale-carnegie-principles.adoc[leveloffset=+2]
 
 [[disc-model]]
 include::anchors/disc-model.adoc[leveloffset=+2]
@@ -97,6 +103,9 @@ include::anchors/three-act-structure.adoc[leveloffset=+2]
 
 == Design Principles & Patterns
 
+[[boy-scout-rule]]
+include::anchors/boy-scout-rule.adoc[leveloffset=+2]
+
 [[code-smells]]
 include::anchors/code-smells.adoc[leveloffset=+2]
 
@@ -105,6 +114,9 @@ include::anchors/cohesion-criteria.adoc[leveloffset=+2]
 
 [[crc-cards]]
 include::anchors/crc-cards.adoc[leveloffset=+2]
+
+[[cupid-properties]]
+include::anchors/cupid-properties.adoc[leveloffset=+2]
 
 [[deep-modules]]
 include::anchors/deep-modules.adoc[leveloffset=+2]
@@ -252,6 +264,8 @@ include::anchors/50-72-rule.adoc[leveloffset=+2]
 [[bem-methodology]]
 include::anchors/bem-methodology.adoc[leveloffset=+2]
 
+include::anchors/boy-scout-rule.adoc[leveloffset=+2]
+
 [[conventional-commits]]
 include::anchors/conventional-commits.adoc[leveloffset=+2]
 
@@ -300,6 +314,8 @@ include::anchors/timtowtdi.adoc[leveloffset=+2]
 <<<
 
 == Dialogue Interaction
+
+include::anchors/dale-carnegie-principles.adoc[leveloffset=+2]
 
 [[socratic-method]]
 include::anchors/socratic-method.adoc[leveloffset=+2]
@@ -364,6 +380,8 @@ include::anchors/what-qualifies-as-a-semantic-anchor.adoc[leveloffset=+2]
 
 [[chain-of-thought]]
 include::anchors/chain-of-thought.adoc[leveloffset=+2]
+
+include::anchors/crisis-and-emergency-risk-communication.adoc[leveloffset=+2]
 
 [[decisional-balance-sheet]]
 include::anchors/decisional-balance-sheet.adoc[leveloffset=+2]
@@ -483,6 +501,8 @@ include::anchors/conways-law.adoc[leveloffset=+2]
 
 [[cqrs]]
 include::anchors/cqrs.adoc[leveloffset=+2]
+
+include::anchors/cupid-properties.adoc[leveloffset=+2]
 
 [[domain-driven-design]]
 include::anchors/domain-driven-design.adoc[leveloffset=+2]
